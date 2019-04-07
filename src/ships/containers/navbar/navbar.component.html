@@ -25,11 +25,11 @@
       [class.show]="show"
     >
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item" *ngIf="appUser$">
+        <li class="nav-item" *ngIf="auth.isAuthenticated()">
           <a
             class="nav-link"
             (click)="toggleCollapse()"
-            routerLink="/dashboard/index"
+            routerLink="/dashboard"
             routerLinkActive="active"
             >Dashboard</a
           >
@@ -37,17 +37,17 @@
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
-        <li class="nav-item " *ngIf="!appUser$">
+        <li class="nav-item " *ngIf="!auth.isAuthenticated()">
           <a class="nav-link" (click)="toggleCollapse()" routerLink="/register"
             >REGISTER</a
           >
         </li>
-        <li class="nav-item " *ngIf="!appUser$">
+        <li class="nav-item " *ngIf="!auth.isAuthenticated()">
           <a class="nav-link" (click)="toggleCollapse()" routerLink="/login"
             >LOGIN</a
           >
         </li>
-        <li class="nav-item" *ngIf="appUser$">
+        <li class="nav-item" *ngIf="auth.isAuthenticated()">
           <a class="nav-link" (click)="logout()" routerLink>LOGOUT</a>
         </li>
       </ul>
