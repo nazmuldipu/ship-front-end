@@ -1,3 +1,505 @@
-<p>
-  dash-nav works!
-</p>
+<nav class="navbar navbar-expand-md navbar-light py-3 shadow-sm">
+    <button
+      class="navbar-toggler"
+      type="button"
+      (click)="toggleCollapse()"
+      data-toggle="collapse"
+      data-target="#navbarCollapse"
+      aria-controls="navbarCollapse"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse" [class.show]="show">
+      <nav class="navbar-nav mr-auto">
+        <a class="nav-item" routerLink="/">
+          <img class="company-logo" src="assets/images/logo.png" alt="logo" />
+        </a>
+  
+        <li class="nav-item" (click)="toggleCollapse()">
+          <a class="nav-link" routerLink="/dashboard">Dashboard</a>
+        </li>
+        <li class="nav-item" *ngIf="hasAuthority('ROLE_ADMIN')">
+          <div ngbDropdown class="d-inline-block">
+            <a class="nav-link" id="adminHotels" ngbDropdownToggle> Ships </a>
+            <div ngbDropdownMenu aria-labelledby="adminHotels">
+              <a
+                class="dropdown-item"
+                (click)="toggleCollapse()"
+                routerLink="/dashboard/admin/ships/add"
+              >
+                Add
+              </a>
+              <a
+                class="dropdown-item"
+                (click)="toggleCollapse()"
+                routerLink="/dashboard/admin/ships"
+              >
+                List
+              </a>
+            </div>
+          </div>
+        </li>
+  
+        <li class="nav-item" *ngIf="hasAuthority('ROLE_ADMIN')">
+          <div ngbDropdown class="d-inline-block">
+            <a class="nav-link" id="adminCategory" ngbDropdownToggle>
+              Category
+            </a>
+            <div ngbDropdownMenu aria-labelledby="adminCategory">
+              <a
+                class="dropdown-item"
+                (click)="toggleCollapse()"
+                routerLink="/dashboard/admin/category/add"
+              >
+                Add
+              </a>
+              <a
+                class="dropdown-item"
+                (click)="toggleCollapse()"
+                routerLink="/dashboard/admin/category"
+              >
+                List
+              </a>
+            </div>
+          </div>
+        </li>
+        <li class="nav-item" *ngIf="hasAuthority('ROLE_ADMIN')">
+          <div ngbDropdown class="d-inline-block">
+            <a class="nav-link" id="adminRoom" ngbDropdownToggle> Room </a>
+            <div ngbDropdownMenu aria-labelledby="adminRoom">
+              <a
+                class="dropdown-item"
+                (click)="toggleCollapse()"
+                routerLink="/dashboard/admin/rooms/add"
+              >
+                Add
+              </a>
+              <a
+                class="dropdown-item"
+                (click)="toggleCollapse()"
+                routerLink="/dashboard/admin/rooms"
+              >
+                List
+              </a>
+              <a
+                class="dropdown-item"
+                (click)="toggleCollapse()"
+                routerLink="/dashboard/admin/rooms/discount-map"
+              >
+                Discount map
+              </a>
+              <a
+                class="dropdown-item"
+                (click)="toggleCollapse()"
+                routerLink="/dashboard/admin/rooms/status-map"
+              >
+                Status map
+              </a>
+            </div>
+          </div>
+        </li>
+        <li class="nav-item" *ngIf="hasAuthority('ROLE_ADMIN')">
+          <div ngbDropdown class="d-inline-block">
+            <a class="nav-link" id="adminRoom" ngbDropdownToggle> Users </a>
+            <div ngbDropdownMenu aria-labelledby="adminRoom">
+              <a
+                class="dropdown-item"
+                (click)="toggleCollapse()"
+                routerLink="/dashboard/admin/users/add"
+              >
+                Add
+              </a>
+              <a
+                class="dropdown-item"
+                (click)="toggleCollapse()"
+                routerLink="/dashboard/admin/users"
+              >
+                List
+              </a>
+              <a
+                class="dropdown-item"
+                (click)="toggleCollapse()"
+                routerLink="/dashboard/admin/users/admin-agent"
+              >
+                Agent
+              </a>
+              <a
+                class="dropdown-item"
+                (click)="toggleCollapse()"
+                routerLink="/dashboard/admin/users/assign"
+              >
+                Assign Hotel User
+              </a>
+              <a
+                class="dropdown-item"
+                (click)="toggleCollapse()"
+                routerLink="/dashboard/admin/users/change-password"
+              >
+                Change user password
+              </a>
+            </div>
+          </div>
+        </li>
+  
+        <li class="nav-item" *ngIf="hasAuthority('ROLE_ADMIN')">
+          <div ngbDropdown class="d-inline-block">
+            <a class="nav-link" id="dropdownBasic1" ngbDropdownToggle> Sell </a>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+              <a
+                class="dropdown-item"
+                (click)="toggleCollapse()"
+                routerLink="/dashboard/admin/bookings/sell-rooms"
+              >
+                Sell rooms
+              </a>
+              <a
+                class="dropdown-item"
+                (click)="toggleCollapse()"
+                routerLink="/dashboard/admin/bookings/offline-bookings"
+              >
+                Offline bookings
+              </a>
+              <a
+                class="dropdown-item"
+                (click)="toggleCollapse()"
+                routerLink="/dashboard/admin/bookings/cancel-bookings"
+              >
+                Cancel bookings
+              </a>
+            </div>
+          </div>
+        </li>
+        <li class="nav-item" *ngIf="hasAuthority('ROLE_ADMIN')">
+          <div ngbDropdown class="d-inline-block">
+            <a class="nav-link" (click)="toggleCollapse()" id="dropdownBasic1" ngbDropdownToggle>
+              Package
+            </a>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+              <a class="dropdown-item" (click)="toggleCollapse()" routerLink="/dashboard/admin/package/add">
+                Add
+              </a>
+              <a class="dropdown-item" (click)="toggleCollapse()" routerLink="/dashboard/admin/package">
+                List
+              </a>
+              <a class="dropdown-item" (click)="toggleCollapse()" routerLink="/dashboard/admin/package/custom-packages">
+                Custom packages
+              </a>
+            </div>
+          </div>
+        </li>
+        <li class="nav-item" *ngIf="hasAuthority('ROLE_ADMIN')">
+          <div ngbDropdown class="d-inline-block">
+            <a class="nav-link" id="adminAccounting" ngbDropdownToggle>
+              Accounting
+            </a>
+            <div ngbDropdownMenu aria-labelledby="adminAccounting">
+              <a
+                class="dropdown-item"
+                (click)="toggleCollapse()"
+                routerLink="/dashboard/admin/accountings/cashbook"
+              >
+                Cashbook
+              </a>
+              <a
+                class="dropdown-item"
+                (click)="toggleCollapse()"
+                routerLink="/dashboard/admin/accountings/hotel-ledger"
+              >
+                Hotel ledger </a
+              ><a
+                class="dropdown-item"
+                (click)="toggleCollapse()"
+                routerLink="/dashboard/admin/accountings/add-income"
+              >
+                Add Income
+              </a>
+              <a
+                class="dropdown-item"
+                (click)="toggleCollapse()"
+                routerLink="/dashboard/admin/accountings/add-expense"
+              >
+                Add Expense
+              </a>
+              <a
+                class="dropdown-item"
+                (click)="toggleCollapse()"
+                routerLink="/dashboard/admin/accountings/pay-hotel"
+              >
+                Pay Hotels
+              </a>
+              <a
+                class="dropdown-item"
+                (click)="toggleCollapse()"
+                routerLink="/dashboard/admin/accountings/agent-balance"
+              >
+                Agent Balance
+              </a>
+            </div>
+          </div>
+        </li>
+  
+        <li class="nav-item" *ngIf="hasAuthority('ROLE_ADMIN')">
+          <div ngbDropdown class="d-inline-block">
+            <a class="nav-link" id="serviceAdminAccounting" ngbDropdownToggle>
+              Report
+            </a>
+            <div ngbDropdownMenu aria-labelledby="serviceAdminAccounting">
+              <a
+                class="dropdown-item"
+                (click)="toggleCollapse()"
+                routerLink="/dashboard/admin/report/booking-report"
+              >
+                Booking report
+              </a>
+              <a
+                class="dropdown-item"
+                (click)="toggleCollapse()"
+                routerLink="/dashboard/admin/report/hotel-report"
+              >
+                Hotel report
+              </a>
+              <a
+                class="dropdown-item"
+                (click)="toggleCollapse()"
+                routerLink="/dashboard/admin/report/agent-report"
+              >
+                Agent report
+              </a>
+            </div>
+          </div>
+        </li>
+  
+        <!-- ***************************** ROLE_SERVICE_ADMIN *****************************  -->
+        <li class="nav-item" *ngIf="hasAuthority('ROLE_SERVICE_ADMIN')">
+          <div ngbDropdown class="d-inline-block">
+            <a class="nav-link" id="dropdownBasic1" ngbDropdownToggle>
+              Category
+            </a>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+              <a
+                class="dropdown-item"
+                (click)="toggleCollapse()"
+                routerLink="/dashboard/service-admin/category/add"
+              >
+                Add
+              </a>
+              <a
+                class="dropdown-item"
+                (click)="toggleCollapse()"
+                routerLink="/dashboard/service-admin/category"
+              >
+                List
+              </a>
+            </div>
+          </div>
+        </li>
+        <li class="nav-item" *ngIf="hasAuthority('ROLE_SERVICE_ADMIN')">
+          <div ngbDropdown class="d-inline-block">
+            <a class="nav-link" id="dropdownBasic1" ngbDropdownToggle> Rooms </a>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+              <a
+                class="dropdown-item"
+                (click)="toggleCollapse()"
+                routerLink="/dashboard/service-admin/rooms/add"
+              >
+                Add
+              </a>
+              <a
+                class="dropdown-item"
+                (click)="toggleCollapse()"
+                routerLink="/dashboard/service-admin/rooms"
+              >
+                List
+              </a>
+              <a
+                class="dropdown-item"
+                (click)="toggleCollapse()"
+                routerLink="/dashboard/service-admin/rooms/discount-map"
+              >
+                Discount map
+              </a>
+              <a
+                class="dropdown-item"
+                (click)="toggleCollapse()"
+                routerLink="/dashboard/service-admin/rooms/status-map"
+              >
+                Status map
+              </a>
+            </div>
+          </div>
+        </li>
+        <li class="nav-item" *ngIf="hasAuthority('ROLE_SERVICE_ADMIN')">
+          <div ngbDropdown class="d-inline-block">
+            <a class="nav-link" id="dropdownBasic1" ngbDropdownToggle> Users </a>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+              <a
+                class="dropdown-item"
+                (click)="toggleCollapse()"
+                routerLink="/dashboard/service-admin/users"
+              >
+                Add Agent
+              </a>
+            </div>
+          </div>
+        </li>
+        <li class="nav-item" *ngIf="hasAuthority('ROLE_SERVICE_ADMIN')">
+          <div ngbDropdown class="d-inline-block">
+            <a class="nav-link" id="dropdownBasic1" ngbDropdownToggle> Sell </a>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+              <a
+                class="dropdown-item"
+                (click)="toggleCollapse()"
+                routerLink="/dashboard/service-admin/rooms/sell-rooms"
+              >
+                Sell rooms
+              </a>
+              <a
+                class="dropdown-item"
+                (click)="toggleCollapse()"
+                routerLink="/dashboard/service-admin/rooms/due-bookings"
+              >
+                Due bookings
+              </a>
+              <a
+                class="dropdown-item"
+                (click)="toggleCollapse()"
+                routerLink="/dashboard/service-admin/rooms/cancel-bookings"
+              >
+                Cancel bookings
+              </a>
+            </div>
+          </div>
+        </li>
+        <li class="nav-item" *ngIf="hasAuthority('ROLE_SERVICE_ADMIN')">
+          <div ngbDropdown class="d-inline-block">
+            <a class="nav-link" id="serviceAdminAccounting" ngbDropdownToggle>
+              Accounting
+            </a>
+            <div ngbDropdownMenu aria-labelledby="serviceAdminAccounting">
+              <a
+                class="dropdown-item"
+                (click)="toggleCollapse()"
+                routerLink="/dashboard/service-admin/accounting/cashbook"
+              >
+                Cashbook
+              </a>
+              <a
+                class="dropdown-item"
+                (click)="toggleCollapse()"
+                routerLink="/dashboard/service-admin/accounting/hotelswave-ledger"
+              >
+                Hotelswave ledger
+              </a>
+              <a
+                class="dropdown-item"
+                (click)="toggleCollapse()"
+                routerLink="/dashboard/service-admin/accounting/add-income"
+              >
+                Add Income
+              </a>
+              <a
+                class="dropdown-item"
+                (click)="toggleCollapse()"
+                routerLink="/dashboard/service-admin/accounting/add-expense"
+              >
+                Add Expense
+              </a>
+              <a
+                class="dropdown-item"
+                (click)="toggleCollapse()"
+                routerLink="/dashboard/service-admin/accounting/add-agent-balance"
+              >
+                Agent
+              </a>
+            </div>
+          </div>
+        </li>
+        <li class="nav-item" *ngIf="hasAuthority('ROLE_SERVICE_ADMIN')">
+          <div ngbDropdown class="d-inline-block">
+            <a class="nav-link" id="serviceAdminAccounting" ngbDropdownToggle>
+              Report
+            </a>
+            <div ngbDropdownMenu aria-labelledby="serviceAdminAccounting">
+              <a
+                class="dropdown-item"
+                (click)="toggleCollapse()"
+                routerLink="/dashboard/service-admin/report/booking-report"
+              >
+                Booking report
+              </a>
+            </div>
+          </div>
+        </li>
+  
+        <!-- **************************** ROLE_SERVICE_AGENT ********************** -->
+        <li class="nav-item" *ngIf="hasAuthority('ROLE_SERVICE_AGENT')">
+          <a class="nav-link" (click)="toggleCollapse()" routerLink="/dashboard/service-agent/sell">
+            Sell
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="hasAuthority('ROLE_SERVICE_AGENT')">
+          <a class="nav-link" (click)="toggleCollapse()" routerLink="/dashboard/service-agent/my-sells">
+            My sells
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="hasAuthority('ROLE_SERVICE_AGENT')">
+          <a class="nav-link" (click)="toggleCollapse()" routerLink="/dashboard/service-agent/my-ledger">
+            Ledger
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="hasAuthority('ROLE_SERVICE_AGENT')">
+          <a class="nav-link" (click)="toggleCollapse()" routerLink="/dashboard/service-agent/my-balance">
+            Balance
+          </a>
+        </li>
+  
+        <!-- **************************** ROLE_ADMIN_AGENT ********************** -->
+        <li class="nav-item" *ngIf="hasAuthority('ROLE_AGENT')">
+          <a class="nav-link" (click)="toggleCollapse()" routerLink="/dashboard/admin-agent/sell">
+            Sell
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="hasAuthority('ROLE_AGENT')">
+          <a class="nav-link" (click)="toggleCollapse()" routerLink="/dashboard/admin-agent/my-sells">
+            My sells
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="hasAuthority('ROLE_AGENT')">
+          <a class="nav-link" (click)="toggleCollapse()" routerLink="/dashboard/admin-agent/my-ledger">
+            Ledger
+          </a>
+        </li>
+        <li class="nav-item" *ngIf="hasAuthority('ROLE_AGENT')">
+          <a class="nav-link" (click)="toggleCollapse()" routerLink="/dashboard/admin-agent/my-balance">
+            Balance
+          </a>
+        </li>
+      </nav>
+  
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <div ngbDropdown class="d-inline-block">
+            <a class="nav-link" id="serviceAdminAccounting" ngbDropdownToggle>
+              Hello, <span class="user-name">{{ username }}</span>
+            </a>
+            <div ngbDropdownMenu aria-labelledby="serviceAdminAccounting">
+              <a class="dropdown-item" (click)="toggleCollapse()" routerLink="/dashboard/change-password">
+                Change password
+              </a>
+            </div>
+          </div>
+        </li>
+        <!-- <li class="nav-item">
+          <span class="nav-link">
+            Hello, <span class="user-name">{{ username }}</span>
+          </span>
+        </li> -->
+        <li class="nav-item" (click)="logout()">
+          <span class="nav-link text-danger font-weight-bold"> Logout </span>
+        </li>
+      </ul>
+    </div>
+  </nav>
+  

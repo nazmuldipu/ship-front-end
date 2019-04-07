@@ -1,0 +1,10 @@
+<div class="container-fluid">
+  <span class="row px-3 details-title text-left">Add Ship</span>
+</div>
+<div class="container">
+  <add-ship-form
+  (create)="onCreate($event)"
+    (update)="onUpdate($event)"
+    [ship]="ship"
+    ></add-ship-form>
+</div>

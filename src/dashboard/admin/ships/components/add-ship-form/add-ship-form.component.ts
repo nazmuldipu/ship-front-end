@@ -1,0 +1,123 @@
+import {
+  Component,
+  OnInit,
+  Input,
+  Output,
+  EventEmitter,
+  OnChanges
+} from '@angular/core';
+import { Ship } from 'src/shared/models/ship.model';
+import { Destinations } from 'src/shared/models/enums.model';
+import {
+  FormGroup,
+  FormBuilder,
+  Validators,
+  ValidationErrors
+} from '@angular/forms';
+
+@Component({
+  selector: 'add-ship-form',
+  templateUrl: './add-ship-form.component.html',
+  styleUrls: ['./add-ship-form.component.scss']
+})
+export class AddShipFormComponent implements OnChanges {
+  @Input() ship: Ship;
+
+  @Output() create = new EventEmitter<Ship>();
+  @Output() update = new EventEmitter<Ship>();
+
+  form: FormGroup;
+  startingPoints = Destinations;
+  droppingPoints = Destinations;
+  exists = false;
+  mouseoverShifting = false;
+
+  constructor(private builder: FormBuilder) {
+    this.createForm();
+  }
+
+  ngOnChanges() {
+    if (this.ship != null && this.ship.id != null) {
+      this.exists = true;
+      this.form.patchValue(this.ship);
+    }
+  }
+
+  createForm() {
+    this.form = this.builder.group({
+      name: ['', Validators.required],
+      quality: ['', Validators.required],
+      kidsPolicy: ['', Validators.required],
+      phoneNumber: [
+        '',
+        [
+          Validators.required,
+          Validators.pattern('^01[3-9][ ]?[0-9]{2}[ ]?[0-9]{3}[ ]?[0-9]{3}$')
+        ]
+      ],
+      floor: ['', Validators.required],
+      size: ['', Validators.required],
+      startingPoint: ['', Validators.required],
+      droppingPoint: ['', Validators.required],
+      route: ['', Validators.required],
+      description: ['', Validators.required],
+      ac: false,
+      containCabin: false,
+      online: false,
+      discount: [0, Validators.required],
+      hotelswavePercentage: [0, Validators.required],
+      facilities: this.builder.group({
+        casino: false,
+        shops: false,
+        spa: false,
+        fitnessCenter: false,
+        library: false,
+        theatre: false,
+        cinema: false,
+        swimmingPool: false,
+        hotTub: false,
+        restaurant: false,
+        lounges: false,
+        gym: false,
+        bar: false,
+        wifi: false,
+        kidsPlayRoom: false
+      })
+    });
+  }
+
+  submit() {
+    if (this.form.valid) {
+      if (this.exists) {
+        this.update.emit(this.form.value);
+      } else {
+        this.create.emit(this.form.value);
+      }
+      this.form.reset();
+      // this.createForm();
+    }
+  }
+
+  getFormValidationErrors() {
+    let errors = '';
+    var addressForm = <FormGroup>this.form.get('address');
+    var facilitiesForm = <FormGroup>this.form.get('facilities');
+    errors += this.getFormGroupValidationErrors(this.form);
+    errors += this.getFormGroupValidationErrors(addressForm);
+    errors += this.getFormGroupValidationErrors(facilitiesForm);
+    return errors;
+  }
+
+  getFormGroupValidationErrors(fg: FormGroup) {
+    let errors = '';
+    Object.keys(fg.controls).forEach(key => {
+      const controlErrors: ValidationErrors = fg.get(key).errors;
+      if (controlErrors != null) {
+        Object.keys(controlErrors).forEach(keyError => {
+          errors += key + ' : ' + keyError + '; ';
+        });
+      }
+    });
+    return errors;
+  }
+}

@@ -1,0 +1,468 @@
+<form
+  [formGroup]="form"
+  (ngSubmit)="submit()"
+  (mouseleave)="mouseoverShifting = false"
+>
+  <div class="form-group">
+    <label for="name">Ship Name *</label>
+    <input
+      class="form-control"
+      placeholder="Ship name"
+      formControlName="name"
+    />
+    <small
+      class="text-danger"
+      *ngIf="form.controls.name.errors?.required && form.controls.name.dirty"
+    >
+      Ship name required
+    </small>
+  </div>
+  <div class="form-row">
+    <div class="col">
+      <label for="quality">Ship quality *</label>
+      <select class="form-control" id="quality" formControlName="quality">
+        <option value="PREMIUM" selected> Premium </option>
+        <option value="DELUX"> Delux </option>
+        <option value="ECONOMY"> Economy </option>
+      </select>
+      <small
+        class="text-danger"
+        *ngIf="
+          form.controls.quality.errors?.required && form.controls.quality.dirty
+        "
+      >
+        Ship quality required
+      </small>
+    </div>
+    <div class="col">
+      <label for="kidsPolicy">Kids Policy*</label>
+      <input
+        class="form-control"
+        placeholder="Kids Policy"
+        formControlName="kidsPolicy"
+      />
+
+      <small
+        class="text-danger"
+        *ngIf="
+          form.controls.kidsPolicy.errors?.required &&
+          form.controls.kidsPolicy.dirty
+        "
+      >
+        Kids Policy
+      </small>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="col">
+      <label for="startingPoint">Starting point *</label>
+      <select
+        class="form-control"
+        id="startingPoint"
+        formControlName="startingPoint"
+      >
+        <option
+          *ngFor="let item of (startingPoints | keyvalue)"
+          [value]="item.key"
+        >
+          {{ item.value }}
+        </option>
+      </select>
+      <small
+        class="text-danger"
+        *ngIf="
+          form.controls.startingPoint.errors?.required &&
+          form.controls.startingPoint.dirty
+        "
+      >
+        Starting Point required
+      </small>
+    </div>
+    <div class="col">
+      <label for="droppingPoint">Droping point *</label>
+      <select
+        class="form-control"
+        id="droppingPoint"
+        formControlName="droppingPoint"
+      >
+        <option
+          *ngFor="let item of (droppingPoints | keyvalue)"
+          [value]="item.key"
+        >
+          {{ item.value }}
+        </option>
+      </select>
+      <small
+        class="text-danger"
+        *ngIf="
+          form.controls.droppingPoint.errors?.required &&
+          form.controls.droppingPoint.dirty
+        "
+      >
+        Dropping Point required
+      </small>
+    </div>
+  </div>
+
+  <div class="form-row align-items-center">
+    <div class="form-group col-md-6">
+      <label for="phoneNumber">Phone number *</label>
+      <input
+        class="form-control"
+        id="phoneNumber"
+        maxlength="11"
+        placeholder="Phone Number"
+        formControlName="phoneNumber"
+      />
+      <small
+        class="text-danger"
+        *ngIf="
+          form.controls.phoneNumber.errors && form.controls.phoneNumber.touched
+        "
+      >
+        <div [hidden]="!form.controls['phoneNumber'].errors.required">
+          Phone number required
+        </div>
+        <div [hidden]="!form.controls['phoneNumber'].errors.pattern">
+          Phone number format 01934953023
+        </div>
+      </small>
+    </div>
+    <div class="col-auto">
+      <div class="form-check mb-2">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          id="online"
+          formControlName="online"
+        />
+        <label class="form-check-label" for="online"> Online? </label>
+      </div>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="floor">floor *</label>
+      <input
+        class="form-control"
+        id="floor"
+        maxlength="2"
+        placeholder="Floor"
+        formControlName="floor"
+      />
+      <small
+        class="text-danger"
+        *ngIf="
+          form.controls.floor.errors?.required && form.controls.floor.dirty
+        "
+      >
+        Floor required
+      </small>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="size">Size *</label>
+      <input
+        class="form-control"
+        id="size"
+        maxlength="2"
+        placeholder="Size"
+        formControlName="size"
+      />
+      <small
+        class="text-danger"
+        *ngIf="form.controls.size.errors?.required && form.controls.size.dirty"
+      >
+        Size required
+      </small>
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="discount">Discount in percent *</label>
+      <input
+        class="form-control"
+        id="discount"
+        maxlength="2"
+        placeholder="Discount"
+        formControlName="discount"
+      />
+      <small
+        class="text-danger"
+        *ngIf="
+          form.controls.discount.errors?.required &&
+          form.controls.discount.dirty
+        "
+      >
+        Discount percent required
+      </small>
+    </div>
+    <div class="form-group col-md-6">
+      <label for="hotelswavePercentage">Hotelswave Discount in percent *</label>
+      <input
+        class="form-control"
+        id="hotelswavePercentage"
+        maxlength="2"
+        placeholder="Hotelswave Percent"
+        formControlName="hotelswavePercentage"
+      />
+      <small
+        class="text-danger"
+        *ngIf="
+          form.controls.hotelswavePercentage.errors?.required &&
+          form.controls.hotelswavePercentage.dirty
+        "
+      >
+        Hotelswave Percent required
+      </small>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="description">Description *</label>
+    <textarea
+      class="form-control"
+      id="description"
+      formControlName="description"
+      placeholder="Description"
+      rows="3"
+    >
+    </textarea>
+  </div>
+
+  <div class="form-row align-items-center">
+    <div class="col-md-4">
+      <div class="form-check mb-2">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          id="ac"
+          formControlName="ac"
+        />
+        <label class="form-check-label" for="ac"> AC </label>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-check mb-2">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          id="containCabin"
+          formControlName="containCabin"
+        />
+        <label class="form-check-label" for="containCabin">
+          Contain Cabin
+        </label>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="form-check mb-2">
+        <input
+          class="form-check-input"
+          type="checkbox"
+          id="online"
+          formControlName="online"
+        />
+        <label class="form-check-label" for="online">Online </label>
+      </div>
+    </div>
+  </div>
+
+  <div formGroupName="facilities" class="border p-2 my-3">
+    <h3 class="text-center">Facilities</h3>
+    <div class="form-row align-items-center">
+      <div class="col-6 col-md-2">
+        <div class="form-check mb-2">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            id="casino"
+            formControlName="casino"
+          />
+          <label class="form-check-label" for="casino"> Casino </label>
+        </div>
+      </div>
+
+      <div class="col-6 col-md-2">
+        <div class="form-check mb-2">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            id="shops"
+            formControlName="shops"
+          />
+          <label class="form-check-label" for="shops"> Shops </label>
+        </div>
+      </div>
+
+      <div class="col-6 col-md-2">
+        <div class="form-check mb-2">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            id="spa"
+            formControlName="spa"
+          />
+          <label class="form-check-label" for="spa"> SPA </label>
+        </div>
+      </div>
+      <div class="col-6 col-md-2">
+        <div class="form-check mb-2">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            id="fitnessCenter"
+            formControlName="fitnessCenter"
+          />
+          <label class="form-check-label" for="fitnessCenter">
+            Fitness Center
+          </label>
+        </div>
+      </div>
+      <div class="col-6 col-md-2">
+        <div class="form-check mb-2">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            id="library"
+            formControlName="library"
+          />
+          <label class="form-check-label" for="library"> Library </label>
+        </div>
+      </div>
+      <div class="col-6 col-md-2">
+        <div class="form-check mb-2">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            id="theatre"
+            formControlName="theatre"
+          />
+          <label class="form-check-label" for="theatre"> Theatre </label>
+        </div>
+      </div>
+      <div class="col-6 col-md-2">
+        <div class="form-check mb-2">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            id="cinema"
+            formControlName="cinema"
+          />
+          <label class="form-check-label" for="cinema"> Cinema </label>
+        </div>
+      </div>
+      <div class="col-6 col-md-2">
+        <div class="form-check mb-2">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            id="swimmingPool"
+            formControlName="swimmingPool"
+          />
+          <label class="form-check-label" for="swimmingPool">
+            Swimming Pool
+          </label>
+        </div>
+      </div>
+      <div class="col-6 col-md-2">
+        <div class="form-check mb-2">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            id="hotTub"
+            formControlName="hotTub"
+          />
+          <label class="form-check-label" for="hotTub"> Hot Tub </label>
+        </div>
+      </div>
+      <div class="col-6 col-md-2">
+        <div class="form-check mb-2">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            id="restaurant"
+            formControlName="restaurant"
+          />
+          <label class="form-check-label" for="restaurant"> Restaurant </label>
+        </div>
+      </div>
+      <div class="col-6 col-md-2">
+        <div class="form-check mb-2">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            id="lounges"
+            formControlName="lounges"
+          />
+          <label class="form-check-label" for="lounges"> Lounges </label>
+        </div>
+      </div>
+      <div class="col-6 col-md-2">
+        <div class="form-check mb-2">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            id="gym"
+            formControlName="gym"
+          />
+          <label class="form-check-label" for="gym"> GYM </label>
+        </div>
+      </div>
+      <div class="col-6 col-md-2">
+        <div class="form-check mb-2">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            id="bar"
+            formControlName="bar"
+          />
+          <label class="form-check-label" for="bar"> Bar </label>
+        </div>
+      </div>
+      <div class="col-6 col-md-2">
+        <div class="form-check mb-2">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            id="wifi"
+            formControlName="wifi"
+          />
+          <label class="form-check-label" for="wifi"> WIFI </label>
+        </div>
+      </div>
+      <div class="col-6 col-md-2">
+        <div class="form-check mb-2">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            id="kidsPlayRoom"
+            formControlName="kidsPlayRoom"
+          />
+          <label class="form-check-label" for="kidsPlayRoom">
+            Kids Play Room
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="d-flex flex-row-reverse bd-highlight my-2 mb-5">
+    <span (mouseenter)="mouseoverShifting = true">
+      <button
+        type="submit"
+        class="btn btn-warning mx-1"
+        [ngClass]="{
+          disabled: form.invalid,
+          'btn-warning': exists,
+          'btn-success': !exists
+        }"
+      >
+        {{ exists ? 'Update' : 'Create' }} Ship
+      </button>
+    </span>
+    <span *ngIf="mouseoverShifting" class="text-danger">
+      {{ getFormValidationErrors() }}
+    </span>
+  </div>
+</form>

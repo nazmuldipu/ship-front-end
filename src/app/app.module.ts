@@ -11,6 +11,7 @@ import { RegisterComponent } from '../auth/containers/register/register.componen
 import { SharedModule } from '../shared/shared.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 // routes
 export const ROUTES: Routes = [
@@ -44,8 +45,9 @@ export const ROUTES: Routes = [
     BrowserModule,
     HttpModule,
     SharedModule,
-    CookieModule.forRoot(),
+    NgbModule,
     AppRoutingModule,
+    CookieModule.forRoot(),
     RouterModule.forRoot(ROUTES)
   ],
   providers: [],
