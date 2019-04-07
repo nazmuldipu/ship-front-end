@@ -35,21 +35,5 @@ export class LoginFormComponent implements OnInit {
     if (this.form.valid) {
       this.create.emit(this.form.value);
     }
-    // this.errorMessage = '';
-    // if (this.form.valid) {
-    //   this.auth
-    //     .authenticate(
-    //       this.form.controls.username.value,
-    //       this.form.controls.password.value
-    //     )
-    //     .subscribe(
-    //       data => {
-    //         this.auth.saveToken(data, '');
-    //       },
-    //       error => {
-    //         this.errorMessage = 'User Id or password error';
-    //       }
-    //     );
-    // }
   }
 }
