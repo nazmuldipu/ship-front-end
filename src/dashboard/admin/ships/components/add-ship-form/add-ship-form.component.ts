@@ -66,7 +66,7 @@ export class AddShipFormComponent implements OnChanges {
       online: false,
       discount: [0, Validators.required],
       hotelswavePercentage: [0, Validators.required],
-      facilities: this.builder.group({
+      shipFacilities: this.builder.group({
         casino: false,
         shops: false,
         spa: false,
@@ -100,11 +100,9 @@ export class AddShipFormComponent implements OnChanges {
 
   getFormValidationErrors() {
     let errors = '';
-    var addressForm = <FormGroup>this.form.get('address');
-    var facilitiesForm = <FormGroup>this.form.get('facilities');
+    var shipFacilities = <FormGroup>this.form.get('shipFacilities');
     errors += this.getFormGroupValidationErrors(this.form);
-    errors += this.getFormGroupValidationErrors(addressForm);
-    errors += this.getFormGroupValidationErrors(facilitiesForm);
+    errors += this.getFormGroupValidationErrors(shipFacilities);
     return errors;
   }
 

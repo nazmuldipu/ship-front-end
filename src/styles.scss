@@ -14,3 +14,8 @@
   color: $text-primary-color;
   background: $page-title-color;
 }
+
+.table th,
+.table td {
+  padding: 0.2rem;
+}
