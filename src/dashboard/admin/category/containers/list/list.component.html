@@ -1,0 +1,56 @@
+<div class="container-fluid">
+  <span class="row px-3 details-title text-left">Category List</span>
+</div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-3">
+      <admin-hotel-list (shipId)="onSelectShip($event)"></admin-hotel-list>
+    </div>
+    <div class="col-md-9">
+      <table class="table border" *ngIf="categoryPage?.content.length">
+        <thead>
+          <tr>
+            <th>Category Name</th>
+            <th>Floor</th>
+            <th>Seat Quality</th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let category of categoryPage?.content">
+            <td>
+              <a
+                style="text-decoration: none;"
+                routerLink="/dashboard/admin/category/details/{{ category.id }}"
+              >
+                {{ category.name }}
+              </a>
+            </td>
+            <td>{{ category.floorNumber }}</td>
+            <td>{{ category.seatQuality }}</td>
+            <td></td>
+            <td>
+              <button
+                class="btn btn-sm btn-danger mr-1"
+                (click)="onDelete(category.id)"
+              >
+                Delete
+              </button>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="5">
+              <pagination
+                *ngIf="categoryPage != null"
+                [page]="categoryPage"
+                (getPage)="getCategoryPage(hotelId, $event)"
+              ></pagination>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      {{ categoryPage | json }}
+    </div>
+  </div>
+</div>

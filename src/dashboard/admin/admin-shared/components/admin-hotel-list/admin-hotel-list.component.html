@@ -1,0 +1,20 @@
+<ul class="list-group">
+  <li class="list-group-item">
+    <h5>Ship List</h5>
+    <small>Choose a ship from below list</small>
+  </li>
+
+  <a
+    *ngFor="let ship of shipPage?.content"
+    class="list-group-item list-group-item-action"
+    (click)="onSelectShip(ship.id)"
+  >
+    <i class="fa fa-building"></i> {{ ship.name }}
+  </a>
+  <a
+    class="list-group-item list-group-item-action list-group-item-info text-center"
+    routerLink="/dashboard/admin/category/add"
+  >
+    <i class="fa fa-plus"></i> Add Category
+  </a>
+</ul>
