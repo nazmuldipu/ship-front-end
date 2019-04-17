@@ -67,33 +67,33 @@
       </li>
       <li class="nav-item" *ngIf="hasAuthority('ROLE_ADMIN')">
         <div ngbDropdown class="d-inline-block">
-          <a class="nav-link" id="adminRoom" ngbDropdownToggle> Room </a>
+          <a class="nav-link" id="adminRoom" ngbDropdownToggle> Seats </a>
           <div ngbDropdownMenu aria-labelledby="adminRoom">
             <a
               class="dropdown-item"
               (click)="toggleCollapse()"
-              routerLink="/dashboard/admin/rooms/add"
+              routerLink="/dashboard/admin/seats/add"
             >
               Add
             </a>
             <a
               class="dropdown-item"
               (click)="toggleCollapse()"
-              routerLink="/dashboard/admin/rooms"
+              routerLink="/dashboard/admin/seats"
             >
               List
             </a>
             <a
               class="dropdown-item"
               (click)="toggleCollapse()"
-              routerLink="/dashboard/admin/rooms/discount-map"
+              routerLink="/dashboard/admin/seats/discount-map"
             >
               Discount map
             </a>
             <a
               class="dropdown-item"
               (click)="toggleCollapse()"
-              routerLink="/dashboard/admin/rooms/status-map"
+              routerLink="/dashboard/admin/seats/status-map"
             >
               Status map
             </a>
@@ -314,33 +314,33 @@
       </li>
       <li class="nav-item" *ngIf="hasAuthority('ROLE_SERVICE_ADMIN')">
         <div ngbDropdown class="d-inline-block">
-          <a class="nav-link" id="dropdownBasic1" ngbDropdownToggle> Rooms </a>
+          <a class="nav-link" id="dropdownBasic1" ngbDropdownToggle> Seats </a>
           <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
             <a
               class="dropdown-item"
               (click)="toggleCollapse()"
-              routerLink="/dashboard/service-admin/rooms/add"
+              routerLink="/dashboard/service-admin/seats/add"
             >
               Add
             </a>
             <a
               class="dropdown-item"
               (click)="toggleCollapse()"
-              routerLink="/dashboard/service-admin/rooms"
+              routerLink="/dashboard/service-admin/seats"
             >
               List
             </a>
             <a
               class="dropdown-item"
               (click)="toggleCollapse()"
-              routerLink="/dashboard/service-admin/rooms/discount-map"
+              routerLink="/dashboard/service-admin/seats/discount-map"
             >
               Discount map
             </a>
             <a
               class="dropdown-item"
               (click)="toggleCollapse()"
-              routerLink="/dashboard/service-admin/rooms/status-map"
+              routerLink="/dashboard/service-admin/seats/status-map"
             >
               Status map
             </a>
