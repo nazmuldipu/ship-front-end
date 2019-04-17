@@ -18,7 +18,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./category-form.component.scss']
 })
 export class CategoryFormComponent implements OnChanges {
-  @Input() shipId: number;
+  @Input() ship: Ship;
   @Input() category: Category;
 
   @Output() create = new EventEmitter<Category>();
@@ -33,8 +33,8 @@ export class CategoryFormComponent implements OnChanges {
   }
 
   ngOnChanges() {
-    if (this.shipId) {
-      const ship = { ship: { id: this.shipId } };
+    if (this.ship) {
+      const ship = { ship: { id: this.ship.id } };
       this.form.patchValue(ship);
     }
     if (this.category && this.category.id) {
@@ -52,6 +52,9 @@ export class CategoryFormComponent implements OnChanges {
       seatQuality: ['', Validators.required],
       floorNumber: ['', Validators.required],
       description: ['', Validators.required],
+      fare: ['', Validators.required],
+      discount: ['', Validators.required],
+      agentDiscount: ['', Validators.required],
       categoryFacilities: this.builder.group({
         topFloor: false,
         ac: false,
@@ -72,8 +75,8 @@ export class CategoryFormComponent implements OnChanges {
       }
       this.exists = false;
       this.form.reset();
-      if (this.shipId) {
-        const ship = { ship: { id: this.shipId } };
+      if (this.ship) {
+        const ship = { ship: { id: this.ship.id } };
         this.form.patchValue(ship);
       }
     }

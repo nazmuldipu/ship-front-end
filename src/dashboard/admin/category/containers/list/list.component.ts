@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CategoryService } from 'src/service/category.service';
 import { CategoryPage } from 'src/shared/models/category.model';
+import { Ship } from 'src/shared/models/ship.model';
 
 @Component({
   selector: 'category-list',
@@ -8,16 +9,16 @@ import { CategoryPage } from 'src/shared/models/category.model';
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent {
-  shipId;
+  ship: Ship;
   categoryPage: CategoryPage;
 
   message = '';
 
   constructor(private categoryService: CategoryService) {}
 
-  onSelectShip(shipId) {
-    this.shipId = shipId;
-    this.getCategoryPage(shipId);
+  onSelectShip(ship) {
+    this.ship = ship;
+    this.getCategoryPage(ship.id);
   }
 
   async getCategoryPage(shipId: number, page: number = 0) {
@@ -30,7 +31,7 @@ export class ListComponent {
 
   async onDelete(id) {
     await this.categoryService.deleteAdminCategory(id).subscribe(data => {
-      this.getCategoryPage(this.shipId);
+      this.getCategoryPage(this.ship.id);
       if (data.response == 'success') {
         this.message = 'Category deleted successfully';
       } else {

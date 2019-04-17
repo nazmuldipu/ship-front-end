@@ -1,0 +1,104 @@
+<form
+  [formGroup]="form"
+  (ngSubmit)="submit()"
+  (mouseleave)="mouseoverShifting = false"
+>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Ship *</label>
+    <label class="form-control"> {{ ship.name }} </label>
+  </div>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Category *</label>
+    <label class="form-control"> {{ category.name }} </label>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="seatNumber">Seat Number *</label>
+      <input
+        class="form-control"
+        id="seatNumber"
+        formControlName="seatNumber"
+      />
+      <small
+        class="text-danger"
+        *ngIf="
+          form.controls.seatNumber.errors?.required &&
+          (form.controls.seatNumber.dirty || mouseoverShifting)
+        "
+      >
+        Seat Number required
+      </small>
+    </div>
+
+    <!-- <div class="form-group col-md-6">
+      <label for="fare">Fare</label>
+      <input
+        class="form-control"
+        id="fare"
+        type="number"
+        formControlName="fare"
+      />
+      <small
+        class="text-danger"
+        *ngIf="
+          form.controls.fare.errors?.required &&
+          (form.controls.fare.dirty || mouseoverShifting)
+        "
+      >
+        Fare required
+      </small>
+    </div> -->
+  </div>
+
+  <!-- <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="discount">Discount *</label>
+      <input class="form-control" id="discount" formControlName="discount" />
+      <small
+        class="text-danger"
+        *ngIf="
+          form.controls.discount.errors?.required &&
+          (form.controls.discount.dirty || mouseoverShifting)
+        "
+      >
+        Discount required
+      </small>
+    </div>
+
+    <div class="form-group col-md-6">
+      <label for="agentDiscount">Agent Discount</label>
+      <input
+        class="form-control"
+        id="agentDiscount"
+        type="number"
+        formControlName="agentDiscount"
+      />
+      <small
+        class="text-danger"
+        *ngIf="
+          form.controls.agentDiscount.errors?.required &&
+          (form.controls.agentDiscount.dirty || mouseoverShifting)
+        "
+      >
+        Agent Discount required
+      </small>
+    </div>
+  </div> -->
+
+  <div class="d-flex flex-row-reverse bd-highlight">
+    <span (mouseenter)="mouseoverShifting = true">
+      <button
+        class="btn btn-warning mx-1"
+        [ngClass]="{
+          disabled: form.invalid,
+          'btn-warning': exists,
+          'btn-success': !exists
+        }"
+        type="submit"
+      >
+        {{ exists ? 'Update' : 'Create' }}
+      </button>
+    </span>
+  </div>
+</form>

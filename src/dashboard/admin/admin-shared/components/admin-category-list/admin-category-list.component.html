@@ -1,0 +1,20 @@
+<ul class="list-group">
+  <li class="list-group-item">
+    <h5>Category List</h5>
+    <small>Choose a category from below list</small>
+  </li>
+
+  <a
+    *ngFor="let category of categoryPage?.content"
+    class="list-group-item list-group-item-action"
+    (click)="onSelectCategory(category.id)"
+  >
+    <i class="fa fa-building"></i> {{ category.name }}
+  </a>
+  <a
+    class="list-group-item list-group-item-action list-group-item-info text-center"
+    (click)="onBack()"
+  >
+    <i class="fa fa-chevron-left"></i> Back to Ship List
+  </a>
+</ul>

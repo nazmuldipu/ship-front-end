@@ -5,6 +5,7 @@ import { RestDataService } from './rest-data.service';
 import { UserService } from './user.service';
 import { ShipService } from './ship.service';
 import { CategoryService } from './category.service';
+import { SeatsService } from './seats.service';
 
 @NgModule({
   providers: [
@@ -12,7 +13,8 @@ import { CategoryService } from './category.service';
     RestDataService,
     UserService,
     ShipService,
-    CategoryService
+    CategoryService,
+    SeatsService
   ]
 })
 export class ServiceModule {}

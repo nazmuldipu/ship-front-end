@@ -7,6 +7,9 @@ export interface Category {
   description: string;
   seatQuality: string;
   floorNumber: number;
+  fare: number;
+  discount: number;
+  agentDiscount: number;
   categoryFacilities: CategoryFacilities;
   ship: Ship;
 }

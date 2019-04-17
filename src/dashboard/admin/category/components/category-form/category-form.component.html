@@ -4,8 +4,8 @@
   (mouseleave)="mouseoverShifting = false"
 >
   <div class="form-group">
-    <label for="exampleInputEmail1">Ship Id *</label>
-    <label class="form-control"> {{ shipId }} </label>
+    <label for="exampleInputEmail1">Ship *</label>
+    <label class="form-control"> {{ ship.name }} </label>
   </div>
 
   <div class="form-group">
@@ -20,6 +20,62 @@
     >
       Category name required
     </small>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="fare">Fare *</label>
+      <input
+        class="form-control"
+        id="fare"
+        type="number"
+        formControlName="fare"
+      />
+      <small
+        class="text-danger"
+        *ngIf="
+          form.controls.fare.errors?.required &&
+          (form.controls.fare.dirty || mouseoverShifting)
+        "
+      >
+        Fare required
+      </small>
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="discount">Discount *</label>
+      <input class="form-control" id="discount" formControlName="discount" />
+      <small
+        class="text-danger"
+        *ngIf="
+          form.controls.discount.errors?.required &&
+          (form.controls.discount.dirty || mouseoverShifting)
+        "
+      >
+        Discount required
+      </small>
+    </div>
+
+    <div class="form-group col-md-6">
+      <label for="agentDiscount">Agent Discount *</label>
+      <input
+        class="form-control"
+        id="agentDiscount"
+        type="number"
+        formControlName="agentDiscount"
+      />
+      <small
+        class="text-danger"
+        *ngIf="
+          form.controls.agentDiscount.errors?.required &&
+          (form.controls.agentDiscount.dirty || mouseoverShifting)
+        "
+      >
+        Agent Discount required
+      </small>
+    </div>
   </div>
 
   <div class="form-row">

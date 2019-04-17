@@ -1,3 +1,31 @@
-<p>
-  list works!
-</p>
+<div class="container-fluid">
+  <span class="row px-3 details-title text-left">Seat List</span>
+</div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-3">
+      <admin-ship-list *ngIf="!ship" (ship)="onSelectShip($event)" [mode]="3">
+      </admin-ship-list>
+      <admin-category-list
+        *ngIf="ship"
+        [shipId]="ship.id"
+        (back)="onCategoryBack($event)"
+        (category)="onSelectCategory($event)"
+      >
+      </admin-category-list>
+    </div>
+    <div class="col-md-9">
+      <h3 class="text-center">Seat List</h3>
+      <div class="alert alert-success" role="alert" *ngIf="message.length > 0">
+        {{ message }}
+        <button class="btn btn-warning btn-sm" (click)="clear()">Clear</button>
+      </div>
+      <div class="row m-0">
+        <div class="col-md-1 col-2 seat-box" *ngFor="let seat of seatList">
+          {{ seat.seatNumber }}
+        </div>
+      </div>
+      {{ seatPage | json }}
+    </div>
+  </div>
+</div>

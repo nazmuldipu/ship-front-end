@@ -1,3 +1,28 @@
-<p>
-  add works!
-</p>
+<div class="container-fluid">
+  <span class="row px-3 details-title text-left">Add Seat</span>
+</div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-3">
+      <admin-ship-list *ngIf="!ship" (ship)="onSelectShip($event)" [mode]="4">
+      </admin-ship-list>
+      <admin-category-list
+        *ngIf="ship"
+        [shipId]="ship.id"
+        (back)="onCategoryBack($event)"
+        (category)="onSelectCategory($event)"
+      >
+      </admin-category-list>
+    </div>
+    <div class="col-md-9">
+      <seat-form
+        *ngIf="ship && category"
+        [ship]="ship"
+        [category]="category"
+        (create)="onCreate($event, ship.id)"
+        (update)="onUpdate($event, ship.id)"
+      >
+      </seat-form>
+    </div>
+  </div>
+</div>

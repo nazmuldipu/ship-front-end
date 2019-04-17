@@ -5,13 +5,13 @@
   <div class="row">
     <div class="col-md-3">
       <admin-ship-list
-        (shipId)="onSelectShip($event)"
+        (ship)="onSelectShip($event)"
         [mode]="2"
       ></admin-ship-list>
     </div>
-    <div class="col-md-9" *ngIf="shipId">
+    <div class="col-md-9" *ngIf="ship">
       <category-form
-        [shipId]="shipId"
+        [ship]="ship"
         [category]="category"
         (create)="onCreate($event)"
         (update)="onUpdate($event)"
