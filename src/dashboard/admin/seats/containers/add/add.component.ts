@@ -13,6 +13,7 @@ import { Seat } from 'src/shared/models/seat.model';
 export class AddComponent implements OnInit {
   id;
   seat: Seat;
+  seatList: Seat[];
   ship: Ship;
   category: Category;
 
@@ -30,21 +31,40 @@ export class AddComponent implements OnInit {
 
   onSelectCategory(category) {
     this.category = category;
+    this.seat = null;
+    this.getAdminSeatListByCategoryId(category.id);
+  }
+
+  async getAdminSeatListByCategoryId(categoryId) {
+    await this.seatService
+      .getAdminSeatListByCategoryId(categoryId)
+      .subscribe(data => {
+        this.seatList = data;
+      });
   }
 
   onCreate(seat, shipId) {
-    console.log('onCreate : ', shipId, seat);
     this.seatService.saveAdminSeat(seat, shipId).subscribe(data => {
-      this.router.navigate(['/dashboard/admin/seats', data.id]);
+      this.getAdminSeatListByCategoryId(this.category.id);
     });
   }
 
-  onUpdate(seat, shipId) {
+  onUpdate(seat, shipId, seatId) {
     console.log('onUpdate', seat);
+    this.seatService.updateAdminSeat(seat, shipId, seatId).subscribe(data => {
+      this.seat = null;
+      this.getAdminSeatListByCategoryId(this.category.id);
+    });
   }
 
   onCategoryBack(event) {
     this.ship = null;
     this.category = null;
+  }
+
+  onSeatClick(id) {
+    console.log(id);
+    const value = this.seatList.find(s => s.id == id);
+    this.seat = value;
   }
 }

@@ -20,24 +20,25 @@ export class AdminCategoryListComponent implements OnChanges {
   @Output() back = new EventEmitter<any>();
   @Output() category = new EventEmitter<Category>();
 
-  categoryPage: CategoryPage;
+  categoryList: Category[];
 
   constructor(private categoryService: CategoryService) {}
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.getCategoryPage(this.shipId, 0);
+    this.getCategoryPage(this.shipId);
   }
 
-  async getCategoryPage(shipId: number, page: number = 0) {
+  async getCategoryPage(shipId: number) {
     await this.categoryService
-      .getAdminCategoryByShiplId(shipId, page)
+      .getAdminCategoryListByShiplId(shipId)
       .subscribe(data => {
-        this.categoryPage = data;
+        this.categoryList = data;
+        this.onSelectCategory(this.categoryList[data.length - 1].id);
       });
   }
 
   onSelectCategory(categoryId) {
-    const categ = this.categoryPage.content.find(c => c.id == categoryId);
+    const categ = this.categoryList.find(c => c.id == categoryId);
     this.category.emit(categ);
   }
 

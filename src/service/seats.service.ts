@@ -30,7 +30,7 @@ export class SeatsService {
     seatId: number
   ): Observable<Seat> {
     return this.dataSource.sendRequest(
-      RequestMethod.Post,
+      RequestMethod.Put,
       this.serviceAdminUrl + `/update/${shipId}/${seatId}`,
       seat,
       true,

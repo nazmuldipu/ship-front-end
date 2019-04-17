@@ -37,6 +37,16 @@ export class CategoryService {
     );
   }
 
+  getAdminCategoryListByShiplId(shipId: number): Observable<Category[]> {
+    return this.dataSource.sendRequest(
+      RequestMethod.Get,
+      this.serviceAdminUrl + `/list/${shipId}`,
+      null,
+      true,
+      null
+    );
+  }
+
   getAdminCategory(categoryId: number): Observable<Category> {
     return this.dataSource.sendRequest(
       RequestMethod.Get,

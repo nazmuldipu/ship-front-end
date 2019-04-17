@@ -49,6 +49,9 @@ export class SeatFormComponent implements OnChanges {
         ...this.seat
       };
       this.form.patchValue(value);
+    } else {
+      this.form.controls.seatNumber.setValue('');
+      this.exists = false;
     }
   }
 
@@ -76,14 +79,14 @@ export class SeatFormComponent implements OnChanges {
       }
       this.exists = false;
       this.form.reset();
-      // if (this.ship) {
-      //   const ship = { ship: { id: this.ship.id } };
-      //   this.form.patchValue(ship);
-      // }
-      // if (this.category && this.category.id) {
-      //   const category = { category: { id: this.category.id } };
-      //   this.form.patchValue(category);
-      // }
+      if (this.ship) {
+        const ship = { ship: { id: this.ship.id } };
+        this.form.patchValue(ship);
+      }
+      if (this.category && this.category.id) {
+        const category = { category: { id: this.category.id } };
+        this.form.patchValue(category);
+      }
     }
   }
 }

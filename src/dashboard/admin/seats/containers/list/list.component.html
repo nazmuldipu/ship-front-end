@@ -4,8 +4,11 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-3">
-      <admin-ship-list *ngIf="!ship" (ship)="onSelectShip($event)" [mode]="3">
+      <admin-ship-list (ship)="onSelectShip($event)" [mode]="3">
       </admin-ship-list>
+    </div>
+    <div class="col-md-9">
+      <h3 class="text-center">Seat List</h3>
       <admin-category-list
         *ngIf="ship"
         [shipId]="ship.id"
@@ -13,9 +16,6 @@
         (category)="onSelectCategory($event)"
       >
       </admin-category-list>
-    </div>
-    <div class="col-md-9">
-      <h3 class="text-center">Seat List</h3>
       <div class="alert alert-success" role="alert" *ngIf="message.length > 0">
         {{ message }}
         <button class="btn btn-warning btn-sm" (click)="clear()">Clear</button>
