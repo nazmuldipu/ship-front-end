@@ -1,0 +1,134 @@
+<form
+  [formGroup]="form"
+  (ngSubmit)="submit()"
+  (mouseleave)="mouseoverShifting = false"
+>
+  <div class="form-group">
+    <label for="exampleInputEmail1">Ship Id *</label>
+    <label class="form-control"> {{ shipId }} </label>
+  </div>
+
+  <div class="form-group">
+    <label for="exampleInputEmail1">Category Name *</label>
+    <input class="form-control" formControlName="name" />
+    <small
+      class="text-danger"
+      *ngIf="
+        form.controls.name.errors?.required &&
+        (form.controls.name.dirty || mouseoverShifting)
+      "
+    >
+      Category name required
+    </small>
+  </div>
+
+  <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="seatQuality">Seat Quality *</label>
+      <input
+        class="form-control"
+        id="seatQuality"
+        formControlName="seatQuality"
+      />
+      <small
+        class="text-danger"
+        *ngIf="
+          form.controls.seatQuality.errors?.required &&
+          (form.controls.seatQuality.dirty || mouseoverShifting)
+        "
+      >
+        Seat Quality required
+      </small>
+    </div>
+
+    <div class="form-group col-md-6">
+      <label for="floorNumber">Floor Number</label>
+      <input
+        class="form-control"
+        id="floorNumber"
+        maxlength="2"
+        type="number"
+        formControlName="floorNumber"
+      />
+      <small
+        class="text-danger"
+        *ngIf="
+          form.controls.floorNumber.errors?.required &&
+          (form.controls.floorNumber.dirty || mouseoverShifting)
+        "
+      >
+        Floor Number required
+      </small>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="description">Description *</label>
+    <input class="form-control" formControlName="description" />
+    <small
+      class="text-danger"
+      *ngIf="
+        form.controls.description.errors?.required &&
+        (form.controls.description.dirty || mouseoverShifting)
+      "
+    >
+      Description required
+    </small>
+  </div>
+
+  <div formGroupName="categoryFacilities" class="border p-2 my-3">
+    <h3 class="text-center">Facilities</h3>
+    <div class="form-row align-items-center">
+      <div class="col-6 col-md-4">
+        <div class="form-check mb-2">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            id="topFloor"
+            formControlName="topFloor"
+          />
+          <label class="form-check-label" for="topFloor"> Top Floor </label>
+        </div>
+      </div>
+      <div class="col-6 col-md-4">
+        <div class="form-check mb-2">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            id="ac"
+            formControlName="ac"
+          />
+          <label class="form-check-label" for="ac"> AC </label>
+        </div>
+      </div>
+      <div class="col-6 col-md-4">
+        <div class="form-check mb-2">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            id="freeBreakfast"
+            formControlName="freeBreakfast"
+          />
+          <label class="form-check-label" for="freeBreakfast">
+            Free Breakfast
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="d-flex flex-row-reverse bd-highlight">
+    <span (mouseenter)="mouseoverShifting = true">
+      <button
+        class="btn btn-warning mx-1"
+        [ngClass]="{
+          disabled: form.invalid,
+          'btn-warning': exists,
+          'btn-success': !exists
+        }"
+        type="submit"
+      >
+        {{ exists ? 'Update' : 'Create' }}
+      </button>
+    </span>
+  </div>
+</form>

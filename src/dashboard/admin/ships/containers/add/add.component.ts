@@ -39,7 +39,7 @@ export class AddComponent implements OnInit {
   }
 
   onUpdate(ship: Ship) {
-    this.shipService.updateAdminHotel(this.id, ship).subscribe(data => {
+    this.shipService.updateAdminShip(this.id, ship).subscribe(data => {
       this.router.navigate(['/dashboard/admin/ships']);
     });
   }

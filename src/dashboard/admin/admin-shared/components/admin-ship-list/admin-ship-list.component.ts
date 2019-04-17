@@ -1,15 +1,17 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { ShipService } from 'src/service/ship.service';
 import { CategoryService } from 'src/service/category.service';
 import { CategoryPage } from 'src/shared/models/category.model';
 import { ShipPage } from 'src/shared/models/ship.model';
 
 @Component({
-  selector: 'admin-hotel-list',
-  templateUrl: './admin-hotel-list.component.html',
-  styleUrls: ['./admin-hotel-list.component.scss']
+  selector: 'admin-ship-list',
+  templateUrl: './admin-ship-list.component.html',
+  styleUrls: ['./admin-ship-list.component.scss']
 })
-export class AdminHotelListComponent implements OnInit {
+export class AdminShipListComponent implements OnInit {
+  // mode 1 = Add category, 2 = Category List,
+  @Input() mode: number;
   @Output() shipId = new EventEmitter<number>();
   shipPage: ShipPage;
 

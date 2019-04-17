@@ -5,6 +5,7 @@ import { AdminSharedModule } from '../admin-shared/admin-shared.module';
 import { AddComponent } from './containers/add/add.component';
 import { DetailsComponent } from './containers/details/details.component';
 import { ListComponent } from './containers/list/list.component';
+import { CategoryFormComponent } from './components/category-form/category-form.component';
 
 export const ROUTES: Routes = [
   { path: 'add', component: AddComponent },
@@ -17,7 +18,7 @@ export const ROUTES: Routes = [
 ];
 
 @NgModule({
-  declarations: [AddComponent, ListComponent, DetailsComponent],
+  declarations: [AddComponent, ListComponent, DetailsComponent, CategoryFormComponent],
   imports: [AdminSharedModule, RouterModule.forChild(ROUTES)]
 })
 export class CategoryModule {}

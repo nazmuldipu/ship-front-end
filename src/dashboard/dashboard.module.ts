@@ -6,6 +6,7 @@ import { DashNavComponent } from './containers/dash-nav/dash-nav.component';
 import { IndexComponent } from './containers/index/index.component';
 import { DashboardComponent } from './dashboard.component';
 import { SharedModule } from '../shared/shared.module';
+import { DashFooterComponent } from './containers/dash-footer/dash-footer.component';
 
 export const ROUTES: Routes = [
   {
@@ -22,7 +23,7 @@ export const ROUTES: Routes = [
 ];
 
 @NgModule({
-  declarations: [DashboardComponent, IndexComponent, DashNavComponent],
+  declarations: [DashboardComponent, IndexComponent, DashNavComponent, DashFooterComponent],
   imports: [SharedModule, RouterModule.forChild(ROUTES)]
 })
 export class DashboardModule {}

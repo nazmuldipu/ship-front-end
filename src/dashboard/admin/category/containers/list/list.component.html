@@ -4,10 +4,18 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-3">
-      <admin-hotel-list (shipId)="onSelectShip($event)"></admin-hotel-list>
+      <admin-ship-list
+        (shipId)="onSelectShip($event)"
+        [mode]="1"
+      ></admin-ship-list>
     </div>
-    <div class="col-md-9">
-      <table class="table border" *ngIf="categoryPage?.content.length">
+    <div class="col-md-9" *ngIf="categoryPage?.content.length">
+      <h3 class="text-center">Category List</h3>
+      <div class="alert alert-success" role="alert" *ngIf="message.length > 0">
+        {{ message }}
+        <button class="btn btn-warning btn-sm" (click)="clear()">Clear</button>
+      </div>
+      <table class="table border">
         <thead>
           <tr>
             <th>Category Name</th>
@@ -22,7 +30,7 @@
             <td>
               <a
                 style="text-decoration: none;"
-                routerLink="/dashboard/admin/category/details/{{ category.id }}"
+                routerLink="/dashboard/admin/category/{{ category.id }}"
               >
                 {{ category.name }}
               </a>
@@ -44,13 +52,12 @@
               <pagination
                 *ngIf="categoryPage != null"
                 [page]="categoryPage"
-                (getPage)="getCategoryPage(hotelId, $event)"
+                (getPage)="getCategoryPage(shipId, $event)"
               ></pagination>
             </td>
           </tr>
         </tbody>
       </table>
-      {{ categoryPage | json }}
     </div>
   </div>
 </div>

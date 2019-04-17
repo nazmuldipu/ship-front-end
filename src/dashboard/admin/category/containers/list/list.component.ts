@@ -3,17 +3,17 @@ import { CategoryService } from 'src/service/category.service';
 import { CategoryPage } from 'src/shared/models/category.model';
 
 @Component({
-  selector: 'app-list',
+  selector: 'category-list',
   templateUrl: './list.component.html',
   styleUrls: ['./list.component.scss']
 })
-export class ListComponent implements OnInit {
+export class ListComponent {
   shipId;
   categoryPage: CategoryPage;
 
-  constructor(private categoryService: CategoryService) {}
+  message = '';
 
-  ngOnInit() {}
+  constructor(private categoryService: CategoryService) {}
 
   onSelectShip(shipId) {
     this.shipId = shipId;
@@ -22,9 +22,24 @@ export class ListComponent implements OnInit {
 
   async getCategoryPage(shipId: number, page: number = 0) {
     await this.categoryService
-      .getCategoryByShiplId(shipId, page)
+      .getAdminCategoryByShiplId(shipId, page)
       .subscribe(data => {
         this.categoryPage = data;
       });
+  }
+
+  async onDelete(id) {
+    await this.categoryService.deleteAdminCategory(id).subscribe(data => {
+      this.getCategoryPage(this.shipId);
+      if (data.response == 'success') {
+        this.message = 'Category deleted successfully';
+      } else {
+        this.message = 'Category deleted Failed';
+      }
+    });
+  }
+
+  clear() {
+    this.message = '';
   }
 }

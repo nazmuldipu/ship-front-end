@@ -46,7 +46,7 @@ export class ShipService {
     );
   }
 
-  updateAdminHotel(shipId: number, ship: Ship): Observable<Ship> {
+  updateAdminShip(shipId: number, ship: Ship): Observable<Ship> {
     return this.dataSource.sendRequest(
       RequestMethod.Put,
       this.serviceAdminUrl + `/${shipId}`,
