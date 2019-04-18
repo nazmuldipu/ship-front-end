@@ -7,13 +7,13 @@
     <label class="form-control">{{ ship?.name }}</label>
   </div>
   <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="shipNumber">Ship Number*</label>
+      <label class="form-control">{{ ship?.shipNumber }}</label>
+    </div>
     <div class="col">
       <label for="quality">Ship quality *</label>
       <label class="form-control">{{ ship?.quality }}</label>
-    </div>
-    <div class="col">
-      <label for="kidsPolicy">Kids Policy*</label>
-      <label class="form-control">{{ ship?.kidsPolicy }}</label>
     </div>
   </div>
 
@@ -29,6 +29,10 @@
   </div>
 
   <div class="form-row align-items-center">
+    <div class="form-group col-md-6">
+      <label for="kidsPolicy">Kids Policy*</label>
+      <label class="form-control">{{ ship?.kidsPolicy }}</label>
+    </div>
     <div class="form-group col-md-6">
       <label for="phoneNumber">Phone number *</label>
       <label class="form-control">{{ ship?.phoneNumber }}</label>

@@ -80,4 +80,35 @@ export class CategoryService {
       null
     );
   }
+
+  getAdminDiscountMap(
+    id: number,
+    startDate: string,
+    endDate: string
+  ): Observable<Map<Date, number>> {
+    const param = `startDate=${startDate}&endDate=${endDate}&`;
+    return this.dataSource.sendRequest(
+      RequestMethod.Get,
+      this.serviceAdminUrl + `/discountMap/${id}`,
+      null,
+      true,
+      param
+    );
+  }
+
+  updateAdminDiscountMap(
+    id: number,
+    startDate,
+    endDate,
+    amount: number
+  ): Observable<Map<string, string>> {
+    const param = `startDate=${startDate}&endDate=${endDate}&amount=${amount}&`;
+    return this.dataSource.sendRequest(
+      RequestMethod.Patch,
+      this.serviceAdminUrl + `/discountMap/${id}`,
+      null,
+      true,
+      param
+    );
+  }
 }

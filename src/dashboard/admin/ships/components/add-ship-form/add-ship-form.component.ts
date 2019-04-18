@@ -46,6 +46,7 @@ export class AddShipFormComponent implements OnChanges {
   createForm() {
     this.form = this.builder.group({
       name: ['', Validators.required],
+      shipNumber: ['', Validators.required],
       quality: ['', Validators.required],
       kidsPolicy: ['', Validators.required],
       phoneNumber: [

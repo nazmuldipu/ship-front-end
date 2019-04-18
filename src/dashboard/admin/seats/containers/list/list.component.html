@@ -8,18 +8,23 @@
       </admin-ship-list>
     </div>
     <div class="col-md-9">
-      <h3 class="text-center">Seat List</h3>
-      <admin-category-list
-        *ngIf="ship"
-        [shipId]="ship.id"
-        (back)="onCategoryBack($event)"
-        (category)="onSelectCategory($event)"
-      >
-      </admin-category-list>
+      <div class="border p-2" *ngIf="ship">
+        <admin-category-list
+          *ngIf="ship"
+          [shipId]="ship.id"
+          (back)="onCategoryBack($event)"
+          (category)="onSelectCategory($event)"
+        >
+        </admin-category-list>
+      </div>
       <div class="alert alert-success" role="alert" *ngIf="message.length > 0">
         {{ message }}
         <button class="btn btn-warning btn-sm" (click)="clear()">Clear</button>
       </div>
+      <h5 *ngIf="seatList?.length">
+        <span class="font-weight-light">Seat List for</span>
+        <strong> {{ category?.name }} </strong>
+      </h5>
       <div class="row m-0">
         <div class="col-md-1 col-2 seat-box" *ngFor="let seat of seatList">
           {{ seat.seatNumber }}

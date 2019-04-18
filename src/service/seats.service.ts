@@ -12,7 +12,9 @@ export class SeatsService {
   serviceUrl = '/api/v1/seats';
   serviceAdminUrl = '/api/v1/admin/seats';
 
-  constructor(private dataSource: RestDataService) {}
+  constructor(
+    private dataSource: RestDataService,
+  ) {}
 
   saveAdminSeat(seat: Seat, shipId: number): Observable<Seat> {
     return this.dataSource.sendRequest(

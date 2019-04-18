@@ -12,6 +12,7 @@ import { SharedModule } from '../shared/shared.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 
 // routes
 export const ROUTES: Routes = [
@@ -48,7 +49,8 @@ export const ROUTES: Routes = [
     NgbModule,
     AppRoutingModule,
     CookieModule.forRoot(),
-    RouterModule.forRoot(ROUTES)
+    RouterModule.forRoot(ROUTES),
+    Ng4LoadingSpinnerModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

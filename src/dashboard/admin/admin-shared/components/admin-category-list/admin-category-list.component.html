@@ -1,4 +1,5 @@
 <div class="row m-0">
+  <p class="font-weight-light">Category:</p>
   <div *ngFor="let category of categoryList">
     <button
       class="btn-sm btn-secondary m-1"
@@ -8,34 +9,3 @@
     </button>
   </div>
 </div>
-<!-- <div class="btn-group" role="group" aria-label="Basic example">
-  <button type="button" class="btn btn-secondary">Left</button>
-  <button type="button" class="btn btn-secondary">Middle</button>
-  <button
-    type="button"
-    class="btn btn-secondary"
-    *ngFor="let category of categoryList"
-  >
-    {{ category.name }}
-  </button>
-</div> -->
-<!-- <ul class="list-group">
-  <li class="list-group-item">
-    <h5>Category List</h5>
-    <small>Choose a category from below list</small>
-  </li>
-
-  <a
-    *ngFor="let category of categoryPage?.content"
-    class="list-group-item list-group-item-action"
-    (click)="onSelectCategory(category.id)"
-  >
-    <i class="fa fa-building"></i> {{ category.name }}
-  </a>
-  <a
-    class="list-group-item list-group-item-action list-group-item-info text-center"
-    (click)="onBack()"
-  >
-    <i class="fa fa-chevron-left"></i> Back to Ship List
-  </a>
-</ul> -->

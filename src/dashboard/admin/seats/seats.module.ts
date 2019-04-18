@@ -5,14 +5,12 @@ import { AdminSharedModule } from 'src/dashboard/admin/admin-shared/admin-shared
 
 import { AddComponent } from './containers/add/add.component';
 import { DetailsComponent } from './containers/details/details.component';
-import { DiscountMapComponent } from './containers/discount-map/discount-map.component';
 import { ListComponent } from './containers/list/list.component';
 import { SeatFormComponent } from './components/seat-form/seat-form.component';
 
 export const ROUTES: Routes = [
   { path: 'add', component: AddComponent },
   { path: 'add/:id', component: AddComponent },
-  { path: 'discount-map', component: DiscountMapComponent },
   { path: ':id', component: DetailsComponent },
   {
     path: '',
@@ -25,7 +23,6 @@ export const ROUTES: Routes = [
     AddComponent,
     DetailsComponent,
     ListComponent,
-    DiscountMapComponent,
     SeatFormComponent
   ],
   imports: [CommonModule, AdminSharedModule, RouterModule.forChild(ROUTES)]

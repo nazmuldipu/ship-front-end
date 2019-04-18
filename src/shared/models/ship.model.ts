@@ -4,6 +4,7 @@ import { Sort } from './sort.model';
 
 export interface Ship {
   id: number;
+  shipNumber: string;
   name: string;
   description: string;
   kidsPolicy: string;

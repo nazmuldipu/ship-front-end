@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PaginationComponent } from './components/pagination/pagination.component';
+import { Daterangepicker } from 'ng2-daterangepicker';
 
 @NgModule({
   declarations: [PaginationComponent],
@@ -12,7 +13,8 @@ import { PaginationComponent } from './components/pagination/pagination.componen
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
-    NgbModule
+    Daterangepicker,
+    NgbModule.forRoot()
   ],
   exports: [
     CommonModule,
@@ -20,6 +22,7 @@ import { PaginationComponent } from './components/pagination/pagination.componen
     FormsModule,
     ReactiveFormsModule,
     NgbModule,
+    Daterangepicker,
     PaginationComponent
   ]
 })

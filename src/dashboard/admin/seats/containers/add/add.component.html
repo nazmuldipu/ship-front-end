@@ -21,7 +21,7 @@
       <div class="row">
         <div class="col-md-6 p-2" *ngIf="category">
           <div class="border p-2">
-            <h4>Seat Form</h4>
+            <h4><span class="font-weight-light">Seat Form</span></h4>
             <seat-form
               *ngIf="ship && category"
               [ship]="ship"
@@ -33,9 +33,13 @@
             </seat-form>
           </div>
         </div>
+
         <div class="col-md-6 p-2" *ngIf="seatList">
           <div class="border p-2">
-            <h4>Seat List for {{ category.name }}</h4>
+            <h4>
+              <span class="font-weight-light">Seat List for</span>
+              <strong> {{ category.name }} </strong>
+            </h4>
             <div class="row m-0">
               <div class="col-md-2 col-4 p-1 " *ngFor="let seat of seatList">
                 <div class="seat-box" (click)="onSeatClick(seat.id)">

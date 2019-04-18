@@ -18,6 +18,24 @@
     </small>
   </div>
   <div class="form-row">
+    <div class="form-group col-md-6">
+      <label for="shipNumber">Ship Number *</label>
+      <input
+        class="form-control"
+        placeholder="Ship Number"
+        formControlName="shipNumber"
+      />
+
+      <small
+        class="text-danger"
+        *ngIf="
+          form.controls.shipNumber.errors?.required &&
+          form.controls.shipNumber.dirty
+        "
+      >
+        Ship Number
+      </small>
+    </div>
     <div class="col">
       <label for="quality">Ship quality *</label>
       <select class="form-control" id="quality" formControlName="quality">
@@ -32,24 +50,6 @@
         "
       >
         Ship quality required
-      </small>
-    </div>
-    <div class="col">
-      <label for="kidsPolicy">Kids Policy*</label>
-      <input
-        class="form-control"
-        placeholder="Kids Policy"
-        formControlName="kidsPolicy"
-      />
-
-      <small
-        class="text-danger"
-        *ngIf="
-          form.controls.kidsPolicy.errors?.required &&
-          form.controls.kidsPolicy.dirty
-        "
-      >
-        Kids Policy
       </small>
     </div>
   </div>
@@ -107,6 +107,24 @@
 
   <div class="form-row align-items-center">
     <div class="form-group col-md-6">
+      <label for="kidsPolicy">Kids Policy*</label>
+      <input
+        class="form-control"
+        placeholder="Kids Policy"
+        formControlName="kidsPolicy"
+      />
+
+      <small
+        class="text-danger"
+        *ngIf="
+          form.controls.kidsPolicy.errors?.required &&
+          form.controls.kidsPolicy.dirty
+        "
+      >
+        Kids Policy
+      </small>
+    </div>
+    <div class="form-group col-md-6">
       <label for="phoneNumber">Phone number *</label>
       <input
         class="form-control"
@@ -129,17 +147,6 @@
         </div>
       </small>
     </div>
-    <!-- <div class="col-auto">
-      <div class="form-check mb-2">
-        <input
-          class="form-check-input"
-          type="checkbox"
-          id="online"
-          formControlName="online"
-        />
-        <label class="form-check-label" for="online"> Online? </label>
-      </div>
-    </div> -->
   </div>
   <div class="form-row">
     <div class="form-group col-md-6">
