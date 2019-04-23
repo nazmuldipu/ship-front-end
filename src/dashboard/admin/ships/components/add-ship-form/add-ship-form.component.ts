@@ -26,6 +26,8 @@ export class AddShipFormComponent implements OnChanges {
   @Output() create = new EventEmitter<Ship>();
   @Output() update = new EventEmitter<Ship>();
 
+  time = { hour: 13, minute: 30 };
+
   form: FormGroup;
   startingPoints = Destinations;
   droppingPoints = Destinations;
@@ -60,6 +62,7 @@ export class AddShipFormComponent implements OnChanges {
       size: ['', Validators.required],
       startingPoint: ['', Validators.required],
       droppingPoint: ['', Validators.required],
+      startTime: ['', Validators.required],
       route: ['', Validators.required],
       description: ['', Validators.required],
       ac: false,
@@ -89,6 +92,8 @@ export class AddShipFormComponent implements OnChanges {
 
   submit() {
     if (this.form.valid) {
+      const value = this.form.controls.startTime.value as any;
+      this.form.controls.startTime.setValue(value.hour + ':' + value.minute);
       if (this.exists) {
         this.update.emit(this.form.value);
       } else {

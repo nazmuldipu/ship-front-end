@@ -90,17 +90,40 @@
             >
               List
             </a>
-            <a
-              class="dropdown-item"
-              (click)="toggleCollapse()"
-              routerLink="/dashboard/admin/seats/status-map"
-            >
-              Status map
-            </a>
           </div>
         </div>
       </li>
+
       <li class="nav-item" *ngIf="hasAuthority('ROLE_ADMIN')">
+        <div ngbDropdown class="d-inline-block">
+          <a class="nav-link" id="dropdownBasic1" ngbDropdownToggle> Sell </a>
+          <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+            <a
+              class="dropdown-item"
+              (click)="toggleCollapse()"
+              routerLink="/dashboard/admin/sell"
+            >
+              Sell
+            </a>
+            <!-- <a
+              class="dropdown-item"
+              (click)="toggleCollapse()"
+              routerLink="/dashboard/admin/bookings/offline-bookings"
+            >
+              Offline bookings
+            </a>
+            <a
+              class="dropdown-item"
+              (click)="toggleCollapse()"
+              routerLink="/dashboard/admin/bookings/cancel-bookings"
+            >
+              Cancel bookings
+            </a> -->
+          </div>
+        </div>
+      </li>
+
+      <!-- <li class="nav-item" *ngIf="hasAuthority('ROLE_ADMIN')">
         <div ngbDropdown class="d-inline-block">
           <a class="nav-link" id="adminRoom" ngbDropdownToggle> Users </a>
           <div ngbDropdownMenu aria-labelledby="adminRoom">
@@ -143,34 +166,6 @@
         </div>
       </li>
 
-      <li class="nav-item" *ngIf="hasAuthority('ROLE_ADMIN')">
-        <div ngbDropdown class="d-inline-block">
-          <a class="nav-link" id="dropdownBasic1" ngbDropdownToggle> Sell </a>
-          <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-            <a
-              class="dropdown-item"
-              (click)="toggleCollapse()"
-              routerLink="/dashboard/admin/bookings/sell-rooms"
-            >
-              Sell rooms
-            </a>
-            <a
-              class="dropdown-item"
-              (click)="toggleCollapse()"
-              routerLink="/dashboard/admin/bookings/offline-bookings"
-            >
-              Offline bookings
-            </a>
-            <a
-              class="dropdown-item"
-              (click)="toggleCollapse()"
-              routerLink="/dashboard/admin/bookings/cancel-bookings"
-            >
-              Cancel bookings
-            </a>
-          </div>
-        </div>
-      </li>
       <li class="nav-item" *ngIf="hasAuthority('ROLE_ADMIN')">
         <div ngbDropdown class="d-inline-block">
           <a
@@ -286,7 +281,7 @@
             </a>
           </div>
         </div>
-      </li>
+      </li> -->
 
       <!-- ***************************** ROLE_SERVICE_ADMIN *****************************  -->
       <li class="nav-item" *ngIf="hasAuthority('ROLE_SERVICE_ADMIN')">

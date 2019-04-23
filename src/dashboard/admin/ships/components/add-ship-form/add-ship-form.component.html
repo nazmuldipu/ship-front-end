@@ -104,6 +104,24 @@
       </small>
     </div>
   </div>
+  <div class="form-row">
+    <div class="col">
+      <label for="startTime">Start Time *</label>
+      <ngb-timepicker
+        id="startTime"
+        formControlName="startTime"
+      ></ngb-timepicker>
+      <small
+        class="text-danger"
+        *ngIf="
+          form.controls.startingPoint.errors?.required &&
+          form.controls.startingPoint.dirty
+        "
+      >
+        Starting Point required
+      </small>
+    </div>
+  </div>
 
   <div class="form-row align-items-center">
     <div class="form-group col-md-6">

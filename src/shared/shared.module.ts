@@ -5,9 +5,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { Daterangepicker } from 'ng2-daterangepicker';
+import { LoadingComponent } from './components/loading/loading.component';
 
 @NgModule({
-  declarations: [PaginationComponent],
+  declarations: [PaginationComponent, LoadingComponent],
   imports: [
     CommonModule,
     RouterModule,
@@ -23,7 +24,8 @@ import { Daterangepicker } from 'ng2-daterangepicker';
     ReactiveFormsModule,
     NgbModule,
     Daterangepicker,
-    PaginationComponent
+    PaginationComponent,
+    LoadingComponent
   ]
 })
 export class SharedModule {}

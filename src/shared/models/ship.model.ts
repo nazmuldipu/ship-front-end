@@ -14,6 +14,7 @@ export interface Ship {
   size: string;
   startingPoint: string;
   droppingPoint: string;
+  startTime: string;
   route: string;
   ac: boolean;
   containCabin: boolean;
