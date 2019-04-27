@@ -5,6 +5,7 @@
   <table class="table table-hover table-responsive-sm border">
     <thead>
       <tr>
+        <th>Ship no.</th>
         <th>Name</th>
         <th>Phone</th>
         <th>Enabled</th>
@@ -14,12 +15,11 @@
     </thead>
     <tbody>
       <tr *ngFor="let ship of shipPage?.content">
+        <td>{{ ship.shipNumber }}</td>
         <td>{{ ship.name }}</td>
         <td>{{ ship.phoneNumber }}</td>
         <td>{{ ship.enabled }}</td>
-        <td>
-          {{ ship.route }}
-        </td>
+        <td>{{ ship.startingPoint }} - {{ ship.droppingPoint }}</td>
         <td>
           <button
             class="btn btn-sm btn-success mr-1"

@@ -4,6 +4,14 @@ import { ShipPage } from 'src/shared/models/ship.model';
 import { SeatsService } from 'src/service/seats.service';
 import { Seat } from 'src/shared/models/seat.model';
 import { Category } from 'src/shared/models/category.model';
+import {
+  Booking,
+  SubBooking,
+  SeatStatus
+} from 'src/shared/models/booking.model';
+import { User } from 'src/shared/models/user.model';
+import { BookingService } from 'src/service/booking.service';
+import { Ticket } from './ticket.model';
 
 @Component({
   selector: 'app-sell',
@@ -12,6 +20,7 @@ import { Category } from 'src/shared/models/category.model';
 })
 export class SellComponent implements OnInit {
   detailsId;
+  booking: Booking;
   category: Category;
   seatList: Seat[];
   selectedSeat: Seat[] = [];
@@ -19,11 +28,18 @@ export class SellComponent implements OnInit {
   categoryList: Category[] = [];
   shipPage: ShipPage;
   seatLoading = false;
+  dataSending = false;
+  message = '';
   dd;
+  minDate;
+  maxDate;
+
+  ticket = Ticket;
 
   constructor(
     private shipService: ShipService,
-    private seatService: SeatsService
+    private seatService: SeatsService,
+    private bookinService: BookingService
   ) {}
 
   ngOnInit() {
@@ -33,6 +49,17 @@ export class SellComponent implements OnInit {
       month: date.getMonth() + 1,
       day: date.getDate()
     };
+    this.minDate = {
+      year: date.getFullYear(),
+      month: date.getMonth() + 1,
+      day: date.getDate() - 1
+    };
+    this.maxDate = {
+      year: date.getFullYear(),
+      month: date.getMonth() + 2, //Maximum 1 month from now
+      day: date.getDate()
+    };
+
     this.getAdminShipPage();
   }
 
@@ -70,7 +97,29 @@ export class SellComponent implements OnInit {
       month: date.getMonth() + 1,
       day: date.getDate()
     };
-    this.dd = value;
+    let minDate = new Date(
+      this.minDate.year,
+      this.minDate.month - 1,
+      this.minDate.day
+    );
+    let maxDate = new Date(
+      this.maxDate.year,
+      this.maxDate.month - 1,
+      this.maxDate.day
+    );
+    if (
+      date.getTime() - minDate.getTime() >= 0 &&
+      maxDate.getTime() - date.getTime() >= 0
+    ) {
+      this.dd = value;
+      this.onDateChange();
+    }
+  }
+  onDateChange() {
+    this.detailsId = null;
+    this.seatList = [];
+    this.selectedSeat = [];
+    this.filteredSeatList = [];
   }
 
   onDetails(shipId) {
@@ -78,9 +127,13 @@ export class SellComponent implements OnInit {
       this.detailsId = shipId;
       this.getAdminSeatList(shipId);
     } else {
-      this.detailsId = null;
-      this.seatList = null;
+      this.closeDetails();
     }
+  }
+  closeDetails() {
+    this.detailsId = null;
+    this.seatList = [];
+    this.filteredSeatList = [];
   }
 
   onSelectCategory(categoryId: number) {
@@ -109,6 +162,33 @@ export class SellComponent implements OnInit {
     }
   }
 
+  onCreateUser(event) {
+    let user: User = new User(event.name, event.phone);
+    let subbookingList: SubBooking[] = this.getSubbookingList(
+      this.selectedSeat
+    );
+    let booking: Booking = new Booking(user, subbookingList);
+    booking.eStatus = SeatStatus.SEAT_SOLD;
+    this.dataSending = true;
+    this.message = 'Sending data to server';
+    this.bookinService.createAdminBooking(booking).subscribe(data => {
+      this.dataSending = false;
+      this.message = 'Booking done';
+      this.selectedSeat = [];
+      // this.ticket = data;
+      this.getAdminSeatList(this.detailsId);
+    });
+  }
+
+  getSubbookingList(seatList: Seat[]): SubBooking[] {
+    let subBookingList: SubBooking[] = [];
+    seatList.forEach(seat => {
+      let sb: SubBooking = new SubBooking(this.makeDateString(this.dd), seat);
+      subBookingList.push(sb);
+    });
+    return subBookingList;
+  }
+
   selectedSeatContainSeatId(seatId): boolean {
     return this.selectedSeat.some(e => e.id == seatId);
   }
@@ -124,5 +204,13 @@ export class SellComponent implements OnInit {
       total += s.category.fare - s.category.discount;
     });
     return total;
+  }
+
+  onClear() {
+    this.message = '';
+  }
+
+  onTicketClose() {
+    this.ticket = null;
   }
 }

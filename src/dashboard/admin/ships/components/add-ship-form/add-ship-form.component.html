@@ -104,8 +104,26 @@
       </small>
     </div>
   </div>
-  <div class="form-row">
-    <div class="col">
+  <div class="form-row d-flex align-items-center">
+    <div class="form-group col-md-6">
+      <label for="route">Route *</label>
+      <input
+        class="form-control"
+        id="route"
+        placeholder="Ship Route"
+        formControlName="route"
+      />
+
+      <small
+        class="text-danger"
+        *ngIf="
+          form.controls.route.errors?.required && form.controls.route.dirty
+        "
+      >
+        Route Number
+      </small>
+    </div>
+    <div class="form-group col-md-6">
       <label for="startTime">Start Time *</label>
       <ngb-timepicker
         id="startTime"

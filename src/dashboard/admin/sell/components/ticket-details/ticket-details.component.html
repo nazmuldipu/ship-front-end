@@ -1,0 +1,35 @@
+<div class="row m-0 ticket-card" *ngIf="seatList.length">
+  <div class="col-12 ticket-card-head">
+    <i class="fa fa-ticket"></i> Ticket Details
+  </div>
+  <table class="table table-hover border table-responsive-sm">
+    <thead class="thead-light">
+      <tr>
+        <th>Seat number</th>
+        <th>Category</th>
+        <th class="text-right">Fare</th>
+        <th class="text-right">Discount</th>
+        <th class="text-right">Payable</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let seat of seatList">
+        <td>{{ seat.seatNumber }}</td>
+        <td>{{ seat.category.name }}</td>
+        <td class="text-right">{{ seat.category.fare }}</td>
+        <td class="text-right">{{ seat.category.discount }}</td>
+        <td class="text-right">
+          {{ seat.category.fare - seat.category.discount }}
+        </td>
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="4" class="text-right">Total</td>
+        <td class="text-right">
+          <strong> {{ getTotal() }} </strong>
+        </td>
+      </tr>
+    </tfoot>
+  </table>
+</div>

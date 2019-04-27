@@ -1,6 +1,12 @@
 import { Sort } from './sort.model';
 
-export interface User {
+export class User {
+  constructor(name, phoneNumber) {
+    this.name = name;
+    this.phoneNumber = phoneNumber;
+    this.username = phoneNumber;
+  }
+
   id: number;
   // created: Date;
   // lastUpdated: Date;

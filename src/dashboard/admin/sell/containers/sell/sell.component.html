@@ -1,10 +1,17 @@
-<div class="container">
+<ticket-print
+  *ngIf="ticket"
+  [ticket]="ticket"
+  (close)="onTicketClose()"
+></ticket-print>
+
+<div class="container d-print-none" *ngIf="!ticket">
   <div class="row border my-2 p-2">
     <div class="input-group-text btn btn-secondary" (click)="adjustDay(-1)">
       <i class="fa fa-chevron-left"></i> &nbsp;
       <!-- Prev Day -->
     </div>
     <div class="col-auto">
+      <!-- <ngb-datepicker #d></ngb-datepicker> -->
       <div class="form-group mb-0">
         <div class="input-group">
           <div class="input-group-prepend">
@@ -17,8 +24,11 @@
             placeholder="yyyy-mm-dd"
             name="dp"
             [(ngModel)]="dd"
+            [minDate]="minDate"
+            [maxDate]="maxDate"
             ngbDatepicker
             #date="ngbDatepicker"
+            (dateSelect)="onDateChange()"
             (click)="date.toggle()"
           />
           <div class="input-group-append" (click)="date.toggle()">
@@ -50,7 +60,7 @@
       </span>
     </div>
     <div class="col-md-3 col-6 d-flex align-items-center ship-row-route">
-      <div class="">{{ ship.route }}</div>
+      <div class="">{{ ship.startingPoint }} - {{ ship.droppingPoint }}</div>
     </div>
     <div class="col-md-4 col-6 d-flex flex-row-reverse align-items-center ">
       <button class="btn btn-sm btn-success" (click)="onDetails(ship.id)">
@@ -64,7 +74,8 @@
           <div class="d-flex flex-row-reverse">
             <button
               class="btn btn-sm btn-danger"
-              (click)="onDetails()"
+              type="button"
+              (click)="closeDetails()"
               style="border-radius: 0;"
             >
               <i class="fa fa-times"></i>
@@ -113,42 +124,18 @@
                 </div>
               </div>
             </div>
-            <div class="col-md-6">
-              <div class="row m-0 ticket-card" *ngIf="selectedSeat.length">
-                <div class="col-12 ticket-card-head">
-                  <i class="fa fa-ticket"></i> Ticket Details
-                </div>
-                <table class="table table-hover table-responsive-sm">
-                  <thead class="thead-light">
-                    <tr>
-                      <th>Seat number</th>
-                      <th>Category</th>
-                      <th class="text-right">Fare</th>
-                      <th class="text-right">Discount</th>
-                      <th class="text-right">Payable</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr *ngFor="let seat of selectedSeat">
-                      <td>{{ seat.seatNumber }}</td>
-                      <td>{{ seat.category.name }}</td>
-                      <td class="text-right">{{ seat.category.fare }}</td>
-                      <td class="text-right">{{ seat.category.discount }}</td>
-                      <td class="text-right">
-                        {{ seat.category.fare - seat.category.discount }}
-                      </td>
-                    </tr>
-                  </tbody>
-                  <tfoot>
-                    <tr>
-                      <td colspan="4" class="text-right">Total</td>
-                      <td class="text-right">
-                        <strong> {{ getTotal() }} </strong>
-                      </td>
-                    </tr>
-                  </tfoot>
-                </table>
+            <div class="col-md-6 mb-3">
+              <div *ngIf="!dataSending && selectedSeat.length">
+                <ticket-details [seatList]="selectedSeat"></ticket-details>
+                <user-form (create)="onCreateUser($event)"></user-form>
               </div>
+              <div class="alert alert-primary" *ngIf="message.length">
+                {{ message }} &nbsp;
+                <button class="btn btn-sm btn-warning" (click)="onClear()">
+                  Clear
+                </button>
+              </div>
+              <app-loading *ngIf="dataSending"></app-loading>
             </div>
           </div>
         </div>

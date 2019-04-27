@@ -3,6 +3,11 @@
 @import '~font-awesome/css/font-awesome.min.css';
 @import 'variables';
 
+@font-face {
+  font-family: 'Bitter';
+  src: url('assets/fonts/Bitter/Bitter-Regular.ttf');
+}
+
 .details-title {
   display: block;
   font-size: 25px;

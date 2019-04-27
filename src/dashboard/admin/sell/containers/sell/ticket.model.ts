@@ -1,0 +1,112 @@
+import { Booking } from 'src/shared/models/booking.model';
+
+export const Ticket = {
+  id: 14,
+  created: 1556351189186,
+  lastUpdated: 1556351189358,
+  subBookingList: [
+    {
+      date: 1558893600000,
+      seatNumber: 'S03',
+      fare: 1000,
+      discount: 50,
+      commission: 0,
+      payablePrice: 950,
+      paid: false
+    },
+    {
+      date: 1558893600000,
+      seatNumber: 'S06',
+      fare: 1000,
+      discount: 50,
+      commission: 0,
+      payablePrice: 950,
+      paid: false
+    }
+  ],
+  ship: {
+    id: 1,
+    created: 1556185414000,
+    lastUpdated: 1556185481000,
+    shipNumber: '101',
+    name: 'Bay cruise',
+    description: 'this is a test ship for admin',
+    kidsPolicy: 'Kids under 4 year old are free',
+    phoneNumber: '01484729739',
+    quality: 'DELUX',
+    floor: '2',
+    size: '4000 SQFT',
+    startingPoint: 'TEKNAF',
+    droppingPoint: 'SAINT_MARTIN',
+    startTime: '9:30',
+    route: 'Teknaf-Saint Martin - Teknaf',
+    ac: true,
+    containCabin: false,
+    online: true,
+    enabled: false,
+    deleted: false,
+    discount: 2,
+    startsFrom: 950,
+    rating: 0.0,
+    numberOfReviews: 0,
+    hotelswavePercentage: 15,
+    shipFacilities: {
+      casino: false,
+      shops: false,
+      spa: false,
+      fitnessCenter: false,
+      library: false,
+      theatre: false,
+      cinema: false,
+      swimmingPool: false,
+      hotTub: false,
+      restaurant: true,
+      lounges: false,
+      gym: false,
+      bar: false,
+      wifi: true,
+      kidsPlayRoom: false
+    }
+  },
+  refBy: null,
+  shipName: 'Bay cruise',
+  categoryName: 'Suganda',
+  totalFare: 2000,
+  totalDiscount: 100,
+  totalCommission: 0,
+  promotionDiscount: 0,
+  totalPayablePrice: 1900,
+  agentDiscount: 0,
+  hotelswaveDiscount: 0,
+  hotelswaveAgentDiscount: 0,
+  eStatus: 'SEAT_SOLD',
+  manualBooking: false,
+  confirmed: true,
+  approved: true,
+  paid: true,
+  cancelled: false,
+  sslCommerzValidatorResponse: null,
+  user: {
+    id: 15,
+    created: 1556351189170,
+    lastUpdated: 1556351189170,
+    name: 'Emon',
+    username: '01582983729',
+    email: null,
+    phoneNumber: '01582983729',
+    roles: [
+      {
+        id: 1,
+        created: 1556185334000,
+        lastUpdated: 1556185334000,
+        name: 'User',
+        role: 'ROLE_USER'
+      }
+    ],
+    ship: null,
+    enabled: true,
+    accountNonExpired: true,
+    accountNonLocked: true,
+    credentialsNonExpired: true
+  }
+};
