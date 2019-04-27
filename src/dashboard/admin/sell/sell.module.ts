@@ -6,15 +6,21 @@ import { RouterModule, Routes } from '@angular/router';
 import { TicketDetailsComponent } from './components/ticket-details/ticket-details.component';
 import { UserFormComponent } from './components/user-form/user-form.component';
 import { TicketPrintComponent } from './components/ticket-print/ticket-print.component';
+import { MysellsComponent } from './containers/mysells/mysells.component';
 
 export const ROUTES: Routes = [
+  { path: 'mySells', component: MysellsComponent },
   { path: '', component: SellComponent }
 ];
 
 @NgModule({
-  declarations: [SellComponent, TicketDetailsComponent, UserFormComponent, TicketPrintComponent],
-  imports: [
-    AdminSharedModule, RouterModule.forChild(ROUTES)
-  ]
+  declarations: [
+    SellComponent,
+    TicketDetailsComponent,
+    UserFormComponent,
+    TicketPrintComponent,
+    MysellsComponent
+  ],
+  imports: [AdminSharedModule, RouterModule.forChild(ROUTES)]
 })
-export class SellModule { }
+export class SellModule {}

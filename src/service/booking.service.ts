@@ -27,7 +27,7 @@ export class BookingService {
   getAdminMySells(page: number = 0): Observable<BookingPage> {
     const param = page === null ? '' : `page=${page}&`;
     return this.dataSource.sendRequest(
-      RequestMethod.Post,
+      RequestMethod.Get,
       this.serviceAdminUrl + '/mySells',
       null,
       true,

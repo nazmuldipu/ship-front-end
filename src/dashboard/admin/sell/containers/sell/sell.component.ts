@@ -34,7 +34,7 @@ export class SellComponent implements OnInit {
   minDate;
   maxDate;
 
-  ticket = Ticket;
+  ticket;
 
   constructor(
     private shipService: ShipService,
@@ -175,7 +175,7 @@ export class SellComponent implements OnInit {
       this.dataSending = false;
       this.message = 'Booking done';
       this.selectedSeat = [];
-      // this.ticket = data;
+      this.ticket = data;
       this.getAdminSeatList(this.detailsId);
     });
   }
