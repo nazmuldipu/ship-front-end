@@ -1,0 +1,21 @@
+<div class="container-fluid">
+  <span class="row px-3 details-title text-left">Add income</span>
+</div>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-4">
+      <admin-income-expense
+        [expenseForm]="expenseForm"
+        (value)="onSubmit($event)"
+      ></admin-income-expense>
+    </div>
+    <div class="col-md-8">
+      <admin-cashbook-table
+        [adminCashbookPage]="adminCashbookPage"
+        (page)="getAdminCashbook($event)"
+      >
+      </admin-cashbook-table>
+    </div>
+  </div>
+</div>

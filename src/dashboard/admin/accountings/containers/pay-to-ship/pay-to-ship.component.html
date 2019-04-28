@@ -1,0 +1,51 @@
+<div class="container-fluid">
+  <span class="row px-3 details-title text-left">Pay to hotel</span>
+</div>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-3">
+      <admin-ship-list (ship)="onSelectShip($event)"> </admin-ship-list>
+    </div>
+    <div class="col-md-3" *ngIf="shipId">
+      <pay-ship-form [shipId]="shipId" (value)="onSubmit($event)">
+        </pay-ship-form>
+    </div>
+    <div class="col-md-6" *ngIf="adminShipLedgerPage">
+      <h3 class="text-center">Ship ledger</h3>
+      <table class="table border">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Explanation</th>
+            <th>Debit</th>
+            <th>Credit</th>
+            <th class="text-right">Balance</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let ledger of adminShipLedgerPage.content">
+            <td>{{ ledger.date | date: 'MMM d, y, h:mm:ss a' }}</td>
+            <td>{{ ledger.explanation }}</td>
+            <td>{{ ledger.debit }}</td>
+            <td>{{ ledger.credit }}</td>
+            <td class="text-right">
+              {{ ledger.balance | currency: 'BDT ':'symbol':'4.2-2' }}
+            </td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="5">
+              <pagination
+                *ngIf="adminShipLedgerPage != null"
+                [page]="adminShipLedgerPage"
+                (getPage)="getAdminHotelLedgerByHotelId(hotelId, $event)"
+              ></pagination>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+</div>

@@ -19,6 +19,10 @@ export const ROUTES: Routes = [
   {
     path: 'ships',
     loadChildren: './ships/ships.module#ShipsModule'
+  },
+  {
+    path: 'accountings',
+    loadChildren: './accountings/accountings.module#AccountingsModule'
   }
 ];
 
