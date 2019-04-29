@@ -7,9 +7,13 @@ import { TicketDetailsComponent } from './components/ticket-details/ticket-detai
 import { UserFormComponent } from './components/user-form/user-form.component';
 import { TicketPrintComponent } from './components/ticket-print/ticket-print.component';
 import { MysellsComponent } from './containers/mysells/mysells.component';
+import { CancelBookingComponent } from './containers/cancel-booking/cancel-booking.component';
+import { StatusComponent } from './containers/status/status.component';
 
 export const ROUTES: Routes = [
   { path: 'mySells', component: MysellsComponent },
+  { path: 'cancle-booking', component: CancelBookingComponent },
+  { path: 'seat-status', component: StatusComponent },
   { path: '', component: SellComponent }
 ];
 
@@ -19,7 +23,9 @@ export const ROUTES: Routes = [
     TicketDetailsComponent,
     UserFormComponent,
     TicketPrintComponent,
-    MysellsComponent
+    MysellsComponent,
+    CancelBookingComponent,
+    StatusComponent
   ],
   imports: [AdminSharedModule, RouterModule.forChild(ROUTES)]
 })

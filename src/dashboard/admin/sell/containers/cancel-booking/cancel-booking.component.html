@@ -1,0 +1,48 @@
+<div class="container-fluid">
+  <div class="row my-2">
+    <div class="col-md-2  d-print-none">
+      <ul class="list-group" *ngIf="!loading; else showLoading">
+        <li class="list-group-item">
+          <h5>Booking List</h5>
+          <small>Choose a booking from below list</small>
+        </li>
+
+        <a
+          *ngFor="let booking of bookingPage?.content"
+          class="list-group-item list-group-item-action"
+          (click)="onBookingDetails(booking.id)"
+        >
+          <i class="fa fa-ticket"></i> {{ booking.id }}
+          {{ booking.user.name }} [{{ booking.user.phoneNumber }}]
+        </a>
+      </ul>
+      <ng-template #showLoading>
+        <app-loading></app-loading>
+      </ng-template>
+      <pagination
+        *ngIf="bookingPage != null"
+        [page]="bookingPage"
+        [short]="short"
+        (getPage)="getAdminBookings($event)"
+      ></pagination>
+    </div>
+    <div class="col text-center p-0" *ngIf="message.length">
+      <div class="alert alert-danger" role="alert">
+        {{ message }}
+        <button class="btn-sm btn-warning" (click)="clear()">Close</button>
+      </div>
+    </div>
+    <div class="col p-0" *ngIf="ticket">
+      <ticket-print [ticket]="ticket" (close)="onTicketClose()"> </ticket-print>
+      <div class="d-flex flex-row-reverse bd-highlight my-2">
+        <button
+          class="btn btn-danger btn-sm"
+          (click)="onCancelBooking(ticket.id)"
+        >
+          Cancel booking
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- {{bookingPage | json}} -->

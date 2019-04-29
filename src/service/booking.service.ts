@@ -13,12 +13,43 @@ export class BookingService {
 
   constructor(private dataSource: RestDataService) {}
 
+  // GET add bookings
+  getAdminBookings(page: number = 0): Observable<BookingPage> {
+    const param = page === null ? '' : `page=${page}&`;
+    return this.dataSource.sendRequest(
+      RequestMethod.Get,
+      this.serviceAdminUrl,
+      null,
+      true,
+      param
+    );
+  }
+
+  getAdminBooking(bookingId: number): Observable<Booking> {
+    return this.dataSource.sendRequest(
+      RequestMethod.Get,
+      this.serviceAdminUrl + `/${bookingId}`,
+      null,
+      true,
+      null
+    );
+  }
   //Create booking
   createAdminBooking(booking: Booking): Observable<Booking> {
     return this.dataSource.sendRequest(
       RequestMethod.Post,
       this.serviceAdminUrl + `/sell`,
       booking,
+      true,
+      null
+    );
+  }
+
+  confirmAdminReservation(bookingId): Observable<Booking> {
+    return this.dataSource.sendRequest(
+      RequestMethod.Put,
+      this.serviceAdminUrl + `/confirmReservation/${bookingId}`,
+      null,
       true,
       null
     );
@@ -32,6 +63,26 @@ export class BookingService {
       null,
       true,
       param
+    );
+  }
+
+  cancelAdminBooking(bookindId: number): Observable<any> {
+    return this.dataSource.sendRequest(
+      RequestMethod.Delete,
+      this.serviceAdminUrl + `/cancelBooking/${bookindId}`,
+      null,
+      true,
+      null
+    );
+  }
+
+  cancelAdminReservation(bookindId: number): Observable<any> {
+    return this.dataSource.sendRequest(
+      RequestMethod.Delete,
+      this.serviceAdminUrl + `/cancelReservation/${bookindId}`,
+      null,
+      true,
+      null
     );
   }
 }

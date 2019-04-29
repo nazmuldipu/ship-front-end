@@ -7,6 +7,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 })
 export class TicketPrintComponent implements OnInit {
   @Input() ticket;
+  @Input() short: boolean;
   @Output() close = new EventEmitter<any>();
   constructor() {}
 

@@ -4,6 +4,7 @@ import { Observable } from 'rxjs/internal/Observable';
 import { Seat, SeatPage } from 'src/shared/models/seat.model';
 
 import { RestDataService } from './rest-data.service';
+import { SeatStatusList } from '../dashboard/admin/sell/containers/status/status.component';
 
 @Injectable({
   providedIn: 'root'
@@ -88,7 +89,7 @@ export class SeatsService {
   getAdminSeatStatusListByShiplId(
     shipId: number,
     date: string
-  ): Observable<SeatPage> {
+  ): Observable<SeatStatusList[]> {
     const param = `date=${date}&`;
     return this.dataSource.sendRequest(
       RequestMethod.Get,

@@ -34,6 +34,7 @@ export class SellComponent implements OnInit {
   minDate;
   maxDate;
 
+  mode = 'SEAT_SOLD';
   ticket;
 
   constructor(
@@ -168,7 +169,7 @@ export class SellComponent implements OnInit {
       this.selectedSeat
     );
     let booking: Booking = new Booking(user, subbookingList);
-    booking.eStatus = SeatStatus.SEAT_SOLD;
+    booking.eStatus = this.mode as SeatStatus;
     this.dataSending = true;
     this.message = 'Sending data to server';
     this.bookinService.createAdminBooking(booking).subscribe(data => {
