@@ -23,6 +23,10 @@ export const ROUTES: Routes = [
   {
     path: 'accountings',
     loadChildren: './accountings/accountings.module#AccountingsModule'
+  },
+  {
+    path: 'users',
+    loadChildren: './users/users.module#UsersModule'
   }
 ];
 

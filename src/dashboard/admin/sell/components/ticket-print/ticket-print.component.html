@@ -21,7 +21,10 @@
     </div>
   </div>
 
-  <div class="row m-0 border" *ngIf="!short; else shortTicket">
+  <div
+    class="row m-0 border"
+    *ngIf="!short && ticket.eStatus == 'SEAT_SOLD'; else shortTicket"
+  >
     <div class="col-md-4 col-4 border-right">
       <div class="ticket-head">Passenger Copy - {{ ticket.id }}</div>
       <table>
@@ -213,7 +216,9 @@
   </div>
   <ng-template #shortTicket>
     <div class="row m-0 border">
-      <div class="ticket-head">Ticket Id - {{ ticket.id }}</div>
+      <div class="ticket-head">
+        Ticket Id - {{ ticket.id }} {{ ticket.eStatus }}
+      </div>
       <table>
         <tr>
           <td class="text-right">JOURNEY DATE :</td>

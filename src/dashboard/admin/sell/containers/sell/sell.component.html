@@ -3,7 +3,7 @@
   [ticket]="ticket"
   (close)="onTicketClose()"
 ></ticket-print>
-{{ mode }}
+
 <div class="container d-print-none" *ngIf="!ticket">
   <div class="row border my-2 p-2">
     <div class="input-group-text btn btn-secondary" (click)="adjustDay(-1)">

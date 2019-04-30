@@ -1,0 +1,158 @@
+<div class="container-fluid">
+  <span class="row px-3 details-title text-left">
+    All User
+
+    <span class="pull-right">
+      <select class="form-control" (change)="onRoleChange($event.target.value)">
+        <option value="" selected>All</option>
+        <option value="User">User</option>
+        <option value="Service Agent">Ship Agent</option>
+        <option value="Service Admin">Ship Admin</option>
+        <option value="Agent">Agent</option>
+        <option value="Admin">Admin </option>
+      </select>
+    </span>
+  </span>
+</div>
+<div class="container-fluid">
+  <div class="row m-0">
+    <div class="offset-md-3 col-md-6 p-2" *ngIf="user"></div>
+  </div>
+  <div class="row m-0">
+    <div class="col-md-7">
+      <table class="table table-hover table-responsive-sm shadow-sm">
+        <!-- <table class="table table-hover"> -->
+        <thead>
+          <tr>
+            <th class="pl-3">Name</th>
+            <th>Phone <br />Email</th>
+            <th>Registration time</th>
+            <th>Staus</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of userPage?.content">
+            <td>
+              {{ user.name }} <br />
+              <span
+                class="badge badge-pill"
+                [ngClass]="i % 2 == 0 ? 'badge-success' : 'badge-info'"
+                *ngFor="let role of user?.roles; let i = index"
+              >
+                {{ role.name }}
+              </span>
+            </td>
+            <td>
+              <!-- <a class="username-btn" (click)="onUsername(user.username)"> -->
+              {{ user.phoneNumber }}<br />
+              {{ user.email }}
+              <!-- </a> -->
+            </td>
+            <td>{{ user.created | date: 'MMM d, y, h:mm:ss a' }}</td>
+            <td>{{ user.enabled ? 'ACTIVE' : 'INACTIVE' }}</td>
+            <td>
+              <button class="btn btn-warning btn-sm" (click)="onEdit(user.id)">
+                <i class="fa fa-edit"></i>
+              </button>
+            </td>
+          </tr>
+        </tbody>
+
+        <tfoot>
+          <tr>
+            <td colspan="5">
+              <pagination
+                *ngIf="userPage != null"
+                [page]="userPage"
+                (getPage)="getUserPage($event)"
+              >
+              </pagination>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+    <div class="col-md-5" *ngIf="user">
+      <div class="p-4 shadow-sm">
+        <h4 class="text-center">User details</h4>
+        <table class="table">
+          <tr>
+            <td>id</td>
+            <td>{{ user.id }}</td>
+          </tr>
+          <tr>
+            <td>name</td>
+            <td>{{ user.name }}</td>
+          </tr>
+          <tr>
+            <td>Username</td>
+            <td>{{ user.username }}</td>
+          </tr>
+          <tr>
+            <td>Email</td>
+            <td>{{ user.email }}</td>
+          </tr>
+          <tr>
+            <td>Phone Number</td>
+            <td>{{ user.phoneNumber }}</td>
+          </tr>
+          <tr>
+            <td>Enabled</td>
+            <td>
+              <i
+                class="fa "
+                [ngClass]="user.enabled ? 'fa-check' : 'fa-times'"
+              ></i>
+            </td>
+          </tr>
+          <tr>
+            <td>Roles</td>
+            <td>
+              <span *ngFor="let role of user.roles"> {{ role.name }}, </span>
+            </td>
+          </tr>
+        </table>
+
+        <span>
+          <a
+            class="btn btn-info btn-sm raised mr-1"
+            (click)="chageRole(user.id, 'User')"
+          >
+            User
+          </a>
+          <a
+            class="btn btn-info btn-sm raised mr-1"
+            (click)="chageRole(user.id, 'Service Agent')"
+          >
+            Ship Agent
+          </a>
+          <a
+            class="btn btn-success btn-sm raised mr-1"
+            (click)="chageRole(user.id, 'Service Admin')"
+          >
+            Ship Admin
+          </a>
+          <a
+            class="btn btn-success btn-sm raised mr-1"
+            (click)="chageRole(user.id, 'Agent')"
+          >
+            Agent
+          </a>
+
+          <button
+            class="btn btn-sm raised"
+            (click)="activate(user.id)"
+            [ngClass]="user.enabled ? 'btn-success' : 'btn-danger'"
+          >
+            <i class="fa fa-power-off"></i>
+          </button>
+
+          <button class="btn btn-sm btn-danger float-right" (click)="clear()">
+            Close
+          </button>
+        </span>
+      </div>
+    </div>
+  </div>
+</div>

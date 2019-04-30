@@ -112,13 +112,13 @@
             >
               My Sells
             </a>
-            <a
+            <!-- <a
               class="dropdown-item"
               (click)="toggleCollapse()"
               routerLink="/dashboard/admin/sell/cancle-booking"
             >
               Cancel Booking
-            </a>
+            </a> -->
             <a
               class="dropdown-item"
               (click)="toggleCollapse()"
@@ -126,20 +126,7 @@
             >
               Seat Status
             </a>
-            <!-- <a
-              class="dropdown-item"
-              (click)="toggleCollapse()"
-              routerLink="/dashboard/admin/bookings/offline-bookings"
-            >
-              Offline bookings
-            </a>
-            <a
-              class="dropdown-item"
-              (click)="toggleCollapse()"
-              routerLink="/dashboard/admin/bookings/cancel-bookings"
-            >
-              Cancel bookings
-            </a> -->
+            
           </div>
         </div>
       </li>
@@ -191,25 +178,12 @@
             >
               Agent balance
             </a>
-            <!-- <a
-              class="dropdown-item"
-              (click)="toggleCollapse()"
-              routerLink="/dashboard/admin/bookings/offline-bookings"
-            >
-              Offline bookings
-            </a>
-            <a
-              class="dropdown-item"
-              (click)="toggleCollapse()"
-              routerLink="/dashboard/admin/bookings/cancel-bookings"
-            >
-              Cancel bookings
-            </a> -->
+            
           </div>
         </div>
       </li>
 
-      <!-- <li class="nav-item" *ngIf="hasAuthority('ROLE_ADMIN')">
+     <li class="nav-item" *ngIf="hasAuthority('ROLE_ADMIN')">
         <div ngbDropdown class="d-inline-block">
           <a class="nav-link" id="adminRoom" ngbDropdownToggle> Users </a>
           <div ngbDropdownMenu aria-labelledby="adminRoom">
@@ -252,7 +226,8 @@
         </div>
       </li>
 
-      <li class="nav-item" *ngIf="hasAuthority('ROLE_ADMIN')">
+       <!-- 
+         <li class="nav-item" *ngIf="hasAuthority('ROLE_ADMIN')">
         <div ngbDropdown class="d-inline-block">
           <a
             class="nav-link"

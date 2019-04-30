@@ -1,0 +1,41 @@
+<div class="container-fluid shadow-sm">
+  <h3 class="text-center">Find user</h3>
+  <div class="d-flex justify-content-center pb-2 mb-3">
+    <form class="form-inline" [formGroup]="form" (ngSubmit)="submit()">
+      <div class="form-group">
+        <label for="phoneNumber">Phone Number</label>
+        <input
+          class="form-control mx-3"
+          placeholder="Phone"
+          id="phoneNumber"
+          maxlength="11"
+          formControlName="phoneNumber"
+        />
+        <small
+          class="text-danger"
+          *ngIf="
+            form.controls.phoneNumber.errors &&
+            form.controls.phoneNumber.touched
+          "
+        >
+          <div [hidden]="!form.controls['phoneNumber'].errors.required">
+            Phone number required
+          </div>
+          <div [hidden]="!form.controls['phoneNumber'].errors.pattern">
+            Phone number format 01934953023
+          </div>
+        </small>
+      </div>
+      <button
+        type="submit"
+        class="btn btn-success"
+        [ngClass]="{
+          disabled: form.invalid
+        }"
+      >
+        <i class="fa fa-search"></i>
+        Find
+      </button>
+    </form>
+  </div>
+</div>

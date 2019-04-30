@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { RouterModule, Routes } from '@angular/router';
+
+import { AdminSharedModule } from '../admin-shared/admin-shared.module';
+import { AddShipFormComponent } from './components/add-ship-form/add-ship-form.component';
 import { AddComponent } from './containers/add/add.component';
 import { DetailsComponent } from './containers/details/details.component';
 import { ListComponent } from './containers/list/list.component';
-import { SharedModule } from 'src/shared/shared.module';
-import { RouterModule, Routes } from '@angular/router';
-import { AddShipFormComponent } from './components/add-ship-form/add-ship-form.component';
 
 export const ROUTES: Routes = [
   { path: 'add', component: AddComponent },
@@ -18,7 +18,12 @@ export const ROUTES: Routes = [
 ];
 
 @NgModule({
-  declarations: [AddComponent, DetailsComponent, ListComponent, AddShipFormComponent],
-  imports: [SharedModule, RouterModule.forChild(ROUTES)]
+  declarations: [
+    AddComponent,
+    DetailsComponent,
+    ListComponent,
+    AddShipFormComponent
+  ],
+  imports: [AdminSharedModule, RouterModule.forChild(ROUTES)]
 })
 export class ShipsModule {}
