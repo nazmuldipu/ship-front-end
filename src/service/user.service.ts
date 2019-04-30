@@ -36,6 +36,17 @@ export class UserService {
     );
   }
 
+  changePassword(userId: number, password: string): Observable<User> {
+    const param = `password=${password}&`;
+    return this.dataSource.sendRequest(
+      RequestMethod.Put,
+      this.serviceUrl + `/changePassword/${userId}`,
+      null,
+      true,
+      param
+    );
+  }
+
   //*******************ADMIN MODULES **********************
   getAdminUsers(
     page: number = null,
