@@ -27,6 +27,10 @@ export const ROUTES: Routes = [
   {
     path: 'users',
     loadChildren: './users/users.module#UsersModule'
+  },
+  {
+    path: 'report',
+    loadChildren: './report/report.module#ReportModule'
   }
 ];
 

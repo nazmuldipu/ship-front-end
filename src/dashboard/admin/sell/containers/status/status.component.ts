@@ -135,7 +135,7 @@ export class StatusComponent implements OnInit {
   }
 
   makeDateString(date) {
-    const dateString = date.year + '-' + (date.month + 1) + '-' + date.day;
+    const dateString = date.year + '-' + date.month + '-' + date.day;
     return dateString;
   }
 

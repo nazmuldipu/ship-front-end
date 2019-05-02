@@ -226,123 +226,29 @@
         </div>
       </li>
 
-       <!-- 
-         <li class="nav-item" *ngIf="hasAuthority('ROLE_ADMIN')">
-        <div ngbDropdown class="d-inline-block">
-          <a
-            class="nav-link"
-            (click)="toggleCollapse()"
-            id="dropdownBasic1"
-            ngbDropdownToggle
-          >
-            Package
-          </a>
-          <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-            <a
-              class="dropdown-item"
-              (click)="toggleCollapse()"
-              routerLink="/dashboard/admin/package/add"
-            >
-              Add
-            </a>
-            <a
-              class="dropdown-item"
-              (click)="toggleCollapse()"
-              routerLink="/dashboard/admin/package"
-            >
-              List
-            </a>
-            <a
-              class="dropdown-item"
-              (click)="toggleCollapse()"
-              routerLink="/dashboard/admin/package/custom-packages"
-            >
-              Custom packages
-            </a>
-          </div>
-        </div>
-      </li>
       <li class="nav-item" *ngIf="hasAuthority('ROLE_ADMIN')">
         <div ngbDropdown class="d-inline-block">
-          <a class="nav-link" id="adminAccounting" ngbDropdownToggle>
-            Accounting
-          </a>
-          <div ngbDropdownMenu aria-labelledby="adminAccounting">
-            <a
-              class="dropdown-item"
-              (click)="toggleCollapse()"
-              routerLink="/dashboard/admin/accountings/cashbook"
-            >
-              Cashbook
-            </a>
-            <a
-              class="dropdown-item"
-              (click)="toggleCollapse()"
-              routerLink="/dashboard/admin/accountings/ship-ledger"
-            >
-              Ship ledger </a
-            ><a
-              class="dropdown-item"
-              (click)="toggleCollapse()"
-              routerLink="/dashboard/admin/accountings/add-income"
-            >
-              Add Income
-            </a>
-            <a
-              class="dropdown-item"
-              (click)="toggleCollapse()"
-              routerLink="/dashboard/admin/accountings/add-expense"
-            >
-              Add Expense
-            </a>
-            <a
-              class="dropdown-item"
-              (click)="toggleCollapse()"
-              routerLink="/dashboard/admin/accountings/pay-ship"
-            >
-              Pay Ships
-            </a>
-            <a
-              class="dropdown-item"
-              (click)="toggleCollapse()"
-              routerLink="/dashboard/admin/accountings/agent-balance"
-            >
-              Agent Balance
-            </a>
-          </div>
-        </div>
-      </li>
-
-      <li class="nav-item" *ngIf="hasAuthority('ROLE_ADMIN')">
-        <div ngbDropdown class="d-inline-block">
-          <a class="nav-link" id="serviceAdminAccounting" ngbDropdownToggle>
+          <a class="nav-link" id="adminReport" ngbDropdownToggle>
             Report
           </a>
-          <div ngbDropdownMenu aria-labelledby="serviceAdminAccounting">
+          <div ngbDropdownMenu aria-labelledby="adminReport">
             <a
               class="dropdown-item"
               (click)="toggleCollapse()"
-              routerLink="/dashboard/admin/report/booking-report"
+              routerLink="/dashboard/admin/report/sells"
             >
-              Booking report
+              Sells report
             </a>
             <a
               class="dropdown-item"
               (click)="toggleCollapse()"
-              routerLink="/dashboard/admin/report/ship-report"
+              routerLink="/dashboard/admin/report/hotel"
             >
-              Ship report
-            </a>
-            <a
-              class="dropdown-item"
-              (click)="toggleCollapse()"
-              routerLink="/dashboard/admin/report/agent-report"
-            >
-              Agent report
+              Hotel report
             </a>
           </div>
         </div>
-      </li> -->
+      </li> 
 
       <!-- ***************************** ROLE_SERVICE_ADMIN *****************************  -->
       <li class="nav-item" *ngIf="hasAuthority('ROLE_SERVICE_ADMIN')">
