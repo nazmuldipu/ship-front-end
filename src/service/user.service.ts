@@ -12,6 +12,7 @@ import { Observable } from 'rxjs';
 export class UserService {
   serviceUrl = 'api/v1/users';
   serviceAdminUrl = 'api/v1/admin/users';
+  serviceServiceAdminUrl = 'api/v1/serviceAdmin/users';
 
   constructor(private dataSource: RestDataService, private router: Router) {}
 
@@ -177,6 +178,38 @@ export class UserService {
       null,
       true,
       param
+    );
+  }
+
+  //*******************SERVICE ADMIN MODULES **********************
+  createSerivceAdminAgent(user: User): Observable<User> {
+    return this.dataSource.sendRequest(
+      RequestMethod.Post,
+      this.serviceServiceAdminUrl + `/createAgent`,
+      user,
+      true,
+      null
+    );
+  }
+
+  getServiceAdminAgents(page: number = 0): Observable<UserPage> {
+    const pageUrl = page === null ? '' : `page=${page}&`;
+    return this.dataSource.sendRequest(
+      RequestMethod.Get,
+      this.serviceServiceAdminUrl + `/myAgents`,
+      null,
+      true,
+      pageUrl
+    );
+  }
+
+  removeServiceAdminAgent(userId: number): Observable<User> {
+    return this.dataSource.sendRequest(
+      RequestMethod.Put,
+      this.serviceServiceAdminUrl + `/removeAgent/${userId}`,
+      null,
+      true,
+      null
     );
   }
 }

@@ -12,10 +12,10 @@ export const ROUTES: Routes = [
   //   path: 'seats',
   //   loadChildren: './seats/seats.module#SeatsModule'
   // },
-  // {
-  //   path: 'sell',
-  //   loadChildren: './sell/sell.module#SellModule'
-  // },
+  {
+    path: 'sell',
+    loadChildren: './s-sell/s-sell.module#SSellModule'
+  },
   // {
   //   path: 'ships',
   //   loadChildren: './ships/ships.module#ShipsModule'
