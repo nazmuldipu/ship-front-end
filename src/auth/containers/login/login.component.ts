@@ -13,11 +13,11 @@ export class LoginComponent implements OnInit {
   ngOnInit() {}
 
   onCreate(event) {
-    console.log(event);
+    // console.log(event);
     this.message = null;
     this.auth.authenticate(event.username, event.password).subscribe(
       data => {
-        console.log(data);
+        // console.log(data);
         this.auth.saveToken(data, '');
       },
       error => {

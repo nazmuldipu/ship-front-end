@@ -74,6 +74,16 @@ export class UserService {
     );
   }
 
+  gerAdminUserListByShipId(shipId: number): Observable<User[]> {
+    return this.dataSource.sendRequest(
+      RequestMethod.Get,
+      this.serviceAdminUrl + `/searchByShipId/${shipId}`,
+      null,
+      true,
+      null
+    );
+  }
+
   createAdminUser(user: User): Observable<User> {
     return this.dataSource.sendRequest(
       RequestMethod.Post,

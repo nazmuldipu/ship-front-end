@@ -13,6 +13,7 @@ export class AssignUserComponent implements OnInit {
   userPage: UserPage;
   user: User;
   shipPage: ShipPage;
+  shipUserList: User[] = [];
   ship: Ship;
 
   constructor(
@@ -43,6 +44,12 @@ export class AssignUserComponent implements OnInit {
       );
   }
 
+  async getUerListByShipId(shipId) {
+    await this.userService.gerAdminUserListByShipId(shipId).subscribe(data => {
+      this.shipUserList = data;
+    });
+  }
+
   onSelectUser(id: number) {
     const value = this.userPage.content.find(u => u.id === id) as User;
     this.user = value;
@@ -51,6 +58,7 @@ export class AssignUserComponent implements OnInit {
   onSelectShip(id: number) {
     const value = this.shipPage.content.find(h => h.id === id) as Ship;
     this.ship = value;
+    this.getUerListByShipId(id);
   }
 
   onSaveRole(event) {
@@ -59,12 +67,13 @@ export class AssignUserComponent implements OnInit {
       .subscribe(data => {
         this.getUserPage();
         this.onCloseForm();
-        console.log('Assign user success');
+        // console.log('Assign user success');
       });
   }
 
   onCloseForm() {
     this.ship = null;
     this.user = null;
+    this.shipUserList = [];
   }
 }

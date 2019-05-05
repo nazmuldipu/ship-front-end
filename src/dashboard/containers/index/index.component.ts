@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/service/auth.service';
 
 @Component({
   selector: 'app-index',
@@ -7,9 +8,12 @@ import { Router } from '@angular/router';
   styleUrls: ['./index.component.scss']
 })
 export class IndexComponent implements OnInit {
-  constructor(private router: Router) {}
+  constructor(private router: Router, private auth: AuthService) {}
 
   ngOnInit() {
-    this.router.navigate(['/dashboard/admin/sell']);
+    console.log(this.auth.authorities);
+    if (this.auth.authorities.includes('ROLE_ADMIN')) {
+      this.router.navigate(['/dashboard/admin/sell']);
+    }
   }
 }
