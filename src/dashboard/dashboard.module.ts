@@ -15,6 +15,10 @@ export const ROUTES: Routes = [
     component: DashboardComponent,
     children: [
       { path: 'admin', loadChildren: './admin/admin.module#AdminModule' },
+      {
+        path: 'service-admin',
+        loadChildren: './service-admin/service-admin.module#ServiceAdminModule'
+      },
       { path: 'change-password', component: ChangePasswordComponent },
       {
         path: '',
