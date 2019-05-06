@@ -10,6 +10,7 @@ import { RequestMethod } from '@angular/http';
 export class BookingService {
   serviceUrl = 'api/v1/booking';
   serviceAdminUrl = 'api/v1/admin/booking';
+  serviceServiceAdminUrl = 'api/v1/serviceAdmin/booking';
 
   constructor(private dataSource: RestDataService) {}
 
@@ -81,6 +82,17 @@ export class BookingService {
       RequestMethod.Delete,
       this.serviceAdminUrl + `/cancelReservation/${bookindId}`,
       null,
+      true,
+      null
+    );
+  }
+
+  // ****************************** SERVICE ADMIN MODULES ***************************
+  createServiceAdminBooking(booking: Booking): Observable<Booking> {
+    return this.dataSource.sendRequest(
+      RequestMethod.Post,
+      this.serviceServiceAdminUrl + `/sell`,
+      booking,
       true,
       null
     );

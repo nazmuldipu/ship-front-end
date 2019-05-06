@@ -165,6 +165,7 @@ export class RestDataService {
           return response.json();
         }),
         catchError((error: Response) => {
+          console.log(error);
           Observable.throw(this.handleError(error));
           if (error.status === 404) {
             console.log(error);

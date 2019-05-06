@@ -11,6 +11,7 @@ import { RequestMethod } from '@angular/http';
 export class ShipService {
   serviceUrl = 'api/v1/ships';
   serviceAdminUrl = 'api/v1/admin/ships';
+  serviceServiceAdminUrl = 'api/v1/serviceAdmin/ships';
 
   constructor(private dataSource: RestDataService, private router: Router) {}
 
@@ -51,6 +52,17 @@ export class ShipService {
       RequestMethod.Put,
       this.serviceAdminUrl + `/${shipId}`,
       ship,
+      true,
+      null
+    );
+  }
+
+  // ****************************** SERVICE ADMIN MODULES ***************************
+  getServiceAdminHotels(): Observable<Ship[]> {
+    return this.dataSource.sendRequest(
+      RequestMethod.Get,
+      this.serviceServiceAdminUrl + '/myShips',
+      null,
       true,
       null
     );

@@ -1,0 +1,44 @@
+.ship-row {
+  background-color: azure;
+  color: #888;
+  &-name {
+    font-size: 20px;
+    font-weight: 600;
+    color: #079d49;
+  }
+  &-startTime {
+    font-size: 16px;
+    font-weight: 600;
+    color: #666666;
+  }
+  &-route {
+    color: #079d49;
+  }
+}
+
+.ship-details {
+  background-color: white;
+  border: 1px solid #079d49;
+}
+
+.seat-box {
+  border: 1px solid black;
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 5px;
+  font-size: 12px;
+  text-align: center;
+  &:hover {
+    background-color: lightgrey;
+    color: black;
+  }
+  &.disabled {
+    background-color: gray !important;
+    color: white;
+    cursor: not-allowed;
+  }
+}
+.selected {
+  background-color: lightblue;
+  color: white;
+}

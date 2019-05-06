@@ -7,9 +7,19 @@ import { PaginationComponent } from './components/pagination/pagination.componen
 import { Daterangepicker } from 'ng2-daterangepicker';
 import { LoadingComponent } from './components/loading/loading.component';
 import { ChangePasswordFormComponent } from './components/change-password-form/change-password-form.component';
+import { TicketDetailsComponent } from './components/ticket-details/ticket-details.component';
+import { UserFormComponent } from './components/user-form/user-form.component';
+import { TicketPrintComponent } from './components/ticket-print/ticket-print.component';
 
 @NgModule({
-  declarations: [PaginationComponent, LoadingComponent, ChangePasswordFormComponent],
+  declarations: [
+    PaginationComponent,
+    LoadingComponent,
+    ChangePasswordFormComponent,
+    TicketDetailsComponent,
+    UserFormComponent,
+    TicketPrintComponent
+  ],
   imports: [
     CommonModule,
     RouterModule,
@@ -27,6 +37,9 @@ import { ChangePasswordFormComponent } from './components/change-password-form/c
     Daterangepicker,
     PaginationComponent,
     LoadingComponent,
+    TicketDetailsComponent,
+    UserFormComponent,
+    TicketPrintComponent,
     ChangePasswordFormComponent
   ]
 })

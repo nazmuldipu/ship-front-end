@@ -12,6 +12,7 @@ import { SeatStatusList } from '../dashboard/admin/sell/containers/status/status
 export class SeatsService {
   serviceUrl = '/api/v1/seats';
   serviceAdminUrl = '/api/v1/admin/seats';
+  serviceServiceAdminUrl = '/api/v1/serviceAdmin/seats';
 
   constructor(private dataSource: RestDataService) {}
 
@@ -108,6 +109,18 @@ export class SeatsService {
     return this.dataSource.sendRequest(
       RequestMethod.Get,
       this.serviceAdminUrl + `/priceMap/${seatId}`,
+      null,
+      true,
+      param
+    );
+  }
+
+  // ****************************** SERVICE ADMIN MODULES ***************************
+  getServiceAdminAvailableSeatListByShiplId(shipId, date): Observable<Seat[]> {
+    const param = `date=${date}&`;
+    return this.dataSource.sendRequest(
+      RequestMethod.Get,
+      this.serviceServiceAdminUrl + `/available/${shipId}`,
       null,
       true,
       param

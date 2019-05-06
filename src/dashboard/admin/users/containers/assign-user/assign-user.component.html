@@ -17,7 +17,7 @@
     </div>
     <div class="col-md-4" *ngIf="shipUserList.length">
       <div class="shadow-sm  p-3">
-        <h4>{{ ship.name }} User list</h4>
+        <h4>{{ ship.shipNumber }}-{{ ship.name }} User list</h4>
         <table class="table border">
           <thead>
             <tr>
@@ -92,6 +92,7 @@
       <table class="table border">
         <thead>
           <tr>
+            <th>Ship No.</th>
             <th>Name</th>
             <th>Phone</th>
             <th>Enabled</th>
@@ -100,6 +101,7 @@
         </thead>
         <tbody>
           <tr *ngFor="let ship of shipPage?.content">
+            <td>{{ ship.shipNumber }}</td>
             <td>{{ ship.name }}</td>
             <td>{{ ship.phoneNumber }}</td>
             <td>{{ ship.enabled }}</td>
