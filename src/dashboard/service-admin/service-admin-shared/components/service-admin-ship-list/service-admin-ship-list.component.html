@@ -1,0 +1,14 @@
+<ul class="list-group">
+  <li class="list-group-item">
+    <h5>Ship List</h5>
+    <small>Choose a ship from below list</small>
+  </li>
+
+  <a
+    *ngFor="let ship of ships"
+    class="list-group-item list-group-item-action"
+    (click)="onSelectShip(ship.id)"
+  >
+    <i class="fa fa-building"></i> {{ ship.shipNumber }}-{{ ship.name }}
+  </a>
+</ul>

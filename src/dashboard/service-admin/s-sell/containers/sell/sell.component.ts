@@ -102,16 +102,17 @@ export class SellComponent implements OnInit {
   }
 
   onDetails(shipId) {
+    this.closeDetails();
     if (this.detailsId != shipId) {
       this.detailsId = shipId;
       this.getAdminSeatList(shipId);
-    } else {
-      this.closeDetails();
-    }
+    } 
   }
+
   closeDetails() {
     this.detailsId = null;
     this.seatList = [];
+    this.selectedSeat = [];
     this.filteredSeatList = [];
   }
 

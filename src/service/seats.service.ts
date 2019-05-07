@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/internal/Observable';
 import { Seat, SeatPage } from 'src/shared/models/seat.model';
 
 import { RestDataService } from './rest-data.service';
-import { SeatStatusList } from '../dashboard/admin/sell/containers/status/status.component';
+import { SeatStatusList } from 'src/shared/models/booking.model';
 
 @Injectable({
   providedIn: 'root'
@@ -121,6 +121,20 @@ export class SeatsService {
     return this.dataSource.sendRequest(
       RequestMethod.Get,
       this.serviceServiceAdminUrl + `/available/${shipId}`,
+      null,
+      true,
+      param
+    );
+  }
+
+  getServiceAdminSeatStatusListByShiplId(
+    shipId: number,
+    date: string
+  ): Observable<SeatStatusList[]> {
+    const param = `date=${date}&`;
+    return this.dataSource.sendRequest(
+      RequestMethod.Get,
+      this.serviceServiceAdminUrl + `/statusList/${shipId}`,
       null,
       true,
       param

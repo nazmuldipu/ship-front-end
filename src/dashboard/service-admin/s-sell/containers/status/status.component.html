@@ -1,3 +1,121 @@
-<p>
-  status works!
-</p>
+<div class="container-fluid d-print-none">
+  <span class="row px-3 details-title text-left">Seat status</span>
+</div>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-2 d-print-none">
+      <div class="form-group mb-0">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <div class="input-group-text">
+              Date :
+            </div>
+          </div>
+          <input
+            class="form-control"
+            placeholder="yyyy-mm-dd"
+            name="dp"
+            [(ngModel)]="dd"
+            [minDate]="minDate"
+            [maxDate]="maxDate"
+            ngbDatepicker
+            #date="ngbDatepicker"
+            (dateSelect)="onDateChange()"
+            (click)="date.toggle()"
+          />
+          <div class="input-group-append" (click)="date.toggle()">
+            <div class="input-group-text">
+              <i class="fa fa-calendar"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+      <service-admin-ship-list
+        (ship)="onShipSelect($event)"
+      ></service-admin-ship-list>
+    </div>
+
+    <div class="col-md-5 d-print-none" *ngIf="filteredSeatList.length">
+      <h4>{{ ship?.shipNumber }}-{{ ship?.name }} Seat status</h4>
+      <div class="row m-0">
+        <span *ngFor="let cat of categoryList">
+          <button
+            class="btn-sm m-1"
+            [ngClass]="cat == category ? 'btn-primary' : 'btn-secondary'"
+            (click)="onSelectCategory(cat)"
+          >
+            {{ cat }}
+          </button>
+        </span>
+      </div>
+      <div class="row">
+        <div
+          class="col-12 bg-secondary text-white"
+          style="border-radius: 3px 3px 0px 0px; "
+        >
+          Seat status for <strong> {{ category }} </strong>
+        </div>
+        <div class="col-md-1 col-2 p-1 " *ngFor="let seat of filteredSeatList">
+          <div
+            class="seat-box"
+            [ngClass]="{
+              sold: seat.status == 'SEAT_SOLD',
+              blocked: seat.status == 'SEAT_BLOCKED',
+              reserved: seat.status == 'SEAT_RESERVED'
+            }"
+            (click)="onSeatClick(seat.id)"
+          >
+            {{ seat.seatNumber }}
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="row border py-3 mt-3" *ngIf="filteredSeatList?.length">
+            <div class="col-3">
+              <div class="foo blocked"></div>
+              Blocked
+            </div>
+            <div class="col-3">
+              <div class="foo reserved"></div>
+              Reserved
+            </div>
+            <div class="col-3">
+              <div class="foo sold"></div>
+              Sold
+            </div>
+            <div class="col-3">
+              <div class="foo "></div>
+              Free
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-5" *ngIf="ticket">
+      <ticket-print
+        [ticket]="ticket"
+        [short]="shortTicket"
+        (close)="onTicketClose($event)"
+      ></ticket-print>
+      <div class="d-flex flex-row-reverse bd-highlight my-2  d-print-none">
+        <button
+          class="btn btn-danger btn-sm mx-1"
+          (click)="onCancelBooking(ticket.id, ticket.eStatus)"
+        >
+          Cancel
+          {{ ticket.eStatus == 'SEAT_RESERVED' ? 'Reservation' : 'Booking' }}
+        </button>
+        <button
+          class="btn btn-sm btn-primary mx-1"
+          *ngIf="ticket.eStatus == 'SEAT_RESERVED'"
+          (click)="onConfirmReservation(ticket.id)"
+        >
+          Confirm Reservation
+        </button>
+      </div>
+      <!-- </div> -->
+    </div>
+  </div>
+</div>
+{{ ships | json }}

@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { BookingService } from 'src/service/booking.service';
 import { SeatsService } from 'src/service/seats.service';
-import { SeatStatus, Booking } from 'src/shared/models/booking.model';
+import {
+  SeatStatus,
+  Booking,
+  SeatStatusList
+} from 'src/shared/models/booking.model';
 import { Ship } from 'src/shared/models/ship.model';
 
 @Component({
@@ -142,12 +146,4 @@ export class StatusComponent implements OnInit {
   onTicketClose(event) {
     this.ticket = null;
   }
-}
-
-export interface SeatStatusList {
-  id: number;
-  seatNumber: string;
-  category: string;
-  bookingId: number;
-  status: SeatStatus;
 }

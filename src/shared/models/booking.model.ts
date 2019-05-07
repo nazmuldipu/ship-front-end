@@ -80,3 +80,11 @@ export enum SeatStatus {
   SEAT_SOLD = 'SEAT_SOLD',
   SEAT_FREE = 'SEAT_FREE'
 }
+
+export interface SeatStatusList {
+  id: number;
+  seatNumber: string;
+  category: string;
+  bookingId: number;
+  status: SeatStatus;
+}

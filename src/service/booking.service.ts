@@ -97,4 +97,44 @@ export class BookingService {
       null
     );
   }
+
+  getServiceAdminBooking(bookingId: number): Observable<Booking> {
+    return this.dataSource.sendRequest(
+      RequestMethod.Get,
+      this.serviceServiceAdminUrl + `/${bookingId}`,
+      null,
+      true,
+      null
+    );
+  }
+
+  cancelServiceAdminBooking(bookindId: number): Observable<any> {
+    return this.dataSource.sendRequest(
+      RequestMethod.Delete,
+      this.serviceServiceAdminUrl + `/cancelBooking/${bookindId}`,
+      null,
+      true,
+      null
+    );
+  }
+
+  cancelServiceAdminReservation(bookindId: number): Observable<any> {
+    return this.dataSource.sendRequest(
+      RequestMethod.Delete,
+      this.serviceServiceAdminUrl + `/cancelReservation/${bookindId}`,
+      null,
+      true,
+      null
+    );
+  }
+
+  confirmServiceAdminReservation(bookingId): Observable<Booking> {
+    return this.dataSource.sendRequest(
+      RequestMethod.Put,
+      this.serviceServiceAdminUrl + `/confirmReservation/${bookingId}`,
+      null,
+      true,
+      null
+    );
+  }
 }
