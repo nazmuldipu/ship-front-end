@@ -20,10 +20,10 @@ export const ROUTES: Routes = [
   //   path: 'ships',
   //   loadChildren: './ships/ships.module#ShipsModule'
   // },
-  // {
-  //   path: 'accountings',
-  //   loadChildren: './accountings/accountings.module#AccountingsModule'
-  // },
+  {
+    path: 'accountings',
+    loadChildren: './s-accountings/s-accountings.module#SAccountingsModule'
+  },
   {
     path: 'users',
     loadChildren: './s-users/s-users.module#SUsersModule'

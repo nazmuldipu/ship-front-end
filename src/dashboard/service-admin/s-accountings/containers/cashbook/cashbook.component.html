@@ -1,0 +1,16 @@
+<div class="container-fluid d-print-none">
+  <span class="row px-3 details-title text-left">Cashbook</span>
+</div>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-2 d-print-none">
+      <service-admin-ship-list
+        (ship)="onShipSelect($event)"
+      ></service-admin-ship-list>
+    </div>
+    <div class="col-md-10">
+      {{ ship | json }}
+    </div>
+  </div>
+</div>
