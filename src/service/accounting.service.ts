@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
-import { RestDataService } from './rest-data.service';
+import { RequestMethod } from '@angular/http';
 import { Observable } from 'rxjs';
+import { AdminAgentLedgerPage } from 'src/shared/models/admin-agent-ledger.model';
 import { AdminCashbookPage } from 'src/shared/models/admin-cashbook.model';
 import { AdminShipLedgerPage } from 'src/shared/models/admin-ship-ledger.model';
-import { AdminAgentLedgerPage } from 'src/shared/models/admin-agent-ledger.model';
-import { RequestMethod } from '@angular/http';
+import { ShipCashbookPage } from 'src/shared/models/ship-cashbook';
+
+import { RestDataService } from './rest-data.service';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +19,7 @@ export class AccountingService {
 
   constructor(private dataSource: RestDataService) {}
 
-  // ****************************** Admin cashbook *****************************************
+  // ****************************** Admin Modules *****************************************
   //get admin cashbook
   getAdminCashbook(page: number = 0): Observable<AdminCashbookPage> {
     const pageUrl = page === null ? '' : `page=${page}&`;
@@ -105,6 +107,23 @@ export class AccountingService {
       null,
       true,
       param
+    );
+  }
+
+  // ****************************** Service Admin Modules *****************************************
+
+  //get admin cashbook
+  getSeviceAdminShipCashbook(
+    shipId: number,
+    page: number = null
+  ): Observable<ShipCashbookPage> {
+    const pageUrl = page === null ? '' : `page=${page}&`;
+    return this.dataSource.sendRequest(
+      RequestMethod.Get,
+      this.serviceServiceAdminUrl + `/shipCashbook/${shipId}`,
+      null,
+      true,
+      pageUrl
     );
   }
 }

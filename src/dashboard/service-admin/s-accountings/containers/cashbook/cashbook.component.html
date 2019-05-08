@@ -10,7 +10,44 @@
       ></service-admin-ship-list>
     </div>
     <div class="col-md-10">
-      {{ ship | json }}
+      <app-loading *ngIf="loading"></app-loading>
+      <table class="table border table-responsive-sm" *ngIf="shipCashbookPage">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Explanation</th>
+            <th>Debit</th>
+            <th>Credit</th>
+            <th>Balance</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let cash of shipCashbookPage.content">
+            <td>{{ cash.date | date: 'MMM d, y, h:mm:ss a' }}</td>
+            <td>{{ cash.explanation }}</td>
+            <td>{{ cash.debit }}</td>
+            <td>{{ cash.credit }}</td>
+            <td class="text-right">
+              {{ cash.balance | currency: 'BDT ':'symbol':'4.2-2' }}
+            </td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr *ngIf="cashbookLoading">
+            <!-- <td colspan="5"><app-loading [message]="message"></loading></td> -->
+          </tr>
+          <tr>
+            <td colspan="5">
+              <pagination
+                *ngIf="shipCashbookPage != null"
+                [page]="shipCashbookPage"
+                (getPage)="getServiceAdminCashbookByShipId(ship.id, $event)"
+              ></pagination>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+      <!-- {{ shipCashbookPage | json }} -->
     </div>
   </div>
 </div>
