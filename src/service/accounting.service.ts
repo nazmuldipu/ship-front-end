@@ -140,4 +140,26 @@ export class AccountingService {
       pageUrl
     );
   }
+
+  addServiceAdminIncome(shipId: number, debit: number, explanation: string) {
+    const pageUrl = `debit=${debit}&explanation=${explanation}&`;
+    return this.dataSource.sendRequest(
+      RequestMethod.Put,
+      this.serviceServiceAdminUrl + `/addIncome/${shipId}`,
+      null,
+      true,
+      pageUrl
+    );
+  }
+
+  addServiceAdminExpense(shipId: number, credit: number, explanation: string) {
+    const pageUrl = `credit=${credit}&explanation=${explanation}&`;
+    return this.dataSource.sendRequest(
+      RequestMethod.Put,
+      this.serviceServiceAdminUrl + `/addExpense/${shipId}`,
+      null,
+      true,
+      pageUrl
+    );
+  }
 }

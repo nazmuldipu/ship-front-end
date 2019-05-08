@@ -8,6 +8,8 @@ import { ServiceAdminSharedModule } from '../service-admin-shared/service-admin-
 import { AddIncomeComponent } from './containers/add-income/add-income.component';
 import { AddExpenseComponent } from './containers/add-expense/add-expense.component';
 import { AgentComponent } from './containers/agent/agent.component';
+import { ServiceAdminCashbookComponent } from './components/service-admin-cashbook/service-admin-cashbook.component';
+import { ServiceAdminIncomeExpenseFormComponent } from './components/service-admin-income-expense-form/service-admin-income-expense-form.component';
 
 export const ROUTES: Routes = [
   { path: 'cashbook', component: CashbookComponent },
@@ -23,7 +25,9 @@ export const ROUTES: Routes = [
     HotelswaveLedgerComponent,
     AddIncomeComponent,
     AddExpenseComponent,
-    AgentComponent
+    AgentComponent,
+    ServiceAdminCashbookComponent,
+    ServiceAdminIncomeExpenseFormComponent
   ],
   imports: [ServiceAdminSharedModule, RouterModule.forChild(ROUTES)]
 })
