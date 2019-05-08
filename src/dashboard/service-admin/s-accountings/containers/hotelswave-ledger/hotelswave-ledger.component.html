@@ -1,3 +1,55 @@
-<p>
-  hotelswave-ledger works!
-</p>
+<div class="container-fluid d-print-none">
+  <span class="row px-3 details-title text-left">Hotelswave Ledger</span>
+</div>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-2 d-print-none">
+      <service-admin-ship-list
+        (ship)="onShipSelect($event)"
+      ></service-admin-ship-list>
+    </div>
+    <div class="col-md-10">
+      <app-loading *ngIf="loading"></app-loading>
+      <h3 class="text-center" *ngIf="adminShipLedgerPage">
+        Hotelswave Ledger for {{ ship?.shipNumber }}-{{ ship?.name }}
+      </h3>
+      <table
+        class="table border table-responsive-sm"
+        *ngIf="adminShipLedgerPage"
+      >
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Explanation</th>
+            <th>Debit</th>
+            <th>Credit</th>
+            <th class="text-right">Balance</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let ledg of adminShipLedgerPage.content">
+            <td>{{ ledg.date | date: 'MMM d, y, h:mm:ss a' }}</td>
+            <td>{{ ledg.explanation }}</td>
+            <td>{{ ledg.debit }}</td>
+            <td>{{ ledg.credit }}</td>
+            <td class="text-right">
+              {{ ledg.balance | currency: 'BDT ':'symbol':'4.2-2' }}
+            </td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="5">
+              <pagination
+                *ngIf="adminShipLedgerPage != null"
+                [page]="adminShipLedgerPage"
+                (getPage)="getServiceAdminHotelswaveLedger(ship.id, $event)"
+              ></pagination>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+</div>

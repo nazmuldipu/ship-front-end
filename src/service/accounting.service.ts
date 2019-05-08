@@ -126,4 +126,18 @@ export class AccountingService {
       pageUrl
     );
   }
+
+  getServiceAdminHotelswaveLedger(
+    shipId: number,
+    page: number = null
+  ): Observable<AdminShipLedgerPage> {
+    const pageUrl = page === null ? '' : `page=${page}&`;
+    return this.dataSource.sendRequest(
+      RequestMethod.Get,
+      this.serviceServiceAdminUrl + `/hotelswaveLedger/${shipId}`,
+      null,
+      true,
+      pageUrl
+    );
+  }
 }
