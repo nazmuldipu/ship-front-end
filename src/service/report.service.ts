@@ -63,4 +63,28 @@ export class ReportService {
       pageUrl
     );
   }
+
+  // ************************** Service Admin modules ***********************************
+
+  getServiceAdminShipSells(shipId: number, date: string) {
+    const param = `date=${date}&`;
+    return this.dataSource.sendRequest(
+      RequestMethod.Get,
+      this.serviceServiceAdminUrl + `/shipSells/${shipId}`,
+      null,
+      true,
+      param
+    );
+  }
+
+  getServiceAdminShipReservation(shipId: number, date: string) {
+    const param = `date=${date}&`;
+    return this.dataSource.sendRequest(
+      RequestMethod.Get,
+      this.serviceServiceAdminUrl + `/shipReservation/${shipId}`,
+      null,
+      true,
+      param
+    );
+  }
 }

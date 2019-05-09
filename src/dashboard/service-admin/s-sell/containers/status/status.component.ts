@@ -49,6 +49,12 @@ export class StatusComponent implements OnInit {
     };
   }
 
+  onDateChange() {
+    if (this.ship) {
+      this.getShipSeatStatus(this.ship.id, this.dd);
+    }
+  }
+
   onShipSelect(ship: Ship) {
     this.ship = ship;
     this.getShipSeatStatus(ship.id, this.dd);
@@ -134,10 +140,12 @@ export class StatusComponent implements OnInit {
       confirm('Are you sure to confirm your reservation with id : ' + bookingId)
     ) {
       console.log('confirm reservation');
-      this.bookingService.confirmAdminReservation(bookingId).subscribe(data => {
-        this.ticket = null;
-        this.getShipSeatStatus(this.ship.id, this.dd);
-      });
+      this.bookingService
+        .confirmServiceAdminReservation(bookingId)
+        .subscribe(data => {
+          this.ticket = null;
+          this.getShipSeatStatus(this.ship.id, this.dd);
+        });
     }
   }
 
