@@ -7,6 +7,7 @@ import { AdminShipLedgerPage } from 'src/shared/models/admin-ship-ledger.model';
 import { ShipCashbookPage } from 'src/shared/models/ship-cashbook';
 
 import { RestDataService } from './rest-data.service';
+import { ShipAgentLedgerPage } from 'src/shared/models/ship-agent-ledger.model';
 
 @Injectable({
   providedIn: 'root'
@@ -160,6 +161,50 @@ export class AccountingService {
       null,
       true,
       pageUrl
+    );
+  }
+
+  getServiceAdminAgentLedger(
+    userId: number,
+    page: number = null
+  ): Observable<ShipAgentLedgerPage> {
+    const param = page === null ? '' : `page=${page}&`;
+    return this.dataSource.sendRequest(
+      RequestMethod.Get,
+      this.serviceServiceAdminUrl + `/shipAgentLedger/${userId}`,
+      null,
+      true,
+      param
+    );
+  }
+
+  //Add agent balance
+  // addServiceAdminAgentBalance(
+  //   agentId: number,
+  //   amount: number
+  // ): Observable<any> {
+  //   const param = `amount=${amount}&`;
+  //   return this.dataSource.sendRequest(
+  //     RequestMethod.Put,
+  //     this.serviceServiceAdminUrl + `/addAgentBalance/${agentId}`,
+  //     null,
+  //     true,
+  //     param
+  //   );
+  // }
+
+  addServiceAdminAgentBalance(
+    agentId,
+    shipId,
+    amount
+  ): Observable<ShipAgentLedgerPage> {
+    const param = `shipId=${shipId}&amount=${amount}&`;
+    return this.dataSource.sendRequest(
+      RequestMethod.Put,
+      this.serviceServiceAdminUrl + `/addAgentBalance/${agentId}`,
+      null,
+      true,
+      param
     );
   }
 }

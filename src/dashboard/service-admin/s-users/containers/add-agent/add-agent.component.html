@@ -5,42 +5,11 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-6">
-      <div class="p-3 shadow-sm">
-        <h3 class="text-center">Agent list</h3>
-        <table class="table border">
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Phone</th>
-              <th>Email</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let user of userPage?.content">
-              <td>{{ user.name }}</td>
-              <td>{{ user.phoneNumber }}</td>
-              <td>{{ user.email }}</td>
-              <td>
-                <button class="btn-sm btn-warning" (click)="onSelect(user.id)">
-                  <i class="fa fa-pencil-square-o"></i>
-                </button>
-              </td>
-            </tr>
-          </tbody>
-          <tfoot>
-            <tr>
-              <td colspan="4">
-                <pagination
-                  [page]="userPage"
-                  (getPage)="getServiceAdminAgents($event)"
-                >
-                </pagination>
-              </td>
-            </tr>
-          </tfoot>
-        </table>
-      </div>
+      <service-admin-agent-list
+        [userPage]="userPage"
+        (userId)="onSelect($event)"
+      >
+      </service-admin-agent-list>
     </div>
     <div class="col-md-6">
       <div class="p-3 shadow-sm">
@@ -51,8 +20,6 @@
           (removeAgent)="onRemoveAgent($event)"
         ></agent-form>
       </div>
-      <!-- {{ user | json }} -->
     </div>
   </div>
 </div>
-<!-- {{ userPage | json }} -->

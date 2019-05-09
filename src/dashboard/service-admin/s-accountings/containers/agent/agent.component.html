@@ -1,3 +1,104 @@
-<p>
-  agent works!
-</p>
+<div class="container-fluid">
+  <span class="row px-3 details-title text-left">Agents Ledger</span>
+</div>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-2 d-print-none">
+      <service-admin-ship-list
+        (ship)="onShipSelect($event)"
+      ></service-admin-ship-list>
+    </div>
+    <div class="col-md-6" *ngIf="!user && userPage">
+      <service-admin-agent-list
+        [ship]="ship"
+        [userPage]="userPage"
+        [short]="shortUserList"
+        (userId)="onSelectUser($event)"
+      >
+      </service-admin-agent-list>
+    </div>
+    <div class="col-md-6" *ngIf="user && shipAgentLedgerPage">
+      <h3 class="text-center">
+        {{ user?.name }} Ledger for {{ ship?.shipNumber }}-{{ ship?.name }}
+      </h3>
+      <table class="table border">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Explanation</th>
+            <th>Debit</th>
+            <th>Credit</th>
+            <th>Balance</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let ledger of shipAgentLedgerPage.content">
+            <td>{{ ledger.date | date: 'MMM d, y, h:mm:ss a' }}</td>
+            <td>{{ ledger.explanation }}</td>
+            <td>{{ ledger.debit }}</td>
+            <td>{{ ledger.credit }}</td>
+            <td class="text-right">
+              {{ ledger.balance | currency: 'BDT ':'symbol':'4.2-2' }}
+            </td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="5">
+              <pagination
+                *ngIf="shipAgentLedgerPage != null"
+                [page]="shipAgentLedgerPage"
+                (getPage)="getServiceAdminAgentLedger(user?.id, $event)"
+              ></pagination>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+      <div class="d-flex flex-row-reverse">
+        <button class="btn btn-sm btn-info" (click)="clear()">
+          Back to agent list
+        </button>
+      </div>
+    </div>
+    <div
+      class="d-flex justify-content-center col-md-4"
+      *ngIf="user && shipAgentLedgerPage"
+    >
+      <div>
+        <h3 class="text-center">Add agent balance</h3>
+        <div
+          class="alert alert-success"
+          role="alert"
+          *ngIf="message.length > 0"
+        >
+          {{ message }}
+          <button class="btn btn-sm btn-warning" (click)="clear()">
+            Clear
+          </button>
+        </div>
+        <form class="form-inline">
+          <div class="form-group mb-2">
+            <label> Amount </label>
+          </div>
+          <div class="form-group mx-sm-3 mb-2">
+            <input
+              class="form-control"
+              type="number"
+              id="amount"
+              name="amount"
+              [(ngModel)]="amount"
+            />
+          </div>
+          <button
+            type="submit"
+            class="btn btn-primary mb-2"
+            (click)="addBalace()"
+          >
+            Add
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

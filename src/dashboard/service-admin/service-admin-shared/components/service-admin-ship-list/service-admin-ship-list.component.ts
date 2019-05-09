@@ -10,7 +10,6 @@ import { ShipService } from 'src/service/ship.service';
 export class ServiceAdminShipListComponent implements OnInit {
   // mode 1 = Add category, 2 = Category List, 3 = Add Seats, 4 = Seat list
   @Input() mode: number;
-  // @Output() shipId = new EventEmitter<number>();
   @Output() ship = new EventEmitter<Ship>();
   ships: Ship[];
 

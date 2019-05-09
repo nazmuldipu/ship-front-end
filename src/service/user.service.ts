@@ -192,11 +192,14 @@ export class UserService {
     );
   }
 
-  getServiceAdminAgents(page: number = 0): Observable<UserPage> {
+  getServiceAdminAgents(
+    shipId: number,
+    page: number = 0
+  ): Observable<UserPage> {
     const pageUrl = page === null ? '' : `page=${page}&`;
     return this.dataSource.sendRequest(
       RequestMethod.Get,
-      this.serviceServiceAdminUrl + `/myAgents`,
+      this.serviceServiceAdminUrl + `/myAgents/${shipId}`,
       null,
       true,
       pageUrl
