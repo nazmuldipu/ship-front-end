@@ -1,3 +1,52 @@
-<p>
-  index works!
-</p>
+<div class="container">
+  <div class="row my-2">
+    <div class="col-12 col-sm-6 col-md-3 col-lg-3">
+      <div class="info-box hover-expand-effect">
+        <div class="icon bg-deep-purple">
+          <i class="fa fa-ship"></i>
+        </div>
+        <div class="content">
+          <div class="text">SHIPS</div>
+          <div class="number">{{ report?.numberOfShips }}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-md-3 col-lg-3">
+      <div class="info-box hover-expand-effect">
+        <div class="icon bg-green">
+          <i class="fa fa-th-large"></i>
+        </div>
+        <div class="content">
+          <div class="text">TOTAL SEAT</div>
+          <div class="number">{{ getTotalSeat() }}</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12 col-sm-6 col-md-3 col-lg-3">
+      <div class="info-box hover-expand-effect">
+        <div class="icon bg-teal">
+          <i class="fa fa-money"></i>
+        </div>
+        <div class="content">
+          <div class="text">SOLD</div>
+          <div class="number">{{ getTotalSold() }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<p>index works! {{ report?.numberOfShips }}</p>
+<table class="table">
+  <tr>
+    <td>
+      Ships
+    </td>
+  </tr>
+  <tr *ngFor="let ship of report?.ships">
+    <td>{{ ship.shipNumber }} - {{ ship.name }}</td>
+  </tr>
+</table>
+
+{{ report | json }}

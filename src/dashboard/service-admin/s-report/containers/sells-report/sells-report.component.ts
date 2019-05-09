@@ -12,7 +12,7 @@ export class SellsReportComponent implements OnInit {
   dd;
   ship: Ship;
   loading = false;
-  reportType = 'Sells';
+  reportType = 'Reservation';
   serviceAdminSellsReportList: Report[] = [];
   total;
 
@@ -29,7 +29,8 @@ export class SellsReportComponent implements OnInit {
 
   onShipSelect(ship: Ship) {
     this.ship = ship;
-    this.getServiceAdminReservationReportByShipId(this.ship.id, this.dd);
+    this.onLoad();
+    // this.getServiceAdminReservationReportByShipId(this.ship.id, this.dd);
   }
   onTypeChange() {
     this.onLoad();
