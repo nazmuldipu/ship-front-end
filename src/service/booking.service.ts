@@ -10,6 +10,7 @@ import { RequestMethod } from '@angular/http';
 export class BookingService {
   serviceUrl = 'api/v1/booking';
   serviceAdminUrl = 'api/v1/admin/booking';
+  serviceAdminAgentUrl = 'api/v1/adminAgent/booking';
   serviceServiceAdminUrl = 'api/v1/serviceAdmin/booking';
 
   constructor(private dataSource: RestDataService) {}
@@ -84,6 +85,28 @@ export class BookingService {
       null,
       true,
       null
+    );
+  }
+
+  // ****************************** ADMIN AGENT MODULES *****************************
+  createAdminAgentBooking(booking: Booking): Observable<Booking> {
+    return this.dataSource.sendRequest(
+      RequestMethod.Post,
+      this.serviceAdminAgentUrl + `/sell`,
+      booking,
+      true,
+      null
+    );
+  }
+
+  getAdminAgentMySells(page: number = 0): Observable<BookingPage> {
+    const param = page === null ? '' : `page=${page}&`;
+    return this.dataSource.sendRequest(
+      RequestMethod.Get,
+      this.serviceAdminAgentUrl + '/mySells',
+      null,
+      true,
+      param
     );
   }
 

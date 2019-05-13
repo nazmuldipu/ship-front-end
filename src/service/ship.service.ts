@@ -11,6 +11,7 @@ import { RequestMethod } from '@angular/http';
 export class ShipService {
   serviceUrl = 'api/v1/ships';
   serviceAdminUrl = 'api/v1/admin/ships';
+  serviceAdminAgentUrl = 'api/v1/adminAgent/ships';
   serviceServiceAdminUrl = 'api/v1/serviceAdmin/ships';
 
   constructor(private dataSource: RestDataService, private router: Router) {}
@@ -57,8 +58,20 @@ export class ShipService {
     );
   }
 
+  // ****************************** ADMIN AGENT MODULES ***************************
+  getAdminAgentShips(page: number = null): Observable<ShipPage> {
+    const param = page === null ? '' : `page=${page}&`;
+    return this.dataSource.sendRequest(
+      RequestMethod.Get,
+      this.serviceAdminAgentUrl,
+      null,
+      true,
+      param
+    );
+  }
+
   // ****************************** SERVICE ADMIN MODULES ***************************
-  getServiceAdminHotels(): Observable<Ship[]> {
+  getServiceAdminShips(): Observable<Ship[]> {
     return this.dataSource.sendRequest(
       RequestMethod.Get,
       this.serviceServiceAdminUrl + '/myShips',

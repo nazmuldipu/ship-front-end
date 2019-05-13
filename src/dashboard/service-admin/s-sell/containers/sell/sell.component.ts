@@ -63,7 +63,7 @@ export class SellComponent implements OnInit {
   }
 
   async getServiceAdminShips() {
-    this.shipService.getServiceAdminHotels().subscribe(data => {
+    this.shipService.getServiceAdminShips().subscribe(data => {
       this.ships = data;
       // console.log(this.ships);
     });
@@ -91,16 +91,10 @@ export class SellComponent implements OnInit {
       maxDate.getTime() - date.getTime() >= 0
     ) {
       this.dd = value;
-      this.onDateChange();
+      this.closeDetails();
     }
   }
-  onDateChange() {
-    this.detailsId = null;
-    this.seatList = [];
-    this.selectedSeat = [];
-    this.filteredSeatList = [];
-  }
-
+  
   onDetails(shipId) {
     this.closeDetails();
     if (this.detailsId != shipId) {

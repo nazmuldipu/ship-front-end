@@ -110,6 +110,29 @@ export class AccountingService {
       param
     );
   }
+  // *********************************** Agent balance *******************************
+  // Service agent ledger
+  getAdminAgentMyLedger(page: number = 0): Observable<AdminAgentLedgerPage> {
+    const param = page === null ? '' : `page=${page}&`;
+    return this.dataSource.sendRequest(
+      RequestMethod.Get,
+      this.serviceAdminAgentUrl + `/myLedger`,
+      null,
+      true,
+      param
+    );
+  }
+
+  //Service agent balance
+  getAdminAgentBalance(): Observable<any> {
+    return this.dataSource.sendRequest(
+      RequestMethod.Get,
+      this.serviceAdminAgentUrl + `/myBalance`,
+      null,
+      true,
+      null
+    );
+  }
 
   // ****************************** Service Admin Modules *****************************************
 

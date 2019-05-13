@@ -1,3 +1,34 @@
-<p>
-  my-sells works!
-</p>
+<div class="container-fluid">
+  <div class="row my-2">
+    <div class="col-md-2  d-print-none">
+      <ul class="list-group" *ngIf="!loading; else showLoading">
+        <li class="list-group-item">
+          <h5>Sells List</h5>
+          <small>Choose a sell from below list</small>
+        </li>
+
+        <a
+          *ngFor="let booking of bookingPage?.content"
+          class="list-group-item list-group-item-action"
+          (click)="onBookingDetails(booking.id)"
+        >
+          <i class="fa fa-ticket"></i> {{ booking.id }}
+          {{ booking.user.name }} [{{ booking.user.phoneNumber }}]
+        </a>
+      </ul>
+      <ng-template #showLoading>
+        <app-loading></app-loading>
+      </ng-template>
+      <pagination
+        *ngIf="bookingPage != null"
+        [page]="bookingPage"
+        [short]="short"
+        (getPage)="getAdminAgentMySells($event)"
+      ></pagination>
+    </div>
+    <div class="col p-0">
+      <ticket-print *ngIf="ticket" [ticket]="ticket" (close)="onTicketClose()">
+      </ticket-print>
+    </div>
+  </div>
+</div>

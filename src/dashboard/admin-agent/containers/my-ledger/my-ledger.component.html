@@ -1,3 +1,47 @@
-<p>
-  my-ledger works!
-</p>
+<div class="container-fluid">
+  <span class="row px-3 details-title text-left">My ledger</span>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-12" *ngIf="adminAgentLedgerPage?.content?.length > 0">
+      <table class="table border table-hover table-responsive-sm">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Explanation</th>
+            <th>Debit</th>
+            <th>Credit</th>
+            <th class="text-right">Balance</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let ledger of adminAgentLedgerPage.content">
+            <td>{{ ledger.date | date: 'MMM d, y, h:mm:ss a' }}</td>
+            <td>{{ ledger.explanation }}</td>
+            <td>{{ ledger.debit }}</td>
+            <td>{{ ledger.credit }}</td>
+            <td class="text-right">
+              {{ ledger.balance | currency: 'BDT ':'symbol':'4.2-2' }}
+            </td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr *ngIf="loading">
+            <td colspan="5"><app-loading></app-loading></td>
+          </tr>
+          <tr>
+            <td colspan="5">
+              <pagination
+                *ngIf="adminAgentLedgerPage != null"
+                [page]="adminAgentLedgerPage"
+                (getPage)="getMyLedger($event)"
+              >
+              </pagination>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+</div>

@@ -26,7 +26,7 @@
             [maxDate]="maxDate"
             ngbDatepicker
             #date="ngbDatepicker"
-            (dateSelect)="onDateChange()"
+            (dateSelect)="closeDetails()"
             (click)="date.toggle()"
           />
           <div class="input-group-append" (click)="date.toggle()">

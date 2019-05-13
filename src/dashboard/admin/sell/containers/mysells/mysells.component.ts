@@ -8,10 +8,11 @@ import { Booking, BookingPage } from 'src/shared/models/booking.model';
   styleUrls: ['./mysells.component.scss']
 })
 export class MysellsComponent implements OnInit {
-  loading = false;
   short = true;
-  bookingPage: BookingPage;
+  loading = false;
   ticket: Booking;
+  bookingPage: BookingPage;
+
   constructor(private bookingService: BookingService) {}
 
   ngOnInit() {

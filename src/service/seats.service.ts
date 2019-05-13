@@ -12,6 +12,7 @@ import { SeatStatusList } from 'src/shared/models/booking.model';
 export class SeatsService {
   serviceUrl = '/api/v1/seats';
   serviceAdminUrl = '/api/v1/admin/seats';
+  serviceAdminAgentUrl = 'api/v1/adminAgent/seats';
   serviceServiceAdminUrl = '/api/v1/serviceAdmin/seats';
 
   constructor(private dataSource: RestDataService) {}
@@ -109,6 +110,32 @@ export class SeatsService {
     return this.dataSource.sendRequest(
       RequestMethod.Get,
       this.serviceAdminUrl + `/priceMap/${seatId}`,
+      null,
+      true,
+      param
+    );
+  }
+
+  // ****************************** ADMIN AGENT MODULES ***************************
+  getAdminAgentAvailableSeatListByShiplId(shipId, date): Observable<Seat[]> {
+    const param = `date=${date}&`;
+    return this.dataSource.sendRequest(
+      RequestMethod.Get,
+      this.serviceAdminAgentUrl + `/available/${shipId}`,
+      null,
+      true,
+      param
+    );
+  }
+
+  getAdminAgentSeatStatusListByShiplId(
+    shipId: number,
+    date: string
+  ): Observable<SeatStatusList[]> {
+    const param = `date=${date}&`;
+    return this.dataSource.sendRequest(
+      RequestMethod.Get,
+      this.serviceAdminAgentUrl + `/statusList/${shipId}`,
       null,
       true,
       param

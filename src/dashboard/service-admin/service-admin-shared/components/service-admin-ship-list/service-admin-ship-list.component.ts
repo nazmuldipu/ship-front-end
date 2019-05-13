@@ -20,7 +20,7 @@ export class ServiceAdminShipListComponent implements OnInit {
   }
 
   async getServiceAdminShips() {
-    this.shipService.getServiceAdminHotels().subscribe(data => {
+    this.shipService.getServiceAdminShips().subscribe(data => {
       this.ships = data;
     });
   }

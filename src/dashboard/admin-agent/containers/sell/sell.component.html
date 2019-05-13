@@ -1,3 +1,182 @@
-<p>
-  sell works!
-</p>
+<ticket-print
+  *ngIf="ticket"
+  [ticket]="ticket"
+  (close)="onTicketClose()"
+></ticket-print>
+<div class="container d-print-none" *ngIf="!ticket">
+  <div class="row border my-2 p-2">
+    <div class="input-group-text btn btn-secondary" (click)="adjustDay(-1)">
+      <i class="fa fa-chevron-left"></i> &nbsp;
+    </div>
+    <div class="col-auto">
+      <!-- <ngb-datepicker #d></ngb-datepicker> -->
+      <div class="form-group mb-0">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <div class="input-group-text">
+              Date :
+            </div>
+          </div>
+          <input
+            class="form-control"
+            placeholder="yyyy-mm-dd"
+            name="dp"
+            [(ngModel)]="dd"
+            [minDate]="minDate"
+            [maxDate]="maxDate"
+            ngbDatepicker
+            #date="ngbDatepicker"
+            (dateSelect)="closeDetails()"
+            (click)="date.toggle()"
+          />
+          <div class="input-group-append" (click)="date.toggle()">
+            <div class="input-group-text">
+              <i class="fa fa-calendar"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="input-group-text btn btn-secondary" (click)="adjustDay(1)">
+      <!-- Next day  -->
+      &nbsp; <i class="fa fa-chevron-right"></i>
+    </div>
+  </div>
+
+  <div class="row border py-2 ship-row" *ngFor="let ship of shipPage?.content">
+    <div class="col-md-3 col-6">
+      Ship Name <br />
+      <span class="ship-row-name">
+        {{ ship.name }}
+      </span>
+    </div>
+    <div class="col-md-2 col-6">
+      {{ dd.day }}-{{ dd.month }}-{{ dd.year }} <br />
+      <span class="ship-row-startTime">
+        <i class="fa fa-clock-o"></i> {{ ship.startTime }}
+      </span>
+    </div>
+    <div class="col-md-3 col-6 d-flex align-items-center ship-row-route">
+      <div class="">{{ ship.startingPoint }} - {{ ship.droppingPoint }}</div>
+    </div>
+    <div class="col-md-4 col-6 d-flex flex-row-reverse align-items-center ">
+      <button class="btn btn-sm btn-success" (click)="onDetails(ship.id)">
+        <i class="fa fa-hand-o-up"></i> Details
+      </button>
+    </div>
+    <div class="col-12 px-1" *ngIf="detailsId == ship.id">
+      <div class="ship-details">
+        <app-loading *ngIf="seatLoading"></app-loading>
+        <div *ngIf="seatList">
+          <div class="d-flex flex-row-reverse">
+            <button
+              class="btn btn-sm btn-danger"
+              type="button"
+              (click)="closeDetails()"
+              style="border-radius: 0;"
+            >
+              <i class="fa fa-times"></i>
+            </button>
+          </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="row m-0">
+                <span *ngFor="let cat of categoryList">
+                  <button
+                    class="btn-sm m-1"
+                    [ngClass]="
+                      cat.id == category.id ? 'btn-primary' : 'btn-secondary'
+                    "
+                    (click)="onSelectCategory(cat.id)"
+                  >
+                    {{ cat.name }}
+                  </button>
+                </span>
+              </div>
+
+              <div
+                class="row border m-1"
+                style="border-radius: 3px 3px 0px 0px; "
+              >
+                <div
+                  class="col-12 bg-secondary text-white"
+                  style="border-radius: 3px 3px 0px 0px; "
+                >
+                  Seat list for <strong> {{ category?.name }} </strong>
+                </div>
+                <div
+                  class="col-md-1 col-2 p-1 "
+                  *ngFor="let seat of filteredSeatList"
+                >
+                  <div
+                    class="seat-box"
+                    [ngClass]="{
+                      selected: selectedSeatContainSeatId(seat.id),
+                      disabled: !seat.available
+                    }"
+                    (click)="onSeatClick(seat.id)"
+                  >
+                    {{ seat.seatNumber }}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <!-- <div
+                class="btn-group btn-group-toggle border"
+                data-toggle="buttons"
+              >
+                <label
+                  class="btn"
+                  [ngClass]="{
+                    'btn-primary active': mode == 'SEAT_SOLD',
+                    'btn-light': mode != 'SEAT_SOLD'
+                  }"
+                >
+                  <input
+                    type="radio"
+                    value="SEAT_SOLD"
+                    name="mode"
+                    [(ngModel)]="mode"
+                    id="mode_sell"
+                    autocomplete="off"
+                  />
+                  Sell
+                </label>
+                <label
+                  class="btn btn-primary"
+                  [ngClass]="{
+                    'btn-primary active': mode == 'SEAT_RESERVED',
+                    'btn-light': mode != 'SEAT_RESERVED'
+                  }"
+                >
+                  <input
+                    type="radio"
+                    value="SEAT_RESERVED"
+                    name="mode"
+                    [(ngModel)]="mode"
+                    id="mode_reservation"
+                    autocomplete="off"
+                  />
+                  Reserve
+                </label>
+              </div> -->
+              <div *ngIf="!dataSending && selectedSeat.length">
+                <ticket-details [seatList]="selectedSeat"></ticket-details>
+                <user-form (create)="onCreateUser($event)"></user-form>
+              </div>
+              <div class="alert alert-primary" *ngIf="message.length">
+                {{ message }} &nbsp;
+                <button class="btn btn-sm btn-warning" (click)="onClear()">
+                  Clear
+                </button>
+              </div>
+              <app-loading *ngIf="dataSending"></app-loading>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
