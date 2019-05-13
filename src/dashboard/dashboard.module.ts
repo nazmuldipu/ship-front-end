@@ -16,6 +16,10 @@ export const ROUTES: Routes = [
     children: [
       { path: 'admin', loadChildren: './admin/admin.module#AdminModule' },
       {
+        path: 'admin-agent',
+        loadChildren: './admin-agent/admin-agent.module#AdminAgentModule'
+      },
+      {
         path: 'service-admin',
         loadChildren: './service-admin/service-admin.module#ServiceAdminModule'
       },

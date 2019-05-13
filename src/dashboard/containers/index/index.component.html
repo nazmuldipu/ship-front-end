@@ -19,7 +19,7 @@
         </div>
         <div class="content">
           <div class="text">TOTAL SEAT</div>
-          <div class="number">{{ getTotalSeat() }}</div>
+          <div class="number">{{ TotalSeat }}</div>
         </div>
       </div>
     </div>
@@ -27,16 +27,23 @@
     <div class="col-12 col-sm-6 col-md-3 col-lg-3">
       <div class="info-box hover-expand-effect">
         <div class="icon bg-teal">
-          <i class="fa fa-money"></i>
+          <i class="fa fa-ticket"></i>
         </div>
         <div class="content">
-          <div class="text">SOLD</div>
-          <div class="number">{{ getTotalSold() }}</div>
+          <div class="text">SOLD/UNSOLD</div>
+          <div class="number">{{ TotalSold }}/{{ TotalSeat - TotalSold }}</div>
         </div>
       </div>
     </div>
   </div>
 </div>
+
+<div *ngIf="chart">
+  <canvas id="canvas">{{ chart.config }}</canvas>
+</div>
+
+<!-- {{ chart | json }} -->
+
 <p>index works! {{ report?.numberOfShips }}</p>
 <table class="table">
   <tr>

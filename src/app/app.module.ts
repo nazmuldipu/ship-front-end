@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 import { CookieModule } from 'ngx-cookie';
 
 import { LoginFormComponent } from '../auth/components/login-form/login-form.component';
@@ -11,8 +13,6 @@ import { RegisterComponent } from '../auth/containers/register/register.componen
 import { SharedModule } from '../shared/shared.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 
 // routes
 export const ROUTES: Routes = [

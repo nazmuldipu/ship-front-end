@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/service/auth.service';
 import { ReportService } from 'src/service/report.service';
+import { Chart } from 'chart.js';
 
 @Component({
   selector: 'app-index',
@@ -11,6 +12,12 @@ import { ReportService } from 'src/service/report.service';
 export class IndexComponent implements OnInit {
   report;
   dd;
+  TotalSeat;
+  TotalSold;
+
+  chart;
+  month = [];
+  price = [];
 
   constructor(
     private router: Router,
@@ -25,8 +32,6 @@ export class IndexComponent implements OnInit {
       month: date.getMonth() + 1,
       day: date.getDate()
     };
-
-    console.log(this.auth.authorities);
     if (this.auth.authorities.includes('ROLE_ADMIN')) {
       this.router.navigate(['/dashboard/admin/sell']);
     } else if (this.auth.authorities.includes('ROLE_SERVICE_ADMIN')) {
@@ -41,41 +46,69 @@ export class IndexComponent implements OnInit {
       .subscribe(data => {
         this.report = data;
         console.log(this.report);
+        this.getTotal();
       });
   }
 
-  getTotalSeat() {
-    let total = 0;
-    if (this.report && this.report.ships) {
-      this.report.ships.forEach(element => {
-        console.log(element.numberOfSeats);
-        total += element.numberOfSeats;
-      });
-      return total;
-    }
-    return 0;
-  }
-
-  getTotalSold() {
+  getTotal() {
+    let totalSeat = 0;
     let totalSold = 0;
     if (this.report && this.report.ships) {
       this.report.ships.forEach(ship => {
+        totalSeat += ship.numberOfSeats;
         ship.categories.forEach(c => {
-          console.log('Sold', c.sells.sold);
           totalSold += c.sells.sold;
         });
       });
     }
-    return totalSold;
+    this.TotalSeat = totalSeat;
+    this.TotalSold = totalSold;
+
+    this.month = [
+      'Jan',
+      'Feb',
+      'Mar',
+      'Apr',
+      'May',
+      'Jun',
+      'Jul',
+      'Aug',
+      'Sep',
+      'Oct',
+      'Nov',
+      'Dec'
+    ];
+    this.price = [100, 200, 120, 190, 100, 130, 149, 180, 140, 195, 120, 125];
+    this.chart = new Chart('canvas', {
+      type: 'line',
+      data: {
+        labels: this.month,
+        datasets: [
+          {
+            data: this.price,
+            borderColor: '#3cba9f',
+            fill: false
+          }
+        ]
+      },
+      options: {
+        legend: {
+          display: false
+        },
+        scales: {
+          xAxes: [
+            {
+              display: true
+            }
+          ],
+          yAxes: [
+            {
+              display: true
+            }
+          ]
+        }
+      }
+    });
+    console.log(this.chart);
   }
 }
-
-// export interface ServiceAdminReport {
-//   numberOfShips: number;
-//   ships: ShipsReport;
-// }
-
-// export interface ShipsReport {
-//   name: string;
-//   shipNumber: string;
-// }

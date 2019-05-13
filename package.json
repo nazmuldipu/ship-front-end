@@ -23,8 +23,10 @@
     "@ng-bootstrap/ng-bootstrap": "^4.1.1",
     "@nguniversal/express-engine": "^7.1.1",
     "bootstrap": "^4.3.1",
+    "chart.js": "^2.8.0",
     "core-js": "^2.5.4",
     "font-awesome": "^4.7.0",
+    "ng2-charts": "^2.2.3",
     "ng2-daterangepicker": "^2.0.12",
     "ng4-loading-spinner": "^1.2.3",
     "ngx-cookie": "^4.1.2",
@@ -33,7 +35,7 @@
     "zone.js": "~0.8.26"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.13.0",
+    "@angular-devkit/build-angular": "^0.13.9",
     "@angular/cli": "~7.3.8",
     "@angular/compiler-cli": "~7.2.0",
     "@angular/language-service": "~7.2.0",
