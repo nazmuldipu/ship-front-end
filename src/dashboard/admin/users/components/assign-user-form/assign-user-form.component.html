@@ -12,9 +12,11 @@
   <div class="form-group">
     <label for="role">Role </label>
     <select class="form-control" id="role" formControlName="role">
-      <option *ngFor="let item of roleEnum | keyvalue" [value]="item.key">
+      <option value="ROLE_SERVICE_ADMIN"> Service Admin </option>
+      <option value="ROLE_SERVICE_AGENT"> Service Agent </option>
+      <!-- <option *ngFor="let item of roleEnum | keyvalue" [value]="item.key">
         {{ item.value }}
-      </option>
+      </option> -->
     </select>
   </div>
 

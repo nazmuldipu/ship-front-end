@@ -1,24 +1,29 @@
+@import 'variables';
+
 .ship-row {
-  background-color: azure;
-  color: #888;
+  // background-color: $ship-box-color;
+  border: 1px solid #d3d3d3;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.16) !important;
+  margin-bottom: 10px;
+  // color: #fff;
   &-name {
     font-size: 20px;
     font-weight: 600;
-    color: #079d49;
+    color: #000;
   }
   &-startTime {
     font-size: 16px;
     font-weight: 600;
-    color: #666666;
+    color: #000;
   }
   &-route {
-    color: #079d49;
+    color: #000;
   }
 }
 
 .ship-details {
   background-color: white;
-  border: 1px solid #079d49;
+  border: 1px solid #0c0266;
 }
 
 .seat-box {

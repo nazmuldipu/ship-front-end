@@ -4,7 +4,7 @@
       <h3>{{ ticket.shipName }}</h3>
     </div>
     <div class="col-md-6 col-6 text-right">
-      ISSUE DATE : {{ ticket.created | date: 'd MMM,yy' }}
+      ISSUE DATE: {{ ticket.created | date: 'd MMM,yy' }}
       <button
         class="btn btn-sm btn-primary d-print-none mx-1"
         (click)="onPrint()"
@@ -29,60 +29,60 @@
       <div class="ticket-head">Passenger Copy - {{ ticket.id }}</div>
       <table>
         <tr>
-          <td class="text-right">JOURNEY DATE :</td>
+          <td class="text-right">JOURNEY DATE:</td>
           <td>{{ ticket.subBookingList[0].date | date: 'd MMM,yy' }}</td>
         </tr>
         <tr>
-          <td class="text-right">Name :</td>
+          <td class="text-right">Name:</td>
           <td>{{ ticket.user.name }}</td>
         </tr>
         <tr>
-          <td class="text-right">Phone :</td>
+          <td class="text-right">Phone:</td>
           <td>
             {{ ticket.user.phoneNumber }}
           </td>
         </tr>
         <tr>
-          <td class="text-right">From :</td>
+          <td class="text-right">From:</td>
           <td>{{ ticket.ship.startingPoint }}</td>
         </tr>
         <tr>
-          <td class="text-right">To :</td>
+          <td class="text-right">To:</td>
           <td>{{ ticket.ship.droppingPoint }}</td>
         </tr>
         <tr>
-          <td class="text-right">Category :</td>
+          <td class="text-right">Category:</td>
           <td>{{ ticket.categoryName }}</td>
         </tr>
         <tr>
-          <td class="text-right">Seats :</td>
+          <td class="text-right">Seats:</td>
           <td>
             <span *ngFor="let sb of ticket.subBookingList">
-              <h5 style="display: inline;">
+              <h5 style="display: inline; margin-right: 2px;">
                 <span class="badge badge-secondary"> {{ sb.seatNumber }} </span>
               </h5>
-              &nbsp;
+              <!-- &nbsp; -->
             </span>
           </td>
         </tr>
         <tr *ngIf="ticket?.totalDiscount > 0">
           <td class="text-right">
-            Total Fare :
+            Total Fare:
           </td>
           <td>{{ ticket.totalFare }}</td>
         </tr>
         <tr *ngIf="ticket?.totalDiscount > 0">
-          <td class="text-right">Discount :</td>
+          <td class="text-right">Discount:</td>
           <td>{{ ticket.totalDiscount }}</td>
         </tr>
         <tr>
-          <td class="text-right">Payable :</td>
+          <td class="text-right">Payable:</td>
           <td>
             {{ ticket.totalPayablePrice }}
           </td>
         </tr>
         <tr>
-          <td class="text-right">Departure Time :</td>
+          <td class="text-right">Departure Time:</td>
           <td>
             {{ ticket.ship.startTime }}
           </td>
@@ -93,27 +93,27 @@
       <div class="ticket-head">Snacks Coupon - {{ ticket.id }}</div>
       <table>
         <tr>
-          <td class="text-right">DATE :</td>
+          <td class="text-right">DATE:</td>
           <td>{{ ticket.subBookingList[0].date | date: 'd MMM,yy' }}</td>
         </tr>
         <tr>
-          <td class="text-right">Name :</td>
+          <td class="text-right">Name:</td>
           <td>{{ ticket.user.name }}</td>
         </tr>
         <tr>
-          <td class="text-right">Phone :</td>
+          <td class="text-right">Phone:</td>
           <td>
             {{ ticket.user.phoneNumber }}
           </td>
         </tr>
         <tr>
-          <td class="text-right">Seats :</td>
+          <td class="text-right">Seats:</td>
           <td>
             <span *ngFor="let sb of ticket.subBookingList">
-              <h5 style="display: inline;">
+              <h5 style="display: inline; margin-right: 2px;">
                 <span class="badge badge-secondary"> {{ sb.seatNumber }} </span>
               </h5>
-              &nbsp;
+              <!-- &nbsp; -->
             </span>
           </td>
         </tr>
@@ -123,27 +123,27 @@
       <div class="ticket-head">Launch Coupon - {{ ticket.id }}</div>
       <table>
         <tr>
-          <td class="text-right">DATE :</td>
+          <td class="text-right">DATE:</td>
           <td>{{ ticket.subBookingList[0].date | date: 'd MMM,yy' }}</td>
         </tr>
         <tr>
-          <td class="text-right">Name :</td>
+          <td class="text-right">Name:</td>
           <td>{{ ticket.user.name }}</td>
         </tr>
         <tr>
-          <td class="text-right">Phone :</td>
+          <td class="text-right">Phone:</td>
           <td>
             {{ ticket.user.phoneNumber }}
           </td>
         </tr>
         <tr>
-          <td class="text-right">Seats :</td>
+          <td class="text-right">Seats:</td>
           <td>
             <span *ngFor="let sb of ticket.subBookingList">
-              <h5 style="display: inline;">
+              <h5 style="display: inline; margin-right: 2px;">
                 <span class="badge badge-secondary"> {{ sb.seatNumber }} </span>
               </h5>
-              &nbsp;
+              <!-- &nbsp; -->
             </span>
           </td>
         </tr>
@@ -153,60 +153,60 @@
       <div class="ticket-head">POS Copy - {{ ticket.id }}</div>
       <table>
         <tr>
-          <td class="text-right">JOURNEY DATE :</td>
+          <td class="text-right">JOURNEY DATE:</td>
           <td>{{ ticket.subBookingList[0].date | date: 'd MMM,yy' }}</td>
         </tr>
         <tr>
-          <td class="text-right">Name :</td>
+          <td class="text-right">Name:</td>
           <td>{{ ticket.user.name }}</td>
         </tr>
         <tr>
-          <td class="text-right">Phone :</td>
+          <td class="text-right">Phone:</td>
           <td>
             {{ ticket.user.phoneNumber }}
           </td>
         </tr>
         <tr>
-          <td class="text-right">From :</td>
+          <td class="text-right">From:</td>
           <td>{{ ticket.ship.startingPoint }}</td>
         </tr>
         <tr>
-          <td class="text-right">To :</td>
+          <td class="text-right">To:</td>
           <td>{{ ticket.ship.droppingPoint }}</td>
         </tr>
         <tr>
-          <td class="text-right">Category :</td>
+          <td class="text-right">Category:</td>
           <td>{{ ticket.categoryName }}</td>
         </tr>
         <tr>
-          <td class="text-right">Seats :</td>
+          <td class="text-right">Seats:</td>
           <td>
             <span *ngFor="let sb of ticket.subBookingList">
-              <h5 style="display: inline;">
+              <h5 style="display: inline; margin-right: 2px;">
                 <span class="badge badge-secondary"> {{ sb.seatNumber }} </span>
               </h5>
-              &nbsp;
+              <!-- &nbsp; -->
             </span>
           </td>
         </tr>
         <tr *ngIf="ticket?.totalDiscount > 0">
           <td class="text-right">
-            Total Fare :
+            Total Fare:
           </td>
           <td>{{ ticket.totalFare }}</td>
         </tr>
         <tr *ngIf="ticket?.totalDiscount > 0">
-          <td class="text-right">Discount :</td>
+          <td class="text-right">Discount:</td>
           <td>{{ ticket.totalDiscount }}</td>
         </tr>
         <tr>
-          <td class="text-right">Payable :</td>
+          <td class="text-right">Payable:</td>
           <td>
             {{ ticket.totalPayablePrice }}
           </td>
         </tr>
         <tr>
-          <td class="text-right">Departure Time :</td>
+          <td class="text-right">Departure Time:</td>
           <td>
             {{ ticket.ship.startTime }}
           </td>
@@ -221,60 +221,60 @@
       </div>
       <table>
         <tr>
-          <td class="text-right">JOURNEY DATE :</td>
+          <td class="text-right">JOURNEY DATE:</td>
           <td>{{ ticket.subBookingList[0].date | date: 'd MMM,yy' }}</td>
         </tr>
         <tr>
-          <td class="text-right">Name :</td>
+          <td class="text-right">Name:</td>
           <td>{{ ticket.user.name }}</td>
         </tr>
         <tr>
-          <td class="text-right">Phone :</td>
+          <td class="text-right">Phone:</td>
           <td>
             {{ ticket.user.phoneNumber }}
           </td>
         </tr>
         <tr>
-          <td class="text-right">From :</td>
+          <td class="text-right">From:</td>
           <td>{{ ticket.ship.startingPoint }}</td>
         </tr>
         <tr>
-          <td class="text-right">To :</td>
+          <td class="text-right">To:</td>
           <td>{{ ticket.ship.droppingPoint }}</td>
         </tr>
         <tr>
-          <td class="text-right">Category :</td>
+          <td class="text-right">Category:</td>
           <td>{{ ticket.categoryName }}</td>
         </tr>
         <tr>
-          <td class="text-right">Seats :</td>
+          <td class="text-right">Seats:</td>
           <td>
             <span *ngFor="let sb of ticket.subBookingList">
-              <h5 style="display: inline;">
+              <h5 style="display: inline; margin-right: 2px;">
                 <span class="badge badge-secondary"> {{ sb.seatNumber }} </span>
               </h5>
-              &nbsp;
+              <!-- &nbsp; -->
             </span>
           </td>
         </tr>
         <tr *ngIf="ticket?.totalDiscount > 0">
           <td class="text-right">
-            Total Fare :
+            Total Fare:
           </td>
           <td>{{ ticket.totalFare }}</td>
         </tr>
         <tr *ngIf="ticket?.totalDiscount > 0">
-          <td class="text-right">Discount :</td>
+          <td class="text-right">Discount:</td>
           <td>{{ ticket.totalDiscount }}</td>
         </tr>
         <tr>
-          <td class="text-right">Payable :</td>
+          <td class="text-right">Payable:</td>
           <td>
             {{ ticket.totalPayablePrice }}
           </td>
         </tr>
         <tr>
-          <td class="text-right">Departure Time :</td>
+          <td class="text-right">Departure Time:</td>
           <td>
             {{ ticket.ship.startTime }}
           </td>

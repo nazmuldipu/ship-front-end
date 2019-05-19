@@ -185,13 +185,13 @@
         <div ngbDropdown class="d-inline-block">
           <a class="nav-link" id="adminRoom" ngbDropdownToggle> Users </a>
           <div ngbDropdownMenu aria-labelledby="adminRoom">
-            <a
+            <!-- <a
               class="dropdown-item"
               (click)="toggleCollapse()"
               routerLink="/dashboard/admin/users/add"
             >
               Add
-            </a>
+            </a> -->
             <a
               class="dropdown-item"
               (click)="toggleCollapse()"
@@ -204,7 +204,7 @@
               (click)="toggleCollapse()"
               routerLink="/dashboard/admin/users/admin-agent"
             >
-              Agent
+              Create Agent
             </a>
             <a
               class="dropdown-item"
@@ -235,14 +235,14 @@
               (click)="toggleCollapse()"
               routerLink="/dashboard/admin/report/sells"
             >
-              Sells report
+              Total report
             </a>
             <a
               class="dropdown-item"
               (click)="toggleCollapse()"
               routerLink="/dashboard/admin/report/hotel"
             >
-              Hotel report
+              Individual report
             </a>
           </div>
         </div>

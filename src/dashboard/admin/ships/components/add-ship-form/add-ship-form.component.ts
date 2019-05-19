@@ -93,7 +93,9 @@ export class AddShipFormComponent implements OnChanges {
   submit() {
     if (this.form.valid) {
       const value = this.form.controls.startTime.value as any;
-      this.form.controls.startTime.setValue(value.hour + ':' + value.minute);
+      const hour = value.hour < 10 ? '0'+value.hour : value.hour;
+      const min = value.minute < 10 ? '0'+value.minute : value.minute;
+      this.form.controls.startTime.setValue(hour + ':' + min);
       if (this.exists) {
         this.update.emit(this.form.value);
       } else {

@@ -5,7 +5,7 @@
 ></ticket-print>
 
 <div class="container d-print-none" *ngIf="!ticket">
-  <div class="row border my-2 p-2">
+  <div class="row border my-3 p-2">
     <div class="input-group-text btn btn-secondary" (click)="adjustDay(-1)">
       <i class="fa fa-chevron-left"></i> &nbsp;
     </div>
@@ -47,10 +47,11 @@
 
   <div class="row border py-2 ship-row" *ngFor="let ship of shipPage?.content">
     <div class="col-md-3 col-6">
-      Ship Name <br />
       <span class="ship-row-name">
         {{ ship.name }}
       </span>
+      <br />
+      {{ ship.shipNumber }}
     </div>
     <div class="col-md-2 col-6">
       {{ dd.day }}-{{ dd.month }}-{{ dd.year }} <br />
@@ -62,7 +63,7 @@
       <div class="">{{ ship.startingPoint }} - {{ ship.droppingPoint }}</div>
     </div>
     <div class="col-md-4 col-6 d-flex flex-row-reverse align-items-center ">
-      <button class="btn btn-sm btn-success" (click)="onDetails(ship.id)">
+      <button class="btn btn-sm btn-primary" (click)="onDetails(ship.id)">
         <i class="fa fa-hand-o-up"></i> Details
       </button>
     </div>

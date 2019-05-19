@@ -50,12 +50,12 @@ export class SellsReportComponent implements OnInit {
           sl => sl.role === 'Admin'
         );
         break;
-      case 'hotelAdmin':
+      case 'shipAdmin':
         this.serviceAdminSellsReportList = this.savedList.filter(
           sl => sl.role === 'Service Admin'
         );
         break;
-      case 'hotelAgent':
+      case 'shipAgentr':
         this.serviceAdminSellsReportList = this.savedList.filter(
           sl => sl.role === 'Service Agent'
         );

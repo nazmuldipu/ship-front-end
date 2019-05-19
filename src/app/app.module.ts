@@ -13,6 +13,7 @@ import { RegisterComponent } from '../auth/containers/register/register.componen
 import { SharedModule } from '../shared/shared.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { ErrorComponent } from '../auth/containers/error/error.component';
 
 // routes
 export const ROUTES: Routes = [
@@ -23,6 +24,14 @@ export const ROUTES: Routes = [
   {
     path: 'register',
     component: RegisterComponent
+  },
+  {
+    path: 'error/:code/:message',
+    component: ErrorComponent
+  },
+  {
+    path: 'error/:code',
+    component: ErrorComponent
   },
   {
     path: 'dashboard',
@@ -40,7 +49,8 @@ export const ROUTES: Routes = [
     LoginComponent,
     RegisterComponent,
     LoginFormComponent,
-    RegisterFormComponent
+    RegisterFormComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,
