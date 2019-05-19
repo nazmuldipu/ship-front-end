@@ -20,8 +20,13 @@ export class ServiceAdminAgentListComponent {
   @Input() short: boolean;
   @Input() ship: Ship;
   @Output() userId = new EventEmitter<number>();
+  @Output() page = new EventEmitter<number>();
 
   onSelectUser(userId) {
     this.userId.emit(userId);
+  }
+
+  getServiceAdminAgents(event) {
+    this.page.emit(event);
   }
 }

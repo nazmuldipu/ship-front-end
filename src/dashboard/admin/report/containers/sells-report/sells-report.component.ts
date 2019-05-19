@@ -39,6 +39,10 @@ export class SellsReportComponent implements OnInit {
   onTypeChange() {
     this.onLoad();
   }
+
+  onPrint() {
+    (window as any).print();
+  }
   onFilterChange(value) {
     this.filterValue = value;
     switch (value) {

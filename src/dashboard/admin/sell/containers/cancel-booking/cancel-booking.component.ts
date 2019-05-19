@@ -11,6 +11,7 @@ export class CancelBookingComponent implements OnInit {
   bookingPage: BookingPage;
   short = true;
   ticket: Booking;
+  loading = false;
   message = '';
 
   constructor(private bookingService: BookingService) {}

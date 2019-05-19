@@ -46,7 +46,7 @@
               class="form-control"
               id="reportType"
               [(ngModel)]="reportType"
-              (change)="onTypeChange($event.target.value)"
+              (change)="onTypeChange()"
             >
               <option value="Sells"> Sells </option>
               <option value="Reservation"> Reservation </option>
@@ -138,6 +138,9 @@
           </tfoot>
         </table>
       </div>
+      <ng-template #noRecord>
+        <h4 class="text-center"><i class="fa fa-frown-o"></i> No record yet</h4>
+      </ng-template>
       <!-- {{ serviceAdminSellsReportList | json }} -->
     </div>
   </div>

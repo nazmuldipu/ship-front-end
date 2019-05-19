@@ -8,6 +8,7 @@
       <service-admin-agent-list
         [userPage]="userPage"
         (userId)="onSelect($event)"
+        (page)="getServiceAdminAgents($event)"
       >
       </service-admin-agent-list>
     </div>
