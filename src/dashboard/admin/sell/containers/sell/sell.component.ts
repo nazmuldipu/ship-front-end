@@ -116,6 +116,7 @@ export class SellComponent implements OnInit {
       this.onDateChange();
     }
   }
+
   onDateChange() {
     this.detailsId = null;
     this.seatList = [];
@@ -131,6 +132,7 @@ export class SellComponent implements OnInit {
       this.closeDetails();
     }
   }
+
   closeDetails() {
     this.detailsId = null;
     this.seatList = [];

@@ -55,7 +55,7 @@
       </button>
     </div>
     <div class="col-12 px-1" *ngIf="detailsId == ship.id">
-      <div class="ship-details" *ngIf="ship.shipName =='BAY_CRUISE'">
+      <div class="ship-details">
         <app-loading *ngIf="seatLoading"></app-loading>
         <div *ngIf="seatList">
           <div class="d-flex flex-row-reverse">
@@ -74,21 +74,12 @@
                   </button>
                 </span>
               </div>
+              <seat-plan-other *ngIf="ship.shipName =='BAY_CRUISE'" [filteredSeatList]="filteredSeatList" [selectedSeat]="selectedSeat"
+                [categoryName]="category?.name" (select)="onSeatClick($event)">
+              </seat-plan-other>
 
-              <div class="row border m-1" style="border-radius: 3px 3px 0px 0px; ">
-                <div class="col-12 bg-secondary text-white" style="border-radius: 3px 3px 0px 0px; ">
-                  Seat list for
-                  <strong> {{ category?.name }} </strong>
-                </div>
-                <div class="col-lg-2 col-md-3 col-sm-2 col-2 p-1 " *ngFor="let seat of filteredSeatList">
-                  <div class="seat-box" [ngClass]="{
-                      selected: selectedSeatContainSeatId(seat.id),
-                      disabled: !seat.available
-                    }" (click)="onSeatClick(seat.id)">
-                    {{ seat.seatNumber }}
-                  </div>
-                </div>
-              </div>
+              <seat-plan-sukanto *ngIf="ship.shipName=='SUKANTO_BABU'" [filteredSeatList]="filteredSeatList" [selectedSeat]="selectedSeat"
+                [categoryName]="category?.name" (select)="onSeatClick($event)"></seat-plan-sukanto>
             </div>
             <div class="col-md-6 mb-3">
               <div class="btn-group btn-group-toggle border" data-toggle="buttons">
@@ -118,17 +109,6 @@
               <app-loading *ngIf="dataSending"></app-loading>
             </div>
           </div>
-        </div>
-      </div>
-      <div class="ship-details" *ngIf="ship.shipName=='SUKANTO_BABU'">
-        <app-loading *ngIf="seatLoading"></app-loading>
-        <div *ngIf="seatList">
-          <div class="d-flex flex-row-reverse">
-            <button class="btn btn-sm btn-danger" type="button" (click)="closeDetails()" style="border-radius: 0;">
-              <i class="fa fa-times"></i>
-            </button>
-          </div>
-          <seat-plan-sukanto [seatList]="seatList" [date]="dd" (booking)="onBooking($event)"></seat-plan-sukanto>
         </div>
       </div>
     </div>
