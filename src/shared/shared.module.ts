@@ -10,6 +10,7 @@ import { ChangePasswordFormComponent } from './components/change-password-form/c
 import { TicketDetailsComponent } from './components/ticket-details/ticket-details.component';
 import { UserFormComponent } from './components/user-form/user-form.component';
 import { TicketPrintComponent } from './components/ticket-print/ticket-print.component';
+import { SeatPlanSukantoComponent } from './components/seat-plan-sukanto/seat-plan-sukanto.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { TicketPrintComponent } from './components/ticket-print/ticket-print.com
     ChangePasswordFormComponent,
     TicketDetailsComponent,
     UserFormComponent,
-    TicketPrintComponent
+    TicketPrintComponent,
+    SeatPlanSukantoComponent
   ],
   imports: [
     CommonModule,
@@ -40,7 +42,8 @@ import { TicketPrintComponent } from './components/ticket-print/ticket-print.com
     TicketDetailsComponent,
     UserFormComponent,
     TicketPrintComponent,
-    ChangePasswordFormComponent
+    ChangePasswordFormComponent,
+    SeatPlanSukantoComponent
   ]
 })
 export class SharedModule {}

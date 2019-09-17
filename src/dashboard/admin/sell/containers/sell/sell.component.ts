@@ -41,7 +41,7 @@ export class SellComponent implements OnInit {
     private shipService: ShipService,
     private seatService: SeatsService,
     private bookinService: BookingService
-  ) {}
+  ) { }
 
   ngOnInit() {
     let date = new Date();
@@ -213,5 +213,19 @@ export class SellComponent implements OnInit {
 
   onTicketClose() {
     this.ticket = null;
+  }
+
+  onBooking(event) {
+    console.log('On booking')
+    console.log(event);
+    this.dataSending = true;
+    this.message = 'Sending data to server';
+    this.bookinService.createAdminBooking(event).subscribe(data => {
+      this.dataSending = false;
+      this.message = 'Booking done';
+      this.selectedSeat = [];
+      this.ticket = data;
+      this.getAdminSeatList(this.detailsId);
+    });
   }
 }

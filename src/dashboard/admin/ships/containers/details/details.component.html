@@ -7,13 +7,17 @@
     <label class="form-control">{{ ship?.name }}</label>
   </div>
   <div class="form-row">
-    <div class="form-group col-md-6">
-      <label for="shipNumber">Ship Number*</label>
+    <div class="form-group col-md-4">
+      <label for="shipNumber">Ship Number *</label>
       <label class="form-control">{{ ship?.shipNumber }}</label>
     </div>
     <div class="col">
       <label for="quality">Ship quality *</label>
       <label class="form-control">{{ ship?.quality }}</label>
+    </div>
+    <div class="col">
+      <label for="shipName">Ship Name * </label>
+      <label class="form-control" id="shipName">{{ ship?.shipName }}</label>
     </div>
   </div>
 
@@ -83,30 +87,21 @@
   <div class="form-row align-items-center">
     <div class="col-md-4">
       <label class="form-check-label">
-        <i
-          class="fa "
-          [ngClass]="ship?.ac ? 'fa-check-square-o' : 'fa-square-o'"
-        >
+        <i class="fa " [ngClass]="ship?.ac ? 'fa-check-square-o' : 'fa-square-o'">
         </i>
         AC
       </label>
     </div>
     <div class="col-md-4">
       <label class="form-check-label">
-        <i
-          class="fa "
-          [ngClass]="ship?.containCabin ? 'fa-check-square-o' : 'fa-square-o'"
-        >
+        <i class="fa " [ngClass]="ship?.containCabin ? 'fa-check-square-o' : 'fa-square-o'">
         </i>
         Contain Cabin
       </label>
     </div>
     <div class="col-md-4">
       <label class="form-check-label">
-        <i
-          class="fa "
-          [ngClass]="ship?.online ? 'fa-check-square-o' : 'fa-square-o'"
-        >
+        <i class="fa " [ngClass]="ship?.online ? 'fa-check-square-o' : 'fa-square-o'">
         </i>
         Online
       </label>
@@ -118,194 +113,149 @@
     <div class="form-row align-items-center">
       <div class="col-6 col-md-2">
         <label class="form-check-label">
-          <i
-            class="fa "
-            [ngClass]="
+          <i class="fa " [ngClass]="
               ship?.facilities?.casino ? 'fa-check-square-o' : 'fa-square-o'
-            "
-          >
+            ">
           </i>
           Casino
         </label>
       </div>
       <div class="col-6 col-md-2">
         <label class="form-check-label">
-          <i
-            class="fa "
-            [ngClass]="
+          <i class="fa " [ngClass]="
               ship?.facilities?.shops ? 'fa-check-square-o' : 'fa-square-o'
-            "
-          >
+            ">
           </i>
           Shops
         </label>
       </div>
       <div class="col-6 col-md-2">
         <label class="form-check-label">
-          <i
-            class="fa "
-            [ngClass]="
+          <i class="fa " [ngClass]="
               ship?.facilities?.spa ? 'fa-check-square-o' : 'fa-square-o'
-            "
-          >
+            ">
           </i>
           SPA
         </label>
       </div>
       <div class="col-6 col-md-2">
         <label class="form-check-label">
-          <i
-            class="fa "
-            [ngClass]="
+          <i class="fa " [ngClass]="
               ship?.facilities?.fitnessCenter
                 ? 'fa-check-square-o'
                 : 'fa-square-o'
-            "
-          >
+            ">
           </i>
           Fitness Center
         </label>
       </div>
       <div class="col-6 col-md-2">
         <label class="form-check-label">
-          <i
-            class="fa "
-            [ngClass]="
+          <i class="fa " [ngClass]="
               ship?.facilities?.library
                 ? 'fa-check-square-o'
                 : 'fa-square-o'
-            "
-          >
+            ">
           </i>
           Library
         </label>
       </div>
       <div class="col-6 col-md-2">
         <label class="form-check-label">
-          <i
-            class="fa "
-            [ngClass]="
+          <i class="fa " [ngClass]="
               ship?.facilities?.theatre
                 ? 'fa-check-square-o'
                 : 'fa-square-o'
-            "
-          >
+            ">
           </i>
           Theatre
         </label>
       </div>
       <div class="col-6 col-md-2">
         <label class="form-check-label">
-          <i
-            class="fa "
-            [ngClass]="
+          <i class="fa " [ngClass]="
               ship?.facilities?.cinema ? 'fa-check-square-o' : 'fa-square-o'
-            "
-          >
+            ">
           </i>
           Cinema
         </label>
       </div>
       <div class="col-6 col-md-2">
         <label class="form-check-label">
-          <i
-            class="fa "
-            [ngClass]="
+          <i class="fa " [ngClass]="
               ship?.facilities?.swimmingPool
                 ? 'fa-check-square-o'
                 : 'fa-square-o'
-            "
-          >
+            ">
           </i>
           Swimming Pool
         </label>
       </div>
       <div class="col-6 col-md-2">
         <label class="form-check-label">
-          <i
-            class="fa "
-            [ngClass]="
+          <i class="fa " [ngClass]="
               ship?.facilities?.hotTub ? 'fa-check-square-o' : 'fa-square-o'
-            "
-          >
+            ">
           </i>
           Hot Tub
         </label>
       </div>
       <div class="col-6 col-md-2">
         <label class="form-check-label">
-          <i
-            class="fa "
-            [ngClass]="
+          <i class="fa " [ngClass]="
               ship?.facilities?.restaurant
                 ? 'fa-check-square-o'
                 : 'fa-square-o'
-            "
-          >
+            ">
           </i>
           Restaurant
         </label>
       </div>
       <div class="col-6 col-md-2">
         <label class="form-check-label">
-          <i
-            class="fa "
-            [ngClass]="
+          <i class="fa " [ngClass]="
               ship?.facilities?.lounges
                 ? 'fa-check-square-o'
                 : 'fa-square-o'
-            "
-          >
+            ">
           </i>
           Lounges
         </label>
       </div>
       <div class="col-6 col-md-2">
         <label class="form-check-label">
-          <i
-            class="fa "
-            [ngClass]="
+          <i class="fa " [ngClass]="
               ship?.facilities?.gym ? 'fa-check-square-o' : 'fa-square-o'
-            "
-          >
+            ">
           </i>
           GYM
         </label>
       </div>
       <div class="col-6 col-md-2">
         <label class="form-check-label">
-          <i
-            class="fa "
-            [ngClass]="
+          <i class="fa " [ngClass]="
               ship?.facilities?.bar ? 'fa-check-square-o' : 'fa-square-o'
-            "
-          >
+            ">
           </i>
           Bar
         </label>
       </div>
       <div class="col-6 col-md-2">
         <label class="form-check-label">
-          <i
-            class="fa "
-            [ngClass]="
+          <i class="fa " [ngClass]="
               ship?.facilities?.wifi ? 'fa-check-square-o' : 'fa-square-o'
-            "
-          >
+            ">
           </i>
           WIFI
         </label>
       </div>
       <div class="col-6 col-md-2">
         <label class="form-check-label">
-          <i
-            class="fa "
-            [ngClass]="
+          <i class="fa " [ngClass]="
               ship?.facilities?.kidsPlayRoom
                 ? 'fa-check-square-o'
                 : 'fa-square-o'
-            "
-          >
+            ">
           </i>
           Kids Play Room
         </label>
@@ -313,11 +263,7 @@
     </div>
   </div>
   <div class="d-flex flex-row-reverse bd-highlight my-2">
-    <button
-      type="button"
-      class="btn btn-warning btn-sm mx-1"
-      (click)="onEdit()"
-    >
+    <button type="button" class="btn btn-warning btn-sm mx-1" (click)="onEdit()">
       Edit
     </button>
   </div>

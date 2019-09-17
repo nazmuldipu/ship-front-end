@@ -6,7 +6,7 @@ import {
   EventEmitter,
   OnChanges
 } from '@angular/core';
-import { Ship } from 'src/shared/models/ship.model';
+import { Ship, ShipName } from 'src/shared/models/ship.model';
 import { Destinations } from 'src/shared/models/enums.model';
 import {
   FormGroup,
@@ -27,6 +27,7 @@ export class AddShipFormComponent implements OnChanges {
   @Output() update = new EventEmitter<Ship>();
 
   time = { hour: 13, minute: 30 };
+  shipNameEnum = ShipName;
 
   form: FormGroup;
   startingPoints = Destinations;
@@ -36,6 +37,7 @@ export class AddShipFormComponent implements OnChanges {
 
   constructor(private builder: FormBuilder) {
     this.createForm();
+    console.log(this.shipNameEnum);
   }
 
   ngOnChanges() {
@@ -48,6 +50,7 @@ export class AddShipFormComponent implements OnChanges {
   createForm() {
     this.form = this.builder.group({
       name: ['', Validators.required],
+      shipName: ['', Validators.required],
       shipNumber: ['', Validators.required],
       quality: ['', Validators.required],
       kidsPolicy: ['', Validators.required],
@@ -93,8 +96,8 @@ export class AddShipFormComponent implements OnChanges {
   submit() {
     if (this.form.valid) {
       const value = this.form.controls.startTime.value as any;
-      const hour = value.hour < 10 ? '0'+value.hour : value.hour;
-      const min = value.minute < 10 ? '0'+value.minute : value.minute;
+      const hour = value.hour < 10 ? '0' + value.hour : value.hour;
+      const min = value.minute < 10 ? '0' + value.minute : value.minute;
       this.form.controls.startTime.setValue(hour + ':' + min);
       if (this.exists) {
         this.update.emit(this.form.value);

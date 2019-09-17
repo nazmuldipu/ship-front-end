@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Ship } from 'src/shared/models/ship.model';
-import { ShipService } from 'src/service/ship.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { ShipService } from 'src/service/ship.service';
+import { Ship } from 'src/shared/models/ship.model';
 
 @Component({
   selector: 'app-add',

@@ -16,6 +16,7 @@ export interface Ship {
   droppingPoint: string;
   startTime: string;
   route: string;
+  shipName: ShipName;
   ac: boolean;
   containCabin: boolean;
   online: boolean;
@@ -40,27 +41,11 @@ export class ShipPage {
     public sort?: Sort[],
     public totalElements?: number,
     public totalPages?: number
-  ) {}
+  ) { }
 }
 
-// {
-
-// 	"shipFacilities": {
-// 		"casino": true,
-// 		"shops": true,
-// 		"spa": true,
-// 		"fitnessCenter": true,
-// 		"library": true,
-// 		"theatre": true,
-// 		"cinema": true,
-// 		"swimmingPool": true,
-// 		"hotTub": true,
-// 		"restaurant": true,
-// 		"lounges": true,
-
-// 		"gym": true,
-// 		"bar": true,
-// 		"wifi": true,
-// 		"kidsPlayRoom": true
-// 	}
-// }
+export enum ShipName {
+  SUKANTO_BABU = 'Sukanto_Babu',
+  BAY_CRUISE = 'Bay_Cruise',
+  OTHER = 'Other'
+}
