@@ -9,10 +9,12 @@ import { ChangePasswordComponent } from './containers/change-password/change-pas
 import { AssignUserComponent } from './containers/assign-user/assign-user.component';
 import { AdminAgentFormComponent } from './components/admin-agent-form/admin-agent-form.component';
 import { AssignUserFormComponent } from './components/assign-user-form/assign-user-form.component';
+import { AssignShipAdminComponent } from './containers/assign-ship-admin/assign-ship-admin.component';
 
 export const ROUTES: Routes = [
   { path: 'add', component: AddComponent },
   { path: 'assign', component: AssignUserComponent },
+  { path: 'assign-ship-admin', component: AssignShipAdminComponent },
   { path: 'admin-agent', component: AdminAgentComponent },
   { path: 'change-password', component: ChangePasswordComponent },
   {
@@ -29,8 +31,9 @@ export const ROUTES: Routes = [
     ChangePasswordComponent,
     AssignUserComponent,
     AdminAgentFormComponent,
-    AssignUserFormComponent
+    AssignUserFormComponent,
+    AssignShipAdminComponent
   ],
   imports: [AdminSharedModule, RouterModule.forChild(ROUTES)]
 })
-export class UsersModule {}
+export class UsersModule { }

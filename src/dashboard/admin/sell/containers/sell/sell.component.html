@@ -3,7 +3,7 @@
 <div class="container d-print-none" *ngIf="!ticket">
   <div class="row border my-3 p-2">
     <div class="input-group-text btn btn-secondary" (click)="adjustDay(-1)">
-      <i class="fa fa-chevron-left"></i> &nbsp;
+      <i class="fa fa-chevron-left"></i> &nbsp; Previous
     </div>
     <div class="col-auto">
       <!-- <ngb-datepicker #d></ngb-datepicker> -->
@@ -27,7 +27,7 @@
 
     <div class="input-group-text btn btn-secondary" (click)="adjustDay(1)">
       <!-- Next day  -->
-      &nbsp;
+      Next &nbsp;
       <i class="fa fa-chevron-right"></i>
     </div>
   </div>

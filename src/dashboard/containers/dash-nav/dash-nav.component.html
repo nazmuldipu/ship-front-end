@@ -1,14 +1,6 @@
 <nav class="navbar navbar-expand-md navbar-light py-3 shadow-sm">
-  <button
-    class="navbar-toggler"
-    type="button"
-    (click)="toggleCollapse()"
-    data-toggle="collapse"
-    data-target="#navbarCollapse"
-    aria-controls="navbarCollapse"
-    aria-expanded="false"
-    aria-label="Toggle navigation"
-  >
+  <button class="navbar-toggler" type="button" (click)="toggleCollapse()" data-toggle="collapse" data-target="#navbarCollapse"
+    aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarCollapse" [class.show]="show">
@@ -24,18 +16,10 @@
         <div ngbDropdown class="d-inline-block">
           <a class="nav-link" id="adminHotels" ngbDropdownToggle> Ships </a>
           <div ngbDropdownMenu aria-labelledby="adminHotels">
-            <a
-              class="dropdown-item"
-              (click)="toggleCollapse()"
-              routerLink="/dashboard/admin/ships/add"
-            >
+            <a class="dropdown-item" (click)="toggleCollapse()" routerLink="/dashboard/admin/ships/add">
               Add
             </a>
-            <a
-              class="dropdown-item"
-              (click)="toggleCollapse()"
-              routerLink="/dashboard/admin/ships"
-            >
+            <a class="dropdown-item" (click)="toggleCollapse()" routerLink="/dashboard/admin/ships">
               List
             </a>
           </div>
@@ -48,25 +32,13 @@
             Category
           </a>
           <div ngbDropdownMenu aria-labelledby="adminCategory">
-            <a
-              class="dropdown-item"
-              (click)="toggleCollapse()"
-              routerLink="/dashboard/admin/category/add"
-            >
+            <a class="dropdown-item" (click)="toggleCollapse()" routerLink="/dashboard/admin/category/add">
               Add
             </a>
-            <a
-              class="dropdown-item"
-              (click)="toggleCollapse()"
-              routerLink="/dashboard/admin/category"
-            >
+            <a class="dropdown-item" (click)="toggleCollapse()" routerLink="/dashboard/admin/category">
               List
             </a>
-            <a
-              class="dropdown-item"
-              (click)="toggleCollapse()"
-              routerLink="/dashboard/admin/category/discount-map"
-            >
+            <a class="dropdown-item" (click)="toggleCollapse()" routerLink="/dashboard/admin/category/discount-map">
               Discount map
             </a>
           </div>
@@ -76,18 +48,10 @@
         <div ngbDropdown class="d-inline-block">
           <a class="nav-link" id="adminRoom" ngbDropdownToggle> Seats </a>
           <div ngbDropdownMenu aria-labelledby="adminRoom">
-            <a
-              class="dropdown-item"
-              (click)="toggleCollapse()"
-              routerLink="/dashboard/admin/seats/add"
-            >
+            <a class="dropdown-item" (click)="toggleCollapse()" routerLink="/dashboard/admin/seats/add">
               Add
             </a>
-            <a
-              class="dropdown-item"
-              (click)="toggleCollapse()"
-              routerLink="/dashboard/admin/seats"
-            >
+            <a class="dropdown-item" (click)="toggleCollapse()" routerLink="/dashboard/admin/seats">
               List
             </a>
           </div>
@@ -98,18 +62,10 @@
         <div ngbDropdown class="d-inline-block">
           <a class="nav-link" id="dropdownBasic1" ngbDropdownToggle> Sell </a>
           <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-            <a
-              class="dropdown-item"
-              (click)="toggleCollapse()"
-              routerLink="/dashboard/admin/sell"
-            >
+            <a class="dropdown-item" (click)="toggleCollapse()" routerLink="/dashboard/admin/sell">
               Sell
             </a>
-            <a
-              class="dropdown-item"
-              (click)="toggleCollapse()"
-              routerLink="/dashboard/admin/sell/mySells"
-            >
+            <a class="dropdown-item" (click)="toggleCollapse()" routerLink="/dashboard/admin/sell/mySells">
               My Sells
             </a>
             <!-- <a
@@ -119,11 +75,7 @@
             >
               Cancel Booking
             </a> -->
-            <a
-              class="dropdown-item"
-              (click)="toggleCollapse()"
-              routerLink="/dashboard/admin/sell/seat-status"
-            >
+            <a class="dropdown-item" (click)="toggleCollapse()" routerLink="/dashboard/admin/sell/seat-status">
               Seat Status
             </a>
           </div>
@@ -135,46 +87,22 @@
             Accounting
           </a>
           <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-            <a
-              class="dropdown-item"
-              (click)="toggleCollapse()"
-              routerLink="/dashboard/admin/accountings/cashbook"
-            >
+            <a class="dropdown-item" (click)="toggleCollapse()" routerLink="/dashboard/admin/accountings/cashbook">
               Cashbook
             </a>
-            <a
-              class="dropdown-item"
-              (click)="toggleCollapse()"
-              routerLink="/dashboard/admin/accountings/ship-ledger"
-            >
+            <a class="dropdown-item" (click)="toggleCollapse()" routerLink="/dashboard/admin/accountings/ship-ledger">
               Ship Ledger
             </a>
-            <a
-              class="dropdown-item"
-              (click)="toggleCollapse()"
-              routerLink="/dashboard/admin/accountings/add-income"
-            >
+            <a class="dropdown-item" (click)="toggleCollapse()" routerLink="/dashboard/admin/accountings/add-income">
               Add Income
             </a>
-            <a
-              class="dropdown-item"
-              (click)="toggleCollapse()"
-              routerLink="/dashboard/admin/accountings/add-expense"
-            >
+            <a class="dropdown-item" (click)="toggleCollapse()" routerLink="/dashboard/admin/accountings/add-expense">
               Add Expense
             </a>
-            <a
-              class="dropdown-item"
-              (click)="toggleCollapse()"
-              routerLink="/dashboard/admin/accountings/pay-ship"
-            >
+            <a class="dropdown-item" (click)="toggleCollapse()" routerLink="/dashboard/admin/accountings/pay-ship">
               Pay ship
             </a>
-            <a
-              class="dropdown-item"
-              (click)="toggleCollapse()"
-              routerLink="/dashboard/admin/accountings/agent-balance"
-            >
+            <a class="dropdown-item" (click)="toggleCollapse()" routerLink="/dashboard/admin/accountings/agent-balance">
               Agent balance
             </a>
           </div>
@@ -192,32 +120,19 @@
             >
               Add
             </a> -->
-            <a
-              class="dropdown-item"
-              (click)="toggleCollapse()"
-              routerLink="/dashboard/admin/users"
-            >
+            <a class="dropdown-item" (click)="toggleCollapse()" routerLink="/dashboard/admin/users">
               List
             </a>
-            <a
-              class="dropdown-item"
-              (click)="toggleCollapse()"
-              routerLink="/dashboard/admin/users/admin-agent"
-            >
+            <a class="dropdown-item" (click)="toggleCollapse()" routerLink="/dashboard/admin/users/admin-agent">
               Create Agent
             </a>
-            <a
-              class="dropdown-item"
-              (click)="toggleCollapse()"
-              routerLink="/dashboard/admin/users/assign"
-            >
-              Assign Ship User
+            <a class="dropdown-item" (click)="toggleCollapse()" routerLink="/dashboard/admin/users/assign-ship-admin">
+              Assign Ship Admin
             </a>
-            <a
-              class="dropdown-item"
-              (click)="toggleCollapse()"
-              routerLink="/dashboard/admin/users/change-password"
-            >
+            <a class="dropdown-item" (click)="toggleCollapse()" routerLink="/dashboard/admin/users/assign">
+              Assign Ship Agent
+            </a>
+            <a class="dropdown-item" (click)="toggleCollapse()" routerLink="/dashboard/admin/users/change-password">
               Change user password
             </a>
           </div>
@@ -230,18 +145,10 @@
             Report
           </a>
           <div ngbDropdownMenu aria-labelledby="adminReport">
-            <a
-              class="dropdown-item"
-              (click)="toggleCollapse()"
-              routerLink="/dashboard/admin/report/sells"
-            >
+            <a class="dropdown-item" (click)="toggleCollapse()" routerLink="/dashboard/admin/report/sells">
               Total report
             </a>
-            <a
-              class="dropdown-item"
-              (click)="toggleCollapse()"
-              routerLink="/dashboard/admin/report/hotel"
-            >
+            <a class="dropdown-item" (click)="toggleCollapse()" routerLink="/dashboard/admin/report/hotel">
               Individual report
             </a>
           </div>
@@ -253,11 +160,7 @@
         <div ngbDropdown class="d-inline-block">
           <a class="nav-link" id="dropdownBasic1" ngbDropdownToggle> Users </a>
           <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-            <a
-              class="dropdown-item"
-              (click)="toggleCollapse()"
-              routerLink="/dashboard/service-admin/users/agent"
-            >
+            <a class="dropdown-item" (click)="toggleCollapse()" routerLink="/dashboard/service-admin/users/agent">
               Add Agent
             </a>
           </div>
@@ -267,25 +170,13 @@
         <div ngbDropdown class="d-inline-block">
           <a class="nav-link" id="dropdownBasic1" ngbDropdownToggle> Sell </a>
           <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
-            <a
-              class="dropdown-item"
-              (click)="toggleCollapse()"
-              routerLink="/dashboard/service-admin/sell"
-            >
+            <a class="dropdown-item" (click)="toggleCollapse()" routerLink="/dashboard/service-admin/sell">
               Sell
             </a>
-            <a
-              class="dropdown-item"
-              (click)="toggleCollapse()"
-              routerLink="/dashboard/service-admin/sell/status"
-            >
+            <a class="dropdown-item" (click)="toggleCollapse()" routerLink="/dashboard/service-admin/sell/status">
               Status
             </a>
-            <a
-              class="dropdown-item"
-              (click)="toggleCollapse()"
-              routerLink="/dashboard/service-admin/sell/print"
-            >
+            <a class="dropdown-item" (click)="toggleCollapse()" routerLink="/dashboard/service-admin/sell/print">
               Print Ticket
             </a>
           </div>
@@ -297,39 +188,19 @@
             Accounting
           </a>
           <div ngbDropdownMenu aria-labelledby="serviceAdminAccounting">
-            <a
-              class="dropdown-item"
-              (click)="toggleCollapse()"
-              routerLink="/dashboard/service-admin/accountings/cashbook"
-            >
+            <a class="dropdown-item" (click)="toggleCollapse()" routerLink="/dashboard/service-admin/accountings/cashbook">
               Cashbook
             </a>
-            <a
-              class="dropdown-item"
-              (click)="toggleCollapse()"
-              routerLink="/dashboard/service-admin/accountings/hotelswave-ledgers"
-            >
+            <a class="dropdown-item" (click)="toggleCollapse()" routerLink="/dashboard/service-admin/accountings/hotelswave-ledgers">
               Hotelswave ledger
             </a>
-            <a
-              class="dropdown-item"
-              (click)="toggleCollapse()"
-              routerLink="/dashboard/service-admin/accountings/add-income"
-            >
+            <a class="dropdown-item" (click)="toggleCollapse()" routerLink="/dashboard/service-admin/accountings/add-income">
               Add Income
             </a>
-            <a
-              class="dropdown-item"
-              (click)="toggleCollapse()"
-              routerLink="/dashboard/service-admin/accountings/add-expense"
-            >
+            <a class="dropdown-item" (click)="toggleCollapse()" routerLink="/dashboard/service-admin/accountings/add-expense">
               Add Expense
             </a>
-            <a
-              class="dropdown-item"
-              (click)="toggleCollapse()"
-              routerLink="/dashboard/service-admin/accountings/agents"
-            >
+            <a class="dropdown-item" (click)="toggleCollapse()" routerLink="/dashboard/service-admin/accountings/agents">
               Agent
             </a>
           </div>
@@ -341,11 +212,7 @@
             Report
           </a>
           <div ngbDropdownMenu aria-labelledby="serviceAdminAccounting">
-            <a
-              class="dropdown-item"
-              (click)="toggleCollapse()"
-              routerLink="/dashboard/service-admin/report"
-            >
+            <a class="dropdown-item" (click)="toggleCollapse()" routerLink="/dashboard/service-admin/report">
               Sells report
             </a>
           </div>
@@ -354,76 +221,44 @@
 
       <!-- **************************** ROLE_SERVICE_AGENT ********************** -->
       <li class="nav-item" *ngIf="hasAuthority('ROLE_SERVICE_AGENT')">
-        <a
-          class="nav-link"
-          (click)="toggleCollapse()"
-          routerLink="/dashboard/service-agent/sell"
-        >
+        <a class="nav-link" (click)="toggleCollapse()" routerLink="/dashboard/service-agent/sell">
           Sell
         </a>
       </li>
       <li class="nav-item" *ngIf="hasAuthority('ROLE_SERVICE_AGENT')">
-        <a
-          class="nav-link"
-          (click)="toggleCollapse()"
-          routerLink="/dashboard/service-agent/my-sells"
-        >
+        <a class="nav-link" (click)="toggleCollapse()" routerLink="/dashboard/service-agent/my-sells">
           My sells
         </a>
       </li>
       <li class="nav-item" *ngIf="hasAuthority('ROLE_SERVICE_AGENT')">
-        <a
-          class="nav-link"
-          (click)="toggleCollapse()"
-          routerLink="/dashboard/service-agent/my-ledger"
-        >
+        <a class="nav-link" (click)="toggleCollapse()" routerLink="/dashboard/service-agent/my-ledger">
           Ledger
         </a>
       </li>
       <li class="nav-item" *ngIf="hasAuthority('ROLE_SERVICE_AGENT')">
-        <a
-          class="nav-link"
-          (click)="toggleCollapse()"
-          routerLink="/dashboard/service-agent/my-balance"
-        >
+        <a class="nav-link" (click)="toggleCollapse()" routerLink="/dashboard/service-agent/my-balance">
           Balance
         </a>
       </li>
 
       <!-- **************************** ROLE_ADMIN_AGENT ********************** -->
       <li class="nav-item" *ngIf="hasAuthority('ROLE_AGENT')">
-        <a
-          class="nav-link"
-          (click)="toggleCollapse()"
-          routerLink="/dashboard/admin-agent/sell"
-        >
+        <a class="nav-link" (click)="toggleCollapse()" routerLink="/dashboard/admin-agent/sell">
           Sell
         </a>
       </li>
       <li class="nav-item" *ngIf="hasAuthority('ROLE_AGENT')">
-        <a
-          class="nav-link"
-          (click)="toggleCollapse()"
-          routerLink="/dashboard/admin-agent/my-sells"
-        >
+        <a class="nav-link" (click)="toggleCollapse()" routerLink="/dashboard/admin-agent/my-sells">
           My sells
         </a>
       </li>
       <li class="nav-item" *ngIf="hasAuthority('ROLE_AGENT')">
-        <a
-          class="nav-link"
-          (click)="toggleCollapse()"
-          routerLink="/dashboard/admin-agent/my-ledger"
-        >
+        <a class="nav-link" (click)="toggleCollapse()" routerLink="/dashboard/admin-agent/my-ledger">
           Ledger
         </a>
       </li>
       <li class="nav-item" *ngIf="hasAuthority('ROLE_AGENT')">
-        <a
-          class="nav-link"
-          (click)="toggleCollapse()"
-          routerLink="/dashboard/admin-agent/my-balance"
-        >
+        <a class="nav-link" (click)="toggleCollapse()" routerLink="/dashboard/admin-agent/my-balance">
           Balance
         </a>
       </li>
@@ -433,14 +268,11 @@
       <li class="nav-item">
         <div ngbDropdown class="d-inline-block">
           <a class="nav-link" id="serviceAdminAccounting" ngbDropdownToggle>
-            Hello, <span class="user-name">{{ username }}</span>
+            Hello,
+            <span class="user-name">{{ username }}</span>
           </a>
           <div ngbDropdownMenu aria-labelledby="serviceAdminAccounting">
-            <a
-              class="dropdown-item"
-              (click)="toggleCollapse()"
-              routerLink="/dashboard/change-password"
-            >
+            <a class="dropdown-item" (click)="toggleCollapse()" routerLink="/dashboard/change-password">
               Change password
             </a>
           </div>

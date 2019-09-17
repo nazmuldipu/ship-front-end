@@ -5,26 +5,17 @@
     </div>
     <div class="col-md-6 col-6 text-right">
       ISSUE DATE: {{ ticket.created | date: 'd MMM,yy' }}
-      <button
-        class="btn btn-sm btn-primary d-print-none mx-1"
-        (click)="onPrint()"
-      >
+      <button class="btn btn-sm btn-primary d-print-none mx-1" (click)="onPrint()">
         <i class="fa fa-print"></i> Print
       </button>
 
-      <button
-        class="btn btn-sm btn-danger d-print-none mx-1"
-        (click)="onClose()"
-      >
+      <button class="btn btn-sm btn-danger d-print-none mx-1" (click)="onClose()">
         <i class="fa fa-times"></i> Close
       </button>
     </div>
   </div>
 
-  <div
-    class="row m-0 border"
-    *ngIf="!short && ticket.eStatus == 'SEAT_SOLD'; else shortTicket"
-  >
+  <div class="row m-0 border" *ngIf="!short && ticket.eStatus == 'SEAT_SOLD'; else shortTicket">
     <div class="col-md-4 col-4 border-right">
       <div class="ticket-head">Passenger Copy - {{ ticket.id }}</div>
       <table>
@@ -282,5 +273,5 @@
       </table>
     </div>
   </ng-template>
-  <div>Powered by: www.unololtd.com, info@unololtd.com</div>
+  <div>Powered by:www.hotelswave.com | Developed by: www.unololtd.com, info@unololtd.com</div>
 </div>

@@ -27,7 +27,7 @@ export interface Ship {
   startsFrom: number;
   rating: number;
   facilities: ShipFacilities;
-  user: User;
+  admin: User;
 }
 
 export class ShipPage {

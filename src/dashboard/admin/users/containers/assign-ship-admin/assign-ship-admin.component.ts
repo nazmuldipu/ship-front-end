@@ -1,26 +1,24 @@
 import { Component, OnInit } from '@angular/core';
+import { UserService } from 'src/service/user.service';
+import { ShipService } from 'src/service/ship.service';
 import { UserPage, User } from 'src/shared/models/user.model';
 import { ShipPage, Ship } from 'src/shared/models/ship.model';
-import { ShipService } from 'src/service/ship.service';
-import { UserService } from 'src/service/user.service';
 
 @Component({
-  selector: 'app-assign-user',
-  templateUrl: './assign-user.component.html',
-  styleUrls: ['./assign-user.component.scss']
+  selector: 'app-assign-ship-admin',
+  templateUrl: './assign-ship-admin.component.html',
+  styleUrls: ['./assign-ship-admin.component.scss']
 })
-export class AssignUserComponent implements OnInit {
+export class AssignShipAdminComponent implements OnInit {
+  userPage: UserPage;
   user: User;
   ship: Ship;
-  userPage: UserPage;
   shipPage: ShipPage;
   shipUserList: User[] = [];
-  userShipList: Ship[] = [];
+  userShipList: Ship[] = []
 
-  constructor(
-    private shipService: ShipService,
-    private userService: UserService
-  ) { }
+  constructor(private shipService: ShipService,
+    private userService: UserService) { }
 
   ngOnInit() {
     this.getAdminShipPage();
@@ -69,18 +67,18 @@ export class AssignUserComponent implements OnInit {
   }
 
   onSubmit() {
-    this.userService
-      .assignAdminShipAgent(this.user.id, this.ship.id)
-      .subscribe(data => {
-        this.getUserPage();
-        this.onClear();
-      });
+    this.userService.assignAdminShipAdmin(this.user.id, this.ship.id).subscribe(data => {
+      this.onClear();
+      this.getAdminShipPage();
+      this.getUserPage();
+    })
   }
 
   onClear() {
-    this.ship = null;
     this.user = null;
+    this.ship = null;
     this.shipUserList = [];
     this.userShipList = [];
   }
+
 }

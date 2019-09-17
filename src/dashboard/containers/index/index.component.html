@@ -44,16 +44,25 @@
 
 <!-- {{ chart | json }} -->
 
-<p>index works! {{ report?.numberOfShips }}</p>
-<table class="table">
-  <tr>
-    <td>
-      Ships
-    </td>
-  </tr>
-  <tr *ngFor="let ship of report?.ships">
-    <td>{{ ship.shipNumber }} - {{ ship.name }}</td>
-  </tr>
-</table>
+<!-- <p>index works! {{ report?.numberOfShips }}</p> -->
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <table class="table table-bordered table-hover table-responsive-sm">
+        <tr>
+          <td>
+            <h3>
+              Ships</h3>
+          </td>
+        </tr>
+        <tr *ngFor="let ship of report?.ships">
+          <td>{{ ship.shipNumber }} - {{ ship.name }}</td>
+        </tr>
+      </table>
+    </div>
+    <div class="col-md-6"></div>
+  </div>
+</div>
 
-{{ report | json }}
+
+<!-- {{ report | json }} -->

@@ -5,6 +5,7 @@ import { RestDataService } from './rest-data.service';
 import { User, UserPage } from 'src/shared/models/user.model';
 import { RequestMethod } from '@angular/http';
 import { Observable } from 'rxjs';
+import { Ship } from 'src/shared/models/ship.model';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,7 @@ export class UserService {
   serviceAdminUrl = 'api/v1/admin/users';
   serviceServiceAdminUrl = 'api/v1/serviceAdmin/users';
 
-  constructor(private dataSource: RestDataService, private router: Router) {}
+  constructor(private dataSource: RestDataService, private router: Router) { }
 
   userRegistration(user: User): Observable<User> {
     // const em = user.email ? '&email=' + user.email : '';
@@ -79,6 +80,16 @@ export class UserService {
     return this.dataSource.sendRequest(
       RequestMethod.Get,
       this.serviceAdminUrl + `/searchByShipId/${shipId}`,
+      null,
+      true,
+      null
+    );
+  }
+
+  getAdminShipListByUserId(userId: number): Observable<Ship[]> {
+    return this.dataSource.sendRequest(
+      RequestMethod.Get,
+      this.serviceAdminUrl + `/getUserShipList/${userId}`,
       null,
       true,
       null
@@ -175,6 +186,28 @@ export class UserService {
     return this.dataSource.sendRequest(
       RequestMethod.Patch,
       this.serviceAdminUrl + `/assignShip/${userId}`,
+      null,
+      true,
+      param
+    );
+  }
+
+  assignAdminShipAgent(userId: number, shipId: number) {
+    const param = `shipId=${shipId}&`;
+    return this.dataSource.sendRequest(
+      RequestMethod.Patch,
+      this.serviceAdminUrl + `/assignShipAgent/${userId}`,
+      null,
+      true,
+      param
+    );
+  }
+
+  assignAdminShipAdmin(userId: number, shipId: number) {
+    const param = `shipId=${shipId}&`;
+    return this.dataSource.sendRequest(
+      RequestMethod.Patch,
+      this.serviceAdminUrl + `/assignShipAdmin/${userId}`,
       null,
       true,
       param
