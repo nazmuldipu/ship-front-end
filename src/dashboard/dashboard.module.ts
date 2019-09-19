@@ -23,6 +23,10 @@ export const ROUTES: Routes = [
         path: 'service-admin',
         loadChildren: './service-admin/service-admin.module#ServiceAdminModule'
       },
+      {
+        path: 'service-agent',
+        loadChildren: './service-agent/service-agent.module#ServiceAgentModule'
+      },
       { path: 'change-password', component: ChangePasswordComponent },
       {
         path: '',
@@ -42,4 +46,4 @@ export const ROUTES: Routes = [
   ],
   imports: [SharedModule, RouterModule.forChild(ROUTES)]
 })
-export class DashboardModule {}
+export class DashboardModule { }
