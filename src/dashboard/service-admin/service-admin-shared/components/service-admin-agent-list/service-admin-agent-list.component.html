@@ -1,6 +1,6 @@
 <div class="p-3 shadow-sm">
   <h3 class="text-center">
-    Agent list for {{ ship?.shipNumber }}-{{ ship?.name }}
+    Agent list for {{ admin?.name }}-{{ admin?.phoneNumber }}
   </h3>
 
   <table class="table border">
@@ -27,10 +27,7 @@
     <tfoot>
       <tr>
         <td colspan="3">
-          <pagination
-            [page]="userPage"
-            (getPage)="getServiceAdminAgents($event)"
-          >
+          <pagination [page]="userPage" (getPage)="getServiceAdminAgents($event)">
           </pagination>
         </td>
         <td *ngIf="!short"></td>

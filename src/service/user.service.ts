@@ -76,6 +76,11 @@ export class UserService {
     );
   }
 
+  getAllShipAdminList(page: number = 0): Observable<UserPage> {
+    const param = page === null ? '' : `page=${page}&`;
+    return this.dataSource.sendRequest(RequestMethod.Get, this.serviceAdminUrl + '/getShipAdminList', null, true, param);
+  }
+
   gerAdminUserListByShipId(shipId: number): Observable<User[]> {
     return this.dataSource.sendRequest(
       RequestMethod.Get,
@@ -226,13 +231,12 @@ export class UserService {
   }
 
   getServiceAdminAgents(
-    shipId: number,
     page: number = 0
   ): Observable<UserPage> {
     const pageUrl = page === null ? '' : `page=${page}&`;
     return this.dataSource.sendRequest(
       RequestMethod.Get,
-      this.serviceServiceAdminUrl + `/myAgents/${shipId}`,
+      this.serviceServiceAdminUrl + `/myAgents/`,
       null,
       true,
       pageUrl

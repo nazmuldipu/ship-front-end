@@ -1,0 +1,73 @@
+<div class="container-fluid">
+  <span class="row px-3 details-title text-left">Ship Admin Ledger</span>
+</div>
+
+<div class="container-fluid">
+  <div class="row m-0">
+    <div class="col-md-3 p-0">
+      <ship-admin-list (admin)="onSelectAdmin($event)"></ship-admin-list>
+    </div>
+
+    <div class="col-md-3" *ngIf="shipList.length > 0">
+      <h4>{{ user.name }} Ship list</h4>
+      <table class="table border">
+        <thead>
+          <tr>
+            <th>
+              Ship No.
+            </th>
+            <th>
+              Name
+            </th>
+            <th>Role</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let ship of shipList">
+            <td>{{ ship.shipNumber }}</td>
+            <td>{{ ship.name }}</td>
+            <td>
+              <span *ngFor="let role of user?.roles; let i = index">
+                {{ role.name }}
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="col-md-6" *ngIf="shipAdminLedgerPage">
+      <h4>{{ user?.name }} Ledger</h4>
+      <table class="table border">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Explanation</th>
+            <th>Debit</th>
+            <th>Credit</th>
+            <th class="text-right">Balance</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let ledger of shipAdminLedgerPage.content">
+            <td>{{ ledger.date | date: 'MMM d, y, h:mm:ss a' }}</td>
+            <td>{{ ledger.explanation }}</td>
+            <td>{{ ledger.debit }}</td>
+            <td>{{ ledger.credit }}</td>
+            <td class="text-right">
+              {{ ledger.balance | currency: 'BDT ':'symbol':'4.2-2' }}
+            </td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="5">
+              <pagination *ngIf="shipAdminLedgerPage != null" [page]="shipAdminLedgerPage" (getPage)="getShipAdminLedgerPage(user?.id, $event)"></pagination>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+
+  </div>
+</div>

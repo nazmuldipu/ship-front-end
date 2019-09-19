@@ -11,7 +11,7 @@ export class AddAgentComponent implements OnInit {
   userPage: UserPage;
   user: User;
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService) { }
 
   ngOnInit() {
     this.getServiceAdminAgents();
@@ -19,6 +19,7 @@ export class AddAgentComponent implements OnInit {
 
   async getServiceAdminAgents(page: number = null) {
     this.userService.getServiceAdminAgents(page).subscribe(data => {
+      console.log(data);
       this.userPage = data;
     });
   }

@@ -18,7 +18,7 @@ import { Ship } from 'src/shared/models/ship.model';
 export class ServiceAdminAgentListComponent {
   @Input() userPage: UserPage;
   @Input() short: boolean;
-  @Input() ship: Ship;
+  @Input() admin: User;
   @Output() userId = new EventEmitter<number>();
   @Output() page = new EventEmitter<number>();
 

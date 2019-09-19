@@ -1,0 +1,11 @@
+<ul class="list-group">
+  <li class="list-group-item">
+    <h5>Ship Admin List</h5>
+    <small>Choose a admin from below list</small>
+  </li>
+
+  <a *ngFor="let user of userPage?.content" class="list-group-item list-group-item-action" (click)="onSelectAdmin(user.id)">
+    <i class="fa fa-user"></i> {{ user.name }} [{{ user.phoneNumber }}]
+  </a>
+
+</ul>

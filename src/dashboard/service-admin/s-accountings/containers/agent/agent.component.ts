@@ -23,9 +23,9 @@ export class AgentComponent implements OnInit {
   constructor(
     private userService: UserService,
     private accountingService: AccountingService
-  ) {}
+  ) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   onShipSelect(ship: Ship) {
     this.ship = ship;
@@ -33,9 +33,9 @@ export class AgentComponent implements OnInit {
     this.clear();
   }
 
-  async getServiceAdminAgents(shipId: number, page: number = null) {
+  async getServiceAdminAgents(page: number = null) {
     await this.userService
-      .getServiceAdminAgents(shipId, page)
+      .getServiceAdminAgents(page)
       .subscribe(data => {
         this.userPage = data;
       });
@@ -58,10 +58,10 @@ export class AgentComponent implements OnInit {
     if (
       confirm(
         'Are you sure to add balance ' +
-          this.amount +
-          ' to ' +
-          this.user.name +
-          ' Account '
+        this.amount +
+        ' to ' +
+        this.user.name +
+        ' Account '
       )
     ) {
       this.accountingService

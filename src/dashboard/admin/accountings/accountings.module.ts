@@ -11,13 +11,15 @@ import { AdminSharedModule } from '../admin-shared/admin-shared.module';
 import { AdminCashbookTableComponent } from './components/admin-cashbook-table/admin-cashbook-table.component';
 import { AdminIncomeExpenseComponent } from './components/admin-income-expense/admin-income-expense.component';
 import { PayShipFormComponent } from './components/pay-ship-form/pay-ship-form.component';
+import { ShipAdminLedgerComponent } from './containers/ship-admin-ledger/ship-admin-ledger.component';
+import { PayShipAdminComponent } from './containers/pay-ship-admin/pay-ship-admin.component';
 
 export const ROUTES: Routes = [
   { path: 'cashbook', component: AdminCashbookComponent },
-  { path: 'ship-ledger', component: ShipLedgerComponent },
+  { path: 'ship-admin-ledger', component: ShipAdminLedgerComponent },
   { path: 'add-income', component: AddIncomeComponent },
   { path: 'add-expense', component: AddExpenseComponent },
-  { path: 'pay-ship', component: PayToShipComponent },
+  { path: 'pay-ship-admin', component: PayShipAdminComponent },
   { path: 'agent-balance', component: AgentBalanceComponent }
 ];
 
@@ -31,8 +33,10 @@ export const ROUTES: Routes = [
     PayToShipComponent,
     AdminCashbookTableComponent,
     AdminIncomeExpenseComponent,
-    PayShipFormComponent
+    PayShipFormComponent,
+    ShipAdminLedgerComponent,
+    PayShipAdminComponent
   ],
   imports: [AdminSharedModule, RouterModule.forChild(ROUTES)]
 })
-export class AccountingsModule {}
+export class AccountingsModule { }

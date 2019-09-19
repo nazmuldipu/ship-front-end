@@ -8,6 +8,7 @@ import { ShipCashbookPage } from 'src/shared/models/ship-cashbook';
 
 import { RestDataService } from './rest-data.service';
 import { ShipAgentLedgerPage } from 'src/shared/models/ship-agent-ledger.model';
+import { ShipAdminLedger } from 'src/shared/models/ship-admin-ledger.model';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,7 @@ export class AccountingService {
   serviceServiceAgentUrl = 'api/v1/serviceAgent/accounting';
   serviceAdminAgentUrl = 'api/v1/adminAgent/accounting';
 
-  constructor(private dataSource: RestDataService) {}
+  constructor(private dataSource: RestDataService) { }
 
   // ****************************** Admin Modules *****************************************
   //get admin cashbook
@@ -48,6 +49,20 @@ export class AccountingService {
     );
   }
 
+  //get ShipAdmin Ledger
+  getShipAdminLedger(
+    adminId: number,
+    page: number = 0
+  ): Observable<ShipAdminLedger> {
+    const param = page === null ? '' : `page=${page}&`;
+    return this.dataSource.sendRequest(
+      RequestMethod.Get,
+      this.serviceAdminUrl + `/shipAdminLedger/${adminId}`,
+      null,
+      true,
+      param
+    );
+  }
   //Add service admin expense
   addAdminExpense(credit: number, explanation: string) {
     const pageUrl = `credit=${credit}&explanation=${explanation}&`;
@@ -81,6 +96,17 @@ export class AccountingService {
       null,
       true,
       pageUrl
+    );
+  }
+
+  payToShipAdmin(adminId: number, amount: number) {
+    const param = `amount=${amount}&`;
+    return this.dataSource.sendRequest(
+      RequestMethod.Put,
+      this.serviceAdminUrl + `/payShipAdmin/${adminId}`,
+      null,
+      true,
+      param
     );
   }
 
