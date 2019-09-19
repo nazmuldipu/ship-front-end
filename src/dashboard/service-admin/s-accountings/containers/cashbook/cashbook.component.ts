@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Ship } from 'src/shared/models/ship.model';
 import { AccountingService } from 'src/service/accounting.service';
 import { ShipCashbookPage } from 'src/shared/models/ship-cashbook';
+import { ShipAdminCashbookPage } from 'src/shared/models/ship-admin-cashbook.model';
 
 @Component({
   selector: 'app-cashbook',
@@ -9,24 +10,21 @@ import { ShipCashbookPage } from 'src/shared/models/ship-cashbook';
   styleUrls: ['./cashbook.component.scss']
 })
 export class CashbookComponent implements OnInit {
-  ship: Ship;
-  shipCashbookPage: ShipCashbookPage;
+  shipAdminCashbookPage: ShipAdminCashbookPage;
   loading = false;
-  constructor(private accountingService: AccountingService) {}
 
-  ngOnInit() {}
+  constructor(private accountingService: AccountingService) { }
 
-  onShipSelect(ship: Ship) {
-    this.ship = ship;
-    this.getServiceAdminCashbookByShipId(ship.id);
+  ngOnInit() {
+    this.getShipAdminCashbook()
   }
 
-  async getServiceAdminCashbookByShipId(shipId: number, page: number = null) {
+  async getShipAdminCashbook(page: number = null) {
     this.loading = true;
     await this.accountingService
-      .getSeviceAdminShipCashbook(shipId, page)
+      .getShipAdminCashbook(page)
       .subscribe(data => {
-        this.shipCashbookPage = data;
+        this.shipAdminCashbookPage = data;
         this.loading = false;
       });
   }

@@ -1,29 +1,24 @@
 <div class="container-fluid">
   <span class="row px-3 details-title text-left">Add Income</span>
 </div>
-<div class="container-fluid">
+<div class="container">
   <div class="row">
-    <div class="col-md-2 d-print-none">
-      <service-admin-ship-list
-        (ship)="onShipSelect($event)"
-      ></service-admin-ship-list>
-    </div>
-    <div class="col-md-6">
+    <div class="col-md-8">
       <app-loading *ngIf="loading"></app-loading>
-      <h3 class="text-center" *ngIf="shipCashbookPage">
-        Cashbook for {{ ship?.shipNumber }}-{{ ship?.name }}
+      <h3 class="text-center" *ngIf="shipAdminCashbookPage">
+        Cashbook
+
       </h3>
-      <service-admin-cashbook
+      <service-admin-cashbook *ngIf="shipAdminCashbookPage" [shipAdminCashbookPage]="shipAdminCashbookPage" (page)="getShipAdminCashbook($event)"></service-admin-cashbook>
+
+      <!-- <service-admin-cashbook
         *ngIf="shipCashbookPage"
         [shipCashbookPage]="shipCashbookPage"
         (page)="getServiceAdminCashbookByShipId(ship.id, $event)"
-      ></service-admin-cashbook>
+      ></service-admin-cashbook> -->
     </div>
-    <div class="col-md-4" *ngIf="ship">
-      <service-admin-income-expense-form
-        [expenseForm]="expenseForm"
-        (value)="onSubmit($event)"
-      >
+    <div class="col-md-4">
+      <service-admin-income-expense-form [expenseForm]="expenseForm" (value)="onSubmit($event)">
       </service-admin-income-expense-form>
     </div>
   </div>

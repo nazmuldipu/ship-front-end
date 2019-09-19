@@ -1,5 +1,5 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { ShipCashbookPage } from 'src/shared/models/ship-cashbook';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { ShipAdminCashbookPage } from 'src/shared/models/ship-admin-cashbook.model';
 
 @Component({
   selector: 'service-admin-cashbook',
@@ -7,10 +7,10 @@ import { ShipCashbookPage } from 'src/shared/models/ship-cashbook';
   styleUrls: ['./service-admin-cashbook.component.scss']
 })
 export class ServiceAdminCashbookComponent {
-  @Input() shipCashbookPage: ShipCashbookPage;
+  @Input() shipAdminCashbookPage: ShipAdminCashbookPage;
   @Output() page = new EventEmitter<number>();
 
-  getServiceAdminCashbookByShipId(page: number) {
+  getShipAdminCashbook(page: number) {
     this.page.emit(page);
   }
 }

@@ -5,19 +5,17 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-2 d-print-none">
-      <service-admin-ship-list
-        (ship)="onShipSelect($event)"
-      ></service-admin-ship-list>
+      <service-admin-ship-list (ship)="onShipSelect($event)"></service-admin-ship-list>
     </div>
     <div class="col-md-6" *ngIf="!user && userPage">
-      <service-admin-agent-list
+      <!-- <service-admin-agent-list
         [ship]="ship"
         [userPage]="userPage"
         [short]="shortUserList"
         (userId)="onSelectUser($event)"
         (page)="getServiceAdminAgents($event)"
       >
-      </service-admin-agent-list>
+      </service-admin-agent-list> -->
     </div>
     <div class="col-md-6" *ngIf="user && shipAgentLedgerPage">
       <h3 class="text-center">
@@ -47,11 +45,7 @@
         <tfoot>
           <tr>
             <td colspan="5">
-              <pagination
-                *ngIf="shipAgentLedgerPage != null"
-                [page]="shipAgentLedgerPage"
-                (getPage)="getServiceAdminAgentLedger(user?.id, $event)"
-              ></pagination>
+              <pagination *ngIf="shipAgentLedgerPage != null" [page]="shipAgentLedgerPage" (getPage)="getServiceAdminAgentLedger(user?.id, $event)"></pagination>
             </td>
           </tr>
         </tfoot>
@@ -62,17 +56,10 @@
         </button>
       </div>
     </div>
-    <div
-      class="d-flex justify-content-center col-md-4"
-      *ngIf="user && shipAgentLedgerPage"
-    >
+    <div class="d-flex justify-content-center col-md-4" *ngIf="user && shipAgentLedgerPage">
       <div>
         <h3 class="text-center">Add agent balance</h3>
-        <div
-          class="alert alert-success"
-          role="alert"
-          *ngIf="message.length > 0"
-        >
+        <div class="alert alert-success" role="alert" *ngIf="message.length > 0">
           {{ message }}
           <button class="btn btn-sm btn-warning" (click)="clear()">
             Clear
@@ -83,19 +70,9 @@
             <label> Amount </label>
           </div>
           <div class="form-group mx-sm-3 mb-2">
-            <input
-              class="form-control"
-              type="number"
-              id="amount"
-              name="amount"
-              [(ngModel)]="amount"
-            />
+            <input class="form-control" type="number" id="amount" name="amount" [(ngModel)]="amount" />
           </div>
-          <button
-            type="submit"
-            class="btn btn-primary mb-2"
-            (click)="addBalace()"
-          >
+          <button type="submit" class="btn btn-primary mb-2" (click)="addBalace()">
             Add
           </button>
         </form>

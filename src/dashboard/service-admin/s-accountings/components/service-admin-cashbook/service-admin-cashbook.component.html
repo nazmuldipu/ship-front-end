@@ -1,4 +1,4 @@
-<table class="table border table-responsive-sm" *ngIf="shipCashbookPage">
+<table class="table border table-responsive-sm" *ngIf="shipAdminCashbookPage">
   <thead>
     <tr>
       <th>Date</th>
@@ -9,7 +9,7 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let cash of shipCashbookPage.content">
+    <tr *ngFor="let cash of shipAdminCashbookPage.content">
       <td>{{ cash.date | date: 'MMM d, y, h:mm:ss a' }}</td>
       <td>{{ cash.explanation }}</td>
       <td>{{ cash.debit }}</td>
@@ -23,11 +23,7 @@
     <tr *ngIf="cashbookLoading"></tr>
     <tr>
       <td colspan="5">
-        <pagination
-          *ngIf="shipCashbookPage != null"
-          [page]="shipCashbookPage"
-          (getPage)="getServiceAdminCashbookByShipId($event)"
-        ></pagination>
+        <pagination *ngIf="shipAdminCashbookPage != null" [page]="shipAdminCashbookPage" (getPage)="getShipAdminCashbook($event)"></pagination>
       </td>
     </tr>
   </tfoot>

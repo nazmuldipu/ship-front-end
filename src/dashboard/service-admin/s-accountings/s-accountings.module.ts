@@ -31,4 +31,4 @@ export const ROUTES: Routes = [
   ],
   imports: [ServiceAdminSharedModule, RouterModule.forChild(ROUTES)]
 })
-export class SAccountingsModule {}
+export class SAccountingsModule { }

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Ship } from 'src/shared/models/ship.model';
 import { ShipCashbookPage } from 'src/shared/models/ship-cashbook';
 import { AccountingService } from 'src/service/accounting.service';
+import { ShipAdminCashbookPage } from 'src/shared/models/ship-admin-cashbook.model';
 
 @Component({
   selector: 'app-add-expense',
@@ -9,34 +10,41 @@ import { AccountingService } from 'src/service/accounting.service';
   styleUrls: ['./add-expense.component.scss']
 })
 export class AddExpenseComponent {
-  ship: Ship;
-  shipCashbookPage: ShipCashbookPage;
+  shipAdminCashbookPage: ShipAdminCashbookPage;
   loading = false;
   expenseForm = true;
 
-  constructor(private accountingService: AccountingService) {}
+  constructor(private accountingService: AccountingService) { }
 
-  onShipSelect(ship: Ship) {
-    this.ship = ship;
-    this.getServiceAdminCashbookByShipId(ship.id);
+  ngOnInit() {
+    this.getShipAdminCashbook()
   }
 
-  async getServiceAdminCashbookByShipId(shipId: number, page: number = null) {
+  async getShipAdminCashbook(page: number = null) {
     this.loading = true;
     await this.accountingService
-      .getSeviceAdminShipCashbook(shipId, page)
+      .getShipAdminCashbook(page)
       .subscribe(data => {
-        this.shipCashbookPage = data;
+        this.shipAdminCashbookPage = data;
         this.loading = false;
       });
   }
 
   onSubmit({ explanation, debit, credit }) {
     this.accountingService
-      .addServiceAdminExpense(this.ship.id, credit, explanation)
+      .addServiceAdminExpense(credit, explanation)
       .subscribe(data => {
         console.log('Success');
-        this.getServiceAdminCashbookByShipId(this.ship.id);
+        this.getShipAdminCashbook();
       });
   }
+
+  // onSubmit({ explanation, debit, credit }) {
+  //   this.accountingService
+  //     .addServiceAdminExpense(this.ship.id, credit, explanation)
+  //     .subscribe(data => {
+  //       console.log('Success');
+  //       this.getServiceAdminCashbookByShipId(this.ship.id);
+  //     });
+  // }
 }
