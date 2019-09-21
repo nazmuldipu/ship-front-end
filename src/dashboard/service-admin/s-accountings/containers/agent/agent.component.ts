@@ -11,72 +11,44 @@ import { Ship } from 'src/shared/models/ship.model';
   styleUrls: ['./agent.component.scss']
 })
 export class AgentComponent implements OnInit {
-  ship: Ship;
   user: User;
   userPage: UserPage;
   shipAgentLedgerPage: ShipAgentLedgerPage;
-  loading = true;
-  shortUserList = true;
-  message = '';
-  amount = 0;
+  amount: number;
 
   constructor(
     private userService: UserService,
     private accountingService: AccountingService
   ) { }
 
-  ngOnInit() { }
-
-  onShipSelect(ship: Ship) {
-    this.ship = ship;
-    this.getServiceAdminAgents(ship.id);
-    this.clear();
+  ngOnInit() {
+    this.getServiceAdminAgents();
   }
 
   async getServiceAdminAgents(page: number = null) {
-    await this.userService
-      .getServiceAdminAgents(page)
-      .subscribe(data => {
-        this.userPage = data;
-      });
+    this.userService.getServiceAdminAgents(page).subscribe(data => {
+      console.log(data);
+      this.userPage = data;
+    });
   }
 
-  onSelectUser(event) {
-    this.user = this.userPage.content.find(u => u.id == event);
-    this.getServiceAdminAgentLedger(event);
+  onSelectAgent(event) {
+    const user = this.userPage.content.find(u => u.id == event);
+    this.user = user;
+    this.getShipAgentLedger(event);
   }
 
-  async getServiceAdminAgentLedger(userId, page: number = null) {
-    await this.accountingService
-      .getServiceAdminAgentLedger(userId, page)
-      .subscribe(data => {
-        this.shipAgentLedgerPage = data;
-      });
+  async getShipAgentLedger(agentId: number, page: number = null) {
+    await this.accountingService.getServiceAdminAgentLedger(agentId, page).subscribe(data => {
+      this.shipAgentLedgerPage = data;
+    })
   }
 
-  async addBalace() {
-    if (
-      confirm(
-        'Are you sure to add balance ' +
-        this.amount +
-        ' to ' +
-        this.user.name +
-        ' Account '
-      )
-    ) {
-      this.accountingService
-        .addServiceAdminAgentBalance(this.user.id, this.ship.id, this.amount)
-        .subscribe(data => {
-          this.message = 'Amount added successfully';
-          this.amount = 0;
-          this.getServiceAdminAgentLedger(this.user.id);
-        });
-    }
-  }
-
-  clear() {
-    this.message = '';
-    this.user = null;
-    this.shipAgentLedgerPage = null;
+  async addAgentBalace() {
+    await this.accountingService.addServiceAdminAgentBalance(this.user.id, this.amount).subscribe(data => {
+      this.amount = null;
+      this.shipAgentLedgerPage = null;
+      this.getShipAgentLedger(this.user.id)
+    })
   }
 }

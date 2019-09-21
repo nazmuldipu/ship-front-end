@@ -5,19 +5,10 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-2 d-print-none">
-      <service-admin-ship-list
-        (ship)="onShipSelect($event)"
-      ></service-admin-ship-list>
     </div>
     <div class="col-md-10">
       <app-loading *ngIf="loading"></app-loading>
-      <h3 class="text-center" *ngIf="adminShipLedgerPage">
-        Hotelswave Ledger for {{ ship?.shipNumber }}-{{ ship?.name }}
-      </h3>
-      <table
-        class="table border table-responsive-sm"
-        *ngIf="adminShipLedgerPage"
-      >
+      <table class="table border table-responsive-sm" *ngIf="shipAdminLedgerPage">
         <thead>
           <tr>
             <th>Date</th>
@@ -28,7 +19,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let ledg of adminShipLedgerPage.content">
+          <tr *ngFor="let ledg of shipAdminLedgerPage.content">
             <td>{{ ledg.date | date: 'MMM d, y, h:mm:ss a' }}</td>
             <td>{{ ledg.explanation }}</td>
             <td>{{ ledg.debit }}</td>
@@ -41,11 +32,7 @@
         <tfoot>
           <tr>
             <td colspan="5">
-              <pagination
-                *ngIf="adminShipLedgerPage != null"
-                [page]="adminShipLedgerPage"
-                (getPage)="getServiceAdminHotelswaveLedger(ship.id, $event)"
-              ></pagination>
+              <pagination *ngIf="shipAdminLedgerPage != null" [page]="shipAdminLedgerPage" (getPage)="getServiceAdminHotelswaveLedger($event)"></pagination>
             </td>
           </tr>
         </tfoot>

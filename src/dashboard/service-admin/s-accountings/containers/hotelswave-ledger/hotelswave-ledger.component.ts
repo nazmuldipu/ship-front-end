@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Ship } from 'src/shared/models/ship.model';
 import { AccountingService } from 'src/service/accounting.service';
 import { AdminShipLedgerPage } from 'src/shared/models/admin-ship-ledger.model';
+import { ShipAdminLedger, ShipAdminLedgerPage } from 'src/shared/models/ship-admin-ledger.model';
 
 @Component({
   selector: 'app-hotelswave-ledger',
@@ -9,25 +10,21 @@ import { AdminShipLedgerPage } from 'src/shared/models/admin-ship-ledger.model';
   styleUrls: ['./hotelswave-ledger.component.scss']
 })
 export class HotelswaveLedgerComponent implements OnInit {
-  ship: Ship;
-  adminShipLedgerPage: AdminShipLedgerPage;
+  shipAdminLedgerPage: ShipAdminLedgerPage;
   loading = false;
 
-  constructor(private accountingService: AccountingService) {}
+  constructor(private accountingService: AccountingService) { }
 
-  ngOnInit() {}
-
-  onShipSelect(ship: Ship) {
-    this.ship = ship;
-    this.getServiceAdminHotelswaveLedger(ship.id);
+  ngOnInit() {
+    this.getServiceAdminHotelswaveLedger();
   }
 
-  async getServiceAdminHotelswaveLedger(shipId: number, page: number = null) {
+  async getServiceAdminHotelswaveLedger(page: number = null) {
     this.loading = true;
     await this.accountingService
-      .getServiceAdminHotelswaveLedger(shipId, page)
+      .getServiceAdminHotelswaveLedger(page)
       .subscribe(data => {
-        this.adminShipLedgerPage = data;
+        this.shipAdminLedgerPage = data;
         this.loading = false;
       });
   }

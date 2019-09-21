@@ -7,8 +7,8 @@ import { AdminShipLedgerPage } from 'src/shared/models/admin-ship-ledger.model';
 import { ShipCashbookPage } from 'src/shared/models/ship-cashbook';
 
 import { RestDataService } from './rest-data.service';
-import { ShipAgentLedgerPage } from 'src/shared/models/ship-agent-ledger.model';
-import { ShipAdminLedger } from 'src/shared/models/ship-admin-ledger.model';
+import { ShipAgentLedgerPage, ShipAgentLedger } from 'src/shared/models/ship-agent-ledger.model';
+import { ShipAdminLedger, ShipAdminLedgerPage } from 'src/shared/models/ship-admin-ledger.model';
 import { ShipAdminCashbookPage } from 'src/shared/models/ship-admin-cashbook.model';
 
 @Injectable({
@@ -178,13 +178,12 @@ export class AccountingService {
   }
 
   getServiceAdminHotelswaveLedger(
-    shipId: number,
     page: number = null
-  ): Observable<AdminShipLedgerPage> {
+  ): Observable<ShipAdminLedgerPage> {
     const pageUrl = page === null ? '' : `page=${page}&`;
     return this.dataSource.sendRequest(
       RequestMethod.Get,
-      this.serviceServiceAdminUrl + `/hotelswaveLedger/${shipId}`,
+      this.serviceServiceAdminUrl + `/hotelswaveLedger`,
       null,
       true,
       pageUrl
@@ -227,27 +226,11 @@ export class AccountingService {
     );
   }
 
-  //Add agent balance
-  // addServiceAdminAgentBalance(
-  //   agentId: number,
-  //   amount: number
-  // ): Observable<any> {
-  //   const param = `amount=${amount}&`;
-  //   return this.dataSource.sendRequest(
-  //     RequestMethod.Put,
-  //     this.serviceServiceAdminUrl + `/addAgentBalance/${agentId}`,
-  //     null,
-  //     true,
-  //     param
-  //   );
-  // }
-
   addServiceAdminAgentBalance(
     agentId,
-    shipId,
     amount
-  ): Observable<ShipAgentLedgerPage> {
-    const param = `shipId=${shipId}&amount=${amount}&`;
+  ): Observable<ShipAgentLedger> {
+    const param = `amount=${amount}&`;
     return this.dataSource.sendRequest(
       RequestMethod.Put,
       this.serviceServiceAdminUrl + `/addAgentBalance/${agentId}`,

@@ -1,10 +1,13 @@
 <div class="container-fluid">
   <span class="row px-3 details-title text-left">Add Expense</span>
 </div>
-<div class="container-fluid">
+<div class="container">
   <div class="row">
     <div class="col-md-8">
       <app-loading *ngIf="loading"></app-loading>
+      <h3 class="text-center" *ngIf="shipAdminCashbookPage">
+        Cashbook
+      </h3>
       <service-admin-cashbook *ngIf="shipAdminCashbookPage" [shipAdminCashbookPage]="shipAdminCashbookPage" (page)="getShipAdminCashbook($event)"></service-admin-cashbook>
       <!-- <service-admin-cashbook
         *ngIf="shipCashbookPage"
