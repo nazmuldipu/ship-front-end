@@ -239,4 +239,14 @@ export class AccountingService {
       param
     );
   }
+
+  // // ****************************** Service Admin Agent modules *****************************************
+  getServiceAdminAgentBalance(): Observable<any> {
+    return this.dataSource.sendRequest(RequestMethod.Get, this.serviceServiceAgentUrl + `/myBalance`, null, true, null);
+  }
+
+  getShipAdminAgentLedger(page: number = null): Observable<ShipAgentLedger[]> {
+    const param = page === null ? '' : `page=${page}&`;
+    return this.dataSource.sendRequest(RequestMethod.Get, this.serviceServiceAgentUrl + `/myLedger`, null, true, param);
+  }
 }

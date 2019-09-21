@@ -21,7 +21,6 @@ export class SeatPlanOtherComponent implements OnInit {
   }
 
   onSeatClick(seatId) {
-    console.log('OnSelect seat', seatId);
     this.select.emit(seatId);
   }
 

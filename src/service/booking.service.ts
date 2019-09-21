@@ -12,8 +12,9 @@ export class BookingService {
   serviceAdminUrl = 'api/v1/admin/booking';
   serviceAdminAgentUrl = 'api/v1/adminAgent/booking';
   serviceServiceAdminUrl = 'api/v1/serviceAdmin/booking';
+  serviceServiceAgentUrl = 'api/v1/serviceAgent/booking';
 
-  constructor(private dataSource: RestDataService) {}
+  constructor(private dataSource: RestDataService) { }
 
   // GET add bookings
   getAdminBookings(page: number = 0): Observable<BookingPage> {
@@ -158,6 +159,28 @@ export class BookingService {
       null,
       true,
       null
+    );
+  }
+
+  // ****************************** SERVICE ADMIN MODULES ***************************
+  createServiceAgentBooking(booking: Booking): Observable<Booking> {
+    return this.dataSource.sendRequest(
+      RequestMethod.Post,
+      this.serviceServiceAgentUrl + `/sell`,
+      booking,
+      true,
+      null
+    );
+  }
+
+  getServiceAgentMySells(page: number = 0): Observable<BookingPage> {
+    const param = page === null ? '' : `page=${page}&`;
+    return this.dataSource.sendRequest(
+      RequestMethod.Get,
+      this.serviceServiceAgentUrl + '/mySells',
+      null,
+      true,
+      param
     );
   }
 }

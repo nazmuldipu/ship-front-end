@@ -5,6 +5,7 @@ import { SellComponent } from './containers/sell/sell.component';
 import { MySellsComponent } from './containers/my-sells/my-sells.component';
 import { MyLedgerComponent } from './containers/my-ledger/my-ledger.component';
 import { MyBalanceComponent } from './containers/my-balance/my-balance.component';
+import { SharedModule } from '../../shared/shared.module';
 
 export const ROUTES: Routes = [
   { path: 'sell', component: SellComponent },
@@ -16,7 +17,7 @@ export const ROUTES: Routes = [
 @NgModule({
   declarations: [SellComponent, MySellsComponent, MyLedgerComponent, MyBalanceComponent],
   imports: [
-    CommonModule, RouterModule.forChild(ROUTES)
+    SharedModule, RouterModule.forChild(ROUTES)
   ]
 })
 export class ServiceAgentModule { }

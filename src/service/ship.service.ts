@@ -13,8 +13,9 @@ export class ShipService {
   serviceAdminUrl = 'api/v1/admin/ships';
   serviceAdminAgentUrl = 'api/v1/adminAgent/ships';
   serviceServiceAdminUrl = 'api/v1/serviceAdmin/ships';
+  serviceServiceAgentUrl = 'api/v1/serviceAgent/ships';
 
-  constructor(private dataSource: RestDataService, private router: Router) {}
+  constructor(private dataSource: RestDataService, private router: Router) { }
 
   getAdminShipPage(page: number = 0): Observable<ShipPage> {
     const pageUrl = page === null ? '' : `page=${page}&`;
@@ -75,6 +76,17 @@ export class ShipService {
     return this.dataSource.sendRequest(
       RequestMethod.Get,
       this.serviceServiceAdminUrl + '/myShips',
+      null,
+      true,
+      null
+    );
+  }
+
+  // ****************************** SERVICE AGENT MODULES ***************************
+  getServiceAgentShips(): Observable<Ship[]> {
+    return this.dataSource.sendRequest(
+      RequestMethod.Get,
+      this.serviceServiceAgentUrl + '/myShips',
       null,
       true,
       null

@@ -14,8 +14,9 @@ export class SeatsService {
   serviceAdminUrl = '/api/v1/admin/seats';
   serviceAdminAgentUrl = 'api/v1/adminAgent/seats';
   serviceServiceAdminUrl = '/api/v1/serviceAdmin/seats';
+  serviceServiceAgentUrl = '/api/v1/serviceAgent/seats';
 
-  constructor(private dataSource: RestDataService) {}
+  constructor(private dataSource: RestDataService) { }
 
   saveAdminSeat(seat: Seat, shipId: number): Observable<Seat> {
     return this.dataSource.sendRequest(
@@ -162,6 +163,18 @@ export class SeatsService {
     return this.dataSource.sendRequest(
       RequestMethod.Get,
       this.serviceServiceAdminUrl + `/statusList/${shipId}`,
+      null,
+      true,
+      param
+    );
+  }
+
+  // ****************************** SERVICE AGENT MODULES ***************************
+  getServiceAgentAvailableSeatListByShiplId(shipId, date): Observable<Seat[]> {
+    const param = `date=${date}&`;
+    return this.dataSource.sendRequest(
+      RequestMethod.Get,
+      this.serviceServiceAgentUrl + `/available/${shipId}`,
       null,
       true,
       param

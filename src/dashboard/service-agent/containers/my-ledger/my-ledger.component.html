@@ -1,3 +1,43 @@
-<p>
-  my-ledger works!
-</p>
+<div class="container-fluid">
+  <span class="row px-3 details-title text-left">SHIP AGENT BALANCE</span>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-2 d-print-none">
+    </div>
+    <div class="col-md-10">
+      <!-- <app-loading *ngIf="loading"></app-loading> -->
+      <table class="table border table-responsive-sm" *ngIf="shipAgentLedger">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Explanation</th>
+            <th>Debit</th>
+            <th>Credit</th>
+            <th class="text-right">Balance</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let ledg of shipAgentLedger.content">
+            <td>{{ ledg.date | date: 'MMM d, y, h:mm:ss a' }}</td>
+            <td>{{ ledg.explanation }}</td>
+            <td>{{ ledg.debit }}</td>
+            <td>{{ ledg.credit }}</td>
+            <td class="text-right">
+              {{ ledg.balance | currency: 'BDT ':'symbol':'4.2-2' }}
+            </td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="5">
+              <pagination *ngIf="shipAgentLedger != null" [page]="shipAgentLedger" (getPage)="getShipAdminAgentLedger($event)"></pagination>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- {{shipAgentLedger | json}} -->
