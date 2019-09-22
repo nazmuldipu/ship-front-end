@@ -41,7 +41,7 @@ export class SellComponent implements OnInit {
     private shipService: ShipService,
     private seatService: SeatsService,
     private bookingService: BookingService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.initiateDate();
@@ -193,7 +193,7 @@ export class SellComponent implements OnInit {
       this.selectedSeat.splice(i, 1);
     } else {
       const seat = this.filteredSeatList.find(se => se.id == seatId);
-      if (seat.available) {
+      if (seat.available && this.selectedSeat.length < 10) {
         this.selectedSeat.push(seat);
       }
     }

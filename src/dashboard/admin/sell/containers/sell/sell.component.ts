@@ -159,7 +159,7 @@ export class SellComponent implements OnInit {
       this.selectedSeat.splice(i, 1);
     } else {
       const seat = this.filteredSeatList.find(se => se.id == seatId);
-      if (seat.available) {
+      if (seat.available && this.selectedSeat.length < 10) {
         this.selectedSeat.push(seat);
       }
     }
@@ -218,8 +218,6 @@ export class SellComponent implements OnInit {
   }
 
   onBooking(event) {
-    console.log('On booking')
-    console.log(event);
     this.dataSending = true;
     this.message = 'Sending data to server';
     this.bookinService.createAdminBooking(event).subscribe(data => {

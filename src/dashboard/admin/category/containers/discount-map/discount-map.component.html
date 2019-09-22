@@ -10,28 +10,17 @@
     <div class="col-md-9">
       <div class="row m-0 pt-0 pb-2">
         <div class="border p-2" *ngIf="ship">
-          <admin-category-list
-            [shipId]="ship.id"
-            (back)="onCategoryBack($event)"
-            (category)="onSelectCategory($event)"
-          >
+          <admin-category-list [shipId]="ship.id" (back)="onCategoryBack($event)" (category)="onSelectCategory($event)">
           </admin-category-list>
         </div>
       </div>
       <div class="row m-0 pt-0 pb-2" *ngIf="editFrom">
         <div class="col-md-6 border p-2">
-          <admin-discount-map-form
-            [category]="category"
-            (close)="onCloseEditForm($event)"
-            (create)="onDiscountMapUpdate($event)"
-          >
+          <admin-discount-map-form [category]="category" (close)="onCloseEditForm($event)" (create)="onDiscountMapUpdate($event)">
           </admin-discount-map-form>
         </div>
       </div>
-      <admin-discount-map
-        [category]="category"
-        (onEdit)="onEditCategoryDiscount($event)"
-      >
+      <admin-discount-map [reload]="reloadDiscountMap" [category]="category" (onEdit)="onEditCategoryDiscount($event)">
       </admin-discount-map>
     </div>
   </div>

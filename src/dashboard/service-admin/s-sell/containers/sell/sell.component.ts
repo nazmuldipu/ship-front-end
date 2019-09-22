@@ -40,7 +40,7 @@ export class SellComponent implements OnInit {
     private shipService: ShipService,
     private seatService: SeatsService,
     private bookinService: BookingService
-  ) {}
+  ) { }
 
   ngOnInit() {
     let date = new Date();
@@ -94,13 +94,13 @@ export class SellComponent implements OnInit {
       this.closeDetails();
     }
   }
-  
+
   onDetails(shipId) {
     this.closeDetails();
     if (this.detailsId != shipId) {
       this.detailsId = shipId;
       this.getAdminSeatList(shipId);
-    } 
+    }
   }
 
   closeDetails() {
@@ -159,7 +159,7 @@ export class SellComponent implements OnInit {
       this.selectedSeat.splice(i, 1);
     } else {
       const seat = this.filteredSeatList.find(se => se.id == seatId);
-      if (seat.available) {
+      if (seat.available && this.selectedSeat.length < 10) {
         this.selectedSeat.push(seat);
       }
     }

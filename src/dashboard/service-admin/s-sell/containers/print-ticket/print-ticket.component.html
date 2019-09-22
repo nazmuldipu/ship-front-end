@@ -4,35 +4,24 @@
 
 <div class="container-fluid">
   <div class="d-flex justify-content-center d-print-none">
-    <div class="row shadow-sm">
-      <div class="col-auto">
-        <input
-          type="number"
-          class="form-control"
-          [(ngModel)]="ticketId"
-          placeholder="Ticket Id"
-        />
+    <form>
+      <div class="row shadow-sm">
+        <div class="col-auto">
+          <input type="number" class="form-control" name="ticketId" [(ngModel)]="ticketId" placeholder="Ticket Id" />
+        </div>
+        <div class="col-auto">
+          <button type="submit" class="btn btn-primary mb-2" (click)="getTicket()">
+            Submit
+          </button>
+        </div>
       </div>
-      <div class="col-auto">
-        <button
-          type="submit"
-          class="btn btn-primary mb-2"
-          (click)="getTicket()"
-        >
-          Submit
-        </button>
-      </div>
-    </div>
+    </form>
   </div>
 </div>
 <div class="container-fluid">
   <div class="d-flex justify-content-center d-print-none">
     <div class="row">
-      <div
-        class="col-auto alert alert-danger"
-        role="alert"
-        *ngIf="errorMessage.length"
-      >
+      <div class="col-auto alert alert-danger" role="alert" *ngIf="errorMessage.length">
         {{ errorMessage }}
         <button class="btn btn-sm btn-warning" (click)="onCloseButton()">
           Close
@@ -42,8 +31,5 @@
   </div>
 </div>
 <div class="container-fluid p-0" *ngIf="ticket">
-  <ticket-print
-    [ticket]="ticket"
-    (close)="onTicketClose($event)"
-  ></ticket-print>
+  <ticket-print [ticket]="ticket" (close)="onTicketClose($event)"></ticket-print>
 </div>

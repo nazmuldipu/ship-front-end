@@ -18,6 +18,7 @@ import { Category } from 'src/shared/models/category.model';
   styleUrls: ['./admin-discount-map.component.scss']
 })
 export class AdminDiscountMapComponent implements OnChanges {
+  @Input() reload: boolean;
   @Input() category: Category;
   @Output() onEdit = new EventEmitter<any>();
 
@@ -26,7 +27,7 @@ export class AdminDiscountMapComponent implements OnChanges {
   public options: any;
   public daterange: any = {};
 
-  constructor(private categoryService: CategoryService) {}
+  constructor(private categoryService: CategoryService) { }
 
   ngOnChanges(changes: SimpleChanges): void {
     this.setDateRanges();
@@ -36,6 +37,15 @@ export class AdminDiscountMapComponent implements OnChanges {
         this.daterange.startDate,
         this.daterange.endDate
       );
+    }
+    if (changes.reload) {
+      if (this.category) {
+        this.getAdminDiscountMap(
+          this.category.id,
+          this.daterange.startDate,
+          this.daterange.endDate
+        );
+      }
     }
   }
 

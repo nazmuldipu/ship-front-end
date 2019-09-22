@@ -12,10 +12,11 @@ export class DiscountMapComponent implements OnInit {
   ship: Ship;
   category: Category;
   editFrom = false;
+  reloadDiscountMap = false;
 
-  constructor(private categoryService: CategoryService) {}
+  constructor(private categoryService: CategoryService) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   onSelectShip(ship) {
     this.ship = ship;
@@ -27,7 +28,6 @@ export class DiscountMapComponent implements OnInit {
 
   onEditCategoryDiscount(categoryId) {
     this.editFrom = true;
-    console.log(categoryId);
   }
 
   onCloseEditForm(event) {
@@ -35,7 +35,6 @@ export class DiscountMapComponent implements OnInit {
   }
 
   onDiscountMapUpdate(event) {
-    console.log(event.startDate, event.endDate);
     const startDate = this.makeDateString(event.startDate);
     const endDate = this.makeDateString(event.endDate);
     // event.endDate.year + '-' + event.endDate.month + '-' + event.endDate.day;
@@ -47,7 +46,8 @@ export class DiscountMapComponent implements OnInit {
         event.amount
       )
       .subscribe(data => {
-        console.log(data);
+        this.reloadDiscountMap = !this.reloadDiscountMap;
+        this.onCloseEditForm(true);
       });
   }
 
