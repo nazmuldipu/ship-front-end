@@ -3,6 +3,7 @@ import { RestDataService } from './rest-data.service';
 import { Observable } from 'rxjs/internal/Observable';
 import { Report } from '../shared/models/report.model';
 import { RequestMethod } from '@angular/http';
+import { ReportRange } from 'src/shared/models/report-range.model';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class ReportService {
   serviceServiceAdminUrl = 'api/v1/serviceAdmin/reports';
   serviceAdminUrl = 'api/v1/admin/reports';
 
-  constructor(private dataSource: RestDataService) {}
+  constructor(private dataSource: RestDataService) { }
 
   // ************************** Admin modules ***********************************
   getAdminReservationReport(date: string): Observable<Report[]> {
@@ -25,6 +26,17 @@ export class ReportService {
     );
   }
 
+  getAdminReservationRangeReport(startDate: string, endDate: string): Observable<ReportRange[]> {
+    const param = `startDate=${startDate}&endDate=${endDate}&`;
+    return this.dataSource.sendRequest(
+      RequestMethod.Get,
+      this.serviceAdminUrl + `/reservationRange`,
+      null,
+      true,
+      param
+    );
+  }
+
   getAdminSellsReport(date: string): Observable<Report[]> {
     const pageUrl = `date=${date}&`;
     return this.dataSource.sendRequest(
@@ -33,6 +45,17 @@ export class ReportService {
       null,
       true,
       pageUrl
+    );
+  }
+
+  getAdminSellsReportRange(startDate: string, endDate: string): Observable<ReportRange[]> {
+    const param = `startDate=${startDate}&endDate=${endDate}&`;
+    return this.dataSource.sendRequest(
+      RequestMethod.Get,
+      this.serviceAdminUrl + `/sellsRange`,
+      null,
+      true,
+      param
     );
   }
 
