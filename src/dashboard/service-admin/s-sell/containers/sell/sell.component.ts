@@ -34,6 +34,8 @@ export class SellComponent implements OnInit {
   dd;
   minDate;
   maxDate;
+  discount = 0;
+  payable;
   mode = 'SEAT_SOLD';
 
   constructor(
@@ -163,6 +165,7 @@ export class SellComponent implements OnInit {
         this.selectedSeat.push(seat);
       }
     }
+    this.onDiscountChange(this.discount);
   }
 
   onCreateUser(event) {
@@ -171,6 +174,10 @@ export class SellComponent implements OnInit {
       this.selectedSeat
     );
     let booking: Booking = new Booking(user, subbookingList);
+    if (this.discount > 0) {
+      booking.totalDiscount = this.discount;
+    }
+
     booking.eStatus = this.mode as SeatStatus;
     this.dataSending = true;
     this.message = 'Sending data to server';
@@ -200,5 +207,13 @@ export class SellComponent implements OnInit {
   }
   onTicketClose() {
     this.ticket = null;
+  }
+  onDiscountChange(discount) {
+    let total = 0;
+    this.selectedSeat.forEach(ss => {
+      total += ss.category.fare;
+    })
+    this.payable = total - discount;
+    this.discount = discount;
   }
 }

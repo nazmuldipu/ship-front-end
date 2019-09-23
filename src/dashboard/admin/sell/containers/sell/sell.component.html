@@ -98,6 +98,21 @@
               </div>
               <div *ngIf="!dataSending && selectedSeat.length">
                 <ticket-details [seatList]="selectedSeat"></ticket-details>
+                <div class="form-group row">
+                  <div class="col mr-auto"></div>
+                  <label for="discount" class="col col-form-label">Discount</label>
+                  <div class="col-auto">
+                    <input type="number" class="form-control text-right" id="discount" [(ngModel)]="discount" (ngModelChange)="onDiscountChange($event)"
+                      name="discount">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <div class="col mr-auto"></div>
+                  <label for="payable" class="col col-form-label">Payable</label>
+                  <div class="col-auto">
+                    <label id="payable" class="form-control text-right">{{payable}}</label>
+                  </div>
+                </div>
                 <user-form (create)="onCreateUser($event)"></user-form>
               </div>
               <div class="alert alert-primary" *ngIf="message.length">

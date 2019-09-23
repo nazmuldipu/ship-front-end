@@ -33,6 +33,8 @@ export class SellComponent implements OnInit {
   dd;
   minDate;
   maxDate;
+  discount = 0;
+  payable;
 
   mode = 'SEAT_SOLD';
   ticket;
@@ -163,6 +165,7 @@ export class SellComponent implements OnInit {
         this.selectedSeat.push(seat);
       }
     }
+    this.onDiscountChange(this.discount);
   }
 
   onCreateUser(event) {
@@ -171,6 +174,9 @@ export class SellComponent implements OnInit {
       this.selectedSeat
     );
     let booking: Booking = new Booking(user, subbookingList);
+    if (this.discount > 0) {
+      booking.totalDiscount = this.discount;
+    }
     booking.eStatus = this.mode as SeatStatus;
     this.dataSending = true;
     this.message = 'Sending data to server';
@@ -217,15 +223,24 @@ export class SellComponent implements OnInit {
     this.ticket = null;
   }
 
-  onBooking(event) {
-    this.dataSending = true;
-    this.message = 'Sending data to server';
-    this.bookinService.createAdminBooking(event).subscribe(data => {
-      this.dataSending = false;
-      this.message = 'Booking done';
-      this.selectedSeat = [];
-      this.ticket = data;
-      this.getAdminSeatList(this.detailsId);
-    });
+  // onBooking(event) {
+  //   this.dataSending = true;
+  //   this.message = 'Sending data to server';
+  //   this.bookinService.createAdminBooking(event).subscribe(data => {
+  //     this.dataSending = false;
+  //     this.message = 'Booking done';
+  //     this.selectedSeat = [];
+  //     this.ticket = data;
+  //     this.getAdminSeatList(this.detailsId);
+  //   });
+  // }
+
+  onDiscountChange(discount) {
+    let total = 0;
+    this.selectedSeat.forEach(ss => {
+      total += ss.category.fare;
+    })
+    this.payable = total - discount;
+    this.discount = discount;
   }
 }
