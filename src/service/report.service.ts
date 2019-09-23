@@ -100,6 +100,17 @@ export class ReportService {
     );
   }
 
+  getServiceAdminShipSellsRange(shipId: number, startDate: string, endDate: string): Observable<ReportRange[]> {
+    const param = `startDate=${startDate}&endDate=${endDate}&`;
+    return this.dataSource.sendRequest(
+      RequestMethod.Get,
+      this.serviceServiceAdminUrl + `/shipSellsRange/${shipId}`,
+      null,
+      true,
+      param
+    );
+  }
+
   getServiceAdminShipReservation(
     shipId: number,
     date: string
@@ -108,6 +119,17 @@ export class ReportService {
     return this.dataSource.sendRequest(
       RequestMethod.Get,
       this.serviceServiceAdminUrl + `/shipReservation/${shipId}`,
+      null,
+      true,
+      param
+    );
+  }
+
+  getServiceAdminShipReservationRange(shipId: number, startDate: string, endDate: string): Observable<ReportRange[]> {
+    const param = `startDate=${startDate}&endDate=${endDate}&`;
+    return this.dataSource.sendRequest(
+      RequestMethod.Get,
+      this.serviceServiceAdminUrl + `/shipReservationRange/${shipId}`,
       null,
       true,
       param
