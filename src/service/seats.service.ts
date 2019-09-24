@@ -10,11 +10,11 @@ import { SeatStatusList } from 'src/shared/models/booking.model';
   providedIn: 'root'
 })
 export class SeatsService {
-  serviceUrl = '/api/v1/seats';
-  serviceAdminUrl = '/api/v1/admin/seats';
+  serviceUrl = 'api/v1/seats';
+  serviceAdminUrl = 'api/v1/admin/seats';
   serviceAdminAgentUrl = 'api/v1/adminAgent/seats';
-  serviceServiceAdminUrl = '/api/v1/serviceAdmin/seats';
-  serviceServiceAgentUrl = '/api/v1/serviceAgent/seats';
+  serviceServiceAdminUrl = 'api/v1/serviceAdmin/seats';
+  serviceServiceAgentUrl = 'api/v1/serviceAgent/seats';
 
   constructor(private dataSource: RestDataService) { }
 
