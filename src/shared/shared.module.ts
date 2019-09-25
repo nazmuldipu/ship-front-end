@@ -14,6 +14,7 @@ import { TicketDetailsComponent } from './components/ticket-details/ticket-detai
 import { TicketPrintComponent } from './components/ticket-print/ticket-print.component';
 import { UserFormComponent } from './components/user-form/user-form.component';
 import { SeatPlanBayCruiserComponent } from './components/seat-plans/seat-plan-bay-cruiser/seat-plan-bay-cruiser.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { SeatPlanBayCruiserComponent } from './components/seat-plans/seat-plan-b
     TicketPrintComponent,
     SeatPlanSukantoComponent,
     SeatPlanOtherComponent,
-    SeatPlanBayCruiserComponent
+    SeatPlanBayCruiserComponent,
+    FooterComponent
   ],
   imports: [
     CommonModule,
@@ -48,6 +50,7 @@ import { SeatPlanBayCruiserComponent } from './components/seat-plans/seat-plan-b
     UserFormComponent,
     TicketPrintComponent,
     ChangePasswordFormComponent,
+    FooterComponent,
     SeatPlanSukantoComponent,
     SeatPlanOtherComponent,
     SeatPlanBayCruiserComponent

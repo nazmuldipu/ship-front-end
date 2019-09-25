@@ -6,11 +6,12 @@ import { Component, OnInit } from '@angular/core';
   template: `
     <navbar></navbar>
     <router-outlet></router-outlet>
+    <footer></footer>
   `,
   styleUrls: ['./ships.component.scss']
 })
 export class ShipsComponent implements OnInit {
-  constructor() {}
+  constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 }
