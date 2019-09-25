@@ -1,0 +1,677 @@
+<!-- Bay cruise Hasnahena seat plan -->
+<div class="row border m-1" style="border-radius: 3px 3px 0px 0px; " *ngIf="categoryName == 'Hasnahena'">
+  <div class="col-12 bg-secondary text-white" style="border-radius: 3px 3px 0px 0px; ">
+    Seat list for
+    <strong> {{ category?.name }} </strong>
+  </div>
+  <div class="col-12">
+    <div class="row">
+      <div class="seat" *ngFor="let seat of getSubArray(0,2); index as i">
+        <div class="seat-box" [ngClass]="{
+        selected: selectedSeatContainSeatId(seat.id),
+        disabled: !seat.available
+      }" (click)="onSeatClick(seat.id)">
+          {{ seat.seatNumber }}
+        </div>
+      </div>
+      <div class="gap"></div>
+      <div class="seat" *ngFor="let seat of getSubArray(3,5); index as i">
+        <div class="seat-box" [ngClass]="{
+          selected: selectedSeatContainSeatId(seat.id),
+          disabled: !seat.available
+        }" (click)="onSeatClick(seat.id)">
+          {{ seat.seatNumber }}
+        </div>
+      </div>
+      <div class="gap"></div>
+      <div class="seat" *ngFor="let seat of getSubArray(6,8); index as i">
+        <div class="seat-box" [ngClass]="{
+            selected: selectedSeatContainSeatId(seat.id),
+            disabled: !seat.available
+          }" (click)="onSeatClick(seat.id)">
+          {{ seat.seatNumber }}
+        </div>
+      </div>
+      <div class="gap"></div>
+      <div class="seat" *ngFor="let seat of getSubArray(9,11); index as i">
+        <div class="seat-box" [ngClass]="{
+              selected: selectedSeatContainSeatId(seat.id),
+              disabled: !seat.available
+            }" (click)="onSeatClick(seat.id)">
+          {{ seat.seatNumber }}
+        </div>
+      </div>
+      <div class="gap"></div>
+    </div>
+    <div class="row">
+      <div class="seat" *ngFor="let seat of getSubArray(12,14); index as i">
+        <div class="seat-box" [ngClass]="{
+        selected: selectedSeatContainSeatId(seat.id),
+        disabled: !seat.available
+      }" (click)="onSeatClick(seat.id)">
+          {{ seat.seatNumber }}
+        </div>
+      </div>
+      <div class="gap"></div>
+      <div class="seat" *ngFor="let seat of getSubArray(15,17); index as i">
+        <div class="seat-box" [ngClass]="{
+          selected: selectedSeatContainSeatId(seat.id),
+          disabled: !seat.available
+        }" (click)="onSeatClick(seat.id)">
+          {{ seat.seatNumber }}
+        </div>
+      </div>
+      <div class="gap"></div>
+      <div class="seat" *ngFor="let seat of getSubArray(18,20); index as i">
+        <div class="seat-box" [ngClass]="{
+            selected: selectedSeatContainSeatId(seat.id),
+            disabled: !seat.available
+          }" (click)="onSeatClick(seat.id)">
+          {{ seat.seatNumber }}
+        </div>
+      </div>
+      <div class="gap"></div>
+      <div class="seat" *ngFor="let seat of getSubArray(21,23); index as i">
+        <div class="seat-box" [ngClass]="{
+              selected: selectedSeatContainSeatId(seat.id),
+              disabled: !seat.available
+            }" (click)="onSeatClick(seat.id)">
+          {{ seat.seatNumber }}
+        </div>
+      </div>
+      <div class="gap"></div>
+    </div>
+    <div class="row">
+      <div class="seat" *ngFor="let seat of getSubArray(24,26); index as i">
+        <div class="seat-box" [ngClass]="{
+        selected: selectedSeatContainSeatId(seat.id),
+        disabled: !seat.available
+      }" (click)="onSeatClick(seat.id)">
+          {{ seat.seatNumber }}
+        </div>
+      </div>
+      <div class="gap"></div>
+      <div class="seat" *ngFor="let seat of getSubArray(27,29); index as i">
+        <div class="seat-box" [ngClass]="{
+          selected: selectedSeatContainSeatId(seat.id),
+          disabled: !seat.available
+        }" (click)="onSeatClick(seat.id)">
+          {{ seat.seatNumber }}
+        </div>
+      </div>
+      <div class="gap"></div>
+      <div class="seat" *ngFor="let seat of getSubArray(30,32); index as i">
+        <div class="seat-box" [ngClass]="{
+            selected: selectedSeatContainSeatId(seat.id),
+            disabled: !seat.available
+          }" (click)="onSeatClick(seat.id)">
+          {{ seat.seatNumber }}
+        </div>
+      </div>
+      <div class="gap"></div>
+      <div class="seat" *ngFor="let seat of getSubArray(33,35); index as i">
+        <div class="seat-box" [ngClass]="{
+              selected: selectedSeatContainSeatId(seat.id),
+              disabled: !seat.available
+            }" (click)="onSeatClick(seat.id)">
+          {{ seat.seatNumber }}
+        </div>
+      </div>
+      <div class="gap"></div>
+    </div>
+    <div class="row">
+      <div class="seat" *ngFor="let seat of getSubArray(36,38); index as i">
+        <div class="seat-box" [ngClass]="{
+        selected: selectedSeatContainSeatId(seat.id),
+        disabled: !seat.available
+      }" (click)="onSeatClick(seat.id)">
+          {{ seat.seatNumber }}
+        </div>
+      </div>
+      <div class="gap"></div>
+      <div class="seat" *ngFor="let seat of getSubArray(39,41); index as i">
+        <div class="seat-box" [ngClass]="{
+          selected: selectedSeatContainSeatId(seat.id),
+          disabled: !seat.available
+        }" (click)="onSeatClick(seat.id)">
+          {{ seat.seatNumber }}
+        </div>
+      </div>
+      <div class="gap"></div>
+      <div class="seat" *ngFor="let seat of getSubArray(42,44); index as i">
+        <div class="seat-box" [ngClass]="{
+            selected: selectedSeatContainSeatId(seat.id),
+            disabled: !seat.available
+          }" (click)="onSeatClick(seat.id)">
+          {{ seat.seatNumber }}
+        </div>
+      </div>
+      <div class="gap"></div>
+      <div class="seat" *ngFor="let seat of getSubArray(45,47); index as i">
+        <div class="seat-box" [ngClass]="{
+              selected: selectedSeatContainSeatId(seat.id),
+              disabled: !seat.available
+            }" (click)="onSeatClick(seat.id)">
+          {{ seat.seatNumber }}
+        </div>
+      </div>
+      <div class="gap"></div>
+    </div>
+    <div class="row">
+      <div class="seat" *ngFor="let seat of getSubArray(48,50); index as i">
+        <div class="seat-box" [ngClass]="{
+        selected: selectedSeatContainSeatId(seat.id),
+        disabled: !seat.available
+      }" (click)="onSeatClick(seat.id)">
+          {{ seat.seatNumber }}
+        </div>
+      </div>
+      <div class="gap"></div>
+      <div class="seat" *ngFor="let seat of getSubArray(51,53); index as i">
+        <div class="seat-box" [ngClass]="{
+          selected: selectedSeatContainSeatId(seat.id),
+          disabled: !seat.available
+        }" (click)="onSeatClick(seat.id)">
+          {{ seat.seatNumber }}
+        </div>
+      </div>
+      <div class="gap"></div>
+      <div class="seat" *ngFor="let seat of getSubArray(54,56); index as i">
+        <div class="seat-box" [ngClass]="{
+            selected: selectedSeatContainSeatId(seat.id),
+            disabled: !seat.available
+          }" (click)="onSeatClick(seat.id)">
+          {{ seat.seatNumber }}
+        </div>
+      </div>
+      <div class="gap"></div>
+      <div class="seat" *ngFor="let seat of getSubArray(57,59); index as i">
+        <div class="seat-box" [ngClass]="{
+              selected: selectedSeatContainSeatId(seat.id),
+              disabled: !seat.available
+            }" (click)="onSeatClick(seat.id)">
+          {{ seat.seatNumber }}
+        </div>
+      </div>
+      <div class="gap"></div>
+    </div>
+    <div class="row">
+      <div class="seat" *ngFor="let seat of getSubArray(60,62); index as i">
+        <div class="seat-box" [ngClass]="{
+        selected: selectedSeatContainSeatId(seat.id),
+        disabled: !seat.available
+      }" (click)="onSeatClick(seat.id)">
+          {{ seat.seatNumber }}
+        </div>
+      </div>
+      <div class="gap"></div>
+      <div class="seat" *ngFor="let seat of getSubArray(63,65); index as i">
+        <div class="seat-box" [ngClass]="{
+          selected: selectedSeatContainSeatId(seat.id),
+          disabled: !seat.available
+        }" (click)="onSeatClick(seat.id)">
+          {{ seat.seatNumber }}
+        </div>
+      </div>
+      <div class="gap"></div>
+      <div class="seat" *ngFor="let seat of getSubArray(66,68); index as i">
+        <div class="seat-box" [ngClass]="{
+            selected: selectedSeatContainSeatId(seat.id),
+            disabled: !seat.available
+          }" (click)="onSeatClick(seat.id)">
+          {{ seat.seatNumber }}
+        </div>
+      </div>
+      <div class="gap"></div>
+      <div class="seat" *ngFor="let seat of getSubArray(69,71); index as i">
+        <div class="seat-box" [ngClass]="{
+              selected: selectedSeatContainSeatId(seat.id),
+              disabled: !seat.available
+            }" (click)="onSeatClick(seat.id)">
+          {{ seat.seatNumber }}
+        </div>
+      </div>
+      <div class="gap"></div>
+    </div>
+    <div class="row">
+      <div class="seat" *ngFor="let seat of getSubArray(72,74); index as i">
+        <div class="seat-box" [ngClass]="{
+        selected: selectedSeatContainSeatId(seat.id),
+        disabled: !seat.available
+      }" (click)="onSeatClick(seat.id)">
+          {{ seat.seatNumber }}
+        </div>
+      </div>
+      <div class="gap"></div>
+      <div class="seat" *ngFor="let seat of getSubArray(75,77); index as i">
+        <div class="seat-box" [ngClass]="{
+          selected: selectedSeatContainSeatId(seat.id),
+          disabled: !seat.available
+        }" (click)="onSeatClick(seat.id)">
+          {{ seat.seatNumber }}
+        </div>
+      </div>
+      <div class="gap"></div>
+      <div class="seat" *ngFor="let seat of [0,1,2]; index as i">
+      </div>
+      <div class="gap"></div>
+      <div class="seat" *ngFor="let seat of getSubArray(78,80); index as i">
+        <div class="seat-box" [ngClass]="{
+              selected: selectedSeatContainSeatId(seat.id),
+              disabled: !seat.available
+            }" (click)="onSeatClick(seat.id)">
+          {{ seat.seatNumber }}
+        </div>
+      </div>
+      <div class="gap"></div>
+    </div>
+    <div class="row">
+      <div class="seat" *ngFor="let seat of getSubArray(81,83); index as i">
+        <div class="seat-box" [ngClass]="{
+        selected: selectedSeatContainSeatId(seat.id),
+        disabled: !seat.available
+      }" (click)="onSeatClick(seat.id)">
+          {{ seat.seatNumber }}
+        </div>
+      </div>
+      <div class="gap"></div>
+      <div class="seat" *ngFor="let seat of [0,1,2]; index as i">
+      </div>
+      <div class="gap"></div>
+      <div class="seat" *ngFor="let seat of [0,1,2]; index as i">
+      </div>
+      <div class="gap"></div>
+      <div class="seat" *ngFor="let seat of getSubArray(84,86); index as i">
+        <div class="seat-box" [ngClass]="{
+              selected: selectedSeatContainSeatId(seat.id),
+              disabled: !seat.available
+            }" (click)="onSeatClick(seat.id)">
+          {{ seat.seatNumber }}
+        </div>
+      </div>
+      <div class="gap"></div>
+    </div>
+    <div class="row">
+      <div class="seat" *ngFor="let seat of getSubArray(87,89); index as i">
+        <div class="seat-box" [ngClass]="{
+        selected: selectedSeatContainSeatId(seat.id),
+        disabled: !seat.available
+      }" (click)="onSeatClick(seat.id)">
+          {{ seat.seatNumber }}
+        </div>
+      </div>
+      <div class="gap"></div>
+      <div class="seat" *ngFor="let seat of [0,1,2]; index as i">
+      </div>
+      <div class="gap"></div>
+      <div class="seat" *ngFor="let seat of [0,1,2]; index as i">
+      </div>
+      <div class="gap"></div>
+      <div class="seat" *ngFor="let seat of getSubArray(90,92); index as i">
+        <div class="seat-box" [ngClass]="{
+              selected: selectedSeatContainSeatId(seat.id),
+              disabled: !seat.available
+            }" (click)="onSeatClick(seat.id)">
+          {{ seat.seatNumber }}
+        </div>
+      </div>
+      <div class="gap"></div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- Bay cruise Rajaniganda seat plan -->
+<div class="row border m-1" style="border-radius: 3px 3px 0px 0px; " *ngIf="categoryName == 'Rajaniganda'">
+  <div class="col-12 bg-secondary text-white" style="border-radius: 3px 3px 0px 0px; ">
+    Seat list for
+    <strong> {{ category?.name }} </strong>
+  </div>
+  <div class="col-12">
+    <div class="row">
+      <div class="seat" *ngFor="let seat of [0,1,2]; index as i">
+      </div>
+      <div class="gap"></div>
+      <div class="seat" *ngFor="let seat of getSubArray(0,2); index as i">
+        <div class="seat-box" [ngClass]="{
+          selected: selectedSeatContainSeatId(seat.id),
+          disabled: !seat.available
+        }" (click)="onSeatClick(seat.id)">
+          {{ seat.seatNumber }}
+        </div>
+      </div>
+      <div class="gap"></div>
+      <div class="seat" *ngFor="let seat of getSubArray(3,5); index as i">
+        <div class="seat-box" [ngClass]="{
+            selected: selectedSeatContainSeatId(seat.id),
+            disabled: !seat.available
+          }" (click)="onSeatClick(seat.id)">
+          {{ seat.seatNumber }}
+        </div>
+      </div>
+      <div class="gap"></div>
+      <div class="seat" *ngFor="let seat of [0,1,2]; index as i">
+      </div>
+      <div class="gap"></div>
+    </div>
+    <div class="row">
+      <div class="seat" *ngFor="let seat of [0,1,2]; index as i">
+      </div>
+      <div class="gap"></div>
+      <div class="seat" *ngFor="let seat of getSubArray(6,8); index as i">
+        <div class="seat-box" [ngClass]="{
+          selected: selectedSeatContainSeatId(seat.id),
+          disabled: !seat.available
+        }" (click)="onSeatClick(seat.id)">
+          {{ seat.seatNumber }}
+        </div>
+      </div>
+      <div class="gap"></div>
+      <div class="seat" *ngFor="let seat of getSubArray(9,11); index as i">
+        <div class="seat-box" [ngClass]="{
+            selected: selectedSeatContainSeatId(seat.id),
+            disabled: !seat.available
+          }" (click)="onSeatClick(seat.id)">
+          {{ seat.seatNumber }}
+        </div>
+      </div>
+      <div class="gap"></div>
+      <div class="seat" *ngFor="let seat of [0,1,2]; index as i">
+      </div>
+      <div class="gap"></div>
+    </div>
+    <div class="row">
+      <div class="seat" *ngFor="let seat of getSubArray(12,14); index as i">
+        <div class="seat-box" [ngClass]="{
+          selected: selectedSeatContainSeatId(seat.id),
+          disabled: !seat.available
+        }" (click)="onSeatClick(seat.id)">
+          {{ seat.seatNumber }}
+        </div>
+      </div>
+      <div class="gap"></div>
+      <div class="seat" *ngFor="let seat of getSubArray(15,17); index as i">
+        <div class="seat-box" [ngClass]="{
+            selected: selectedSeatContainSeatId(seat.id),
+            disabled: !seat.available
+          }" (click)="onSeatClick(seat.id)">
+          {{ seat.seatNumber }}
+        </div>
+      </div>
+      <div class="gap"></div>
+      <div class="seat" *ngFor="let seat of getSubArray(18,20); index as i">
+        <div class="seat-box" [ngClass]="{
+              selected: selectedSeatContainSeatId(seat.id),
+              disabled: !seat.available
+            }" (click)="onSeatClick(seat.id)">
+          {{ seat.seatNumber }}
+        </div>
+      </div>
+      <div class="gap"></div>
+      <div class="seat" *ngFor="let seat of getSubArray(21,23); index as i">
+        <div class="seat-box" [ngClass]="{
+                selected: selectedSeatContainSeatId(seat.id),
+                disabled: !seat.available
+              }" (click)="onSeatClick(seat.id)">
+          {{ seat.seatNumber }}
+        </div>
+      </div>
+      <div class="gap"></div>
+    </div>
+    <div class="row">
+      <div class="seat" *ngFor="let seat of getSubArray(24,26); index as i">
+        <div class="seat-box" [ngClass]="{
+          selected: selectedSeatContainSeatId(seat.id),
+          disabled: !seat.available
+        }" (click)="onSeatClick(seat.id)">
+          {{ seat.seatNumber }}
+        </div>
+      </div>
+      <div class="gap"></div>
+      <div class="seat" *ngFor="let seat of getSubArray(27,29); index as i">
+        <div class="seat-box" [ngClass]="{
+            selected: selectedSeatContainSeatId(seat.id),
+            disabled: !seat.available
+          }" (click)="onSeatClick(seat.id)">
+          {{ seat.seatNumber }}
+        </div>
+      </div>
+      <div class="gap"></div>
+      <div class="seat" *ngFor="let seat of getSubArray(30,32); index as i">
+        <div class="seat-box" [ngClass]="{
+              selected: selectedSeatContainSeatId(seat.id),
+              disabled: !seat.available
+            }" (click)="onSeatClick(seat.id)">
+          {{ seat.seatNumber }}
+        </div>
+      </div>
+      <div class="gap"></div>
+      <div class="seat" *ngFor="let seat of getSubArray(33,35); index as i">
+        <div class="seat-box" [ngClass]="{
+                selected: selectedSeatContainSeatId(seat.id),
+                disabled: !seat.available
+              }" (click)="onSeatClick(seat.id)">
+          {{ seat.seatNumber }}
+        </div>
+      </div>
+      <div class="gap"></div>
+    </div>
+    <div class="row">
+      <div class="seat" *ngFor="let seat of getSubArray(36,38); index as i">
+        <div class="seat-box" [ngClass]="{
+          selected: selectedSeatContainSeatId(seat.id),
+          disabled: !seat.available
+        }" (click)="onSeatClick(seat.id)">
+          {{ seat.seatNumber }}
+        </div>
+      </div>
+      <div class="gap"></div>
+      <div class="seat" *ngFor="let seat of getSubArray(39,41); index as i">
+        <div class="seat-box" [ngClass]="{
+            selected: selectedSeatContainSeatId(seat.id),
+            disabled: !seat.available
+          }" (click)="onSeatClick(seat.id)">
+          {{ seat.seatNumber }}
+        </div>
+      </div>
+      <div class="gap"></div>
+      <div class="seat" *ngFor="let seat of getSubArray(42,44); index as i">
+        <div class="seat-box" [ngClass]="{
+              selected: selectedSeatContainSeatId(seat.id),
+              disabled: !seat.available
+            }" (click)="onSeatClick(seat.id)">
+          {{ seat.seatNumber }}
+        </div>
+      </div>
+      <div class="gap"></div>
+      <div class="seat" *ngFor="let seat of getSubArray(45,47); index as i">
+        <div class="seat-box" [ngClass]="{
+                selected: selectedSeatContainSeatId(seat.id),
+                disabled: !seat.available
+              }" (click)="onSeatClick(seat.id)">
+          {{ seat.seatNumber }}
+        </div>
+      </div>
+      <div class="gap"></div>
+    </div>
+    <div class="row">
+      <div class="seat" *ngFor="let seat of getSubArray(48,50); index as i">
+        <div class="seat-box" [ngClass]="{
+          selected: selectedSeatContainSeatId(seat.id),
+          disabled: !seat.available
+        }" (click)="onSeatClick(seat.id)">
+          {{ seat.seatNumber }}
+        </div>
+      </div>
+      <div class="gap"></div>
+      <div class="seat" *ngFor="let seat of getSubArray(51,53); index as i">
+        <div class="seat-box" [ngClass]="{
+            selected: selectedSeatContainSeatId(seat.id),
+            disabled: !seat.available
+          }" (click)="onSeatClick(seat.id)">
+          {{ seat.seatNumber }}
+        </div>
+      </div>
+      <div class="gap"></div>
+      <div class="seat" *ngFor="let seat of getSubArray(54,56); index as i">
+        <div class="seat-box" [ngClass]="{
+              selected: selectedSeatContainSeatId(seat.id),
+              disabled: !seat.available
+            }" (click)="onSeatClick(seat.id)">
+          {{ seat.seatNumber }}
+        </div>
+      </div>
+      <div class="gap"></div>
+      <div class="seat" *ngFor="let seat of getSubArray(57,59); index as i">
+        <div class="seat-box" [ngClass]="{
+                selected: selectedSeatContainSeatId(seat.id),
+                disabled: !seat.available
+              }" (click)="onSeatClick(seat.id)">
+          {{ seat.seatNumber }}
+        </div>
+      </div>
+      <div class="gap"></div>
+    </div>
+    <div class="row">
+      <div class="seat" *ngFor="let seat of getSubArray(60,62); index as i">
+        <div class="seat-box" [ngClass]="{
+          selected: selectedSeatContainSeatId(seat.id),
+          disabled: !seat.available
+        }" (click)="onSeatClick(seat.id)">
+          {{ seat.seatNumber }}
+        </div>
+      </div>
+      <div class="gap"></div>
+      <div class="seat" *ngFor="let seat of getSubArray(63,65); index as i">
+        <div class="seat-box" [ngClass]="{
+            selected: selectedSeatContainSeatId(seat.id),
+            disabled: !seat.available
+          }" (click)="onSeatClick(seat.id)">
+          {{ seat.seatNumber }}
+        </div>
+      </div>
+      <div class="gap"></div>
+      <div class="seat" *ngFor="let seat of getSubArray(66,68); index as i">
+        <div class="seat-box" [ngClass]="{
+              selected: selectedSeatContainSeatId(seat.id),
+              disabled: !seat.available
+            }" (click)="onSeatClick(seat.id)">
+          {{ seat.seatNumber }}
+        </div>
+      </div>
+      <div class="gap"></div>
+      <div class="seat" *ngFor="let seat of getSubArray(69,71); index as i">
+        <div class="seat-box" [ngClass]="{
+                selected: selectedSeatContainSeatId(seat.id),
+                disabled: !seat.available
+              }" (click)="onSeatClick(seat.id)">
+          {{ seat.seatNumber }}
+        </div>
+      </div>
+      <div class="gap"></div>
+    </div>
+    <div class="row">
+      <div class="seat" *ngFor="let seat of getSubArray(72,74); index as i">
+        <div class="seat-box" [ngClass]="{
+          selected: selectedSeatContainSeatId(seat.id),
+          disabled: !seat.available
+        }" (click)="onSeatClick(seat.id)">
+          {{ seat.seatNumber }}
+        </div>
+      </div>
+      <div class="gap"></div>
+      <div class="seat" *ngFor="let seat of getSubArray(75,77); index as i">
+        <div class="seat-box" [ngClass]="{
+            selected: selectedSeatContainSeatId(seat.id),
+            disabled: !seat.available
+          }" (click)="onSeatClick(seat.id)">
+          {{ seat.seatNumber }}
+        </div>
+      </div>
+      <div class="gap"></div>
+      <div class="seat" *ngFor="let seat of getSubArray(78,80); index as i">
+        <div class="seat-box" [ngClass]="{
+              selected: selectedSeatContainSeatId(seat.id),
+              disabled: !seat.available
+            }" (click)="onSeatClick(seat.id)">
+          {{ seat.seatNumber }}
+        </div>
+      </div>
+      <div class="gap"></div>
+      <div class="seat" *ngFor="let seat of getSubArray(81,83); index as i">
+        <div class="seat-box" [ngClass]="{
+                selected: selectedSeatContainSeatId(seat.id),
+                disabled: !seat.available
+              }" (click)="onSeatClick(seat.id)">
+          {{ seat.seatNumber }}
+        </div>
+      </div>
+      <div class="gap"></div>
+    </div>
+    <div class="row">
+      <div class="seat" *ngFor="let seat of getSubArray(84,86); index as i">
+        <div class="seat-box" [ngClass]="{
+          selected: selectedSeatContainSeatId(seat.id),
+          disabled: !seat.available
+        }" (click)="onSeatClick(seat.id)">
+          {{ seat.seatNumber }}
+        </div>
+      </div>
+      <div class="gap"></div>
+      <div class="seat" *ngFor="let seat of getSubArray(87,89); index as i">
+        <div class="seat-box" [ngClass]="{
+            selected: selectedSeatContainSeatId(seat.id),
+            disabled: !seat.available
+          }" (click)="onSeatClick(seat.id)">
+          {{ seat.seatNumber }}
+        </div>
+      </div>
+      <div class="gap"></div>
+      <div class="seat" *ngFor="let seat of getSubArray(90,92); index as i">
+        <div class="seat-box" [ngClass]="{
+              selected: selectedSeatContainSeatId(seat.id),
+              disabled: !seat.available
+            }" (click)="onSeatClick(seat.id)">
+          {{ seat.seatNumber }}
+        </div>
+      </div>
+      <div class="gap"></div>
+      <div class="seat" *ngFor="let seat of getSubArray(93,95); index as i">
+        <div class="seat-box" [ngClass]="{
+                selected: selectedSeatContainSeatId(seat.id),
+                disabled: !seat.available
+              }" (click)="onSeatClick(seat.id)">
+          {{ seat.seatNumber }}
+        </div>
+      </div>
+      <div class="gap"></div>
+    </div>
+    <div class="row">
+      <div class="seat" *ngFor="let seat of getSubArray(96,98); index as i">
+        <div class="seat-box" [ngClass]="{
+          selected: selectedSeatContainSeatId(seat.id),
+          disabled: !seat.available
+        }" (click)="onSeatClick(seat.id)">
+          {{ seat.seatNumber }}
+        </div>
+      </div>
+      <div class="gap"></div>
+      <div class="seat" *ngFor="let seat of [0,1,2]; index as i">
+      </div>
+      <div class="gap"></div>
+      <div class="seat" *ngFor="let seat of [0,1,2]; index as i">
+      </div>
+      <div class="gap"></div>
+      <div class="seat" *ngFor="let seat of getSubArray(99,101); index as i">
+        <div class="seat-box" [ngClass]="{
+                selected: selectedSeatContainSeatId(seat.id),
+                disabled: !seat.available
+              }" (click)="onSeatClick(seat.id)">
+          {{ seat.seatNumber }}
+        </div>
+      </div>
+      <div class="gap"></div>
+    </div>
+  </div>
+</div>

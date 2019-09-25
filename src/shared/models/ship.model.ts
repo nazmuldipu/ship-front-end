@@ -23,7 +23,7 @@ export interface Ship {
   enabled: boolean;
   deleted: boolean;
   discount: number;
-  hotelswavePercentage: number;
+  hotelswaveCommission: number;
   startsFrom: number;
   rating: number;
   facilities: ShipFacilities;

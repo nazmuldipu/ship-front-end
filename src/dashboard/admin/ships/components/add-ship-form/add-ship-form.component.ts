@@ -72,7 +72,7 @@ export class AddShipFormComponent implements OnChanges {
       containCabin: false,
       online: false,
       discount: [0, Validators.required],
-      hotelswavePercentage: [0, Validators.required],
+      hotelswaveCommission: [0, Validators.required],
       shipFacilities: this.builder.group({
         casino: false,
         shops: false,
@@ -99,6 +99,7 @@ export class AddShipFormComponent implements OnChanges {
       const hour = value.hour < 10 ? '0' + value.hour : value.hour;
       const min = value.minute < 10 ? '0' + value.minute : value.minute;
       this.form.controls.startTime.setValue(hour + ':' + min);
+      console.log(this.form.value);
       if (this.exists) {
         this.update.emit(this.form.value);
       } else {

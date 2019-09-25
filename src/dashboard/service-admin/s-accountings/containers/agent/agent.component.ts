@@ -45,10 +45,20 @@ export class AgentComponent implements OnInit {
   }
 
   async addAgentBalace() {
-    await this.accountingService.addServiceAdminAgentBalance(this.user.id, this.amount).subscribe(data => {
-      this.amount = null;
-      this.shipAgentLedgerPage = null;
-      this.getShipAgentLedger(this.user.id)
-    })
+    if (
+      confirm(
+        'Are you sure to add balance ' +
+        this.amount +
+        ' to ' +
+        this.user.name +
+        ' Account '
+      )
+    ) {
+      await this.accountingService.addServiceAdminAgentBalance(this.user.id, this.amount).subscribe(data => {
+        this.amount = null;
+        this.shipAgentLedgerPage = null;
+        this.getShipAgentLedger(this.user.id)
+      })
+    }
   }
 }

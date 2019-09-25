@@ -151,12 +151,12 @@
       </small>
     </div>
     <div class="form-group col-md-6">
-      <label for="hotelswavePercentage">Hotelswave Discount in percent *</label>
-      <input class="form-control" id="hotelswavePercentage" maxlength="2" placeholder="Hotelswave Percent" formControlName="hotelswavePercentage"
+      <label for="hotelswaveCommission">Hotelswave Discount in amount *</label>
+      <input class="form-control" id="hotelswaveCommission" placeholder="Hotelswave Commission" formControlName="hotelswaveCommission"
       />
       <small class="text-danger" *ngIf="
-          form.controls.hotelswavePercentage.errors?.required &&
-          form.controls.hotelswavePercentage.dirty
+          form.controls.hotelswaveCommission.errors?.required &&
+          form.controls.hotelswaveCommission.dirty
         ">
         Hotelswave Percent required
       </small>

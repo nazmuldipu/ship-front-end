@@ -2,34 +2,17 @@
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="name">Name *</label>
-      <input
-        class="form-control"
-        id="name"
-        placeholder="Name"
-        formControlName="name"
-      />
-      <small
-        class="text-danger"
-        *ngIf="form.controls.name.errors && form.controls.name.touched"
-      >
+      <input class="form-control" id="name" placeholder="Name" formControlName="name" />
+      <small class="text-danger" *ngIf="form.controls.name.errors && form.controls.name.touched">
         Name required
       </small>
     </div>
     <div class="form-group col-md-6">
       <label for="phone">Phone *</label>
-      <input
-        class="form-control"
-        placeholder="Phone"
-        id="phone"
-        maxlength="11"
-        formControlName="phoneNumber"
-      />
-      <small
-        class="text-danger"
-        *ngIf="
+      <input class="form-control" placeholder="Phone" id="phone" maxlength="11" formControlName="phoneNumber" />
+      <small class="text-danger" *ngIf="
           form.controls.phoneNumber.errors && form.controls.phoneNumber.touched
-        "
-      >
+        ">
         <div [hidden]="!form.controls['phoneNumber'].errors.required">
           Phone number required
         </div>
@@ -41,41 +24,29 @@
 
     <div class="form-group col-md-6">
       <label for="email">Email</label>
-      <input
-        type="email"
-        class="form-control"
-        id="email"
-        placeholder="Email"
-        formControlName="email"
-      />
+      <input type="email" class="form-control" id="email" placeholder="Email" formControlName="email" />
+    </div>
+    <div class="form-group col-md-6">
+      <label for="commission">Commission *</label>
+      <input class="form-control" type="number" id="commission" placeholder="Commission" formControlName="commission" />
+      <small class="text-danger" *ngIf="form.controls.commission.errors && form.controls.commission.touched">
+        Commission required
+      </small>
     </div>
   </div>
 
   <div class="d-flex flex-row-reverse bd-highlight my-2 mb-5">
-    <button
-      type="submit"
-      class="btn btn-sm mx-1"
-      [ngClass]="{
+    <button type="submit" class="btn btn-sm mx-1" [ngClass]="{
         disabled: form.invalid,
         'btn-warning': exists,
         'btn-success': !exists
-      }"
-    >
+      }">
       {{ exists ? 'Update' : 'Create' }} User
     </button>
-    <button
-      *ngIf="exists"
-      type="button"
-      class="btn btn-sm btn-success mx-1"
-      (click)="onRemoveAgent(user.id)"
-    >
+    <button *ngIf="exists" type="button" class="btn btn-sm btn-success mx-1" (click)="onRemoveAgent(user.id)">
       Remove this agent
     </button>
-    <button
-      class="btn btn-sm btn-danger mx-1"
-      type="button"
-      (click)="onClear()"
-    >
+    <button class="btn btn-sm btn-danger mx-1" type="button" (click)="onClear()">
       Clear
     </button>
   </div>

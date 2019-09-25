@@ -23,6 +23,7 @@ export class User {
   accountNonExpired: boolean;
   accountNonLocked: boolean;
   credentialsNonExpired: boolean;
+  commission: number;
 }
 
 export class UserPage {
@@ -36,7 +37,7 @@ export class UserPage {
     public sort?: Sort[],
     public totalElements?: number,
     public totalPages?: number
-  ) {}
+  ) { }
 }
 
 export enum ERole {

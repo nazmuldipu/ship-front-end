@@ -22,9 +22,9 @@ export class AddComponent implements OnInit {
     private seatService: SeatsService,
     private router: Router,
     private activeRoute: ActivatedRoute
-  ) {}
+  ) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   onSelectShip(ship) {
     this.ship = ship;
@@ -70,7 +70,6 @@ export class AddComponent implements OnInit {
   }
 
   onSeatClick(id) {
-    console.log(id);
     const value = this.seatList.find(s => s.id == id);
     this.seat = value;
   }

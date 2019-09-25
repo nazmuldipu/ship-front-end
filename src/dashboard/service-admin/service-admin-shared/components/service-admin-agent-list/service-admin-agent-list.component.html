@@ -8,6 +8,7 @@
       <tr>
         <th>Name</th>
         <th>Phone</th>
+        <th>Com.</th>
         <th *ngIf="!short">Email</th>
         <th></th>
       </tr>
@@ -16,6 +17,7 @@
       <tr *ngFor="let user of userPage?.content">
         <td>{{ user.name }}</td>
         <td>{{ user.phoneNumber }}</td>
+        <td>{{ user.commission }}</td>
         <td *ngIf="!short">{{ user.email }}</td>
         <td>
           <button class="btn-sm btn-warning" (click)="onSelectUser(user.id)">
@@ -26,7 +28,7 @@
     </tbody>
     <tfoot>
       <tr>
-        <td colspan="3">
+        <td colspan="4">
           <pagination [page]="userPage" (getPage)="getServiceAdminAgents($event)">
           </pagination>
         </td>

@@ -33,7 +33,8 @@ export class AgentFormComponent implements OnChanges {
       const value = {
         name: this.user.name,
         phoneNumber: this.user.phoneNumber,
-        email: this.user.email
+        email: this.user.email,
+        commission: this.user.commission
       };
       this.form.patchValue({ ...value });
     }
@@ -49,7 +50,8 @@ export class AgentFormComponent implements OnChanges {
           Validators.pattern('^01[3-9][ ]?[0-9]{2}[ ]?[0-9]{3}[ ]?[0-9]{3}$')
         ]
       ],
-      email: ''
+      email: '',
+      commission: ['', Validators.required],
     });
   }
 

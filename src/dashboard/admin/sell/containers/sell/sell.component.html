@@ -74,10 +74,11 @@
                   </button>
                 </span>
               </div>
-              <seat-plan-other *ngIf="ship.shipName =='BAY_CRUISE'" [filteredSeatList]="filteredSeatList" [selectedSeat]="selectedSeat"
-                [categoryName]="category?.name" (select)="onSeatClick($event)">
+              <seat-plan-other *ngIf="ship.shipName =='OTHER'" [filteredSeatList]="filteredSeatList" [selectedSeat]="selectedSeat" [categoryName]="category?.name"
+                (select)="onSeatClick($event)">
               </seat-plan-other>
-
+              <seat-plan-bay-cruiser *ngIf="ship.shipName=='BAY_CRUISE'" [filteredSeatList]="filteredSeatList" [selectedSeat]="selectedSeat"
+                [categoryName]="category?.name" (select)="onSeatClick($event)"></seat-plan-bay-cruiser>
               <seat-plan-sukanto *ngIf="ship.shipName=='SUKANTO_BABU'" [filteredSeatList]="filteredSeatList" [selectedSeat]="selectedSeat"
                 [categoryName]="category?.name" (select)="onSeatClick($event)"></seat-plan-sukanto>
             </div>

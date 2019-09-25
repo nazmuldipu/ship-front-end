@@ -158,6 +158,7 @@ export class SellComponent implements OnInit {
     }
   }
 
+
   onCreateUser(event) {
     let user: User = new User(event.name, event.phone);
     let subbookingList: SubBooking[] = this.getSubbookingList(
@@ -185,6 +186,10 @@ export class SellComponent implements OnInit {
       subBookingList.push(sb);
     });
     return subBookingList;
+  }
+
+  onTicketClose() {
+    this.ticket = null;
   }
 
 }

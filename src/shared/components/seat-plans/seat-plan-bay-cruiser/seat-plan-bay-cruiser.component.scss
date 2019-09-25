@@ -1,0 +1,59 @@
+.seat{
+    flex: 0 0 8%;
+    max-width: 8%;
+    padding: 2px 1px;
+    &-box {
+        border: 1px solid black;
+        border-radius: 4px;
+        cursor: pointer;
+        padding: 2px;
+        font-size: 12px;
+        text-align: center;
+        &:hover {
+            background-color: lightgrey;
+            color: black;
+        }
+            
+        &.disabled {
+            background-color: gray !important;
+            color: white;
+            cursor: not-allowed;
+        }
+        
+    }
+}
+.gap{
+    flex: 0 0 1.3333%;
+    max-width: 1.333%;
+    // padding: 2px 4px;  
+}
+
+.seat2{
+    flex: 0 0 10%;
+    max-width: 10%;
+    padding: 1px 4px;
+    &-box {
+        border: 1px solid black;
+        border-radius: 4px;
+        cursor: pointer;
+        padding: 2px;
+        font-size: 12px;
+        text-align: center;
+        &:hover {
+            background-color: lightgrey;
+            color: black;
+        }
+            
+        &.disabled {
+            background-color: gray !important;
+            color: white;
+            cursor: not-allowed;
+        }
+        
+    }
+}
+
+.selected {
+    background-color: lightblue;
+    color: white;
+} 
