@@ -1,9 +1,9 @@
 <div class="container-fluid ticket border-bottom">
   <div class="row m-0">
-    <div class="col-md-6 col-6">
+    <!-- <div class="col-md-6 col-6">
       <h3>{{ ticket.shipName }}</h3>
-    </div>
-    <div class="col-md-6 col-6 text-right">
+    </div> -->
+    <div class="col-12 text-right">
       ISSUE DATE: {{ ticket.created | date: 'd MMM,yy' }}
       <button class="btn btn-sm btn-primary d-print-none mx-1" (click)="onPrint()">
         <i class="fa fa-print"></i> Print
@@ -273,5 +273,6 @@
       </table>
     </div>
   </ng-template>
-  <div>Powered by:www.hotelswave.com | Developed by: www.unololtd.com, info@unololtd.com</div>
+
+  <div class="text-right">Powered by:www.hotelswave.com | Developed by: www.unololtd.com, info@unololtd.com</div>
 </div>

@@ -1,0 +1,52 @@
+.ticket {
+    font-family: 'Bitter', serif;
+    font-size: 10px;
+    padding: 15px 0;
+    &-head {
+      background-color: lightcyan;
+      color: black;
+      padding: 5px;
+    }
+  }
+  table {
+    width: 100%;
+    height: 300px;
+    border-bottom: 1px solid #ddd;
+    td {
+      padding: 3px;
+    }
+  }
+  
+  table tr:nth-child(even) {
+    background-color: #f2f2f2;
+  }
+  td{
+    padding: 0!important;
+  }
+  @page {
+    size: 4in 6in landscape;
+  }
+  @media print {  
+    @page {size: letter landscape; margin: 0; }
+    .ticket {
+      margin-top: 17mm;
+    }
+    .badge {
+      color: black;
+      border: 1px solid #000;
+    }
+    
+  }
+ 
+  .col{
+    &_1{
+      flex: 0 0 42.8571%;
+      max-width: 42.8571%;
+    }
+    &_2{
+      flex: 0 0 28.571%;
+      max-width: 28.571%;
+    }
+  }
+
+  

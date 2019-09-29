@@ -7,28 +7,18 @@
           <small>Choose a sell from below list</small>
         </li>
 
-        <a
-          *ngFor="let booking of bookingPage?.content"
-          class="list-group-item list-group-item-action"
-          (click)="onBookingDetails(booking.id)"
-        >
-          <i class="fa fa-ticket"></i> {{ booking.id }}
-          {{ booking.user.name }} [{{ booking.user.phoneNumber }}]
+        <a *ngFor="let booking of bookingPage?.content" class="list-group-item list-group-item-action" (click)="onBookingDetails(booking.id)">
+          <i class="fa fa-ticket"></i> {{ booking.id }} {{ booking.user.name }} [{{ booking.user.phoneNumber }}]
         </a>
       </ul>
       <ng-template #showLoading>
         <app-loading></app-loading>
       </ng-template>
-      <pagination
-        *ngIf="bookingPage != null"
-        [page]="bookingPage"
-        [short]="short"
-        (getPage)="getMyBookings($event)"
-      ></pagination>
+      <pagination *ngIf="bookingPage != null" [page]="bookingPage" [short]="short" (getPage)="getMyBookings($event)"></pagination>
     </div>
     <div class="col p-0">
-      <ticket-print *ngIf="ticket" [ticket]="ticket" (close)="onTicketClose()">
-      </ticket-print>
+      <ticket-sukantababu-print *ngIf="ticket && ticket.ship.shipName == 'SUKANTO_BABU'" [ticket]="ticket" (close)="onTicketClose()">
+      </ticket-sukantababu-print>
     </div>
   </div>
 </div>

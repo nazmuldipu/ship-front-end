@@ -11,10 +11,12 @@ import { PaginationComponent } from './components/pagination/pagination.componen
 import { SeatPlanOtherComponent } from './components/seat-plans/seat-plan-other/seat-plan-other.component';
 import { SeatPlanSukantoComponent } from './components/seat-plans/seat-plan-sukanto/seat-plan-sukanto.component';
 import { TicketDetailsComponent } from './components/ticket-details/ticket-details.component';
-import { TicketPrintComponent } from './components/ticket-print/ticket-print.component';
+import { TicketPrintComponent } from './components/tickets/ticket-print/ticket-print.component';
 import { UserFormComponent } from './components/user-form/user-form.component';
 import { SeatPlanBayCruiserComponent } from './components/seat-plans/seat-plan-bay-cruiser/seat-plan-bay-cruiser.component';
 import { FooterComponent } from './footer/footer.component';
+import { TicketSukantababuPrintComponent } from './components/tickets/ticket-sukantababu-print/ticket-sukantababu-print.component';
+import { TiketBaycruisePrintComponent } from './components/tickets/tiket-baycruise-print/tiket-baycruise-print.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { FooterComponent } from './footer/footer.component';
     SeatPlanSukantoComponent,
     SeatPlanOtherComponent,
     SeatPlanBayCruiserComponent,
-    FooterComponent
+    FooterComponent,
+    TicketSukantababuPrintComponent,
+    TiketBaycruisePrintComponent
   ],
   imports: [
     CommonModule,
@@ -49,6 +53,8 @@ import { FooterComponent } from './footer/footer.component';
     TicketDetailsComponent,
     UserFormComponent,
     TicketPrintComponent,
+    TicketSukantababuPrintComponent,
+    TiketBaycruisePrintComponent,
     ChangePasswordFormComponent,
     FooterComponent,
     SeatPlanSukantoComponent,

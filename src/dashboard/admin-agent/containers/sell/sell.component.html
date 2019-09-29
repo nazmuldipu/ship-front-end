@@ -1,8 +1,5 @@
-<ticket-print
-  *ngIf="ticket"
-  [ticket]="ticket"
-  (close)="onTicketClose()"
-></ticket-print>
+<ticket-sukantababu-print *ngIf="ticket && ticket.ship.shipName == 'SUKANTO_BABU'" [ticket]="ticket" (close)="onTicketClose()">
+</ticket-sukantababu-print>
 <div class="container d-print-none" *ngIf="!ticket">
   <div class="row border my-2 p-2">
     <div class="input-group-text btn btn-secondary" (click)="adjustDay(-1)">
@@ -17,18 +14,8 @@
               Date :
             </div>
           </div>
-          <input
-            class="form-control"
-            placeholder="yyyy-mm-dd"
-            name="dp"
-            [(ngModel)]="dd"
-            [minDate]="minDate"
-            [maxDate]="maxDate"
-            ngbDatepicker
-            #date="ngbDatepicker"
-            (dateSelect)="closeDetails()"
-            (click)="date.toggle()"
-          />
+          <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="dd" [minDate]="minDate" [maxDate]="maxDate" ngbDatepicker
+            #date="ngbDatepicker" (dateSelect)="closeDetails()" (click)="date.toggle()" />
           <div class="input-group-append" (click)="date.toggle()">
             <div class="input-group-text">
               <i class="fa fa-calendar"></i>
@@ -40,19 +27,22 @@
 
     <div class="input-group-text btn btn-secondary" (click)="adjustDay(1)">
       <!-- Next day  -->
-      &nbsp; <i class="fa fa-chevron-right"></i>
+      &nbsp;
+      <i class="fa fa-chevron-right"></i>
     </div>
   </div>
 
   <div class="row border py-2 ship-row" *ngFor="let ship of shipPage?.content">
     <div class="col-md-3 col-6">
-      Ship Name <br />
+      Ship Name
+      <br />
       <span class="ship-row-name">
         {{ ship.name }}
       </span>
     </div>
     <div class="col-md-2 col-6">
-      {{ dd.day }}-{{ dd.month }}-{{ dd.year }} <br />
+      {{ dd.day }}-{{ dd.month }}-{{ dd.year }}
+      <br />
       <span class="ship-row-startTime">
         <i class="fa fa-clock-o"></i> {{ ship.startTime }}
       </span>
@@ -70,12 +60,7 @@
         <app-loading *ngIf="seatLoading"></app-loading>
         <div *ngIf="seatList">
           <div class="d-flex flex-row-reverse">
-            <button
-              class="btn btn-sm btn-danger"
-              type="button"
-              (click)="closeDetails()"
-              style="border-radius: 0;"
-            >
+            <button class="btn btn-sm btn-danger" type="button" (click)="closeDetails()" style="border-radius: 0;">
               <i class="fa fa-times"></i>
             </button>
           </div>
@@ -83,40 +68,24 @@
             <div class="col-md-6">
               <div class="row m-0">
                 <span *ngFor="let cat of categoryList">
-                  <button
-                    class="btn-sm m-1"
-                    [ngClass]="
+                  <button class="btn-sm m-1" [ngClass]="
                       cat.id == category.id ? 'btn-primary' : 'btn-secondary'
-                    "
-                    (click)="onSelectCategory(cat.id)"
-                  >
+                    " (click)="onSelectCategory(cat.id)">
                     {{ cat.name }}
                   </button>
                 </span>
               </div>
 
-              <div
-                class="row border m-1"
-                style="border-radius: 3px 3px 0px 0px; "
-              >
-                <div
-                  class="col-12 bg-secondary text-white"
-                  style="border-radius: 3px 3px 0px 0px; "
-                >
-                  Seat list for <strong> {{ category?.name }} </strong>
+              <div class="row border m-1" style="border-radius: 3px 3px 0px 0px; ">
+                <div class="col-12 bg-secondary text-white" style="border-radius: 3px 3px 0px 0px; ">
+                  Seat list for
+                  <strong> {{ category?.name }} </strong>
                 </div>
-                <div
-                  class="col-lg-2 col-md-3 col-sm-2 col-2 p-1"
-                  *ngFor="let seat of filteredSeatList"
-                >
-                  <div
-                    class="seat-box"
-                    [ngClass]="{
+                <div class="col-lg-2 col-md-3 col-sm-2 col-2 p-1" *ngFor="let seat of filteredSeatList">
+                  <div class="seat-box" [ngClass]="{
                       selected: selectedSeatContainSeatId(seat.id),
                       disabled: !seat.available
-                    }"
-                    (click)="onSeatClick(seat.id)"
-                  >
+                    }" (click)="onSeatClick(seat.id)">
                     {{ seat.seatNumber }}
                   </div>
                 </div>

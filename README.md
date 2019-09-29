@@ -29,3 +29,13 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 ng build --prod --base-href "/" && ngh --dir dist/hotelswave-front-end --no-silent --repo=git@github.com:nazmuldipu/hotelswave-front-end.git
 
 ng build --prod --base-href "/" && npx angular-cli-ghpages --dir dist/ship-front-end --no-silent
+
+
+BAY cruiser -> 9:30am / 3:00pm
+Sukanto babu -> 10:00 - 5:00
+LCT kajol
+
+Accounts:
+Sukantababu -> Farhan Express Tourism -> 01814 344256
+Bay cruiser -> Bahadur Hossain -> 01779 181872
+Kajol
