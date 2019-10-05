@@ -192,4 +192,8 @@ export class SellComponent implements OnInit {
     this.ticket = null;
   }
 
+  onClear() {
+    this.message = '';
+  }
+
 }

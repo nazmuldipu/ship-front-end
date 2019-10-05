@@ -5,9 +5,7 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-2 d-print-none">
-      <service-admin-ship-list
-        (ship)="onShipSelect($event)"
-      ></service-admin-ship-list>
+      <service-admin-ship-list (ship)="onShipSelect($event)"></service-admin-ship-list>
     </div>
     <div class="col-md-10">
       <div class="row d-print-none">
@@ -19,16 +17,8 @@
                   Date :
                 </div>
               </div>
-              <input
-                class="form-control"
-                placeholder="yyyy-mm-dd"
-                name="dp"
-                [(ngModel)]="dd"
-                ngbDatepicker
-                #date="ngbDatepicker"
-                (dateSelect)="onDateChange()"
-                (click)="date.toggle()"
-              />
+              <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="dd" ngbDatepicker #date="ngbDatepicker" (dateSelect)="onDateChange()"
+                (click)="date.toggle()" />
               <div class="input-group-append" (click)="date.toggle()">
                 <div class="input-group-text">
                   <i class="fa fa-calendar"></i>
@@ -42,12 +32,7 @@
             <div class="input-group-prepend">
               <div class="input-group-text">Type</div>
             </div>
-            <select
-              class="form-control"
-              id="reportType"
-              [(ngModel)]="reportType"
-              (change)="onTypeChange()"
-            >
+            <select class="form-control" id="reportType" [(ngModel)]="reportType" (change)="onTypeChange()">
               <option value="Sells"> Sells </option>
               <option value="Reservation"> Reservation </option>
             </select>
@@ -60,16 +45,15 @@
           </button>
         </div>
       </div>
-      <div *ngIf="loading"><app-loading></app-loading></div>
-      <div
-        *ngIf="
+      <div *ngIf="loading">
+        <app-loading></app-loading>
+      </div>
+      <div *ngIf="
           serviceAdminSellsReportList.length > 0 && !loading;
           else noRecord
-        "
-      >
+        ">
         <h3 class="text-center">
-          {{ ship?.shipNumber }}-{{ ship.name }} {{ reportType }} report for
-          date of : {{ dd.day }}-{{ dd.month }}-{{ dd.year }}
+          {{ ship?.shipNumber }}-{{ ship.name }} {{ reportType }} report for date of : {{ dd.day }}-{{ dd.month }}-{{ dd.year }}
         </h3>
         <table class="table table-bordered table-hover table-responsive-sm">
           <thead>
@@ -101,22 +85,18 @@
               <td>{{ report.journeyDate | date }}</td>
               <td>{{ report.customerName }} - {{ report.customerPhone }}</td>
               <td>
-                <span *ngFor="let seat of report.seatNumbers"
-                  >{{ seat }},
+                <span *ngFor="let seat of report.seatNumbers">{{ seat }},
                 </span>
               </td>
               <td>{{ report.price }}</td>
               <td>{{ report.shipNumber }} - {{ report.routes }}</td>
               <td>{{ report.soldBy }}</td>
               <td>{{ report.bookingStatus }}</td>
-              <td
-                [ngClass]="{
+              <td [ngClass]="{
                   'bg-success': report.paid,
                   'bg-warning': !report.paid && report.bookingId
-                }"
-              >
-                {{ report.paid ? 'Paid' : '' }}
-                {{ !report.paid && report.bookingId ? 'Unpaid' : '' }}
+                }">
+                {{ report.paid ? 'Paid' : '' }} {{ !report.paid && report.bookingId ? 'Unpaid' : '' }}
               </td>
             </tr>
           </tbody>
@@ -137,11 +117,51 @@
             </tr>
           </tfoot>
         </table>
+        <div class="row">
+          <div class="col-md-6">
+            <table class="table table-bordered table-hover table-responsive-sm">
+              <tr>
+                <th colspan="2">{{reportType}} sum</th>
+              </tr>
+              <tr>
+                <td>Total Sold</td>
+                <th>{{total.totalSold}}</th>
+              </tr>
+              <tr>
+                <td>Total Reserved</td>
+                <th>{{total.totalReserved}}</th>
+              </tr>
+              <tr>
+                <td>Total Unsold</td>
+                <th class="text-danger">{{total.totalUnsold}}</th>
+              </tr>
+              <tr class="bg-light">
+                <th>Total</th>
+                <th>{{total.totalSold + total.totalReserved + total.totalUnsold}}</th>
+              </tr>
+            </table>
+          </div>
+          <div class="col-md-6">
+            <table class="table table-bordered table-hover table-responsive-sm">
+              <tr>
+                <th>Agent Name</th>
+                <th>No of seat sold / Reserved</th>
+              </tr>
+              <tr *ngFor="let item of (soldBy | keyvalue)">
+                <td>{{item.key}}</td>
+                <td>{{item.value}}</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+
       </div>
       <ng-template #noRecord>
-        <h4 class="text-center"><i class="fa fa-frown-o"></i> No record yet</h4>
+        <h4 class="text-center">
+          <i class="fa fa-frown-o"></i> No record yet</h4>
       </ng-template>
       <!-- {{ serviceAdminSellsReportList | json }} -->
     </div>
   </div>
 </div>
+[{{soldBy | json}}]

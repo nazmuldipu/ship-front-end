@@ -15,8 +15,9 @@ export class SellsReportComponent implements OnInit {
   reportType = 'Reservation';
   serviceAdminSellsReportList: Report[] = [];
   total;
+  soldBy: Map<string, number> = new Map<string, number>();
 
-  constructor(private reportService: ReportService) {}
+  constructor(private reportService: ReportService) { }
 
   ngOnInit() {
     let date = new Date();
@@ -75,13 +76,29 @@ export class SellsReportComponent implements OnInit {
         this.serviceAdminSellsReportList = data;
         this.calculateServiceAdminBookingReportList();
         this.loading = false;
+        console.log(this.soldBy);
       });
   }
 
   calculateServiceAdminBookingReportList() {
-    this.total = { totalrent: 0, totalAdvance: 0, totalDue: 0 };
+    this.total = { totalrent: 0, totalAdvance: 0, totalDue: 0, totalSold: 0, totalUnsold: 0, totalReserved: 0 };
+    this.soldBy = new Map<string, number>();
     this.serviceAdminSellsReportList.forEach(sb => {
       this.total.totalrent += sb.price;
+      switch (sb.bookingStatus) {
+        case 'SEAT_SOLD':
+          this.total.totalSold += sb.seatNumbers.length;
+          break;
+        case null:
+          this.total.totalUnsold += sb.seatNumbers.length;
+          break;
+        case 'SEAT_RESERVED':
+          this.total.totalReserved += sb.seatNumbers.length;
+          break;
+      }
+      if (sb.soldBy) {
+        this.soldBy.set(sb.soldBy, this.soldBy.get(sb.soldBy) ? this.soldBy.get(sb.soldBy) + sb.seatNumbers.length : sb.seatNumbers.length);
+      }
     });
   }
 
