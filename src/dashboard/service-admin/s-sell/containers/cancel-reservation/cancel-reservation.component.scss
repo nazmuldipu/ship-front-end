@@ -1,0 +1,58 @@
+.seat-box {
+  border: 1px solid black;
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 5px;
+  font-size: 12px;
+  text-align: center;
+  &:hover {
+    background-color: lightgrey;
+    color: black;
+  }
+  &.sold {
+    border: 1px solid red;
+    background-color: red;
+    color: white;
+  }
+  &.reserved {
+    border: 1px solid #ffc107;
+    background-color: #ffc107;
+  }
+  &.blocked {
+    border: 1px solid lightgrey;
+    background-color: lightgrey;
+    color: white;
+  }
+}
+
+.ticket {
+  font-family: 'Bitter', serif;
+  font-size: 12px;
+  padding: 15px 0;
+  &-head {
+    background-color: gray;
+    color: white;
+    padding: 5px;
+  }
+}
+
+.foo {
+  float: left;
+  width: 20px;
+  height: 20px;
+  margin: 5px;
+  border: 1px solid gray;
+  &.sold {
+    border: 1px solid red;
+    background-color: red;
+  }
+  &.reserved {
+    border: 1px solid #ffc107;
+    background-color: #ffc107;
+  }
+  &.blocked {
+    border: 1px solid lightgrey;
+    background-color: lightgrey;
+  }
+}
+  

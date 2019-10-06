@@ -152,6 +152,17 @@ export class BookingService {
     );
   }
 
+  cancelServiceAdminReservationSeat(seatId: number, bookingId: number): Observable<any> {
+    const param = `bookingId=${bookingId}&`;
+    return this.dataSource.sendRequest(
+      RequestMethod.Delete,
+      this.serviceServiceAdminUrl + `/cancelReservationSeat/${seatId}`,
+      null,
+      true,
+      param
+    );
+  }
+
   confirmServiceAdminReservation(bookingId): Observable<Booking> {
     return this.dataSource.sendRequest(
       RequestMethod.Put,

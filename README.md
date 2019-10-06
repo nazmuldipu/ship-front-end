@@ -30,7 +30,6 @@ ng build --prod --base-href "/" && ngh --dir dist/hotelswave-front-end --no-sile
 
 ng build --prod --base-href "/" && npx angular-cli-ghpages --dir dist/ship-front-end --no-silent
 
-
 BAY cruiser -> 9:30am / 3:00pm
 Sukanto babu -> 10:00 - 5:00
 LCT kajol
