@@ -23,7 +23,7 @@ export class IndexComponent implements OnInit {
     private router: Router,
     private auth: AuthService,
     private reportService: ReportService
-  ) {}
+  ) { }
 
   ngOnInit() {
     let date = new Date();
@@ -40,6 +40,8 @@ export class IndexComponent implements OnInit {
   }
 
   async getServiceAdminDashboardReport({ year, month, day }) {
+    month = month < 10 ? '0' + month : month;
+    day = day < 10 ? '0' + day : day;
     const date = `${year}-${month}-${day}`;
     await this.reportService
       .getServiceAdminDashboardReport(date)

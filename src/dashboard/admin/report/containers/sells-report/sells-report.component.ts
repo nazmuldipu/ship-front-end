@@ -21,7 +21,7 @@ export class SellsReportComponent implements OnInit {
   constructor(
     private reportService: ReportService,
     private utilService: UtilService
-  ) {}
+  ) { }
 
   ngOnInit() {
     let date = new Date();
@@ -96,6 +96,8 @@ export class SellsReportComponent implements OnInit {
 
   async getAdminReservationReport({ year, month, day }) {
     this.loading = true;
+    month = month < 10 ? '0' + month : month;
+    day = day < 10 ? '0' + day : day;
     const date = `${year}-${month}-${day}`;
     await this.reportService.getAdminReservationReport(date).subscribe(data => {
       this.savedList = data;
@@ -107,6 +109,9 @@ export class SellsReportComponent implements OnInit {
 
   async getAdminSellsgReport({ year, month, day }) {
     this.loading = true;
+    month = month < 10 ? '0' + month : month;
+    day = day < 10 ? '0' + day : day;
+
     const date = `${year}-${month}-${day}`;
     await this.reportService.getAdminSellsReport(date).subscribe(data => {
       this.savedList = data;

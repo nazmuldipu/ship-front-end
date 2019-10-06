@@ -9,7 +9,7 @@
     </div>
     <div class="col-md-3" *ngIf="shipId">
       <pay-ship-form [shipId]="shipId" (value)="onSubmit($event)">
-        </pay-ship-form>
+      </pay-ship-form>
     </div>
     <div class="col-md-6" *ngIf="adminShipLedgerPage">
       <h3 class="text-center">Ship ledger</h3>
@@ -25,7 +25,7 @@
         </thead>
         <tbody>
           <tr *ngFor="let ledger of adminShipLedgerPage.content">
-            <td>{{ ledger.date | date: 'MMM d, y, h:mm:ss a' }}</td>
+            <td>{{ ledger.date }}</td>
             <td>{{ ledger.explanation }}</td>
             <td>{{ ledger.debit }}</td>
             <td>{{ ledger.credit }}</td>
@@ -37,11 +37,7 @@
         <tfoot>
           <tr>
             <td colspan="5">
-              <pagination
-                *ngIf="adminShipLedgerPage != null"
-                [page]="adminShipLedgerPage"
-                (getPage)="getAdminHotelLedgerByHotelId(hotelId, $event)"
-              ></pagination>
+              <pagination *ngIf="adminShipLedgerPage != null" [page]="adminShipLedgerPage" (getPage)="getAdminHotelLedgerByHotelId(hotelId, $event)"></pagination>
             </td>
           </tr>
         </tfoot>

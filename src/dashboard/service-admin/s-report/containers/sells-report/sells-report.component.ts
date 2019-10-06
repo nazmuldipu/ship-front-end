@@ -57,6 +57,8 @@ export class SellsReportComponent implements OnInit {
 
   async getServiceAdminReservationReportByShipId(shipId, { year, month, day }) {
     this.loading = true;
+    month = month < 10 ? '0' + month : month;
+    day = day < 10 ? '0' + day : day;
     const date = `${year}-${month}-${day}`;
     await this.reportService
       .getServiceAdminShipReservation(shipId, date)
@@ -69,6 +71,8 @@ export class SellsReportComponent implements OnInit {
 
   async getServiceAdminSellsReportByShipId(shipId, { year, month, day }) {
     this.loading = true;
+    month = month < 10 ? '0' + month : month;
+    day = day < 10 ? '0' + day : day;
     const date = `${year}-${month}-${day}`;
     await this.reportService
       .getServiceAdminShipSells(shipId, date)

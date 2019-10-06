@@ -10,7 +10,7 @@
   </thead>
   <tbody *ngIf="adminCashbookPage">
     <tr *ngFor="let cash of adminCashbookPage.content">
-      <td>{{ cash.date | date: 'MMM d, y, h:mm:ss a' }}</td>
+      <td>{{ cash.date}}</td>
       <td>{{ cash.explanation }}</td>
       <td>{{ cash.debit }}</td>
       <td>{{ cash.credit }}</td>
@@ -22,11 +22,7 @@
   <tfoot>
     <tr>
       <td colspan="5">
-        <pagination
-          *ngIf="adminCashbookPage != null"
-          [page]="adminCashbookPage"
-          (getPage)="getAdminCashbook($event)"
-        ></pagination>
+        <pagination *ngIf="adminCashbookPage != null" [page]="adminCashbookPage" (getPage)="getAdminCashbook($event)"></pagination>
       </td>
     </tr>
   </tfoot>

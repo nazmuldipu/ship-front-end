@@ -28,7 +28,7 @@ export class StatusComponent implements OnInit {
   constructor(
     private seatsService: SeatsService,
     private bookingService: BookingService
-  ) {}
+  ) { }
 
   ngOnInit() {
     let date = new Date();
@@ -92,7 +92,7 @@ export class StatusComponent implements OnInit {
   }
 
   makeDateString(date) {
-    const dateString = date.year + '-' + date.month + '-' + date.day;
+    const dateString = date.year + '-' + (date.month < 10 ? '0' + date.month : date.month) + '-' + (date.day < 10 ? '0' + date.day : date.day);
     return dateString;
   }
 

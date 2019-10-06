@@ -21,7 +21,7 @@
         </thead>
         <tbody>
           <tr *ngFor="let ledger of shipAdminLedgerPage.content">
-            <td>{{ ledger.date | date: 'MMM d, y, h:mm:ss a' }}</td>
+            <td>{{ ledger.date }}</td>
             <td>{{ ledger.explanation }}</td>
             <td>{{ ledger.debit }}</td>
             <td>{{ ledger.credit }}</td>
