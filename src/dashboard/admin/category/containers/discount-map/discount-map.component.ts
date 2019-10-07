@@ -37,6 +37,7 @@ export class DiscountMapComponent implements OnInit {
   onDiscountMapUpdate(event) {
     const startDate = this.makeDateString(event.startDate);
     const endDate = this.makeDateString(event.endDate);
+    console.log(startDate, ' :' + endDate);
     // event.endDate.year + '-' + event.endDate.month + '-' + event.endDate.day;
     this.categoryService
       .updateAdminDiscountMap(

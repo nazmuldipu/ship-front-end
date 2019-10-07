@@ -1,5 +1,7 @@
 <ticket-sukantababu-print *ngIf="ticket && ticket.ship.shipName == 'SUKANTO_BABU'" [ticket]="ticket" (close)="onTicketClose()">
 </ticket-sukantababu-print>
+<tiket-baycruise-print *ngIf="ticket && ticket.ship.shipName == 'BAY_CRUISE'" [ticket]="ticket" (close)="onTicketClose()">
+</tiket-baycruise-print>
 <div class="container d-print-none" *ngIf="!ticket">
   <div class="row border my-3 p-2">
     <div class="input-group-text btn btn-secondary" (click)="adjustDay(-1)">

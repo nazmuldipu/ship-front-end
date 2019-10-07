@@ -16,7 +16,7 @@ export class HotelReportComponent implements OnInit {
   serviceAdminSellsReportList: Report[] = [];
   total;
 
-  constructor(private reportService: ReportService) {}
+  constructor(private reportService: ReportService) { }
 
   ngOnInit() {
     let date = new Date();
@@ -57,6 +57,8 @@ export class HotelReportComponent implements OnInit {
 
   async getAdminReservationReportByShipId(shipId, { year, month, day }) {
     this.loading = true;
+    month = month < 10 ? '0' + month : month;
+    day = day < 10 ? '0' + day : day;
     const date = `${year}-${month}-${day}`;
     await this.reportService
       .getAdminReservationReportByShipId(date, shipId)
@@ -69,6 +71,8 @@ export class HotelReportComponent implements OnInit {
 
   async getAdminSellsReportByShipId(shipId, { year, month, day }) {
     this.loading = true;
+    month = month < 10 ? '0' + month : month;
+    day = day < 10 ? '0' + day : day;
     const date = `${year}-${month}-${day}`;
     await this.reportService
       .getAdminSellsReportByShipId(date, shipId)

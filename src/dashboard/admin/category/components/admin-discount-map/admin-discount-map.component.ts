@@ -90,9 +90,14 @@ export class AdminDiscountMapComponent implements OnChanges {
   }
 
   makeDateString(date: Date) {
-    const dateString =
-      date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
-    return dateString;
+    const month = date.getMonth() < 9 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1);
+    const day = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
+    return (
+      date.getFullYear() + '-' + month + '-' + day
+    );
+    // const dateString =
+    //   date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate();
+    // return dateString;
   }
 
   onEditDiscount(id) {

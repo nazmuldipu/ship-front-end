@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class UtilService {
-  constructor() {}
+  constructor() { }
 
   // Get String yyyy-MM-dd date list between two dates
   getDatesBetween(startDate: Date, endDate: Date) {
@@ -26,8 +26,10 @@ export class UtilService {
   }
 
   getDateString(date: Date): string {
+    const month = date.getMonth() < 9 ? '0' + (date.getMonth() + 1) : (date.getMonth() + 1);
+    const day = date.getDate() < 10 ? '0' + date.getDate() : date.getDate();
     return (
-      date.getFullYear() + '-' + (date.getMonth() + 1) + '-' + date.getDate()
+      date.getFullYear() + '-' + month + '-' + day
     );
   }
 
@@ -49,13 +51,13 @@ export class UtilService {
         sortOrder = -1;
         property = property.substr(1);
       }
-      return function(a, b) {
+      return function (a, b) {
         var result =
           a[property] < b[property] ? -1 : a[property] > b[property] ? 1 : 0;
         return result * sortOrder;
       };
     } else if (len >= 2) {
-      return function(a, b) {
+      return function (a, b) {
         var i = 0;
         while (i < len) {
           a = a[prop[i]];

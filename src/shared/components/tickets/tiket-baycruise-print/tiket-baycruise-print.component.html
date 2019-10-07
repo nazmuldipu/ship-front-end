@@ -1,3 +1,4 @@
+<!-- {{ticket | json}} -->
 <div class="container-fluid ticket">
   <div class="row m-0">
     <div class="col-md-6 col-6 d-print-none">
@@ -43,15 +44,16 @@
             {{ ticket.user.phoneNumber }}
           </td>
         </tr>
-        <tr>
+        <!-- <tr>
           <td class="text-right">From:</td>
           <td>{{ ticket.ship.startingPoint }}</td>
-        </tr>
+        </tr> -->
         <tr>
           <td colspan="2" style="text-align: center;font-size: 16px;">{{ ticket.ship.startingPoint }} to {{ ticket.ship.droppingPoint }}</td>
         </tr>
         <tr>
-          <td class="text-right">Seats:</td>
+          <td class="text-right">Seats: &nbsp; &nbsp;
+            <br> Total: {{ticket.subBookingList.length}} &nbsp; &nbsp;</td>
           <td>
             <span *ngFor="let sb of ticket.subBookingList; let i = index;">
               <span *ngIf="i==5">
@@ -62,11 +64,11 @@
             </span>
           </td>
         </tr>
-        <tr *ngIf="ticket?.totalDiscount > 0">
+        <tr>
           <td class="text-right">
             Fare:
           </td>
-          <td>{{ ticket.totalFare }}</td>
+          <td> {{ ticket.totalFare }} BDT</td>
         </tr>
         <tr>
           <td class="text-right">Departure:</td>
@@ -103,15 +105,16 @@
             {{ ticket.user.phoneNumber }}
           </td>
         </tr>
-        <tr>
+        <!-- <tr>
           <td class="text-right">From:</td>
           <td>{{ ticket.ship.startingPoint }}</td>
-        </tr>
+        </tr> -->
         <tr>
           <td colspan="2" style="text-align: center;font-size: 16px;">{{ ticket.ship.startingPoint }} to {{ ticket.ship.droppingPoint }}</td>
         </tr>
         <tr>
-          <td class="text-right">Seats:</td>
+          <td class="text-right">Seats: &nbsp; &nbsp;
+            <br> Total: {{ticket.subBookingList.length}} &nbsp; &nbsp;</td>
           <td>
             <span *ngFor="let sb of ticket.subBookingList; let i = index">
               <span *ngIf="i==5">
@@ -123,11 +126,11 @@
             </span>
           </td>
         </tr>
-        <tr *ngIf="ticket?.totalDiscount > 0">
+        <tr>
           <td class="text-right">
             Fare:
           </td>
-          <td>{{ ticket.totalFare }}</td>
+          <td> {{ ticket.totalFare }} BDT</td>
         </tr>
         <tr>
           <td class="text-right">Departure:</td>
@@ -165,15 +168,17 @@
             {{ ticket.user.phoneNumber }}
           </td>
         </tr>
-        <tr>
+        <!-- <tr>
           <td class="text-right">From:</td>
           <td>{{ ticket.ship.startingPoint }}</td>
-        </tr>
+        </tr> -->
         <tr>
           <td colspan="2" style="text-align: center;font-size: 16px;">{{ ticket.ship.startingPoint }} to {{ ticket.ship.droppingPoint }}</td>
         </tr>
         <tr>
-          <td class="text-right">Seats:</td>
+          <td class="text-right">Seats: &nbsp; &nbsp;
+            <br> Total: {{ticket.subBookingList.length}} &nbsp; &nbsp;
+          </td>
           <td>
             <span *ngFor="let sb of ticket.subBookingList; let i = index;">
               <span *ngIf="i==5">
@@ -185,11 +190,11 @@
             </span>
           </td>
         </tr>
-        <tr *ngIf="ticket?.totalDiscount > 0">
+        <tr>
           <td class="text-right">
             Fare:
           </td>
-          <td>{{ ticket.totalFare }}</td>
+          <td> {{ ticket.totalFare }} BDT</td>
         </tr>
         <tr>
           <td class="text-right">Time:</td>
@@ -229,15 +234,17 @@
             {{ ticket.user.phoneNumber }}
           </td>
         </tr>
-        <tr>
+        <!-- <tr>
           <td class="text-right">From:</td>
           <td>{{ ticket.ship.startingPoint }}</td>
-        </tr>
+        </tr> -->
         <tr>
           <td colspan="2" style="text-align: center;font-size: 16px;">{{ ticket.ship.startingPoint }} to {{ ticket.ship.droppingPoint }}</td>
         </tr>
         <tr>
-          <td class="text-right">Seats:</td>
+          <td class="text-right">Seats: &nbsp; &nbsp;
+            <br> Total: {{ticket.subBookingList.length}} &nbsp; &nbsp;</td>
+
           <td>
             <span *ngFor="let sb of ticket.subBookingList">
               <h5 style="display: inline; margin-right: 2px;">
@@ -246,11 +253,11 @@
             </span>
           </td>
         </tr>
-        <tr *ngIf="ticket?.totalDiscount > 0">
+        <tr>
           <td class="text-right">
             Fare:
           </td>
-          <td>{{ ticket.totalFare }}</td>
+          <td> {{ ticket.totalFare }} BDT</td>
         </tr>
         <tr>
           <td class="text-right">Departure:</td>

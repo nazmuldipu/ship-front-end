@@ -16,7 +16,7 @@
   </div>
 
   <div class="row m-0 border" *ngIf="!short && ticket.eStatus == 'SEAT_SOLD'; else shortTicket">
-    <div class="col-md-4 col-4 border-right">
+    <div class="col-md-4 col-4 border-right ticket-col-left">
       <div class="ticket-head">Passenger Copy - {{ ticket.id }}</div>
       <table>
         <tr>
@@ -57,8 +57,12 @@
           </td>
         </tr>
         <tr>
+          <td class="text-right">Total:</td>
+          <td>{{ ticket.subBookingList.length }} Seats</td>
+        </tr>
+        <tr>
           <td class="text-right">
-            Total Fare:
+            Fare:
           </td>
           <td>{{ ticket.totalFare }}</td>
         </tr>
@@ -73,14 +77,14 @@
           </td>
         </tr> -->
         <tr>
-          <td class="text-right">Departure Time:</td>
+          <td class="text-right">Departure:</td>
           <td>
             {{ ticket.ship.startTime }}
           </td>
         </tr>
       </table>
     </div>
-    <div class="col-md-2 col-2 border-right">
+    <div class="col-md-2 col-2 border-right ticket-col-mid">
       <div class="ticket-head">Snacks Coupon - {{ ticket.id }}</div>
       <table>
         <tr>
@@ -107,9 +111,13 @@
             </span>
           </td>
         </tr>
+        <tr>
+          <td class="text-right">Total:</td>
+          <td>{{ ticket.subBookingList.length }} Seats</td>
+        </tr>
       </table>
     </div>
-    <div class="col-md-2 col-2 border-right">
+    <div class="col-md-2 col-2 border-right ticket-col-mid">
       <div class="ticket-head">Launch Coupon - {{ ticket.id }}</div>
       <table>
         <tr>
@@ -136,9 +144,13 @@
             </span>
           </td>
         </tr>
+        <tr>
+          <td class="text-right">Total:</td>
+          <td>{{ ticket.subBookingList.length }} Seats</td>
+        </tr>
       </table>
     </div>
-    <div class="col-md-4 col-4">
+    <div class="col-md-4 col-4 ticket-col-right">
       <div class="ticket-head">POS Copy - {{ ticket.id }}</div>
       <table>
         <tr>
@@ -178,8 +190,12 @@
           </td>
         </tr>
         <tr>
+          <td class="text-right">Total:</td>
+          <td>{{ ticket.subBookingList.length }} Seats</td>
+        </tr>
+        <tr>
           <td class="text-right">
-            Total Fare:
+            Fare:
           </td>
           <td>{{ ticket.totalFare }}</td>
         </tr>
@@ -194,7 +210,7 @@
           </td>
         </tr>-->
         <tr>
-          <td class="text-right">Departure Time:</td>
+          <td class="text-right">Departure:</td>
           <td>
             {{ ticket.ship.startTime }}
           </td>
@@ -245,8 +261,12 @@
           </td>
         </tr>
         <tr>
+          <td class="text-right">Total:</td>
+          <td>{{ ticket.subBookingList.length }} Seats</td>
+        </tr>
+        <tr>
           <td class="text-right">
-            Total Fare:
+            Fare:
           </td>
           <td>{{ ticket.totalFare }}</td>
         </tr>
@@ -261,7 +281,7 @@
           </td>
         </tr> -->
         <tr>
-          <td class="text-right">Departure Time:</td>
+          <td class="text-right">Departure:</td>
           <td>
             {{ ticket.ship.startTime }}
           </td>

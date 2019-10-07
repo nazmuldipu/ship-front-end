@@ -10,26 +10,18 @@
     <div class="col-md-9">
       <div class="row pt-0 px-2 pb-2">
         <div class="border p-2" *ngIf="ship">
-          <admin-category-list
-            [shipId]="ship.id"
-            (back)="onCategoryBack($event)"
-            (category)="onSelectCategory($event)"
-          >
+          <admin-category-list [shipId]="ship.id" (back)="onCategoryBack($event)" (category)="onSelectCategory($event)">
           </admin-category-list>
         </div>
       </div>
       <div class="row">
         <div class="col-md-6 p-2" *ngIf="category">
           <div class="border p-2">
-            <h4><span class="font-weight-light">Seat Form</span></h4>
-            <seat-form
-              *ngIf="ship && category"
-              [ship]="ship"
-              [category]="category"
-              [seat]="seat"
-              (create)="onCreate($event, ship.id)"
-              (update)="onUpdate($event, ship.id, seat.id)"
-            >
+            <h4>
+              <span class="font-weight-light">Seat Form</span>
+            </h4>
+            <seat-form *ngIf="ship && category" [ship]="ship" [category]="category" [seat]="seat" (create)="onCreate($event, ship.id)"
+              (update)="onUpdate($event, ship.id, seat.id)">
             </seat-form>
           </div>
         </div>
@@ -41,7 +33,7 @@
               <strong> {{ category.name }} </strong>
             </h4>
             <div class="row m-0">
-              <div class="col-md-2 col-4 p-1 " *ngFor="let seat of seatList">
+              <div class="col-md-1 col-2 p-0" *ngFor="let seat of seatList">
                 <div class="seat-box" (click)="onSeatClick(seat.id)">
                   {{ seat.seatNumber }}
                 </div>
