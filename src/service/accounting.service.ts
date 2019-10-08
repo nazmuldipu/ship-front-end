@@ -77,8 +77,8 @@ export class AccountingService {
   }
 
   //Add service admin expense
-  addAdminIncome(credit: number, explanation: string) {
-    const pageUrl = `credit=${credit}&explanation=${explanation}&`;
+  addAdminIncome(debit: number, explanation: string) {
+    const pageUrl = `debit=${debit}&explanation=${explanation}&`;
     return this.dataSource.sendRequest(
       RequestMethod.Put,
       this.serviceAdminUrl + `/addIncome`,

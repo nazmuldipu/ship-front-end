@@ -4,11 +4,11 @@
 
 <div class="container-fluid">
   <div class="row">
-    <div class="col-md-3">
+    <div class="col-md-4">
       <service-admin-agent-list [userPage]="userPage" (userId)="onSelectAgent($event)" (page)="getServiceAdminAgents($event)">
       </service-admin-agent-list>
     </div>
-    <div class="col-md-6" *ngIf="shipAgentLedgerPage">
+    <div class="col-md-5" *ngIf="shipAgentLedgerPage">
       <h4>{{user?.name}} Ledger book</h4>
       <table class="table border table-responsive-sm">
         <thead>
