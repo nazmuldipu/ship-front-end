@@ -1,5 +1,7 @@
-<ticket-sukantababu-print *ngIf="ticket && ticket.ship.shipName == 'SUKANTO_BABU'" [ticket]="ticket" (close)="onTicketClose()">
+<ticket-sukantababu-print *ngIf="ticket && ticket.ship?.shipName == 'SUKANTO_BABU'" [ticket]="ticket" (close)="onTicketClose()">
 </ticket-sukantababu-print>
+<tiket-baycruise-print *ngIf="ticket && ticket.ship?.shipName == 'BAY_CRUISE'" [ticket]="ticket" (close)="onTicketClose()">
+</tiket-baycruise-print>
 <div class="container d-print-none" *ngIf="!ticket">
   <div class="row border my-2 p-2">
     <div class="input-group-text btn btn-secondary" (click)="adjustDay(-1)">
@@ -76,10 +78,11 @@
                 </span>
               </div>
 
-              <seat-plan-other *ngIf="ship.shipName =='BAY_CRUISE'" [filteredSeatList]="filteredSeatList" [selectedSeat]="selectedSeat"
-                [categoryName]="category?.name" (select)="onSeatClick($event)">
+              <seat-plan-other *ngIf="ship.shipName =='OTHER'" [filteredSeatList]="filteredSeatList" [selectedSeat]="selectedSeat" [categoryName]="category?.name"
+                (select)="onSeatClick($event)">
               </seat-plan-other>
-
+              <seat-plan-bay-cruiser *ngIf="ship.shipName=='BAY_CRUISE'" [filteredSeatList]="filteredSeatList" [selectedSeat]="selectedSeat"
+                [categoryName]="category?.name" (select)="onSeatClick($event)"></seat-plan-bay-cruiser>
               <seat-plan-sukanto *ngIf="ship.shipName=='SUKANTO_BABU'" [filteredSeatList]="filteredSeatList" [selectedSeat]="selectedSeat"
                 [categoryName]="category?.name" (select)="onSeatClick($event)"></seat-plan-sukanto>
 

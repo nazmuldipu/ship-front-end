@@ -23,7 +23,7 @@
       </div>
     </div>
     <div class="col p-0" *ngIf="ticket">
-      <ticket-sukantababu-print *ngIf="ticket && ticket.ship.shipName == 'SUKANTO_BABU'" [ticket]="ticket" (close)="onTicketClose()">
+      <ticket-sukantababu-print *ngIf="ticket && ticket.ship?.shipName == 'SUKANTO_BABU'" [ticket]="ticket" (close)="onTicketClose()">
       </ticket-sukantababu-print>
       <div class="d-flex flex-row-reverse bd-highlight my-2">
         <button class="btn btn-danger btn-sm" (click)="onCancelBooking(ticket.id)">

@@ -138,6 +138,7 @@ export class SellComponent implements OnInit {
   closeDetails() {
     this.detailsId = null;
     this.seatList = [];
+    this.selectedSeat = []
     this.filteredSeatList = [];
   }
 

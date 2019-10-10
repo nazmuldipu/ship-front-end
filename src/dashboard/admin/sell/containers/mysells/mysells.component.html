@@ -19,7 +19,7 @@
     <div class="col p-0">
       <ticket-sukantababu-print *ngIf="ticket && (ticket.ship?.shipName == 'SUKANTO_BABU')" [ticket]="ticket" (close)="onTicketClose()">
       </ticket-sukantababu-print>
-      <tiket-baycruise-print *ngIf="ticket && (ticket.ship.shipName == 'BAY_CRUISE')" [ticket]="ticket" (close)="onTicketClose()">
+      <tiket-baycruise-print *ngIf="ticket && (ticket.ship?.shipName == 'BAY_CRUISE')" [ticket]="ticket" (close)="onTicketClose()">
       </tiket-baycruise-print>
 
     </div>

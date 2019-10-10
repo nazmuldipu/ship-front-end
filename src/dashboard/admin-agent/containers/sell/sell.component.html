@@ -75,8 +75,14 @@
                   </button>
                 </span>
               </div>
-
-              <div class="row border m-1" style="border-radius: 3px 3px 0px 0px; ">
+              <seat-plan-other *ngIf="ship.shipName =='OTHER'" [filteredSeatList]="filteredSeatList" [selectedSeat]="selectedSeat" [categoryName]="category?.name"
+                (select)="onSeatClick($event)">
+              </seat-plan-other>
+              <seat-plan-bay-cruiser *ngIf="ship.shipName=='BAY_CRUISE'" [filteredSeatList]="filteredSeatList" [selectedSeat]="selectedSeat"
+                [categoryName]="category?.name" (select)="onSeatClick($event)"></seat-plan-bay-cruiser>
+              <seat-plan-sukanto *ngIf="ship.shipName=='SUKANTO_BABU'" [filteredSeatList]="filteredSeatList" [selectedSeat]="selectedSeat"
+                [categoryName]="category?.name" (select)="onSeatClick($event)"></seat-plan-sukanto>
+              <!-- <div class="row border m-1" style="border-radius: 3px 3px 0px 0px; ">
                 <div class="col-12 bg-secondary text-white" style="border-radius: 3px 3px 0px 0px; ">
                   Seat list for
                   <strong> {{ category?.name }} </strong>
@@ -89,7 +95,7 @@
                     {{ seat.seatNumber }}
                   </div>
                 </div>
-              </div>
+              </div> -->
             </div>
             <div class="col-md-6 mb-3">
               <!-- <div

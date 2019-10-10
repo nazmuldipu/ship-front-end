@@ -69,7 +69,7 @@
     </div>
 
     <div class="col-md-5" *ngIf="ticket">
-      <ticket-sukantababu-print *ngIf="ticket && ticket.ship.shipName == 'SUKANTO_BABU'" [ticket]="ticket" [short]="shortTicket"
+      <ticket-sukantababu-print *ngIf="ticket && ticket.ship?.shipName == 'SUKANTO_BABU'" [ticket]="ticket" [short]="shortTicket"
         (close)="onTicketClose()">
       </ticket-sukantababu-print>
       <div class="d-flex flex-row-reverse bd-highlight my-2">

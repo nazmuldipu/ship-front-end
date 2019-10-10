@@ -36,5 +36,16 @@ LCT kajol
 
 Accounts:
 Sukantababu -> Farhan Express Tourism -> 01814344256 -> sayed509
-Bay cruiser -> Bahadur Hossain -> 01779 181872
+Bay cruiser -> Bahadur Hossain -> 01779181872 -> bahadur69
 Kajol
+
+Hasnahena  1400   100 => Total seat 90 -> extra 3
+Rajanigandha  1300  => Total Seat 102
+Krishnachura    1600 => Total Seat 57
+
+
+Oceania Tours & Travels	01820248205	400		-> BDT 6,400.00
+Eureka Tours & Service	01614100700	400		-> BDT 15,200.00
+Sundrop Tours & Travels	01615153036	400	sundrop3036@gmail.com
+
+bug1: service agent -> cancel ticket -> accounting problem -> money is not getting back

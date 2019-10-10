@@ -11,9 +11,9 @@ export const environment = {
 
   PROTOCOL: 'http',
   PORT: ':8081',
-  // SERVER: '192.168.0.10',
+  SERVER: '192.168.0.10',
   // SERVER: 'localhost',
-  SERVER: '172.104.47.134',
+  // SERVER: '172.104.47.134',
 
   client_id: 'ship_client',
   client_secret: 'ship_secret',
