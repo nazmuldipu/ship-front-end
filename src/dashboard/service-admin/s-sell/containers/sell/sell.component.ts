@@ -175,7 +175,7 @@ export class SellComponent implements OnInit {
     );
     let booking: Booking = new Booking(user, subbookingList);
     if (this.discount > 0) {
-      booking.totalDiscount = this.discount;
+      booking.bookingDiscount = this.discount;
     }
 
     booking.eStatus = this.mode as SeatStatus;

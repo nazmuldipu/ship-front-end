@@ -152,11 +152,22 @@ export class BookingService {
     );
   }
 
-  cancelServiceAdminReservationSeat(seatId: number, bookingId: number): Observable<any> {
-    const param = `bookingId=${bookingId}&`;
+  cancelServiceAdminReservationSeats(seatIds: number[], bookingId: number): Observable<any> {
+    const param = `seatIds=${seatIds}&`;
     return this.dataSource.sendRequest(
       RequestMethod.Delete,
-      this.serviceServiceAdminUrl + `/cancelReservationSeat/${seatId}`,
+      this.serviceServiceAdminUrl + `/cancelReservationSeats/${bookingId}`,
+      null,
+      true,
+      param
+    );
+  }
+
+  cancelServiceAdminBookingSeats(seatIds: number[], bookingId: number): Observable<any> {
+    const param = `seatIds=${seatIds}&`;
+    return this.dataSource.sendRequest(
+      RequestMethod.Delete,
+      this.serviceServiceAdminUrl + `/cancelBookingSeats/${bookingId}`,
       null,
       true,
       param

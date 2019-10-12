@@ -19,6 +19,7 @@ export class Booking {
   refBy: string;
   shipName: string;
   categoryName: string;
+  bookingDiscount: number;
   totalFare: number;
   totalDiscount: number;
   totalCommission: number;
@@ -50,7 +51,7 @@ export class BookingPage {
     public sort?: Sort[],
     public totalElements?: number,
     public totalPages?: number
-  ) {}
+  ) { }
 }
 
 export class SubBooking {

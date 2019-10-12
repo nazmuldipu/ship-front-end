@@ -93,8 +93,19 @@ export class CancelReservationComponent implements OnInit {
 
   onSeatClick(id: number) {
     const value: SeatStatusList = this.filteredSeatList.find(fs => fs.id == id);
-    if (value.status == 'SEAT_RESERVED') {
-      this.reservationDetails = { bookingId: value.bookingId, seatId: value.id, seatNumber: value.seatNumber, date: this.makeDateString(this.dd) }
+    if (value.status == 'SEAT_RESERVED' || value.status == 'SEAT_SOLD') {
+      if (this.reservationDetails && this.reservationDetails.bookingId == value.bookingId) {
+        if (!this.reservationDetails.seatIds.includes(value.id)) {
+          this.reservationDetails.seatIds.push(value.id);
+          this.reservationDetails.seatNumbers.push(value.seatNumber);
+        } else {
+          this.reservationDetails.seatIds.splice(this.reservationDetails.seatIds.findIndex(s => s == value.id), 1);
+          this.reservationDetails.seatNumbers.splice(this.reservationDetails.seatNumbers.findIndex(s => s == value.seatNumber), 1);
+        }
+      } else {
+        this.reservationDetails = { bookingId: value.bookingId, seatIds: [value.id], seatNumbers: [value.seatNumber], date: this.makeDateString(this.dd), status: value.status }
+      }
+
     } else {
       this.onClear();
     }
@@ -104,16 +115,26 @@ export class CancelReservationComponent implements OnInit {
     this.reservationDetails = null;
   }
 
-  onCancelservation(seatId, bookingId, seatNumber) {
+  onCancel(seatIds: number[], bookingId, seatNumber) {
+    console.log(seatIds, bookingId, seatNumber)
     if (this.reservationDetails) {
       if (confirm('Are you sure to clear reservation for seat number : ' + seatNumber)) {
         console.log(this.reservationDetails);
-        this.bookingService.cancelServiceAdminReservationSeat(seatId, bookingId).subscribe(data => {
-          console.log(data);
-          console.log("done")
-          this.onClear();
-          this.onDateChange();
-        })
+        if (this.reservationDetails.status == "SEAT_RESERVED") {
+          this.bookingService.cancelServiceAdminReservationSeats(seatIds, bookingId).subscribe(data => {
+            console.log(data);
+            console.log("Reservation cancele done")
+            this.onClear();
+            this.onDateChange();
+          });
+        } else if (this.reservationDetails.status == "SEAT_SOLD") {
+          this.bookingService.cancelServiceAdminBookingSeats(seatIds, bookingId).subscribe(data => {
+            console.log(data);
+            console.log("Booking cancel done")
+            this.onClear();
+            this.onDateChange();
+          });
+        }
       }
     }
   }

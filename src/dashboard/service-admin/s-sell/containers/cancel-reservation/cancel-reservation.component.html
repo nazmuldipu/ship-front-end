@@ -71,7 +71,8 @@
     </div>
 
     <div class="col-md-5" *ngIf="reservationDetails">
-      <h4 class="mb-4">Reservation details</h4>
+      <h4 class="mb-4">{{ reservationDetails.status == 'SEAT_RESERVED' ? 'Reservation' : 'Booking' }} details</h4>
+      {{reservationDetails | json}}
       <table class="table table-bordered table-hover table-responsive-sm mt-4 ">
         <tr>
           <td>Date</td>
@@ -82,17 +83,22 @@
           <th>{{reservationDetails.bookingId}}</th>
         </tr>
         <tr>
-          <td>Seat Number</td>
-          <th>{{reservationDetails.seatNumber}}</th>
+          <td>Seat Numbers</td>
+          <th>
+            <span *ngFor="let seatNumber of reservationDetails.seatNumbers">{{seatNumber}}, </span>
+          </th>
         </tr>
 
       </table>
       <div class="d-flex flex-row-reverse bd-highlight my-2  d-print-none">
-        <button class="btn btn-danger btn-sm mx-1" (click)="onCancelservation(reservationDetails.seatId, reservationDetails.bookingId, reservationDetails.seatNumber)">
-          Cancel Reservation
+        <button class="btn btn-sm mx-1" [ngClass]="{
+          'btn-warning': reservationDetails.status == 'SEAT_RESERVED',
+          'btn-danger': reservationDetails.status == 'SEAT_SOLD'
+        }" (click)="onCancel(reservationDetails.seatIds, reservationDetails.bookingId, reservationDetails.seatNumbers)">
+          <i class="fa fa-eraser"></i> Cancel {{ reservationDetails.status == 'SEAT_RESERVED' ? 'Reservation' : 'Booking' }}
         </button>
-        <button class="btn btn-sm btn-warning mx-1" (click)="onClear()">
-          Clear
+        <button class="btn btn-sm btn-success mx-1" (click)="onClear()">
+          <i class="fa fa-window-close-o"></i> Close
         </button>
       </div>
     </div>
