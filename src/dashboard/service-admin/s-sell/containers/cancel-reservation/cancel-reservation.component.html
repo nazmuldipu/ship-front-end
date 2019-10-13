@@ -72,7 +72,7 @@
 
     <div class="col-md-5" *ngIf="reservationDetails">
       <h4 class="mb-4">{{ reservationDetails.status == 'SEAT_RESERVED' ? 'Reservation' : 'Booking' }} details</h4>
-      {{reservationDetails | json}}
+
       <table class="table table-bordered table-hover table-responsive-sm mt-4 ">
         <tr>
           <td>Date</td>
