@@ -14,10 +14,6 @@ export class SeatPlanBayCruiserComponent {
 
   @Output() select = new EventEmitter<number>();
 
-  constructor() {
-    console.log("OH hea")
-  }
-
   onSeatClick(seatId) {
     this.select.emit(seatId);
   }

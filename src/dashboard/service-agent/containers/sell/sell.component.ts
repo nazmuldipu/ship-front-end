@@ -113,16 +113,18 @@ export class SellComponent implements OnInit {
         this.seatList = data;
         this.seatLoading = false;
         this.categoryList = [];
-        this.seatList.forEach(s => {
-          const cat: Category = s.category;
-          const c = this.categoryList.find(ct => ct.id == cat.id);
-          if (!c) {
-            this.categoryList.push(cat);
-          }
-        });
-        this.onSelectCategory(
-          this.categoryList[this.categoryList.length - 1].id
-        );
+        if (this.seatList.length > 0) {
+          this.seatList.forEach(s => {
+            const cat: Category = s.category;
+            const c = this.categoryList.find(ct => ct.id == cat.id);
+            if (!c) {
+              this.categoryList.push(cat);
+            }
+          });
+          this.onSelectCategory(
+            this.categoryList[this.categoryList.length - 1].id
+          );
+        }
       });
   }
 

@@ -6,8 +6,10 @@ import { AddShipFormComponent } from './components/add-ship-form/add-ship-form.c
 import { AddComponent } from './containers/add/add.component';
 import { DetailsComponent } from './containers/details/details.component';
 import { ListComponent } from './containers/list/list.component';
+import { ShipMapComponent } from './containers/ship-map/ship-map.component';
 
 export const ROUTES: Routes = [
+  { path: 'shipMap', component: ShipMapComponent },
   { path: 'add', component: AddComponent },
   { path: 'add/:id', component: AddComponent },
   { path: ':id', component: DetailsComponent },
@@ -22,8 +24,9 @@ export const ROUTES: Routes = [
     AddComponent,
     DetailsComponent,
     ListComponent,
-    AddShipFormComponent
+    AddShipFormComponent,
+    ShipMapComponent
   ],
   imports: [AdminSharedModule, RouterModule.forChild(ROUTES)]
 })
-export class ShipsModule {}
+export class ShipsModule { }

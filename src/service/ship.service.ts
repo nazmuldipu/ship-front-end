@@ -59,6 +59,16 @@ export class ShipService {
     );
   }
 
+  getAdminShipMap(shipId: number, startDate: string, endDate: string) {
+    const param = `startDate=${startDate}&endDate=${endDate}&`;
+    return this.dataSource.sendRequest(RequestMethod.Get, this.serviceAdminUrl + `/shipMap/${shipId}`, null, true, param);
+  }
+
+  updateAdminShipMap(shipId: number, date: string, value: boolean) {
+    const param = `date=${date}&value=${value}&`;
+    return this.dataSource.sendRequest(RequestMethod.Put, this.serviceAdminUrl + `/updateMap/${shipId}`, null, true, param);
+  }
+
   // ****************************** ADMIN AGENT MODULES ***************************
   getAdminAgentShips(page: number = null): Observable<ShipPage> {
     const param = page === null ? '' : `page=${page}&`;
