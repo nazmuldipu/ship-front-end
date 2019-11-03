@@ -72,6 +72,8 @@
       <ticket-sukantababu-print *ngIf="ticket && ticket.ship?.shipName == 'SUKANTO_BABU'" [ticket]="ticket" [short]="shortTicket"
         (close)="onTicketClose()">
       </ticket-sukantababu-print>
+      <tiket-baycruise-print *ngIf="ticket && ticket.ship?.shipName == 'BAY_CRUISE'" [ticket]="ticket" [short]="shortTicket" (close)="onTicketClose()">
+      </tiket-baycruise-print>
       <div class="d-flex flex-row-reverse bd-highlight my-2">
         <button class="btn btn-danger btn-sm mx-1" (click)="onCancelBooking(ticket.id, ticket.eStatus)">
           Cancel {{ ticket.eStatus == 'SEAT_RESERVED' ? 'Reservation' : 'Booking' }}
