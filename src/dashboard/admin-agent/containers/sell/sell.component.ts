@@ -62,9 +62,13 @@ export class SellComponent implements OnInit {
     };
     this.maxDate = {
       year: date.getFullYear(),
-      month: date.getMonth() + 2, //Maximum 1 month from now
+      month: date.getMonth() + 3, //Maximum 2 month from now
       day: date.getDate()
     };
+    if (this.maxDate.month > 12) {
+      this.maxDate.year += 1;
+      this.maxDate.month -= 12;
+    }
   }
   adjustDay(day) {
     let date = new Date(this.dd.year, this.dd.month - 1, this.dd.day + day);
