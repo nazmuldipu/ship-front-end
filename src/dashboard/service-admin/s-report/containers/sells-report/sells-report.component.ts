@@ -89,20 +89,23 @@ export class SellsReportComponent implements OnInit {
     this.soldBy = new Map<string, number>();
     this.serviceAdminSellsReportList.forEach(sb => {
       this.total.totalrent += sb.price;
-      switch (sb.bookingStatus) {
-        case 'SEAT_SOLD':
-          this.total.totalSold += sb.seatNumbers.length;
-          break;
-        case null:
-          this.total.totalUnsold += sb.seatNumbers.length;
-          break;
-        case 'SEAT_RESERVED':
-          this.total.totalReserved += sb.seatNumbers.length;
-          break;
+      if (sb.seatNumbers) {
+        switch (sb.bookingStatus) {
+          case 'SEAT_SOLD':
+            this.total.totalSold += sb.seatNumbers.length;
+            break;
+          case null:
+            this.total.totalUnsold += sb.seatNumbers.length;
+            break;
+          case 'SEAT_RESERVED':
+            this.total.totalReserved += sb.seatNumbers.length;
+            break;
+        }
+        if (sb.soldBy) {
+          this.soldBy.set(sb.soldBy, this.soldBy.get(sb.soldBy) ? this.soldBy.get(sb.soldBy) + sb.seatNumbers.length : sb.seatNumbers.length);
+        }
       }
-      if (sb.soldBy) {
-        this.soldBy.set(sb.soldBy, this.soldBy.get(sb.soldBy) ? this.soldBy.get(sb.soldBy) + sb.seatNumbers.length : sb.seatNumbers.length);
-      }
+
     });
   }
 
