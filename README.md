@@ -51,3 +51,6 @@ Eureka Tours & Service	01614100700	400		-> BDT 15,200.00
 Sundrop Tours & Travels	01615153036	400	sundrop3036@gmail.com
 
 bug1: service agent -> cancel ticket -> accounting problem -> money is not getting back
+
+update 20191107:
+    1) counter report for ship admin
