@@ -17,8 +17,8 @@
                   Date :
                 </div>
               </div>
-              <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="dd" ngbDatepicker
-                #date="ngbDatepicker" (dateSelect)="onDateChange()" (click)="date.toggle()" />
+              <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="dd" ngbDatepicker #date="ngbDatepicker" (dateSelect)="onDateChange()"
+                (click)="date.toggle()" />
               <div class="input-group-append" (click)="date.toggle()">
                 <div class="input-group-text">
                   <i class="fa fa-calendar"></i>
@@ -95,6 +95,7 @@
               <td></td>
               <td></td>
               <td></td>
+              <td></td>
               <td>TOTAL</td>
               <td>{{ total.totalrent }}</td>
               <td></td>
@@ -104,69 +105,6 @@
             </tr>
           </tfoot>
         </table>
-
-        <!-- <table class="table table-bordered table-hover table-responsive-sm">
-          <thead>
-            <tr>
-              <th>Sl.</th>
-              <th *ngIf="reportType == 'Reservation'">Seat</th>
-              <th>Ticket no.</th>
-              <th>Booking Date</th>
-              <th>Journey Date</th>
-              <th>Passenger Info</th>
-              <th>Seats</th>
-              <th>Price</th>
-              <th>Route</th>
-              <th>Sold By</th>
-              <th>Status</th>
-              <th>Paid</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let report of reportList; index as i">
-              <td>{{ i + 1 }}</td>
-              <th *ngIf="reportType == 'Reservation'">
-                <span *ngFor="let seat of report.seatNumbers">
-                  {{ seat }}
-                </span>
-              </th>
-              <td>{{ report.bookingId }}</td>
-              <td>{{ report.bookingDate | date: 'MMM d, y, h:mm:ss a' }}</td>
-              <td>{{ report.journeyDate | date }}</td>
-              <td>{{ report.customerName }} - {{ report.customerPhone }}</td>
-              <td>
-                <span *ngFor="let seat of report.seatNumbers">{{ seat }},
-                </span>
-              </td>
-              <td>{{ report.price }}</td>
-              <td>{{ report.shipNumber }} - {{ report.routes }}</td>
-              <td>{{ report.soldBy }}</td>
-              <td>{{ report.bookingStatus }}</td>
-              <td [ngClass]="{
-                  'bg-success': report.paid,
-                  'bg-warning': !report.paid && report.bookingId
-                }">
-                {{ report.paid ? 'Paid' : '' }} {{ !report.paid && report.bookingId ? 'Unpaid' : '' }}
-              </td>
-            </tr>
-          </tbody>
-          <tfoot>
-            <tr>
-              <td></td>
-              <td *ngIf="reportType == 'Reservation'"></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td>TOTAL</td>
-              <td>{{ total.totalrent }}</td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-          </tfoot>
-        </table> -->
 
         <div class="row">
           <div class="col-md-6 col-6">
@@ -212,6 +150,6 @@
           <i class="fa fa-frown-o"></i> No record yet</h4>
       </ng-template>
     </div>
-    
+
   </div>
 </div>

@@ -17,7 +17,7 @@ export class CounterReportComponent implements OnInit {
   total: any;
   soldBy: Map<string, number> = new Map<string, number>();
 
-  constructor(private reportService: ReportService) {}
+  constructor(private reportService: ReportService) { }
 
   ngOnInit() {
     let date = new Date();
@@ -34,10 +34,10 @@ export class CounterReportComponent implements OnInit {
     // this.getServiceAdminReservationReportByShipId(this.ship.id, this.dd);
   }
 
-  onDateChange(){
+  onDateChange() {
     this.getServiceAdminReservationReportByShipId(this.ship.id, this.dd);
   }
-  
+
   async getServiceAdminReservationReportByShipId(shipId, { year, month, day }) {
     this.loading = true;
     month = month < 10 ? "0" + month : month;
@@ -62,19 +62,19 @@ export class CounterReportComponent implements OnInit {
       totalReserved: 0
     };
     this.soldBy = new Map<string, number>();
-
+    this.sumReportList = [];
     this.reportList.forEach(sb => {
       //count counter bookings
       const value = this.sumReportList.find(srl => srl.bookingId == sb.bookingId);
-      if(value && value.bookingId){
-        sb.seatNumbers.forEach(sn =>{
+      if (value && value.bookingId) {
+        sb.seatNumbers.forEach(sn => {
           value.seatNumbers.push(sn)
         })
         this.sumReportList.splice(this.sumReportList.findIndex(sbb => sbb.bookingId == sb.bookingId), 1, value);
-      } else if(sb.bookingId != null){
+      } else if (sb.bookingId != null) {
         this.sumReportList.push(sb);
       }
-      
+
       this.total.totalrent += sb.price; //calculate total Price
       if (sb.seatNumbers) { //if booking contain any seat
         switch (sb.bookingStatus) { //distinc count sold, reserved and unsold seat
