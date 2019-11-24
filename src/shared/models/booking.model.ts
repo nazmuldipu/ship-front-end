@@ -63,6 +63,7 @@ export class SubBooking {
     this.commission = 0;
     this.payablePrice = this.fare - this.discount;
     this.seat = seat;
+    this.categoryId = seat.category.id;
   }
 
   date: Date;
@@ -73,6 +74,7 @@ export class SubBooking {
   payablePrice: number;
   paid: boolean;
   seat: Seat;
+  categoryId: number
 }
 
 export enum SeatStatus {

@@ -10,12 +10,12 @@ export const environment = {
   SERVER: 'shipapi.hotelswave.com',
 
   // PROTOCOL: 'http',
-  // PORT: ':8081',
-  // SERVER: '172.104.47.134',
+  // PORT: '',
+  // SERVER: '128.199.209.219',
 
   // PROTOCOL: 'http',
   // PORT: ':8081',
-  // SERVER: '192.168.0.10',
+  // SERVER: '192.168.31.198',
 
   // SERVER: 'localhost',
   // SERVER: '172.104.47.134',

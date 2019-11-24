@@ -171,6 +171,8 @@ export class SellComponent implements OnInit {
       this.selectedSeat
     );
     let booking: Booking = new Booking(user, subbookingList);
+    const ship = this.ships.find(s => s.id == this.detailsId);
+    booking.ship = ship;
     booking.eStatus = this.mode as SeatStatus;
     this.dataSending = true;
     this.message = 'Sending data to server';
