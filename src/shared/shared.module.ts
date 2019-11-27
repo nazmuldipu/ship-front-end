@@ -17,6 +17,9 @@ import { SeatPlanBayCruiserComponent } from './components/seat-plans/seat-plan-b
 import { FooterComponent } from './footer/footer.component';
 import { TicketSukantababuPrintComponent } from './components/tickets/ticket-sukantababu-print/ticket-sukantababu-print.component';
 import { TiketBaycruisePrintComponent } from './components/tickets/tiket-baycruise-print/tiket-baycruise-print.component';
+import { SeatStatusBayCruiserComponent } from './components/seat-status/seat-status-bay-cruiser/seat-status-bay-cruiser.component';
+import { SeatStatusOtherComponent } from './components/seat-status/seat-status-other/seat-status-other.component';
+import { SeatStatusSukantoComponent } from './components/seat-status/seat-status-sukanto/seat-status-sukanto.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +34,10 @@ import { TiketBaycruisePrintComponent } from './components/tickets/tiket-baycrui
     SeatPlanBayCruiserComponent,
     FooterComponent,
     TicketSukantababuPrintComponent,
-    TiketBaycruisePrintComponent
+    TiketBaycruisePrintComponent,
+    SeatStatusBayCruiserComponent,
+    SeatStatusOtherComponent,
+    SeatStatusSukantoComponent
   ],
   imports: [
     CommonModule,
@@ -59,7 +65,10 @@ import { TiketBaycruisePrintComponent } from './components/tickets/tiket-baycrui
     FooterComponent,
     SeatPlanSukantoComponent,
     SeatPlanOtherComponent,
-    SeatPlanBayCruiserComponent
+    SeatPlanBayCruiserComponent,
+    SeatStatusBayCruiserComponent,
+    SeatStatusOtherComponent,
+    SeatStatusSukantoComponent
   ]
 })
 export class SharedModule { }

@@ -32,11 +32,16 @@
         </span>
       </div>
       <div class="row">
-        <div class="col-12 bg-secondary text-white" style="border-radius: 3px 3px 0px 0px; ">
-          Seat status for
-          <strong> {{ category }} </strong>
+        <div class="col-12 p-0">
+          <!-- <seat-status-other *ngIf="ship.shipName =='OTHER'" [filteredSeatList]="filteredSeatList" [categoryName]="category"
+                (select)="onSeatClick($event)"> 
+        </seat-status-other>-->
+          <seat-status-bay-cruiser *ngIf="ship.shipName=='BAY_CRUISE'" [filteredSeatList]="filteredSeatList" [categoryName]="category"
+            (select)="onSeatClick($event)"></seat-status-bay-cruiser>
+          <seat-status-sukanto *ngIf="ship.shipName=='SUKANTO_BABU'" [filteredSeatList]="filteredSeatList" [categoryName]="category"
+            (select)="onSeatClick($event)"></seat-status-sukanto>
         </div>
-        <div class="col-md-1 col-2 p-1 " *ngFor="let seat of filteredSeatList">
+        <!-- <div class="col-md-1 col-2 p-1 " *ngFor="let seat of filteredSeatList">
           <div class="seat-box" [ngClass]="{
               sold: seat.status == 'SEAT_SOLD',
               blocked: seat.status == 'SEAT_BLOCKED',
@@ -44,7 +49,7 @@
             }" (click)="onSeatClick(seat.id)">
             {{ seat.seatNumber }}
           </div>
-        </div>
+        </div> -->
         <div class="col-12">
           <div class="row border py-3 mt-3" *ngIf="filteredSeatList?.length">
             <div class="col-3">

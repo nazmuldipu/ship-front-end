@@ -1,0 +1,77 @@
+.seat{
+    flex: 0 0 14.2857%;
+    max-width: 14.2857%;
+    padding: 2px 4px;
+    &-box {
+        border: 1px solid black;
+        border-radius: 4px;
+        cursor: pointer;
+        padding: 2px;
+        font-size: 12px;
+        text-align: center;
+        &:hover {
+            background-color: lightgrey;
+            color: black;
+        }
+            
+        &.sold {
+            border: 1px solid red;
+            background-color: red;
+            color: white;
+          }
+          &.reserved {
+            border: 1px solid #ffc107;
+            background-color: #ffc107;
+          }
+          &.blocked {
+            border: 1px solid lightgrey;
+            background-color: lightgrey;
+            color: white;
+          }
+        
+    }
+}
+
+.seat2{
+    flex: 0 0 10%;
+    max-width: 10%;
+    padding: 1px 4px;
+    &-box {
+        border: 1px solid black;
+        border-radius: 4px;
+        cursor: pointer;
+        padding: 2px;
+        font-size: 12px;
+        text-align: center;
+        &:hover {
+            background-color: lightgrey;
+            color: black;
+        }
+            
+        &.disabled {
+            background-color: gray !important;
+            color: white;
+            cursor: not-allowed;
+        }
+          &.sold {
+            border: 1px solid red;
+            background-color: red;
+            color: white;
+          }
+          &.reserved {
+            border: 1px solid #ffc107;
+            background-color: #ffc107;
+          }
+          &.blocked {
+            border: 1px solid lightgrey;
+            background-color: lightgrey;
+            color: white;
+          }
+        
+    }
+}
+
+.selected {
+    background-color: lightblue;
+    color: white;
+} 

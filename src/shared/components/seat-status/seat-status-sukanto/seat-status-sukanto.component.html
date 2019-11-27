@@ -1,0 +1,1009 @@
+<!-- Sukanto Babu Open deck seat plan -->
+<div class="row border m-1" style="border-radius: 3px 3px 0px 0px; " *ngIf="categoryName == 'Open Deck'">
+  <div class="col-12 bg-secondary text-white" style="border-radius: 3px 3px 0px 0px; ">
+    Seat list for
+    <strong> {{ categoryName }} </strong>
+  </div>
+  <div class="seat" *ngFor="let seat of filteredSeatList">
+    <div class="seat-box" [ngClass]="{
+      sold: seat.status == 'SEAT_SOLD',
+      blocked: seat.status == 'SEAT_BLOCKED',
+      reserved: seat.status == 'SEAT_RESERVED'
+    }" (click)="onSeatClick(seat.id)">
+      {{ seat.seatNumber }}
+    </div>
+  </div>
+</div>
+
+<!-- Sukanto Babu Main deck seat plan -->
+<div class="row border m-1" style="border-radius: 3px 3px 0px 0px; " *ngIf="categoryName == 'Main Deck'">
+  <div class="col-12 bg-secondary text-white" style="border-radius: 3px 3px 0px 0px; ">
+    Seat list for
+    <strong> {{ categoryName }} </strong>
+  </div>
+  <div class="col-12">
+    <div class="row">
+      <div class="seat2">
+        <div class="seat2-box" [ngClass]="{
+          sold: filteredSeatList[0].status == 'SEAT_SOLD',
+          blocked: filteredSeatList[0].status == 'SEAT_BLOCKED',
+          reserved: filteredSeatList[0].status == 'SEAT_RESERVED'
+        }" (click)="onSeatClick(filteredSeatList[0]?.id)" *ngIf="filteredSeatList.length > 0">
+          {{ filteredSeatList[0]?.seatNumber }}
+        </div>
+      </div>
+      <div class="seat2"></div>
+      <div class="seat2"></div>
+      <div class="seat2"></div>
+      <div class="seat2">
+        <div class="seat2-box" [ngClass]="{
+          sold: filteredSeatList[44].status == 'SEAT_SOLD',
+          blocked: filteredSeatList[44].status == 'SEAT_BLOCKED',
+          reserved: filteredSeatList[44].status == 'SEAT_RESERVED'
+        }" (click)="onSeatClick(filteredSeatList[44]?.id)" *ngIf="filteredSeatList.length > 44">
+          {{ filteredSeatList[44]?.seatNumber }}
+        </div>
+      </div>
+      <div class="seat2">
+        <div class="seat2-box" [ngClass]="{
+          sold: filteredSeatList[45].status == 'SEAT_SOLD',
+          blocked: filteredSeatList[45].status == 'SEAT_BLOCKED',
+          reserved: filteredSeatList[45].status == 'SEAT_RESERVED'
+        }" (click)="onSeatClick(filteredSeatList[45]?.id)" *ngIf="filteredSeatList.length > 45">
+          {{ filteredSeatList[45]?.seatNumber }}
+        </div>
+      </div>
+      <div class="seat2"></div>
+      <div class="seat2"></div>
+      <div class="seat2"></div>
+      <div class="seat2">
+        <div class="seat2-box" [ngClass]="{
+          sold: filteredSeatList[89].status == 'SEAT_SOLD',
+          blocked: filteredSeatList[89].status == 'SEAT_BLOCKED',
+          reserved: filteredSeatList[89].status == 'SEAT_RESERVED'
+        }" (click)="onSeatClick(filteredSeatList[89]?.id)" *ngIf="filteredSeatList.length > 89">
+          {{ filteredSeatList[89]?.seatNumber }}
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="seat2">
+        <div class="seat2-box" [ngClass]="{
+          sold: filteredSeatList[1].status == 'SEAT_SOLD',
+          blocked: filteredSeatList[1].status == 'SEAT_BLOCKED',
+          reserved: filteredSeatList[1].status == 'SEAT_RESERVED'
+        }" (click)="onSeatClick(filteredSeatList[1]?.id)" *ngIf="filteredSeatList.length > 1">
+          {{ filteredSeatList[1]?.seatNumber }}
+        </div>
+      </div>
+      <div class="seat2"></div>
+      <div class="seat2"></div>
+      <div class="seat2"></div>
+      <div class="seat2">
+        <div class="seat2-box" [ngClass]="{
+          sold: filteredSeatList[43].status == 'SEAT_SOLD',
+          blocked: filteredSeatList[43].status == 'SEAT_BLOCKED',
+          reserved: filteredSeatList[43].status == 'SEAT_RESERVED'
+        }" (click)="onSeatClick(filteredSeatList[43]?.id)" *ngIf="filteredSeatList.length > 43">
+          {{ filteredSeatList[43]?.seatNumber }}
+        </div>
+      </div>
+      <div class="seat2">
+        <div class="seat2-box" [ngClass]="{
+          sold: filteredSeatList[46].status == 'SEAT_SOLD',
+          blocked: filteredSeatList[46].status == 'SEAT_BLOCKED',
+          reserved: filteredSeatList[46].status == 'SEAT_RESERVED'
+        }" (click)="onSeatClick(filteredSeatList[46]?.id)" *ngIf="filteredSeatList.length > 46">
+          {{ filteredSeatList[46]?.seatNumber }}
+        </div>
+      </div>
+      <div class="seat2"></div>
+      <div class="seat2"></div>
+      <div class="seat2"></div>
+      <div class="seat2">
+        <div class="seat2-box" [ngClass]="{
+          sold: filteredSeatList[88].status == 'SEAT_SOLD',
+          blocked: filteredSeatList[88].status == 'SEAT_BLOCKED',
+          reserved: filteredSeatList[88].status == 'SEAT_RESERVED'
+        }" (click)="onSeatClick(filteredSeatList[88]?.id)" *ngIf="filteredSeatList.length > 88">
+          {{ filteredSeatList[88]?.seatNumber }}
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="seat2">
+        <div class="seat2-box" [ngClass]="{
+          sold: filteredSeatList[2].status == 'SEAT_SOLD',
+          blocked: filteredSeatList[2].status == 'SEAT_BLOCKED',
+          reserved: filteredSeatList[2].status == 'SEAT_RESERVED'
+        }" (click)="onSeatClick(filteredSeatList[2]?.id)" *ngIf="filteredSeatList.length > 2">
+          {{ filteredSeatList[2]?.seatNumber }}
+        </div>
+      </div>
+      <div class="seat2"></div>
+      <div class="seat2"></div>
+      <div class="seat2"></div>
+      <div class="seat2">
+        <div class="seat2-box" [ngClass]="{
+          sold: filteredSeatList[42].status == 'SEAT_SOLD',
+          blocked: filteredSeatList[42].status == 'SEAT_BLOCKED',
+          reserved: filteredSeatList[42].status == 'SEAT_RESERVED'
+        }" (click)="onSeatClick(filteredSeatList[42]?.id)" *ngIf="filteredSeatList.length > 42">
+          {{ filteredSeatList[42]?.seatNumber }}
+        </div>
+      </div>
+      <div class="seat2">
+        <div class="seat2-box" [ngClass]="{
+          sold: filteredSeatList[47].status == 'SEAT_SOLD',
+          blocked: filteredSeatList[47].status == 'SEAT_BLOCKED',
+          reserved: filteredSeatList[47].status == 'SEAT_RESERVED'
+        }" (click)="onSeatClick(filteredSeatList[47]?.id)" *ngIf="filteredSeatList.length > 47">
+          {{ filteredSeatList[47]?.seatNumber }}
+        </div>
+      </div>
+      <div class="seat2"></div>
+      <div class="seat2"></div>
+      <div class="seat2"></div>
+      <div class="seat2">
+        <div class="seat2-box" [ngClass]="{
+          sold: filteredSeatList[87].status == 'SEAT_SOLD',
+          blocked: filteredSeatList[87].status == 'SEAT_BLOCKED',
+          reserved: filteredSeatList[87].status == 'SEAT_RESERVED'
+        }" (click)="onSeatClick(filteredSeatList[87]?.id)" *ngIf="filteredSeatList.length > 87">
+          {{ filteredSeatList[87]?.seatNumber }}
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="seat2">
+        <div class="seat2-box" [ngClass]="{
+          sold: filteredSeatList[3].status == 'SEAT_SOLD',
+          blocked: filteredSeatList[3].status == 'SEAT_BLOCKED',
+          reserved: filteredSeatList[3].status == 'SEAT_RESERVED'
+        }" (click)="onSeatClick(filteredSeatList[3]?.id)" *ngIf="filteredSeatList.length > 3">
+          {{ filteredSeatList[3]?.seatNumber }}
+        </div>
+      </div>
+      <div class="seat2"></div>
+      <div class="seat2"></div>
+      <div class="seat2"></div>
+      <div class="seat2">
+        <div class="seat2-box" [ngClass]="{
+          sold: filteredSeatList[41].status == 'SEAT_SOLD',
+          blocked: filteredSeatList[41].status == 'SEAT_BLOCKED',
+          reserved: filteredSeatList[41].status == 'SEAT_RESERVED'
+        }" (click)="onSeatClick(filteredSeatList[41]?.id)" *ngIf="filteredSeatList.length > 41">
+          {{ filteredSeatList[41]?.seatNumber }}
+        </div>
+      </div>
+      <div class="seat2">
+        <div class="seat2-box" [ngClass]="{
+          sold: filteredSeatList[48].status == 'SEAT_SOLD',
+          blocked: filteredSeatList[48].status == 'SEAT_BLOCKED',
+          reserved: filteredSeatList[48].status == 'SEAT_RESERVED'
+        }" (click)="onSeatClick(filteredSeatList[48]?.id)" *ngIf="filteredSeatList.length > 48">
+          {{ filteredSeatList[48]?.seatNumber }}
+        </div>
+      </div>
+      <div class="seat2"></div>
+      <div class="seat2"></div>
+      <div class="seat2"></div>
+      <div class="seat2">
+        <div class="seat2-box" [ngClass]="{
+          sold: filteredSeatList[86].status == 'SEAT_SOLD',
+          blocked: filteredSeatList[86].status == 'SEAT_BLOCKED',
+          reserved: filteredSeatList[86].status == 'SEAT_RESERVED'
+        }" (click)="onSeatClick(filteredSeatList[86]?.id)" *ngIf="filteredSeatList.length > 86">
+          {{ filteredSeatList[86]?.seatNumber }}
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="seat2">
+        <div class="seat2-box" [ngClass]="{
+          sold: filteredSeatList[4].status == 'SEAT_SOLD',
+          blocked: filteredSeatList[4].status == 'SEAT_BLOCKED',
+          reserved: filteredSeatList[4].status == 'SEAT_RESERVED'
+        }" (click)="onSeatClick(filteredSeatList[4]?.id)" *ngIf="filteredSeatList.length > 4">
+          {{ filteredSeatList[4]?.seatNumber }}
+        </div>
+      </div>
+      <div class="seat2"></div>
+      <div class="seat2"></div>
+      <div class="seat2"></div>
+      <div class="seat2">
+        <div class="seat2-box" [ngClass]="{
+          sold: filteredSeatList[40].status == 'SEAT_SOLD',
+          blocked: filteredSeatList[40].status == 'SEAT_BLOCKED',
+          reserved: filteredSeatList[40].status == 'SEAT_RESERVED'
+        }" (click)="onSeatClick(filteredSeatList[40]?.id)" *ngIf="filteredSeatList.length > 40">
+          {{ filteredSeatList[40]?.seatNumber }}
+        </div>
+      </div>
+      <div class="seat2">
+        <div class="seat2-box" [ngClass]="{
+          sold: filteredSeatList[49].status == 'SEAT_SOLD',
+          blocked: filteredSeatList[49].status == 'SEAT_BLOCKED',
+          reserved: filteredSeatList[49].status == 'SEAT_RESERVED'
+        }" (click)="onSeatClick(filteredSeatList[49]?.id)" *ngIf="filteredSeatList.length > 49">
+          {{ filteredSeatList[49]?.seatNumber }}
+        </div>
+      </div>
+      <div class="seat2"></div>
+      <div class="seat2"></div>
+      <div class="seat2"></div>
+      <div class="seat2">
+        <div class="seat2-box" [ngClass]="{
+          sold: filteredSeatList[85].status == 'SEAT_SOLD',
+          blocked: filteredSeatList[85].status == 'SEAT_BLOCKED',
+          reserved: filteredSeatList[85].status == 'SEAT_RESERVED'
+        }" (click)="onSeatClick(filteredSeatList[85]?.id)" *ngIf="filteredSeatList.length > 85">
+          {{ filteredSeatList[85]?.seatNumber }}
+        </div>
+      </div>
+    </div>
+    <div class="row" my-2>
+      &nbsp;
+    </div>
+    <div class="row">
+      <div class="seat2">
+        <div class="seat2-box" [ngClass]="{
+          sold: filteredSeatList[5].status == 'SEAT_SOLD',
+          blocked: filteredSeatList[5].status == 'SEAT_BLOCKED',
+          reserved: filteredSeatList[5].status == 'SEAT_RESERVED'
+        }" (click)="onSeatClick(filteredSeatList[5]?.id)" *ngIf="filteredSeatList.length > 5">
+          {{ filteredSeatList[5]?.seatNumber }}
+        </div>
+      </div>
+      <div class="seat2"></div>
+      <div class="seat2"></div>
+      <div class="seat2"></div>
+      <div class="seat2">
+        <div class="seat2-box" [ngClass]="{
+          sold: filteredSeatList[39].status == 'SEAT_SOLD',
+          blocked: filteredSeatList[39].status == 'SEAT_BLOCKED',
+          reserved: filteredSeatList[39].status == 'SEAT_RESERVED'
+        }" (click)="onSeatClick(filteredSeatList[39]?.id)" *ngIf="filteredSeatList.length > 39">
+          {{ filteredSeatList[39]?.seatNumber }}
+        </div>
+      </div>
+      <div class="seat2">
+        <div class="seat2-box" [ngClass]="{
+          sold: filteredSeatList[50].status == 'SEAT_SOLD',
+          blocked: filteredSeatList[50].status == 'SEAT_BLOCKED',
+          reserved: filteredSeatList[50].status == 'SEAT_RESERVED'
+        }" (click)="onSeatClick(filteredSeatList[50]?.id)" *ngIf="filteredSeatList.length > 50">
+          {{ filteredSeatList[50]?.seatNumber }}
+        </div>
+      </div>
+      <div class="seat2"></div>
+      <div class="seat2"></div>
+      <div class="seat2"></div>
+      <div class="seat2">
+        <div class="seat2-box" [ngClass]="{
+          sold: filteredSeatList[84].status == 'SEAT_SOLD',
+          blocked: filteredSeatList[84].status == 'SEAT_BLOCKED',
+          reserved: filteredSeatList[84].status == 'SEAT_RESERVED'
+        }" (click)="onSeatClick(filteredSeatList[84]?.id)" *ngIf="filteredSeatList.length > 84">
+          {{ filteredSeatList[84]?.seatNumber }}
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="seat2">
+        <div class="seat2-box" [ngClass]="{
+          sold: filteredSeatList[6].status == 'SEAT_SOLD',
+          blocked: filteredSeatList[6].status == 'SEAT_BLOCKED',
+          reserved: filteredSeatList[6].status == 'SEAT_RESERVED'
+        }" (click)="onSeatClick(filteredSeatList[6]?.id)" *ngIf="filteredSeatList.length > 6">
+          {{ filteredSeatList[6]?.seatNumber }}
+        </div>
+      </div>
+      <div class="seat2"></div>
+      <div class="seat2"></div>
+      <div class="seat2"></div>
+      <div class="seat2">
+        <div class="seat2-box" [ngClass]="{
+          sold: filteredSeatList[38].status == 'SEAT_SOLD',
+          blocked: filteredSeatList[38].status == 'SEAT_BLOCKED',
+          reserved: filteredSeatList[38].status == 'SEAT_RESERVED'
+        }" (click)="onSeatClick(filteredSeatList[38]?.id)" *ngIf="filteredSeatList.length > 38">
+          {{ filteredSeatList[38]?.seatNumber }}
+        </div>
+      </div>
+      <div class="seat2">
+        <div class="seat2-box" [ngClass]="{
+          sold: filteredSeatList[51].status == 'SEAT_SOLD',
+          blocked: filteredSeatList[51].status == 'SEAT_BLOCKED',
+          reserved: filteredSeatList[51].status == 'SEAT_RESERVED'
+        }" (click)="onSeatClick(filteredSeatList[51]?.id)" *ngIf="filteredSeatList.length > 51">
+          {{ filteredSeatList[51]?.seatNumber }}
+        </div>
+      </div>
+      <div class="seat2"></div>
+      <div class="seat2"></div>
+      <div class="seat2"></div>
+      <div class="seat2">
+        <div class="seat2-box" [ngClass]="{
+          sold: filteredSeatList[83].status == 'SEAT_SOLD',
+          blocked: filteredSeatList[83].status == 'SEAT_BLOCKED',
+          reserved: filteredSeatList[83].status == 'SEAT_RESERVED'
+        }" (click)="onSeatClick(filteredSeatList[83]?.id)" *ngIf="filteredSeatList.length > 83">
+          {{ filteredSeatList[83]?.seatNumber }}
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="seat2">
+        <div class="seat2-box" [ngClass]="{
+          sold: filteredSeatList[7].status == 'SEAT_SOLD',
+          blocked: filteredSeatList[7].status == 'SEAT_BLOCKED',
+          reserved: filteredSeatList[7].status == 'SEAT_RESERVED'
+        }" (click)="onSeatClick(filteredSeatList[7]?.id)" *ngIf="filteredSeatList.length > 7">
+          {{ filteredSeatList[7]?.seatNumber }}
+        </div>
+      </div>
+      <div class="seat2"></div>
+      <div class="seat2"></div>
+      <div class="seat2"></div>
+      <div class="seat2">
+        <div class="seat2-box" [ngClass]="{
+          sold: filteredSeatList[37].status == 'SEAT_SOLD',
+          blocked: filteredSeatList[37].status == 'SEAT_BLOCKED',
+          reserved: filteredSeatList[37].status == 'SEAT_RESERVED'
+        }" (click)="onSeatClick(filteredSeatList[37]?.id)" *ngIf="filteredSeatList.length > 37">
+          {{ filteredSeatList[37]?.seatNumber }}
+        </div>
+      </div>
+      <div class="seat2">
+        <div class="seat2-box" [ngClass]="{
+          sold: filteredSeatList[52].status == 'SEAT_SOLD',
+          blocked: filteredSeatList[52].status == 'SEAT_BLOCKED',
+          reserved: filteredSeatList[52].status == 'SEAT_RESERVED'
+        }" (click)="onSeatClick(filteredSeatList[52]?.id)" *ngIf="filteredSeatList.length > 52">
+          {{ filteredSeatList[52]?.seatNumber }}
+        </div>
+      </div>
+      <div class="seat2"></div>
+      <div class="seat2"></div>
+      <div class="seat2"></div>
+      <div class="seat2">
+        <div class="seat2-box" [ngClass]="{
+          sold: filteredSeatList[82].status == 'SEAT_SOLD',
+          blocked: filteredSeatList[82].status == 'SEAT_BLOCKED',
+          reserved: filteredSeatList[82].status == 'SEAT_RESERVED'
+        }" (click)="onSeatClick(filteredSeatList[82]?.id)" *ngIf="filteredSeatList.length > 82">
+          {{ filteredSeatList[82]?.seatNumber }}
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="seat2">
+        <div class="seat2-box" [ngClass]="{
+          sold: filteredSeatList[8].status == 'SEAT_SOLD',
+          blocked: filteredSeatList[8].status == 'SEAT_BLOCKED',
+          reserved: filteredSeatList[8].status == 'SEAT_RESERVED'
+        }" (click)="onSeatClick(filteredSeatList[8]?.id)" *ngIf="filteredSeatList.length > 8">
+          {{ filteredSeatList[8]?.seatNumber }}
+        </div>
+      </div>
+      <div class="seat2"></div>
+      <div class="seat2"></div>
+      <div class="seat2"></div>
+      <div class="seat2">
+        <div class="seat2-box" [ngClass]="{
+          sold: filteredSeatList[36].status == 'SEAT_SOLD',
+          blocked: filteredSeatList[36].status == 'SEAT_BLOCKED',
+          reserved: filteredSeatList[36].status == 'SEAT_RESERVED'
+        }" (click)="onSeatClick(filteredSeatList[36]?.id)" *ngIf="filteredSeatList.length > 36">
+          {{ filteredSeatList[36]?.seatNumber }}
+        </div>
+      </div>
+      <div class="seat2">
+        <div class="seat2-box" [ngClass]="{
+          sold: filteredSeatList[53].status == 'SEAT_SOLD',
+          blocked: filteredSeatList[53].status == 'SEAT_BLOCKED',
+          reserved: filteredSeatList[53].status == 'SEAT_RESERVED'
+        }" (click)="onSeatClick(filteredSeatList[53]?.id)" *ngIf="filteredSeatList.length > 53">
+          {{ filteredSeatList[53]?.seatNumber }}
+        </div>
+      </div>
+      <div class="seat2"></div>
+      <div class="seat2"></div>
+      <div class="seat2"></div>
+      <div class="seat2">
+        <div class="seat2-box" [ngClass]="{
+          sold: filteredSeatList[81].status == 'SEAT_SOLD',
+          blocked: filteredSeatList[81].status == 'SEAT_BLOCKED',
+          reserved: filteredSeatList[81].status == 'SEAT_RESERVED'
+        }" (click)="onSeatClick(filteredSeatList[81]?.id)" *ngIf="filteredSeatList.length > 81">
+          {{ filteredSeatList[81]?.seatNumber }}
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="seat2">
+        <div class="seat2-box" [ngClass]="{
+          sold: filteredSeatList[9].status == 'SEAT_SOLD',
+          blocked: filteredSeatList[9].status == 'SEAT_BLOCKED',
+          reserved: filteredSeatList[9].status == 'SEAT_RESERVED'
+        }" (click)="onSeatClick(filteredSeatList[9]?.id)" *ngIf="filteredSeatList.length > 9">
+          {{ filteredSeatList[9]?.seatNumber }}
+        </div>
+      </div>
+      <div class="seat2"></div>
+      <div class="seat2"></div>
+      <div class="seat2"></div>
+      <div class="seat2">
+        <div class="seat2-box" [ngClass]="{
+          sold: filteredSeatList[35].status == 'SEAT_SOLD',
+          blocked: filteredSeatList[35].status == 'SEAT_BLOCKED',
+          reserved: filteredSeatList[35].status == 'SEAT_RESERVED'
+        }" (click)="onSeatClick(filteredSeatList[35]?.id)" *ngIf="filteredSeatList.length > 35">
+          {{ filteredSeatList[35]?.seatNumber }}
+        </div>
+      </div>
+      <div class="seat2">
+        <div class="seat2-box" [ngClass]="{
+          sold: filteredSeatList[54].status == 'SEAT_SOLD',
+          blocked: filteredSeatList[54].status == 'SEAT_BLOCKED',
+          reserved: filteredSeatList[54].status == 'SEAT_RESERVED'
+        }" (click)="onSeatClick(filteredSeatList[54]?.id)" *ngIf="filteredSeatList.length > 54">
+          {{ filteredSeatList[54]?.seatNumber }}
+        </div>
+      </div>
+      <div class="seat2"></div>
+      <div class="seat2"></div>
+      <div class="seat2"></div>
+      <div class="seat2">
+        <div class="seat2-box" [ngClass]="{
+          sold: filteredSeatList[80].status == 'SEAT_SOLD',
+          blocked: filteredSeatList[80].status == 'SEAT_BLOCKED',
+          reserved: filteredSeatList[80].status == 'SEAT_RESERVED'
+        }" (click)="onSeatClick(filteredSeatList[80]?.id)" *ngIf="filteredSeatList.length > 80">
+          {{ filteredSeatList[80]?.seatNumber }}
+        </div>
+      </div>
+    </div>
+    <div class="row" my-2>
+      &nbsp;
+    </div>
+    <div class="row">
+      <div class="seat2">
+        <div class="seat2-box" [ngClass]="{
+          sold: filteredSeatList[10].status == 'SEAT_SOLD',
+          blocked: filteredSeatList[10].status == 'SEAT_BLOCKED',
+          reserved: filteredSeatList[10].status == 'SEAT_RESERVED'
+        }" (click)="onSeatClick(filteredSeatList[10]?.id)" *ngIf="filteredSeatList.length > 10">
+          {{ filteredSeatList[10]?.seatNumber }}
+        </div>
+      </div>
+      <div class="seat2"></div>
+      <div class="seat2"></div>
+      <div class="seat2"></div>
+      <div class="seat2">
+        <div class="seat2-box" [ngClass]="{
+          sold: filteredSeatList[34].status == 'SEAT_SOLD',
+          blocked: filteredSeatList[34].status == 'SEAT_BLOCKED',
+          reserved: filteredSeatList[34].status == 'SEAT_RESERVED'
+        }" (click)="onSeatClick(filteredSeatList[34]?.id)" *ngIf="filteredSeatList.length > 34">
+          {{ filteredSeatList[34]?.seatNumber }}
+        </div>
+      </div>
+      <div class="seat2">
+        <div class="seat2-box" [ngClass]="{
+          sold: filteredSeatList[55].status == 'SEAT_SOLD',
+          blocked: filteredSeatList[55].status == 'SEAT_BLOCKED',
+          reserved: filteredSeatList[55].status == 'SEAT_RESERVED'
+        }" (click)="onSeatClick(filteredSeatList[55]?.id)" *ngIf="filteredSeatList.length > 55">
+          {{ filteredSeatList[55]?.seatNumber }}
+        </div>
+      </div>
+      <div class="seat2"></div>
+      <div class="seat2"></div>
+      <div class="seat2"></div>
+      <div class="seat2">
+        <div class="seat2-box" [ngClass]="{
+          sold: filteredSeatList[79].status == 'SEAT_SOLD',
+          blocked: filteredSeatList[79].status == 'SEAT_BLOCKED',
+          reserved: filteredSeatList[79].status == 'SEAT_RESERVED'
+        }" (click)="onSeatClick(filteredSeatList[79]?.id)" *ngIf="filteredSeatList.length > 79">
+          {{ filteredSeatList[79]?.seatNumber }}
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="seat2">
+        <div class="seat2-box" [ngClass]="{
+          sold: filteredSeatList[11].status == 'SEAT_SOLD',
+          blocked: filteredSeatList[11].status == 'SEAT_BLOCKED',
+          reserved: filteredSeatList[11].status == 'SEAT_RESERVED'
+        }" (click)="onSeatClick(filteredSeatList[11]?.id)" *ngIf="filteredSeatList.length > 11">
+          {{ filteredSeatList[11]?.seatNumber }}
+        </div>
+      </div>
+      <div class="seat2"></div>
+      <div class="seat2"></div>
+      <div class="seat2"></div>
+      <div class="seat2">
+        <div class="seat2-box" [ngClass]="{
+          sold: filteredSeatList[33].status == 'SEAT_SOLD',
+          blocked: filteredSeatList[33].status == 'SEAT_BLOCKED',
+          reserved: filteredSeatList[33].status == 'SEAT_RESERVED'
+        }" (click)="onSeatClick(filteredSeatList[33]?.id)" *ngIf="filteredSeatList.length > 33">
+          {{ filteredSeatList[33]?.seatNumber }}
+        </div>
+      </div>
+      <div class="seat2">
+        <div class="seat2-box" [ngClass]="{
+          sold: filteredSeatList[56].status == 'SEAT_SOLD',
+          blocked: filteredSeatList[56].status == 'SEAT_BLOCKED',
+          reserved: filteredSeatList[56].status == 'SEAT_RESERVED'
+        }" (click)="onSeatClick(filteredSeatList[56]?.id)" *ngIf="filteredSeatList.length > 56">
+          {{ filteredSeatList[56]?.seatNumber }}
+        </div>
+      </div>
+      <div class="seat2"></div>
+      <div class="seat2"></div>
+      <div class="seat2"></div>
+      <div class="seat2">
+        <div class="seat2-box" [ngClass]="{
+          sold: filteredSeatList[78].status == 'SEAT_SOLD',
+          blocked: filteredSeatList[78].status == 'SEAT_BLOCKED',
+          reserved: filteredSeatList[78].status == 'SEAT_RESERVED'
+        }" (click)="onSeatClick(filteredSeatList[78]?.id)" *ngIf="filteredSeatList.length > 78">
+          {{ filteredSeatList[78]?.seatNumber }}
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="seat2">
+        <div class="seat2-box" [ngClass]="{
+          sold: filteredSeatList[12].status == 'SEAT_SOLD',
+          blocked: filteredSeatList[12].status == 'SEAT_BLOCKED',
+          reserved: filteredSeatList[12].status == 'SEAT_RESERVED'
+        }" (click)="onSeatClick(filteredSeatList[12]?.id)" *ngIf="filteredSeatList.length > 12">
+          {{ filteredSeatList[12]?.seatNumber }}
+        </div>
+      </div>
+      <div class="seat2"></div>
+      <div class="seat2"></div>
+      <div class="seat2"></div>
+      <div class="seat2">
+        <div class="seat2-box" [ngClass]="{
+          sold: filteredSeatList[32].status == 'SEAT_SOLD',
+          blocked: filteredSeatList[32].status == 'SEAT_BLOCKED',
+          reserved: filteredSeatList[32].status == 'SEAT_RESERVED'
+        }" (click)="onSeatClick(filteredSeatList[32]?.id)" *ngIf="filteredSeatList.length > 32">
+          {{ filteredSeatList[32]?.seatNumber }}
+        </div>
+      </div>
+      <div class="seat2">
+        <div class="seat2-box" [ngClass]="{
+          sold: filteredSeatList[57].status == 'SEAT_SOLD',
+          blocked: filteredSeatList[57].status == 'SEAT_BLOCKED',
+          reserved: filteredSeatList[57].status == 'SEAT_RESERVED'
+        }" (click)="onSeatClick(filteredSeatList[57]?.id)" *ngIf="filteredSeatList.length > 57">
+          {{ filteredSeatList[57]?.seatNumber }}
+        </div>
+      </div>
+      <div class="seat2"></div>
+      <div class="seat2"></div>
+      <div class="seat2"></div>
+      <div class="seat2">
+        <div class="seat2-box" [ngClass]="{
+          sold: filteredSeatList[77].status == 'SEAT_SOLD',
+          blocked: filteredSeatList[77].status == 'SEAT_BLOCKED',
+          reserved: filteredSeatList[77].status == 'SEAT_RESERVED'
+        }" (click)="onSeatClick(filteredSeatList[77]?.id)" *ngIf="filteredSeatList.length > 77">
+          {{ filteredSeatList[77]?.seatNumber }}
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="seat2">
+        <div class="seat2-box" [ngClass]="{
+          sold: filteredSeatList[13].status == 'SEAT_SOLD',
+          blocked: filteredSeatList[13].status == 'SEAT_BLOCKED',
+          reserved: filteredSeatList[13].status == 'SEAT_RESERVED'
+        }" (click)="onSeatClick(filteredSeatList[13]?.id)" *ngIf="filteredSeatList.length > 13">
+          {{ filteredSeatList[13]?.seatNumber }}
+        </div>
+      </div>
+      <div class="seat2"></div>
+      <div class="seat2"></div>
+      <div class="seat2"></div>
+      <div class="seat2">
+        <div class="seat2-box" [ngClass]="{
+          sold: filteredSeatList[31].status == 'SEAT_SOLD',
+          blocked: filteredSeatList[31].status == 'SEAT_BLOCKED',
+          reserved: filteredSeatList[31].status == 'SEAT_RESERVED'
+        }" (click)="onSeatClick(filteredSeatList[31]?.id)" *ngIf="filteredSeatList.length > 31">
+          {{ filteredSeatList[31]?.seatNumber }}
+        </div>
+      </div>
+      <div class="seat2">
+        <div class="seat2-box" [ngClass]="{
+          sold: filteredSeatList[58].status == 'SEAT_SOLD',
+          blocked: filteredSeatList[58].status == 'SEAT_BLOCKED',
+          reserved: filteredSeatList[58].status == 'SEAT_RESERVED'
+        }" (click)="onSeatClick(filteredSeatList[58]?.id)" *ngIf="filteredSeatList.length > 58">
+          {{ filteredSeatList[58]?.seatNumber }}
+        </div>
+      </div>
+      <div class="seat2"></div>
+      <div class="seat2"></div>
+      <div class="seat2"></div>
+      <div class="seat2">
+        <div class="seat2-box" [ngClass]="{
+          sold: filteredSeatList[76].status == 'SEAT_SOLD',
+          blocked: filteredSeatList[76].status == 'SEAT_BLOCKED',
+          reserved: filteredSeatList[76].status == 'SEAT_RESERVED'
+        }" (click)="onSeatClick(filteredSeatList[76]?.id)" *ngIf="filteredSeatList.length > 76">
+          {{ filteredSeatList[76]?.seatNumber }}
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="seat2">
+        <div class="seat2-box" [ngClass]="{
+          sold: filteredSeatList[14].status == 'SEAT_SOLD',
+          blocked: filteredSeatList[14].status == 'SEAT_BLOCKED',
+          reserved: filteredSeatList[14].status == 'SEAT_RESERVED'
+        }" (click)="onSeatClick(filteredSeatList[14]?.id)" *ngIf="filteredSeatList.length > 14">
+          {{ filteredSeatList[14]?.seatNumber }}
+        </div>
+      </div>
+      <div class="seat2"></div>
+      <div class="seat2"></div>
+      <div class="seat2"></div>
+      <div class="seat2">
+        <div class="seat2-box" [ngClass]="{
+          sold: filteredSeatList[30].status == 'SEAT_SOLD',
+          blocked: filteredSeatList[30].status == 'SEAT_BLOCKED',
+          reserved: filteredSeatList[30].status == 'SEAT_RESERVED'
+        }" (click)="onSeatClick(filteredSeatList[30]?.id)" *ngIf="filteredSeatList.length > 30">
+          {{ filteredSeatList[30]?.seatNumber }}
+        </div>
+      </div>
+      <div class="seat2">
+        <div class="seat2-box" [ngClass]="{
+          sold: filteredSeatList[59].status == 'SEAT_SOLD',
+          blocked: filteredSeatList[59].status == 'SEAT_BLOCKED',
+          reserved: filteredSeatList[59].status == 'SEAT_RESERVED'
+        }" (click)="onSeatClick(filteredSeatList[59]?.id)" *ngIf="filteredSeatList.length > 59">
+          {{ filteredSeatList[59]?.seatNumber }}
+        </div>
+      </div>
+      <div class="seat2"></div>
+      <div class="seat2"></div>
+      <div class="seat2"></div>
+      <div class="seat2">
+        <div class="seat2-box" [ngClass]="{
+          sold: filteredSeatList[75].status == 'SEAT_SOLD',
+          blocked: filteredSeatList[75].status == 'SEAT_BLOCKED',
+          reserved: filteredSeatList[75].status == 'SEAT_RESERVED'
+        }" (click)="onSeatClick(filteredSeatList[75]?.id)" *ngIf="filteredSeatList.length > 75">
+          {{ filteredSeatList[75]?.seatNumber }}
+        </div>
+      </div>
+    </div>
+    <div class="row" my-2>
+      &nbsp;
+    </div>
+    <div class="row">
+      <div class="seat2">
+        <div class="seat2-box" [ngClass]="{
+          sold: filteredSeatList[15].status == 'SEAT_SOLD',
+          blocked: filteredSeatList[15].status == 'SEAT_BLOCKED',
+          reserved: filteredSeatList[15].status == 'SEAT_RESERVED'
+        }" (click)="onSeatClick(filteredSeatList[15]?.id)" *ngIf="filteredSeatList.length > 15">
+          {{ filteredSeatList[15]?.seatNumber }}
+        </div>
+      </div>
+      <div class="seat2"></div>
+      <div class="seat2"></div>
+      <div class="seat2"></div>
+      <div class="seat2">
+        <div class="seat2-box" [ngClass]="{
+          sold: filteredSeatList[29].status == 'SEAT_SOLD',
+          blocked: filteredSeatList[29].status == 'SEAT_BLOCKED',
+          reserved: filteredSeatList[29].status == 'SEAT_RESERVED'
+        }" (click)="onSeatClick(filteredSeatList[29]?.id)" *ngIf="filteredSeatList.length > 29">
+          {{ filteredSeatList[29]?.seatNumber }}
+        </div>
+      </div>
+      <div class="seat2">
+        <div class="seat2-box" [ngClass]="{
+          sold: filteredSeatList[60].status == 'SEAT_SOLD',
+          blocked: filteredSeatList[60].status == 'SEAT_BLOCKED',
+          reserved: filteredSeatList[60].status == 'SEAT_RESERVED'
+        }" (click)="onSeatClick(filteredSeatList[60]?.id)" *ngIf="filteredSeatList.length > 60">
+          {{ filteredSeatList[60]?.seatNumber }}
+        </div>
+      </div>
+      <div class="seat2"></div>
+      <div class="seat2"></div>
+      <div class="seat2"></div>
+      <div class="seat2">
+        <div class="seat2-box" [ngClass]="{
+          sold: filteredSeatList[74].status == 'SEAT_SOLD',
+          blocked: filteredSeatList[74].status == 'SEAT_BLOCKED',
+          reserved: filteredSeatList[74].status == 'SEAT_RESERVED'
+        }" (click)="onSeatClick(filteredSeatList[74]?.id)" *ngIf="filteredSeatList.length > 74">
+          {{ filteredSeatList[74]?.seatNumber }}
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="seat2">
+        <div class="seat2-box" [ngClass]="{
+          sold: filteredSeatList[16].status == 'SEAT_SOLD',
+          blocked: filteredSeatList[16].status == 'SEAT_BLOCKED',
+          reserved: filteredSeatList[16].status == 'SEAT_RESERVED'
+        }" (click)="onSeatClick(filteredSeatList[16]?.id)" *ngIf="filteredSeatList.length > 16">
+          {{ filteredSeatList[16]?.seatNumber }}
+        </div>
+      </div>
+      <div class="seat2"></div>
+      <div class="seat2"></div>
+      <div class="seat2"></div>
+      <div class="seat2">
+        <div class="seat2-box" [ngClass]="{
+          sold: filteredSeatList[28].status == 'SEAT_SOLD',
+          blocked: filteredSeatList[28].status == 'SEAT_BLOCKED',
+          reserved: filteredSeatList[28].status == 'SEAT_RESERVED'
+        }" (click)="onSeatClick(filteredSeatList[28]?.id)" *ngIf="filteredSeatList.length > 28">
+          {{ filteredSeatList[28]?.seatNumber }}
+        </div>
+      </div>
+      <div class="seat2">
+        <div class="seat2-box" [ngClass]="{
+          sold: filteredSeatList[61].status == 'SEAT_SOLD',
+          blocked: filteredSeatList[61].status == 'SEAT_BLOCKED',
+          reserved: filteredSeatList[61].status == 'SEAT_RESERVED'
+        }" (click)="onSeatClick(filteredSeatList[61]?.id)" *ngIf="filteredSeatList.length > 61">
+          {{ filteredSeatList[61]?.seatNumber }}
+        </div>
+      </div>
+      <div class="seat2"></div>
+      <div class="seat2"></div>
+      <div class="seat2"></div>
+      <div class="seat2">
+        <div class="seat2-box" [ngClass]="{
+          sold: filteredSeatList[73].status == 'SEAT_SOLD',
+          blocked: filteredSeatList[73].status == 'SEAT_BLOCKED',
+          reserved: filteredSeatList[73].status == 'SEAT_RESERVED'
+        }" (click)="onSeatClick(filteredSeatList[73]?.id)" *ngIf="filteredSeatList.length > 73">
+          {{ filteredSeatList[73]?.seatNumber }}
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="seat2">
+        <div class="seat2-box" [ngClass]="{
+          sold: filteredSeatList[17].status == 'SEAT_SOLD',
+          blocked: filteredSeatList[17].status == 'SEAT_BLOCKED',
+          reserved: filteredSeatList[17].status == 'SEAT_RESERVED'
+        }" (click)="onSeatClick(filteredSeatList[17]?.id) " *ngIf="filteredSeatList.length> 17"> {{ filteredSeatList[17]?.seatNumber }}
+        </div>
+      </div>
+      <div class="seat2"></div>
+      <div class="seat2"></div>
+      <div class="seat2"></div>
+      <div class="seat2">
+        <div class="seat2-box" [ngClass]="{
+          sold: filteredSeatList[27].status == 'SEAT_SOLD',
+          blocked: filteredSeatList[27].status == 'SEAT_BLOCKED',
+          reserved: filteredSeatList[27].status == 'SEAT_RESERVED'
+        }" (click)="onSeatClick(filteredSeatList[27]?.id)" *ngIf="filteredSeatList.length > 27">
+          {{ filteredSeatList[27]?.seatNumber }}
+        </div>
+      </div>
+      <div class="seat2">
+        <div class="seat2-box" [ngClass]="{
+          sold: filteredSeatList[62].status == 'SEAT_SOLD',
+          blocked: filteredSeatList[62].status == 'SEAT_BLOCKED',
+          reserved: filteredSeatList[62].status == 'SEAT_RESERVED'
+        }" (click)="onSeatClick(filteredSeatList[62]?.id)" *ngIf="filteredSeatList.length > 62">
+          {{ filteredSeatList[62]?.seatNumber }}
+        </div>
+      </div>
+      <div class="seat2"></div>
+      <div class="seat2"></div>
+      <div class="seat2"></div>
+      <div class="seat2">
+        <div class="seat2-box" [ngClass]="{
+          sold: filteredSeatList[72].status == 'SEAT_SOLD',
+          blocked: filteredSeatList[72].status == 'SEAT_BLOCKED',
+          reserved: filteredSeatList[72].status == 'SEAT_RESERVED'
+        }" (click)="onSeatClick(filteredSeatList[72]?.id)" *ngIf="filteredSeatList.length > 72">
+          {{ filteredSeatList[72]?.seatNumber }}
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="seat2">
+        <div class="seat2-box" [ngClass]="{
+          sold: filteredSeatList[18].status == 'SEAT_SOLD',
+          blocked: filteredSeatList[18].status == 'SEAT_BLOCKED',
+          reserved: filteredSeatList[18].status == 'SEAT_RESERVED'
+        }" (click)="onSeatClick(filteredSeatList[18]?.id)" *ngIf="filteredSeatList.length > 18">
+          {{ filteredSeatList[18]?.seatNumber }}`
+        </div>
+      </div>
+      <div class="seat2"></div>
+      <div class="seat2"></div>
+      <div class="seat2"></div>
+      <div class="seat2">
+        <div class="seat2-box" [ngClass]="{
+          sold: filteredSeatList[26].status == 'SEAT_SOLD',
+          blocked: filteredSeatList[26].status == 'SEAT_BLOCKED',
+          reserved: filteredSeatList[26].status == 'SEAT_RESERVED'
+        }" (click)="onSeatClick(filteredSeatList[26]?.id)" *ngIf="filteredSeatList.length > 26">
+          {{ filteredSeatList[26]?.seatNumber }}
+        </div>
+      </div>
+      <div class="seat2">
+        <div class="seat2-box" [ngClass]="{
+          sold: filteredSeatList[63].status == 'SEAT_SOLD',
+          blocked: filteredSeatList[63].status == 'SEAT_BLOCKED',
+          reserved: filteredSeatList[63].status == 'SEAT_RESERVED'
+        }" (click)="onSeatClick(filteredSeatList[63]?.id)" *ngIf="filteredSeatList.length > 63">
+          {{ filteredSeatList[63]?.seatNumber }}
+        </div>
+      </div>
+      <div class="seat2"></div>
+      <div class="seat2"></div>
+      <div class="seat2"></div>
+      <div class="seat2">
+        <div class="seat2-box" [ngClass]="{
+          sold: filteredSeatList[71].status == 'SEAT_SOLD',
+          blocked: filteredSeatList[71].status == 'SEAT_BLOCKED',
+          reserved: filteredSeatList[71].status == 'SEAT_RESERVED'
+        }" (click)="onSeatClick(filteredSeatList[71]?.id)" *ngIf="filteredSeatList.length > 71">
+          {{ filteredSeatList[71]?.seatNumber }}
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="seat2">
+        <div class="seat2-box" [ngClass]="{
+          sold: filteredSeatList[19].status == 'SEAT_SOLD',
+          blocked: filteredSeatList[19].status == 'SEAT_BLOCKED',
+          reserved: filteredSeatList[19].status == 'SEAT_RESERVED'
+        }" (click)="onSeatClick(filteredSeatList[19]?.id)" *ngIf="filteredSeatList.length > 19">
+          {{ filteredSeatList[19]?.seatNumber }}
+        </div>
+      </div>
+      <div class="seat2"></div>
+      <div class="seat2"></div>
+      <div class="seat2"></div>
+      <div class="seat2">
+        <div class="seat2-box" [ngClass]="{
+          sold: filteredSeatList[25].status == 'SEAT_SOLD',
+          blocked: filteredSeatList[25].status == 'SEAT_BLOCKED',
+          reserved: filteredSeatList[25].status == 'SEAT_RESERVED'
+        }" (click)="onSeatClick(filteredSeatList[25]?.id)" *ngIf="filteredSeatList.length > 25">
+          {{ filteredSeatList[25]?.seatNumber }}
+        </div>
+      </div>
+      <div class="seat2">
+        <div class="seat2-box" [ngClass]="{
+          sold: filteredSeatList[64].status == 'SEAT_SOLD',
+          blocked: filteredSeatList[64].status == 'SEAT_BLOCKED',
+          reserved: filteredSeatList[64].status == 'SEAT_RESERVED'
+        }" (click)="onSeatClick(filteredSeatList[64]?.id)" *ngIf="filteredSeatList.length > 64">
+          {{ filteredSeatList[64]?.seatNumber }}
+        </div>
+      </div>
+      <div class="seat2"></div>
+      <div class="seat2"></div>
+      <div class="seat2"></div>
+      <div class="seat2">
+        <div class="seat2-box" [ngClass]="{
+          sold: filteredSeatList[70].status == 'SEAT_SOLD',
+          blocked: filteredSeatList[70].status == 'SEAT_BLOCKED',
+          reserved: filteredSeatList[70].status == 'SEAT_RESERVED'
+        }" (click)="onSeatClick(filteredSeatList[70]?.id)" *ngIf="filteredSeatList.length > 70">
+          {{ filteredSeatList[70]?.seatNumber }}
+        </div>
+      </div>
+    </div>
+    <div class="row" my-2>
+      &nbsp;
+    </div>
+    <div class="row">
+      <div class="seat2">
+        <div class="seat2-box" [ngClass]="{
+          sold: filteredSeatList[20].status == 'SEAT_SOLD',
+          blocked: filteredSeatList[20].status == 'SEAT_BLOCKED',
+          reserved: filteredSeatList[20].status == 'SEAT_RESERVED'
+        }" (click)="onSeatClick(filteredSeatList[20]?.id)" *ngIf="filteredSeatList.length > 20">
+          {{ filteredSeatList[20]?.seatNumber }}
+        </div>
+      </div>
+      <div class="seat2">
+        <div class="seat2-box" [ngClass]="{
+          sold: filteredSeatList[21].status == 'SEAT_SOLD',
+          blocked: filteredSeatList[21].status == 'SEAT_BLOCKED',
+          reserved: filteredSeatList[21].status == 'SEAT_RESERVED'
+        }" (click)="onSeatClick(filteredSeatList[21]?.id)" *ngIf="filteredSeatList.length > 21">
+          {{ filteredSeatList[21]?.seatNumber }}
+        </div>
+      </div>
+      <div class="seat2">
+        <div class="seat2-box" [ngClass]="{
+          sold: filteredSeatList[22].status == 'SEAT_SOLD',
+          blocked: filteredSeatList[22].status == 'SEAT_BLOCKED',
+          reserved: filteredSeatList[22].status == 'SEAT_RESERVED'
+        }" (click)="onSeatClick(filteredSeatList[22]?.id)" *ngIf="filteredSeatList.length > 22">
+          {{ filteredSeatList[22]?.seatNumber }}
+        </div>
+      </div>
+      <div class="seat2">
+        <div class="seat2-box" [ngClass]="{
+          sold: filteredSeatList[23].status == 'SEAT_SOLD',
+          blocked: filteredSeatList[23].status == 'SEAT_BLOCKED',
+          reserved: filteredSeatList[23].status == 'SEAT_RESERVED'
+        }" (click)="onSeatClick(filteredSeatList[23]?.id)" *ngIf="filteredSeatList.length > 23">
+          {{ filteredSeatList[23]?.seatNumber }}
+        </div>
+      </div>
+      <div class="seat2">
+        <div class="seat2-box" [ngClass]="{
+          sold: filteredSeatList[24].status == 'SEAT_SOLD',
+          blocked: filteredSeatList[24].status == 'SEAT_BLOCKED',
+          reserved: filteredSeatList[24].status == 'SEAT_RESERVED'
+        }" (click)="onSeatClick(filteredSeatList[24]?.id)" *ngIf="filteredSeatList.length > 24">
+          {{ filteredSeatList[24]?.seatNumber }}
+        </div>
+      </div>
+      <div class="seat2">
+        <div class="seat2-box" [ngClass]="{
+          sold: filteredSeatList[65].status == 'SEAT_SOLD',
+          blocked: filteredSeatList[65].status == 'SEAT_BLOCKED',
+          reserved: filteredSeatList[65].status == 'SEAT_RESERVED'
+        }" (click)="onSeatClick(filteredSeatList[65]?.id)" *ngIf="filteredSeatList.length > 65">
+          {{ filteredSeatList[65]?.seatNumber }}
+        </div>
+      </div>
+      <div class="seat2">
+        <div class="seat2-box" [ngClass]="{
+          sold: filteredSeatList[66].status == 'SEAT_SOLD',
+          blocked: filteredSeatList[66].status == 'SEAT_BLOCKED',
+          reserved: filteredSeatList[66].status == 'SEAT_RESERVED'
+        }" (click)="onSeatClick(filteredSeatList[66]?.id)" *ngIf="filteredSeatList.length > 66">
+          {{ filteredSeatList[66]?.seatNumber }}
+        </div>
+      </div>
+      <div class="seat2">
+        <div class="seat2-box" [ngClass]="{
+          sold: filteredSeatList[67].status == 'SEAT_SOLD',
+          blocked: filteredSeatList[67].status == 'SEAT_BLOCKED',
+          reserved: filteredSeatList[67].status == 'SEAT_RESERVED'
+        }" (click)="onSeatClick(filteredSeatList[67]?.id)" *ngIf="filteredSeatList.length > 67">
+          {{ filteredSeatList[67]?.seatNumber }}
+        </div>
+      </div>
+      <div class="seat2">
+        <div class="seat2-box" [ngClass]="{
+          sold: filteredSeatList[68].status == 'SEAT_SOLD',
+          blocked: filteredSeatList[68].status == 'SEAT_BLOCKED',
+          reserved: filteredSeatList[68].status == 'SEAT_RESERVED'
+        }" (click)="onSeatClick(filteredSeatList[68]?.id)" *ngIf="filteredSeatList.length > 68">
+          {{ filteredSeatList[68]?.seatNumber }}
+        </div>
+      </div>
+      <div class="seat2">
+        <div class="seat2-box" [ngClass]="{
+          sold: filteredSeatList[69].status == 'SEAT_SOLD',
+          blocked: filteredSeatList[69].status == 'SEAT_BLOCKED',
+          reserved: filteredSeatList[69].status == 'SEAT_RESERVED'
+        }" (click)="onSeatClick(filteredSeatList[69]?.id)" *ngIf="filteredSeatList.length > 69">
+          {{ filteredSeatList[69]?.seatNumber }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
