@@ -116,21 +116,15 @@ export class CancelReservationComponent implements OnInit {
   }
 
   onCancel(seatIds: number[], bookingId, seatNumber) {
-    console.log(seatIds, bookingId, seatNumber)
     if (this.reservationDetails) {
       if (confirm('Are you sure to clear reservation for seat number : ' + seatNumber)) {
-        console.log(this.reservationDetails);
         if (this.reservationDetails.status == "SEAT_RESERVED") {
           this.bookingService.cancelServiceAdminReservationSeats(seatIds, bookingId).subscribe(data => {
-            console.log(data);
-            console.log("Reservation cancele done")
             this.onClear();
             this.onDateChange();
           });
         } else if (this.reservationDetails.status == "SEAT_SOLD") {
           this.bookingService.cancelServiceAdminBookingSeats(seatIds, bookingId).subscribe(data => {
-            console.log(data);
-            console.log("Booking cancel done")
             this.onClear();
             this.onDateChange();
           });
