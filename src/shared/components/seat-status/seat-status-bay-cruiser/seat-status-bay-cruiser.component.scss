@@ -19,6 +19,20 @@
             color: white;
             cursor: not-allowed;
         }
+        &.sold {
+            border: 1px solid red;
+            background-color: red;
+            color: white;
+          }
+          &.reserved {
+            border: 1px solid #ffc107;
+            background-color: #ffc107;
+          }
+          &.blocked {
+            border: 1px solid lightgrey;
+            background-color: lightgrey;
+            color: white;
+          }
         
     }
 }
@@ -49,6 +63,20 @@
             color: white;
             cursor: not-allowed;
         }
+        &.sold {
+            border: 1px solid red;
+            background-color: red;
+            color: white;
+          }
+          &.reserved {
+            border: 1px solid #ffc107;
+            background-color: #ffc107;
+          }
+          &.blocked {
+            border: 1px solid lightgrey;
+            background-color: lightgrey;
+            color: white;
+          }
         
     }
 }

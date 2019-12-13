@@ -5,15 +5,17 @@ import { ServiceAdminSharedModule } from '../service-admin-shared/service-admin-
 import { SellsReportComponent } from './containers/sells-report/sells-report.component';
 import { SellsReportRangeComponent } from './containers/sells-report-range/sells-report-range.component';
 import { CounterReportComponent } from './containers/counter-report/counter-report.component';
+import { BookingReportListComponent } from './containers/booking-report-list/booking-report-list.component';
 
 export const ROUTES: Routes = [
   { path: 'counter', component: CounterReportComponent },
   { path: 'sells', component: SellsReportComponent },
-  { path: 'range', component: SellsReportRangeComponent }
+  { path: 'range', component: SellsReportRangeComponent },
+  { path: 'booking', component: BookingReportListComponent }
 ];
 
 @NgModule({
-  declarations: [SellsReportComponent, SellsReportRangeComponent, CounterReportComponent],
+  declarations: [SellsReportComponent, SellsReportRangeComponent, CounterReportComponent, BookingReportListComponent],
   imports: [ServiceAdminSharedModule, RouterModule.forChild(ROUTES)]
 })
 export class SReportModule { }

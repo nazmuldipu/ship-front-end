@@ -1,0 +1,161 @@
+<div class="container-fluid d-print-none">
+  <span class="row px-3 details-title text-left">Booking Report</span>
+</div>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-2 d-print-none">
+      <service-admin-ship-list (ship)="onShipSelect($event)"></service-admin-ship-list>
+    </div>
+    <div class="col-md-10">
+      <div class="row d-print-none">
+        <div class="col-auto">
+          <div class="form-group mb-0">
+            <div class="input-group">
+              <div class="input-group-prepend">
+                <div class="input-group-text">
+                  Date :
+                </div>
+              </div>
+              <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="dd" ngbDatepicker #date="ngbDatepicker" (dateSelect)="onDateChange()"
+                (click)="date.toggle()" />
+              <div class="input-group-append" (click)="date.toggle()">
+                <div class="input-group-text">
+                  <i class="fa fa-calendar"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-auto">
+          <div class="ml-auto col-auto">
+            <button class="btn btn-sm btn-primary" (click)="onPrint()">
+              <i class="fa fa-print"></i> Print
+            </button>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="loading">
+        <app-loading></app-loading>
+      </div>
+      <div *ngIf="
+          serviceAdminSellsReportList.length > 0 && !loading;
+          else noRecord
+        ">
+        <h3 class="text-center">
+          {{ ship?.shipNumber }}-{{ ship.name }} {{ reportType }} report for date of : {{ dd.day }}-{{ dd.month }}-{{ dd.year }}
+        </h3>
+        <table class="table table-bordered table-hover table-responsive-sm">
+          <thead>
+            <tr>
+              <th>Sl.</th>
+              <th *ngIf="reportType == 'Reservation'">Seat</th>
+              <th>Ticket no.</th>
+              <th>Booking Date</th>
+              <th>Journey Date</th>
+              <th>Passenger Info</th>
+              <th>Seats</th>
+              <th>Price</th>
+              <!-- <th>Route</th> -->
+              <th>Sold By</th>
+              <th>Status</th>
+              <th>Duplicate</th>
+              <th>Paid</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let report of serviceAdminSellsReportList; index as i">
+              <td>{{ i + 1 }}</td>
+              <th *ngIf="reportType == 'Reservation'">
+                <span *ngFor="let seat of report.seatNumbers">
+                  {{ seat }}
+                </span>
+              </th>
+              <td>{{ report.bookingId }}</td>
+              <td>{{ report.bookingDate | date: 'MMM d, y, h:mm:ss a' }}</td>
+              <td>{{ report.journeyDate | date }}</td>
+              <td>{{ report.customerName }} - {{ report.customerPhone }}</td>
+              <td>
+                <span *ngFor="let seat of report.seatNumbers">{{ seat }},
+                </span>
+              </td>
+              <td>{{ report.price }}</td>
+              <!-- <td>{{ report.shipNumber }} - {{ report.routes }}</td> -->
+              <td>{{ report.soldBy }}</td>
+              <td>{{ report.bookingStatus }}</td>
+              <td>{{report.duplicate == true? "DUPLICATE":""}}</td>
+              <td [ngClass]="{
+                  'bg-success': report.paid,
+                  'bg-warning': !report.paid && report.bookingId
+                }">
+                {{ report.paid ? 'Paid' : '' }} {{ !report.paid && report.bookingId ? 'Unpaid' : '' }}
+              </td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td></td>
+              <td *ngIf="reportType == 'Reservation'"></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td>TOTAL</td>
+              <td>{{ total.totalrent }}</td>
+              <td></td>
+              <td></td>
+              <td></td>
+              <td></td>
+            </tr>
+          </tfoot>
+        </table>
+        <div class="row">
+          <div class="col-md-6">
+            <table class="table table-bordered table-hover table-responsive-sm">
+              <tr>
+                <th colspan="2">{{reportType}} sum</th>
+              </tr>
+              <tr>
+                <td>Total Sold</td>
+                <th>{{total.totalSold}}</th>
+              </tr>
+              <tr>
+                <td>Total Reserved</td>
+                <th>{{total.totalReserved}}</th>
+              </tr>
+              <tr>
+                <td>Total Unsold</td>
+                <th class="text-danger">{{total.totalUnsold}}</th>
+              </tr>
+              <tr>
+                <td>Total Duplicate</td>
+                <th class="text-danger">{{total.totalDuplicate}}</th>
+              </tr>
+              <tr class="bg-light">
+                <th>Total</th>
+                <th>{{total.totalSold + total.totalReserved + total.totalUnsold}}</th>
+              </tr>
+            </table>
+          </div>
+          <div class="col-md-6">
+            <table class="table table-bordered table-hover table-responsive-sm">
+              <tr>
+                <th>Agent Name</th>
+                <th>No of seat sold / Reserved</th>
+              </tr>
+              <tr *ngFor="let item of (soldBy | keyvalue)">
+                <td>{{item.key}}</td>
+                <td>{{item.value}}</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+
+      </div>
+      <ng-template #noRecord>
+        <h4 class="text-center">
+          <i class="fa fa-frown-o"></i> No record yet</h4>
+      </ng-template>
+    </div>
+  </div>
+</div>

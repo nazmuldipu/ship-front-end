@@ -14,4 +14,5 @@ export interface Report {
   soldBy: string;
   role: string;
   paid: boolean;
+  duplicate: boolean;
 }

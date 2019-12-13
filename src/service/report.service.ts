@@ -136,6 +136,20 @@ export class ReportService {
     );
   }
 
+  getServiceAdminBooking(
+    shipId: number,
+    date: string
+  ): Observable<Report[]> {
+    const param = `date=${date}&`;
+    return this.dataSource.sendRequest(
+      RequestMethod.Get,
+      this.serviceServiceAdminUrl + `/bookingList/${shipId}`,
+      null,
+      true,
+      param
+    );
+  }
+
   getServiceAdminDashboardReport(date: string): Observable<any> {
     const param = `date=${date}&`;
     return this.dataSource.sendRequest(
