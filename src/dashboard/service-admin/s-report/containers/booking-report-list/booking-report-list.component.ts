@@ -62,7 +62,6 @@ export class BookingReportListComponent implements OnInit {
     let roomids: string[] = [];
     this.serviceAdminSellsReportList.forEach(sb => {
       this.total.totalrent += sb.price;
-
       sb.seatNumbers.forEach(sn => {
         if (roomids.includes(sn)) {
           sb.duplicate = true;
@@ -90,6 +89,9 @@ export class BookingReportListComponent implements OnInit {
       }
 
     });
+
+    this.serviceAdminSellsReportList.sort((a, b) => a.seatNumbers[0].localeCompare(b.seatNumbers[0]));
+    // products.sort((a,b)=>a.title.rendered > b.title.rendered)
   }
 
 }

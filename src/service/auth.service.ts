@@ -77,6 +77,9 @@ export class AuthService {
   isAdmin(): boolean {
     return this.authorities.includes('ROLE_ADMIN');
   }
+  isServiceAdmin() {
+    return this.authorities.includes('ROLE_SERVICE_ADMIN');
+  }
   isAgent(): boolean {
     return this.authorities.includes('ROLE_AGENT');
   }

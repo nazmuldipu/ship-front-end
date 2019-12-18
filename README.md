@@ -52,6 +52,11 @@ Sundrop Tours & Travels	01615153036	400	sundrop3036@gmail.com
 
 bug1: service agent -> cancel ticket -> accounting problem -> money is not getting back
 
+<<<<<<< HEAD
 update:
 1) multiple cancel
 2) status seat plan
+=======
+update 20191107:
+    1) counter report for ship admin
+>>>>>>> 17ab53124c16325539ac48f0e64b08e4c9e97176

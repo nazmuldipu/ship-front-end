@@ -78,6 +78,7 @@ export class StatusComponent implements OnInit {
       });
   }
   onSelectCategory(category: string) {
+    console.log("Category ", category);
     this.category = this.categoryList.find(ca => ca == category);
     this.filterSeatList(category);
   }

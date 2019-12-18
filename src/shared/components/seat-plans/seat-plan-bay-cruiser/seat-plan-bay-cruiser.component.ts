@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { Seat } from 'src/shared/models/seat.model';
+import { AuthService } from 'src/service/auth.service';
 
 @Component({
   selector: 'seat-plan-bay-cruiser',
@@ -14,6 +15,10 @@ export class SeatPlanBayCruiserComponent {
 
   @Output() select = new EventEmitter<number>();
 
+  constructor(private auth: AuthService) {
+
+  }
+
   onSeatClick(seatId) {
     this.select.emit(seatId);
   }
@@ -24,6 +29,11 @@ export class SeatPlanBayCruiserComponent {
 
   getSubArray(start, end) {
     return this.filteredSeatList.slice(start, end + 1);
+  }
+
+  isAdminOrServiceAdmin(): boolean {
+    if (this.auth.isAdmin() || this.auth.isServiceAdmin()) return true;
+    return false;
   }
 
 }

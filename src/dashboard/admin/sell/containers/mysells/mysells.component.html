@@ -1,6 +1,18 @@
 <div class="container-fluid">
   <div class="row my-2">
-    <div class="col-md-2  d-print-none">
+    <div class="col-md-3  d-print-none">
+      <!-- <table class="table list-group">
+        <tr class="list-group-item">
+          <td colspan="2">
+            <h5>Sells List</h5>
+            <small>Choose a sell from below list</small>
+          </td>
+        </tr>
+        <tr *ngFor="let booking of bookingPage?.content" class="list-group-item list-group-item-action">
+          <th>{{ booking.id }}</th>
+          <td>{{ booking.user.name }} [{{ booking.user.phoneNumber }}]</td>
+        </tr>
+      </table> -->
       <ul class="list-group" *ngIf="!loading; else showLoading">
         <li class="list-group-item">
           <h5>Sells List</h5>
@@ -8,7 +20,7 @@
         </li>
 
         <a *ngFor="let booking of bookingPage?.content" class="list-group-item list-group-item-action" (click)="onBookingDetails(booking.id)">
-          <i class="fa fa-ticket"></i> {{ booking.id }} {{ booking.user.name }} [{{ booking.user.phoneNumber }}]
+          <strong> {{ booking.id }} </strong> {{ booking.user.name }} [{{ booking.user.phoneNumber }}]
         </a>
       </ul>
       <ng-template #showLoading>

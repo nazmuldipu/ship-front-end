@@ -616,8 +616,6 @@
   </div>
 </div>
 
-
-
 <!-- Bay cruise Rajaniganda seat plan -->
 <div class="row border m-0" style="border-radius: 3px 3px 0px 0px; " *ngIf="categoryName == 'Rajanigandha'">
   <div class="col-12 bg-secondary text-white" style="border-radius: 3px 3px 0px 0px; ">
@@ -1002,6 +1000,22 @@
         </div>
       </div>
       <div class="gap"></div>
+    </div>
+  </div>
+</div>
+
+<div class="row border m-1" style="border-radius: 3px 3px 0px 0px; " *ngIf="categoryName == 'Standing' && isAdminOrServiceAdmin()">
+  <div class="col-12 bg-secondary text-white" style="border-radius: 3px 3px 0px 0px; ">
+    Seat list for Standing
+    <strong> {{ category?.name }} </strong>
+  </div>
+  <div class="col-lg-1 col-md-1 col-sm-2 col-2 p-1 " *ngFor="let seat of filteredSeatList">
+    <div class="seat-box" [ngClass]="{
+      sold: seat.status == 'SEAT_SOLD',
+      blocked: seat.status == 'SEAT_BLOCKED',
+      reserved: seat.status == 'SEAT_RESERVED'
+    }" (click)="onSeatClick(seat.id)">
+      {{ seat.seatNumber }}
     </div>
   </div>
 </div>
