@@ -1,0 +1,39 @@
+<div class="container-fluid d-print-none">
+  <span class="row px-3 details-title text-left">Print Ticket</span>
+</div>
+
+<div class="container-fluid">
+  <div class="d-flex justify-content-center d-print-none">
+    <form>
+      <div class="row shadow-sm">
+        <div class="col-auto">
+          <input type="number" class="form-control" name="ticketId" [(ngModel)]="ticketId" placeholder="Ticket Id" />
+        </div>
+        <div class="col-auto">
+          <button type="submit" class="btn btn-primary mb-2" (click)="getTicket()">
+            Submit
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="container-fluid">
+  <div class="d-flex justify-content-center d-print-none">
+    <div class="row">
+      <div class="col-auto alert alert-danger" role="alert" *ngIf="errorMessage.length">
+        {{ errorMessage }}
+        <button class="btn btn-sm btn-warning" (click)="onCloseButton()">
+          Close
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid p-0" *ngIf="ticket">
+  <ticket-sukantababu-print *ngIf="ticket && ticket.ship?.shipName == 'SUKANTO_BABU'" [ticket]="ticket" (close)="onTicketClose()">
+  </ticket-sukantababu-print>
+  <tiket-baycruise-print *ngIf="ticket && ticket.ship?.shipName == 'BAY_CRUISE'" [ticket]="ticket" (close)="onTicketClose()">
+  </tiket-baycruise-print>
+
+</div>
