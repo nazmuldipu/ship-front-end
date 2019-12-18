@@ -9,11 +9,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { MysellsComponent } from './containers/mysells/mysells.component';
 import { CancelBookingComponent } from './containers/cancel-booking/cancel-booking.component';
 import { StatusComponent } from './containers/status/status.component';
+import { PrintTicketComponent } from './containers/print-ticket/print-ticket.component';
 
 export const ROUTES: Routes = [
   { path: 'mySells', component: MysellsComponent },
   { path: 'cancle-booking', component: CancelBookingComponent },
   { path: 'seat-status', component: StatusComponent },
+  { path: 'print-ticket', component: PrintTicketComponent },
   { path: '', component: SellComponent }
 ];
 
@@ -22,8 +24,9 @@ export const ROUTES: Routes = [
     SellComponent,
     MysellsComponent,
     CancelBookingComponent,
-    StatusComponent
+    StatusComponent,
+    PrintTicketComponent
   ],
   imports: [AdminSharedModule, RouterModule.forChild(ROUTES)]
 })
-export class SellModule {}
+export class SellModule { }

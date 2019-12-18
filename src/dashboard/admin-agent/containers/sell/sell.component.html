@@ -68,7 +68,7 @@
             <div class="col-md-6">
               <div class="row m-0">
                 <span *ngFor="let cat of categoryList">
-                  <button class="btn-sm m-1" [ngClass]="
+                  <button *ngIf="cat.name !='Standing'" class="btn-sm m-1" [ngClass]="
                       cat.id == category.id ? 'btn-primary' : 'btn-secondary'
                     " (click)="onSelectCategory(cat.id)">
                     {{ cat.name }}

@@ -11,9 +11,9 @@ export class PrintTicketComponent implements OnInit {
   ticketId;
   ticket: Booking;
   errorMessage = '';
-  constructor(private bookingService: BookingService) {}
+  constructor(private bookingService: BookingService) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   getTicket() {
     this.getServiceAdminBooking(this.ticketId);
@@ -25,9 +25,13 @@ export class PrintTicketComponent implements OnInit {
     await this.bookingService.getServiceAdminBooking(bookingId).subscribe(
       data => {
         if (data.id) {
-          this.ticket = data;
+          if (data.cancelled == true) {
+            this.ticket = data;
+          } else {
+            this.errorMessage = 'This ticket has been canceled';
+          }
         } else {
-          this.errorMessage = 'This ticket has been canceled';
+          this.errorMessage = 'No ticket found with id ' + bookingId;
         }
       },
       error => {
