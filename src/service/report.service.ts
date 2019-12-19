@@ -75,12 +75,23 @@ export class ReportService {
 
   getAdminSellsReportByShipId(
     date: string,
-    hotelId: number
+    shipId: number
   ): Observable<Report[]> {
     const pageUrl = `date=${date}&`;
     return this.dataSource.sendRequest(
       RequestMethod.Get,
-      this.serviceAdminUrl + `/shipSells/${hotelId}`,
+      this.serviceAdminUrl + `/shipSells/${shipId}`,
+      null,
+      true,
+      pageUrl
+    );
+  }
+
+  getAdminAgentReport(shipId, userId, date: string): Observable<Report[]> {
+    const pageUrl = `userId=${userId}&date=${date}&`;
+    return this.dataSource.sendRequest(
+      RequestMethod.Get,
+      this.serviceAdminUrl + `/agentReport/${shipId}`,
       null,
       true,
       pageUrl
