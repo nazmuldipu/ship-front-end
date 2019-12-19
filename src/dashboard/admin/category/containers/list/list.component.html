@@ -4,24 +4,22 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-3">
-      <admin-ship-list
-        (ship)="onSelectShip($event)"
-        [mode]="1"
-      ></admin-ship-list>
+      <admin-ship-list (ship)="onSelectShip($event)" [mode]="1"></admin-ship-list>
     </div>
     <div class="col-md-9" *ngIf="categoryPage?.content.length">
-      <h3 class="text-center">Category List</h3>
+      <h3 class="text-center">{{ship?.shipNumber}}-{{ship?.name}} Category List</h3>
       <div class="alert alert-success" role="alert" *ngIf="message.length > 0">
         {{ message }}
         <button class="btn btn-warning btn-sm" (click)="clear()">Clear</button>
       </div>
-      <table class="table border">
+      <table class="table table-responsive-sm">
         <thead>
           <tr>
             <th>Category Name</th>
             <th>Fair</th>
             <th>Floor</th>
             <th>Seat Quality</th>
+            <th>Priority</th>
             <th></th>
             <th></th>
           </tr>
@@ -29,33 +27,26 @@
         <tbody>
           <tr *ngFor="let category of categoryPage?.content">
             <td>
-              <a
-                style="text-decoration: none;"
-                routerLink="/dashboard/admin/category/{{ category.id }}"
-              >
+              <a style="text-decoration: none;" routerLink="/dashboard/admin/category/{{ category.id }}">
                 {{ category.name }}
               </a>
             </td>
             <td>{{ category.fare }}</td>
             <td>{{ category.floorNumber }}</td>
             <td>{{ category.seatQuality }}</td>
-            <td></td>
+            <td>{{ category.priority }}</td>
             <td>
-              <button
-                class="btn btn-sm btn-danger mr-1"
-                (click)="onDelete(category.id)"
-              >
+              <a class="btn btn-sm btn-warning" routerLink="/dashboard/admin/category/add/{{category.id}}" target="_blank">Edit</a>
+            </td>
+            <td>
+              <button class="btn btn-sm btn-danger mr-1" (click)="onDelete(category.id)">
                 Delete
               </button>
             </td>
           </tr>
           <tr>
-            <td colspan="6">
-              <pagination
-                *ngIf="categoryPage != null"
-                [page]="categoryPage"
-                (getPage)="getCategoryPage(shipId, $event)"
-              ></pagination>
+            <td colspan="7">
+              <pagination *ngIf="categoryPage != null" [page]="categoryPage" (getPage)="getCategoryPage(shipId, $event)"></pagination>
             </td>
           </tr>
         </tbody>

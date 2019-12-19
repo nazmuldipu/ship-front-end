@@ -55,6 +55,7 @@ export class CategoryFormComponent implements OnChanges {
       fare: ['', Validators.required],
       discount: ['', Validators.required],
       agentDiscount: ['', Validators.required],
+      priority: ['', Validators.required],
       categoryFacilities: this.builder.group({
         topFloor: false,
         ac: false,

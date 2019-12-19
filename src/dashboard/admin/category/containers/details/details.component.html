@@ -35,14 +35,18 @@
       </div>
 
       <div class="form-row">
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-4">
           <label for="seatQuality">Seat Quality </label>
           <label class="form-control">{{ category?.seatQuality }}</label>
         </div>
 
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-4">
           <label for="floorNumber">Floor Number</label>
           <label class="form-control">{{ category?.floorNumber }}</label>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="floorNumber">Priority</label>
+          <label class="form-control">{{ category?.priority }}</label>
         </div>
       </div>
       <div class="form-group">
@@ -55,42 +59,33 @@
         <div class="form-row align-items-center">
           <div class="col-6 col-md-4">
             <label class="form-check-label">
-              <i
-                class="fa "
-                [ngClass]="
+              <i class="fa " [ngClass]="
                   category?.categoryFacilities?.topFloor
                     ? 'fa-check-square-o'
                     : 'fa-square-o'
-                "
-              >
+                ">
               </i>
               Top Floor
             </label>
           </div>
           <div class="col-6 col-md-4">
             <label class="form-check-label">
-              <i
-                class="fa "
-                [ngClass]="
+              <i class="fa " [ngClass]="
                   category?.categoryFacilities?.ac
                     ? 'fa-check-square-o'
                     : 'fa-square-o'
-                "
-              >
+                ">
               </i>
               AC
             </label>
           </div>
           <div class="col-6 col-md-4">
             <label class="form-check-label">
-              <i
-                class="fa "
-                [ngClass]="
+              <i class="fa " [ngClass]="
                   category?.categoryFacilities?.freeBreakfast
                     ? 'fa-check-square-o'
                     : 'fa-square-o'
-                "
-              >
+                ">
               </i>
               Free Breakfast
             </label>
@@ -99,22 +94,13 @@
       </div>
 
       <div class="d-flex flex-row-reverse bd-highlight my-2">
-        <a
-          class="btn btn-warning btn-sm mx-1"
-          routerLink="/dashboard/admin/category/add/{{ category.id }}"
-        >
+        <a class="btn btn-warning btn-sm mx-1" routerLink="/dashboard/admin/category/add/{{ category.id }}">
           <i class="fa fa-pencil-square-o"></i> Edit
         </a>
-        <a
-          class="btn btn-primary btn-sm mx-1"
-          routerLink="/dashboard/admin/category"
-        >
+        <a class="btn btn-primary btn-sm mx-1" routerLink="/dashboard/admin/category">
           <i class="fa fa-list"></i> Category list
         </a>
-        <a
-          class="btn btn-success btn-sm mx-1"
-          routerLink="/dashboard/admin/category/add"
-        >
+        <a class="btn btn-success btn-sm mx-1" routerLink="/dashboard/admin/category/add">
           <i class="fa fa-plus"></i> Add Category
         </a>
       </div>

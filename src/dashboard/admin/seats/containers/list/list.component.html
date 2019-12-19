@@ -8,13 +8,9 @@
       </admin-ship-list>
     </div>
     <div class="col-md-9">
+      <h3 class="text-center" *ngIf="ship">{{ship?.shipNumber}}-{{ship?.name}} seat list</h3>
       <div class="border p-2" *ngIf="ship">
-        <admin-category-list
-          *ngIf="ship"
-          [shipId]="ship.id"
-          (back)="onCategoryBack($event)"
-          (category)="onSelectCategory($event)"
-        >
+        <admin-category-list *ngIf="ship" [shipId]="ship.id" (back)="onCategoryBack($event)" (category)="onSelectCategory($event)">
         </admin-category-list>
       </div>
       <div class="alert alert-success" role="alert" *ngIf="message.length > 0">
@@ -26,8 +22,10 @@
         <strong> {{ category?.name }} </strong>
       </h5>
       <div class="row m-0">
-        <div class="col-md-1 col-2 seat-box" *ngFor="let seat of seatList">
-          {{ seat.seatNumber }}
+        <div class="col-md-1 col-2 p-1" *ngFor="let seat of seatList">
+          <div class="seat-box">
+            {{ seat.seatNumber }}
+          </div>
         </div>
       </div>
       <!-- {{ seatPage | json }} -->

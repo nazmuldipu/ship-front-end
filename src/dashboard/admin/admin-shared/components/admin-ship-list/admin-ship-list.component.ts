@@ -3,6 +3,7 @@ import { ShipService } from 'src/service/ship.service';
 import { CategoryService } from 'src/service/category.service';
 import { CategoryPage } from 'src/shared/models/category.model';
 import { ShipPage, Ship } from 'src/shared/models/ship.model';
+import { UtilService } from 'src/service/util.service';
 
 @Component({
   selector: 'admin-ship-list',
@@ -16,7 +17,7 @@ export class AdminShipListComponent implements OnInit {
   @Output() ship = new EventEmitter<Ship>();
   shipPage: ShipPage;
 
-  constructor(private shipService: ShipService) {}
+  constructor(private shipService: ShipService, private utilService: UtilService) { }
 
   ngOnInit() {
     this.getAdminShipPage(0);
@@ -25,6 +26,7 @@ export class AdminShipListComponent implements OnInit {
   async getAdminShipPage(page: number = 0) {
     await this.shipService.getAdminShipPage(page).subscribe(data => {
       this.shipPage = data;
+      this.shipPage.content.sort(this.utilService.dynamicSortObject('priority'));
     });
   }
 

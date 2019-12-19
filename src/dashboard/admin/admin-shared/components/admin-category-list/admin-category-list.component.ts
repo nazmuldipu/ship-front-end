@@ -9,6 +9,7 @@ import {
 } from '@angular/core';
 import { CategoryService } from 'src/service/category.service';
 import { CategoryPage, Category } from 'src/shared/models/category.model';
+import { UtilService } from 'src/service/util.service';
 
 @Component({
   selector: 'admin-category-list',
@@ -22,7 +23,7 @@ export class AdminCategoryListComponent implements OnChanges {
 
   categoryList: Category[];
 
-  constructor(private categoryService: CategoryService) {}
+  constructor(private categoryService: CategoryService, private utilService: UtilService) { }
 
   ngOnChanges(changes: SimpleChanges): void {
     this.getCategoryPage(this.shipId);
@@ -33,6 +34,7 @@ export class AdminCategoryListComponent implements OnChanges {
       .getAdminCategoryListByShiplId(shipId)
       .subscribe(data => {
         this.categoryList = data;
+        this.categoryList.sort(this.utilService.dynamicSortObject('priority'));
         this.onSelectCategory(this.categoryList[data.length - 1].id);
       });
   }

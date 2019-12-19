@@ -26,6 +26,7 @@ export interface Ship {
   hotelswaveCommission: number;
   startsFrom: number;
   rating: number;
+  priority: number;
   facilities: ShipFacilities;
   admin: User;
 }

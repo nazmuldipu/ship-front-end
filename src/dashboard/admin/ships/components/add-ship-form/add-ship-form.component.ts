@@ -73,6 +73,7 @@ export class AddShipFormComponent implements OnChanges {
       online: false,
       discount: [0, Validators.required],
       hotelswaveCommission: [0, Validators.required],
+      priority: [0, Validators.required],
       shipFacilities: this.builder.group({
         casino: false,
         shops: false,

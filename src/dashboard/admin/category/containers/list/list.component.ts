@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CategoryService } from 'src/service/category.service';
 import { CategoryPage } from 'src/shared/models/category.model';
 import { Ship } from 'src/shared/models/ship.model';
+import { UtilService } from 'src/service/util.service';
 
 @Component({
   selector: 'category-list',
@@ -14,7 +15,7 @@ export class ListComponent {
 
   message = '';
 
-  constructor(private categoryService: CategoryService) {}
+  constructor(private categoryService: CategoryService, private utilService: UtilService) { }
 
   onSelectShip(ship) {
     this.ship = ship;
@@ -26,6 +27,7 @@ export class ListComponent {
       .getAdminCategoryByShiplId(shipId, page)
       .subscribe(data => {
         this.categoryPage = data;
+        this.categoryPage.content.sort(this.utilService.dynamicSortObject('priority'));
       });
   }
 

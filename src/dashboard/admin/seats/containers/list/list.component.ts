@@ -15,15 +15,12 @@ export class ListComponent implements OnInit {
   seatList: Seat[];
   message = '';
 
-  constructor(private seatService: SeatsService) {}
+  constructor(private seatService: SeatsService) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   onSelectShip(ship) {
     this.ship = ship;
-    // this.getAdminSeatPage(ship.id);
-    // console.log(ship);
-    // this.getCategoryPage(shipId);
   }
 
   onSelectCategory(category) {
@@ -39,13 +36,6 @@ export class ListComponent implements OnInit {
       });
   }
 
-  // async getAdminSeatPage(shipId, page = 0) {
-  //   await this.seatService
-  //     .getAdminSeatPageByShiplId(shipId, page)
-  //     .subscribe(data => {
-  //       this.seatPage = data;
-  //     });
-  // }
   onCategoryBack(event) {
     this.ship = null;
   }

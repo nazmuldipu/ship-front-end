@@ -10,6 +10,7 @@
         <th>Phone</th>
         <th>Enabled</th>
         <th>Route</th>
+        <th>Priority</th>
         <th>Actions</th>
       </tr>
     </thead>
@@ -20,23 +21,15 @@
         <td>{{ ship.phoneNumber }}</td>
         <td>{{ ship.enabled }}</td>
         <td>{{ ship.startingPoint }} - {{ ship.droppingPoint }}</td>
+        <td>{{ship.priority}}</td>
         <td>
-          <button
-            class="btn btn-sm btn-success mr-1"
-            (click)="onDetails(ship.id)"
-          >
+          <button class="btn btn-sm btn-success mr-1" (click)="onDetails(ship.id)">
             Details
           </button>
-          <a
-            class="btn btn-sm btn-info mr-1"
-            routerLink="/dashboard/admin/category/byShiplId/{{ ship.id }}"
-          >
+          <a class="btn btn-sm btn-info mr-1" routerLink="/dashboard/admin/category/byShiplId/{{ ship.id }}">
             Add Category
           </a>
-          <a
-            class="btn btn-sm btn-info mr-1"
-            routerLink="/dashboard/admin/rooms/add/byShipId/{{ ship.id }}"
-          >
+          <a class="btn btn-sm btn-info mr-1" routerLink="/dashboard/admin/rooms/add/byShipId/{{ ship.id }}">
             Add Seat
           </a>
         </td>

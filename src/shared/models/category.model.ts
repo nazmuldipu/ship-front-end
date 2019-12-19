@@ -10,6 +10,7 @@ export interface Category {
   fare: number;
   discount: number;
   agentDiscount: number;
+  priority: number;
   categoryFacilities: CategoryFacilities;
   ship: Ship;
 }
@@ -25,7 +26,7 @@ export class CategoryPage {
     public sort?: Sort[],
     public totalElements?: number,
     public totalPages?: number
-  ) {}
+  ) { }
 }
 
 export interface CategoryFacilities {

@@ -47,16 +47,6 @@
       <label for="phoneNumber">Phone number *</label>
       <label class="form-control">{{ ship?.phoneNumber }}</label>
     </div>
-    <!-- <div class="col-auto">
-      <label class="form-check-label">
-        <i
-          class="fa "
-          [ngClass]="ship?.online ? 'fa-check-square-o' : 'fa-square-o'"
-        >
-        </i>
-        online
-      </label>
-    </div> -->
   </div>
   <div class="form-row">
     <div class="form-group col-md-6">
@@ -69,13 +59,17 @@
     </div>
   </div>
   <div class="form-row">
-    <div class="form-group col-md-6">
+    <div class="form-group col-md-4">
       <label for="discount">Discount in percent *</label>
       <label class="form-control">{{ ship?.discount }}</label>
     </div>
-    <div class="form-group col-md-6">
+    <div class="form-group col-md-4">
       <label for="hotelswavePercentage">Hotelswave Discount in amount *</label>
       <label class="form-control">{{ ship?.hotelswaveCommission }}</label>
+    </div>
+    <div class="form-group col-md-4">
+      <label for="hotelswavePercentage">Priority *</label>
+      <label class="form-control">{{ ship?.priority }}</label>
     </div>
   </div>
 

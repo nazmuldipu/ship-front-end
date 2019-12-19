@@ -7,6 +7,7 @@ import {
   SeatStatusList
 } from 'src/shared/models/booking.model';
 import { Ship } from 'src/shared/models/ship.model';
+import { UtilService } from 'src/service/util.service';
 
 @Component({
   selector: 'app-status',
@@ -27,7 +28,8 @@ export class StatusComponent implements OnInit {
 
   constructor(
     private seastService: SeatsService,
-    private bookingService: BookingService
+    private bookingService: BookingService,
+    private utilService: UtilService
   ) { }
 
   ngOnInit() {
@@ -74,11 +76,11 @@ export class StatusComponent implements OnInit {
             this.categoryList.push(cat);
           }
         });
+        this.categoryList.sort(this.utilService.dynamicSortObject('priority'));
         this.onSelectCategory(this.categoryList[this.categoryList.length - 1]);
       });
   }
   onSelectCategory(category: string) {
-    console.log("Category ", category);
     this.category = this.categoryList.find(ca => ca == category);
     this.filterSeatList(category);
   }

@@ -7,6 +7,7 @@ import { Seat } from 'src/shared/models/seat.model';
 import { Category } from 'src/shared/models/category.model';
 import { User } from 'src/shared/models/user.model';
 import { SubBooking, Booking, SeatStatus } from 'src/shared/models/booking.model';
+import { UtilService } from 'src/service/util.service';
 
 @Component({
   selector: 'app-sell',
@@ -33,7 +34,8 @@ export class SellComponent implements OnInit {
 
   constructor(private shipService: ShipService,
     private seatService: SeatsService,
-    private bookinService: BookingService) { }
+    private bookinService: BookingService,
+    private utilService: UtilService) { }
 
   ngOnInit() {
     let date = new Date();
@@ -125,6 +127,7 @@ export class SellComponent implements OnInit {
               this.categoryList.push(cat);
             }
           });
+          this.categoryList.sort(this.utilService.dynamicSortObject('priority'));
           this.onSelectCategory(
             this.categoryList[this.categoryList.length - 1].id
           );

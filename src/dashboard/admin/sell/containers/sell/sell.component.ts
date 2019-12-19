@@ -11,7 +11,7 @@ import {
 } from 'src/shared/models/booking.model';
 import { User } from 'src/shared/models/user.model';
 import { BookingService } from 'src/service/booking.service';
-import { Ticket } from './ticket.model';
+import { UtilService } from 'src/service/util.service';
 
 @Component({
   selector: 'app-sell',
@@ -42,7 +42,8 @@ export class SellComponent implements OnInit {
   constructor(
     private shipService: ShipService,
     private seatService: SeatsService,
-    private bookinService: BookingService
+    private bookinService: BookingService,
+    private utilService: UtilService
   ) { }
 
   ngOnInit() {
@@ -74,6 +75,7 @@ export class SellComponent implements OnInit {
   async getAdminShipPage(page: number = 0) {
     await this.shipService.getAdminShipPage(page).subscribe(data => {
       this.shipPage = data;
+      this.shipPage.content.sort(this.utilService.dynamicSortObject('priority'));
     });
   }
 
@@ -93,6 +95,7 @@ export class SellComponent implements OnInit {
               this.categoryList.push(cat);
             }
           });
+          this.categoryList.sort(this.utilService.dynamicSortObject('priority'));
           this.onSelectCategory(
             this.categoryList[this.categoryList.length - 1].id
           );

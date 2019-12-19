@@ -1,8 +1,4 @@
-<form
-  [formGroup]="form"
-  (ngSubmit)="submit()"
-  (mouseleave)="mouseoverShifting = false"
->
+<form [formGroup]="form" (ngSubmit)="submit()" (mouseleave)="mouseoverShifting = false">
   <div class="form-group">
     <label for="exampleInputEmail1">Ship *</label>
     <label class="form-control"> {{ ship.name }} </label>
@@ -11,13 +7,10 @@
   <div class="form-group">
     <label for="exampleInputEmail1">Category Name *</label>
     <input class="form-control" formControlName="name" />
-    <small
-      class="text-danger"
-      *ngIf="
+    <small class="text-danger" *ngIf="
         form.controls.name.errors?.required &&
         (form.controls.name.dirty || mouseoverShifting)
-      "
-    >
+      ">
       Category name required
     </small>
   </div>
@@ -25,19 +18,11 @@
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="fare">Fare *</label>
-      <input
-        class="form-control"
-        id="fare"
-        type="number"
-        formControlName="fare"
-      />
-      <small
-        class="text-danger"
-        *ngIf="
+      <input class="form-control" id="fare" type="number" formControlName="fare" />
+      <small class="text-danger" *ngIf="
           form.controls.fare.errors?.required &&
           (form.controls.fare.dirty || mouseoverShifting)
-        "
-      >
+        ">
         Fare required
       </small>
     </div>
@@ -47,86 +32,66 @@
     <div class="form-group col-md-6">
       <label for="discount">Discount *</label>
       <input class="form-control" id="discount" formControlName="discount" />
-      <small
-        class="text-danger"
-        *ngIf="
+      <small class="text-danger" *ngIf="
           form.controls.discount.errors?.required &&
           (form.controls.discount.dirty || mouseoverShifting)
-        "
-      >
+        ">
         Discount required
       </small>
     </div>
 
     <div class="form-group col-md-6">
       <label for="agentDiscount">Agent Discount *</label>
-      <input
-        class="form-control"
-        id="agentDiscount"
-        type="number"
-        formControlName="agentDiscount"
-      />
-      <small
-        class="text-danger"
-        *ngIf="
+      <input class="form-control" id="agentDiscount" type="number" formControlName="agentDiscount" />
+      <small class="text-danger" *ngIf="
           form.controls.agentDiscount.errors?.required &&
           (form.controls.agentDiscount.dirty || mouseoverShifting)
-        "
-      >
+        ">
         Agent Discount required
       </small>
     </div>
   </div>
 
   <div class="form-row">
-    <div class="form-group col-md-6">
+    <div class="form-group col-md-4">
       <label for="seatQuality">Seat Quality *</label>
-      <input
-        class="form-control"
-        id="seatQuality"
-        formControlName="seatQuality"
-      />
-      <small
-        class="text-danger"
-        *ngIf="
+      <input class="form-control" id="seatQuality" formControlName="seatQuality" />
+      <small class="text-danger" *ngIf="
           form.controls.seatQuality.errors?.required &&
           (form.controls.seatQuality.dirty || mouseoverShifting)
-        "
-      >
+        ">
         Seat Quality required
       </small>
     </div>
 
-    <div class="form-group col-md-6">
+    <div class="form-group col-md-4">
       <label for="floorNumber">Floor Number</label>
-      <input
-        class="form-control"
-        id="floorNumber"
-        maxlength="2"
-        type="number"
-        formControlName="floorNumber"
-      />
-      <small
-        class="text-danger"
-        *ngIf="
+      <input class="form-control" id="floorNumber" maxlength="2" type="number" formControlName="floorNumber" />
+      <small class="text-danger" *ngIf="
           form.controls.floorNumber.errors?.required &&
           (form.controls.floorNumber.dirty || mouseoverShifting)
-        "
-      >
+        ">
         Floor Number required
+      </small>
+    </div>
+    <div class="form-group col-md-4">
+      <label for="priority">Priority</label>
+      <input class="form-control" id="priority" maxlength="2" type="number" formControlName="priority" />
+      <small class="text-danger" *ngIf="
+          form.controls.priority.errors?.required &&
+          (form.controls.priority.dirty || mouseoverShifting)
+        ">
+        Priority Number required
       </small>
     </div>
   </div>
   <div class="form-group">
     <label for="description">Description *</label>
     <input class="form-control" formControlName="description" />
-    <small
-      class="text-danger"
-      *ngIf="
+    <small class="text-danger" *ngIf="
         form.controls.description.errors?.required &&
         (form.controls.description.dirty || mouseoverShifting)
-      "
-    >
+      ">
       Description required
     </small>
   </div>
@@ -136,34 +101,19 @@
     <div class="form-row align-items-center">
       <div class="col-6 col-md-4">
         <div class="form-check mb-2">
-          <input
-            class="form-check-input"
-            type="checkbox"
-            id="topFloor"
-            formControlName="topFloor"
-          />
+          <input class="form-check-input" type="checkbox" id="topFloor" formControlName="topFloor" />
           <label class="form-check-label" for="topFloor"> Top Floor </label>
         </div>
       </div>
       <div class="col-6 col-md-4">
         <div class="form-check mb-2">
-          <input
-            class="form-check-input"
-            type="checkbox"
-            id="ac"
-            formControlName="ac"
-          />
+          <input class="form-check-input" type="checkbox" id="ac" formControlName="ac" />
           <label class="form-check-label" for="ac"> AC </label>
         </div>
       </div>
       <div class="col-6 col-md-4">
         <div class="form-check mb-2">
-          <input
-            class="form-check-input"
-            type="checkbox"
-            id="freeBreakfast"
-            formControlName="freeBreakfast"
-          />
+          <input class="form-check-input" type="checkbox" id="freeBreakfast" formControlName="freeBreakfast" />
           <label class="form-check-label" for="freeBreakfast">
             Free Breakfast
           </label>
@@ -174,15 +124,11 @@
 
   <div class="d-flex flex-row-reverse bd-highlight">
     <span (mouseenter)="mouseoverShifting = true">
-      <button
-        class="btn btn-warning mx-1"
-        [ngClass]="{
+      <button class="btn btn-warning mx-1" [ngClass]="{
           disabled: form.invalid,
           'btn-warning': exists,
           'btn-success': !exists
-        }"
-        type="submit"
-      >
+        }" type="submit">
         {{ exists ? 'Update' : 'Create' }}
       </button>
     </span>
