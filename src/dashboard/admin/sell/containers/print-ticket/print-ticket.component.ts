@@ -23,7 +23,7 @@ export class PrintTicketComponent {
     await this.bookingService.getAdminBooking(bookingId).subscribe(
       data => {
         if (data.id) {
-          if (data.cancelled == true) {
+          if (data.cancelled == false) {
             this.ticket = data;
           } else {
             this.errorMessage = 'This ticket has been canceled';
