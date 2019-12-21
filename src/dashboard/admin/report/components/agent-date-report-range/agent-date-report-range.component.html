@@ -1,0 +1,46 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12">
+
+      <table class="table table-bordered table-hover table-responsive-sm" *ngIf="
+    serviceAdminSellsReportRangeList.length > 0;
+      else noRecord
+    ">
+        <thead>
+          <tr>
+            <th>Sl.</th>
+            <th>Date</th>
+            <th>Ship Number</th>
+            <th>Ship Name</th>
+            <th>Total Number Of Seat</th>
+            <th>Total Fare</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let report of serviceAdminSellsReportRangeList; index as i">
+            <td>{{ i + 1 }}</td>
+            <td>{{ report.date | date: 'MMM d, y' }}</td>
+            <td>{{ report.shipNumber }}</td>
+            <td>{{ report.shipName }}</td>
+            <td>{{ report.totalNumberOfSeat }}</td>
+            <td class="text-right">{{ report.totalFare }}</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <th class="text-right">TOTAL</th>
+            <td class="text-right">{{total}}</td>
+          </tr>
+        </tfoot>
+      </table>
+      <ng-template #noRecord>
+        <h4 class="text-center mt-4">
+          <i class="fa fa-frown-o"></i> No record yet</h4>
+      </ng-template>
+    </div>
+  </div>
+</div>

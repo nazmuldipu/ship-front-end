@@ -1,0 +1,25 @@
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { AgentDateReportComponent } from './agent-date-report.component';
+
+describe('AgentDateReportComponent', () => {
+  let component: AgentDateReportComponent;
+  let fixture: ComponentFixture<AgentDateReportComponent>;
+
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      declarations: [ AgentDateReportComponent ]
+    })
+    .compileComponents();
+  }));
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(AgentDateReportComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});

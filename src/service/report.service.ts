@@ -98,6 +98,17 @@ export class ReportService {
     );
   }
 
+  getAdminAgentReportRange(shipId, userId, startDate, endDate): Observable<ReportRange[]> {
+    const pageUrl = `userId=${userId}&startDate=${startDate}&endDate=${endDate}&`;
+    return this.dataSource.sendRequest(
+      RequestMethod.Get,
+      this.serviceAdminUrl + `/agentReportRange/${shipId}`,
+      null,
+      true,
+      pageUrl
+    );
+  }
+
   // ************************** Service Admin modules ***********************************
 
   getServiceAdminShipSells(shipId: number, date: string): Observable<Report[]> {

@@ -1,0 +1,67 @@
+<div class="container-fluid p-0">
+  <div class="row">
+    <div class="col-12">
+      <table class="table table-bordered table-hover table-responsive-sm" *ngIf="serviceAdminSellsReportList.length > 0; else noRecord">
+        <thead>
+          <tr>
+            <th>Sl.</th>
+            <th>Ticket no.</th>
+            <th>Booking Date</th>
+            <th>Journey Date</th>
+            <th>Passenger Info</th>
+            <th>Seats</th>
+            <th>Price</th>
+            <th>Route</th>
+            <th>Sold By</th>
+            <th>Status</th>
+            <th>Paid</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let report of serviceAdminSellsReportList; index as i">
+            <td>{{ i + 1 }}</td>
+            <td>{{ report.bookingId }}</td>
+            <td>{{ report.bookingDate | date: 'MMM d, y, h:mm:ss a' }}</td>
+            <td>{{ report.journeyDate | date }}</td>
+            <td>{{ report.customerName }} - {{ report.customerPhone }}</td>
+            <td>
+              <span *ngFor="let seat of report.seatNumbers">{{ seat }},
+              </span>
+            </td>
+            <td>{{ report.price }}</td>
+            <td>{{ report.shipNumber }} - {{ report.routes }}</td>
+            <td>{{ report.soldBy }}</td>
+            <td>{{ report.bookingStatus }}</td>
+            <td [ngClass]="{
+                    'bg-success': report.paid,
+                    'bg-warning': !report.paid
+                  }">
+              {{ report.paid ? 'Paid' : 'Unpaid' }}
+            </td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td></td>
+            <td *ngIf="reportType == 'Reservation'"></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>TOTAL</td>
+            <td>{{ total.totalrent }}</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tfoot>
+      </table>
+
+      <ng-template #noRecord>
+        <h4 class="text-center mt-4">
+          <i class="fa fa-frown-o" aria-hidden="true"></i> No record found</h4>
+      </ng-template>
+    </div>
+  </div>
+</div>
