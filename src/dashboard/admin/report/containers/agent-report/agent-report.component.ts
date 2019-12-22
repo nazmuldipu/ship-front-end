@@ -24,6 +24,7 @@ export class AgentReportComponent implements OnInit {
   serviceAdminSellsReportRangeList: ReportRange[] = [];
   loading = false;
   showShipList = false;
+  short = true;
 
   constructor(private reportService: ReportService, private userService: UserService) { }
 

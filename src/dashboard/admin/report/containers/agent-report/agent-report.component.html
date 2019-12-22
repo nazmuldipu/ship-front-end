@@ -40,6 +40,15 @@
         <a *ngFor="let user of userPage?.content" class="list-group-item list-group-item-action" (click)="onSelectAgent(user.id)">
           <i class="fa fa-user"></i> {{ user.name }} [{{ user.phoneNumber }}]
         </a>
+        <li class="list-group-item">
+        <pagination
+                *ngIf="userPage != null"
+                [page]="userPage"
+                [short] = "short"
+                (getPage)="getAdminAgentPage($event)"
+              >
+              </pagination>
+            </li>
       </ul>
       <admin-ship-list *ngIf="showShipList" (ship)="onSelectShip($event)"> </admin-ship-list>
       <button *ngIf="showShipList" class="btn btn-block back-button" (click)="onBackToAgentList()">
