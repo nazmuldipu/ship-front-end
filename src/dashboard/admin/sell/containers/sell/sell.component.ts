@@ -91,7 +91,7 @@ export class SellComponent implements OnInit {
           this.seatList.forEach(s => {
             const cat: Category = s.category;
             const c = this.categoryList.find(ct => ct.id == cat.id);
-            if (!c) {
+            if (!c && cat.priority != 0) { //Categoty with priority 0 will not display
               this.categoryList.push(cat);
             }
           });
