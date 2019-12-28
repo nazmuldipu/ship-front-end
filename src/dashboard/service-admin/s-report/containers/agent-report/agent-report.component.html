@@ -42,7 +42,7 @@
           <i class="fa fa-user"></i> {{ user.name }} [{{ user.phoneNumber }}]
         </a>
         <li class="list-group-item">
-          <pagination *ngIf="userPage != null" [page]="userPage" [short]="short" (getPage)="getAdminAgentPage($event)">
+          <pagination *ngIf="userPage != null" [page]="userPage" [short]="short" (getPage)="getShipAdminAgentPage($event)">
           </pagination>
         </li>
       </ul>
@@ -73,7 +73,8 @@
       <h3 class="text-center" *ngIf="activeTab =='dateRangeReport' && user && ship">
         Report of {{user?.name}} for Ship {{ship?.shipNumber}}-{{ship?.name}} dated : {{ dd.day }}-{{ dd.month }}-{{ dd.year }}
       </h3>
-      <service-agent-date-report *ngIf="serviceAdminSellsReportList" [serviceAdminSellsReportList]="serviceAdminSellsReportList"></service-agent-date-report>
+      <app-loading *ngIf="loading"></app-loading>
+      <service-agent-date-report *ngIf="serviceAdminSellsReportList && !loading" [serviceAdminSellsReportList]="serviceAdminSellsReportList"></service-agent-date-report>
     </div>
   </div>
 </div>

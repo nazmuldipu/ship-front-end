@@ -134,8 +134,10 @@ export class AgentReportComponent implements OnInit {
   async getShipAdminSellsRangeReport(shipId, userId, sd: Date, ed: Date) {
     const startDate = this.getDateString(sd);
     const endDate = this.getDateString(ed);
+    this.loading = true;
     await this.reportService.getShipAdminAgentReportRange(shipId, userId, startDate, endDate).subscribe(data => {
       this.serviceAdminSellsReportList = data;
+      this.loading = false;
     });
   }
 
