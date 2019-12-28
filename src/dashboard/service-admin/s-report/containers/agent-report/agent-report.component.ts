@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from 'src/service/user.service';
-import { UserPage, User } from 'src/shared/models/user.model';
+import { User, UserPage } from 'src/shared/models/user.model';
 import { Ship } from 'src/shared/models/ship.model';
-import { ReportService } from 'src/service/report.service';
 import { Report } from 'src/shared/models/report.model';
-import { ReportRange } from 'src/shared/models/report-range.model';
+import { UserService } from 'src/service/user.service';
+import { ReportService } from 'src/service/report.service';
 
 @Component({
   selector: 'app-agent-report',
@@ -21,7 +20,6 @@ export class AgentReportComponent implements OnInit {
   ship: Ship;
   userPage: UserPage;
   serviceAdminSellsReportList: Report[];
-  serviceAdminSellsReportRangeList: ReportRange[] = [];
   loading = false;
   showShipList = false;
   short = true;
@@ -30,7 +28,7 @@ export class AgentReportComponent implements OnInit {
 
   ngOnInit() {
     this.setDateRanges();
-    this.getAdminAgentPage();
+    this.getShipAdminAgentPage();
   }
 
   setDateRanges() {
@@ -66,13 +64,8 @@ export class AgentReportComponent implements OnInit {
     };
   }
 
-  onTabChange(event) {
-    this.activeTab = event.nextId
-    this.onLoad()
-  }
-
-  async getAdminAgentPage(page: number = 0) {
-    this.userService.getAdminAgents(page).subscribe(data => {
+  async getShipAdminAgentPage(page: number = 0) {
+    this.userService.getServiceAdminAgents(page).subscribe(data => {
       this.userPage = data;
     });
   }
@@ -95,47 +88,55 @@ export class AgentReportComponent implements OnInit {
     this.onLoad();
   }
 
+  onPrint() {
+    (window as any).print();
+  }
   onDateRangeChange(value: any) {
     this.daterange.startDate = value.start._d as Date;
     this.daterange.endDate = value.end._d as Date;
     this.daterange.label = value.label;
-
     this.onLoad();
+  }
+
+  onTabChange(event) {
+    this.activeTab = event;
+    this.serviceAdminSellsReportList = null;
+    this.onLoad()
   }
 
   onLoad() {
     switch (this.activeTab) {
       case 'dateReport':
         if (this.user && this.ship) {
-          this.getAdminSellsReport(this.ship.id, this.user.id, this.dd);
+          this.getShipAdminSellsReport(this.ship.id, this.user.id, this.dd);
         }
         break;
       case 'dateRangeReport':
         if (this.user && this.ship) {
-          this.getAdminSellsRangeReport(this.ship.id, this.user.id, this.daterange.startDate,
+          this.getShipAdminSellsRangeReport(this.ship.id, this.user.id, this.daterange.startDate,
             this.daterange.endDate);
         }
         break;
     }
   }
 
-  async getAdminSellsReport(shipId, userId, { year, month, day }) {
+  async getShipAdminSellsReport(shipId, userId, { year, month, day }) {
     this.loading = true;
     month = month < 10 ? '0' + month : month;
     day = day < 10 ? '0' + day : day;
     const date = `${year}-${month}-${day}`;
-    await this.reportService.getAdminAgentReport(shipId, userId, date).subscribe(data => {
+    await this.reportService.getShipAdminAgentReport(shipId, userId, date).subscribe(data => {
       this.serviceAdminSellsReportList = data;
       this.loading = false;
     })
   }
 
-  async getAdminSellsRangeReport(shipId, userId, sd: Date, ed: Date) {
+  async getShipAdminSellsRangeReport(shipId, userId, sd: Date, ed: Date) {
     const startDate = this.getDateString(sd);
     const endDate = this.getDateString(ed);
-    await this.reportService.getAdminAgentReportRange(shipId, userId, startDate, endDate).subscribe(data => {
-      this.serviceAdminSellsReportRangeList = data;
-    })
+    await this.reportService.getShipAdminAgentReportRange(shipId, userId, startDate, endDate).subscribe(data => {
+      this.serviceAdminSellsReportList = data;
+    });
   }
 
   getDateString(date: Date): string {

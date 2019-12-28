@@ -182,4 +182,26 @@ export class ReportService {
       param
     );
   }
+
+  getShipAdminAgentReport(shipId, userId, date: string): Observable<Report[]> {
+    const pageUrl = `userId=${userId}&date=${date}&`;
+    return this.dataSource.sendRequest(
+      RequestMethod.Get,
+      this.serviceServiceAdminUrl + `/agentReport/${shipId}`,
+      null,
+      true,
+      pageUrl
+    );
+  }
+
+  getShipAdminAgentReportRange(shipId, userId, startDate, endDate): Observable<Report[]> {
+    const pageUrl = `userId=${userId}&startDate=${startDate}&endDate=${endDate}&`;
+    return this.dataSource.sendRequest(
+      RequestMethod.Get,
+      this.serviceServiceAdminUrl + `/agentReportRange/${shipId}`,
+      null,
+      true,
+      pageUrl
+    );
+  }
 }
