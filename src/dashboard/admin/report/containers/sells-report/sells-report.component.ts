@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ReportService } from 'src/service/report.service';
 import { UtilService } from 'src/service/util.service';
 import { Report } from 'src/shared/models/report.model';
+import { CounterReportComponent } from '../../../../service-admin/s-report/containers/counter-report/counter-report.component';
 
 @Component({
   selector: 'app-sells-report',
@@ -16,6 +17,7 @@ export class SellsReportComponent implements OnInit {
   loading = false;
   savedList: Report[] = [];
   serviceAdminSellsReportList: Report[] = [];
+  soldBy: Map<string, Counter> = new Map<string, Counter>();
   total;
 
   constructor(
@@ -124,9 +126,26 @@ export class SellsReportComponent implements OnInit {
   }
 
   calculateServiceAdminBookingReportList() {
-    this.total = { totalrent: 0, totalAdvance: 0, totalDue: 0 };
+    this.total = { totalrent: 0, totalAdvance: 0, totalDue: 0, totalCommission: 0 };
+    this.soldBy = new Map<string, Counter>();
     this.serviceAdminSellsReportList.forEach(sb => {
       this.total.totalrent += sb.price;
+      this.total.totalCommission += (sb.hotelswaveAgentCommission + sb.hotelswaveCommission + sb.shipAgentCommission);
+      if (sb.soldBy) {
+        const hotelswaveCommission = this.soldBy.get(sb.soldBy) == null ? sb.hotelswaveCommission : this.soldBy.get(sb.soldBy).hotelswaveCommission + sb.hotelswaveCommission;
+        const hotelswaveAgentCommission = this.soldBy.get(sb.soldBy) == null ? sb.hotelswaveAgentCommission : this.soldBy.get(sb.soldBy).hotelswaveAgentCommission + sb.hotelswaveAgentCommission;
+        const shipAgentCommission = this.soldBy.get(sb.soldBy) == null ? sb.shipAgentCommission : this.soldBy.get(sb.soldBy).shipAgentCommission + sb.shipAgentCommission;
+        const seatNumbers = this.soldBy.get(sb.soldBy) == null ? sb.seatNumbers.length : this.soldBy.get(sb.soldBy).totalSeatNumber + sb.seatNumbers.length;
+
+        const value: Counter = { hotelswaveCommission: hotelswaveCommission, hotelswaveAgentCommission: hotelswaveAgentCommission, shipAgentCommission: shipAgentCommission, totalSeatNumber: seatNumbers }
+        this.soldBy.set(sb.soldBy, value);
+      }
     });
   }
+}
+interface Counter {
+  hotelswaveCommission: number;
+  hotelswaveAgentCommission: number;
+  shipAgentCommission: number;
+  totalSeatNumber: number;
 }

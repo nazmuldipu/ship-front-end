@@ -11,6 +11,9 @@ export interface Report {
   routes: string;
   seatNumbers: string[];
   price: number;
+  hotelswaveCommission: number;
+  hotelswaveAgentCommission: number;
+  shipAgentCommission: number;
   soldBy: string;
   role: string;
   paid: boolean;
