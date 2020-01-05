@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ReportService } from 'src/service/report.service';
 import { UtilService } from 'src/service/util.service';
 import { Report } from 'src/shared/models/report.model';
-import { CounterReportComponent } from '../../../../service-admin/s-report/containers/counter-report/counter-report.component';
 
 @Component({
   selector: 'app-sells-report',
@@ -131,7 +130,7 @@ export class SellsReportComponent implements OnInit {
     this.serviceAdminSellsReportList.forEach(sb => {
       this.total.totalrent += sb.price;
       this.total.totalCommission += (sb.hotelswaveAgentCommission + sb.hotelswaveCommission + sb.shipAgentCommission);
-      if (sb.soldBy) {
+      if (sb.soldBy && sb.seatNumbers) {
         const hotelswaveCommission = this.soldBy.get(sb.soldBy) == null ? sb.hotelswaveCommission : this.soldBy.get(sb.soldBy).hotelswaveCommission + sb.hotelswaveCommission;
         const hotelswaveAgentCommission = this.soldBy.get(sb.soldBy) == null ? sb.hotelswaveAgentCommission : this.soldBy.get(sb.soldBy).hotelswaveAgentCommission + sb.hotelswaveAgentCommission;
         const shipAgentCommission = this.soldBy.get(sb.soldBy) == null ? sb.shipAgentCommission : this.soldBy.get(sb.soldBy).shipAgentCommission + sb.shipAgentCommission;
@@ -142,10 +141,4 @@ export class SellsReportComponent implements OnInit {
       }
     });
   }
-}
-interface Counter {
-  hotelswaveCommission: number;
-  hotelswaveAgentCommission: number;
-  shipAgentCommission: number;
-  totalSeatNumber: number;
 }

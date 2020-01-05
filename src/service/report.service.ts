@@ -98,11 +98,22 @@ export class ReportService {
     );
   }
 
-  getAdminAgentReportRange(shipId, userId, startDate, endDate): Observable<ReportRange[]> {
+  getAdminSellsReportRangeForIndividual(shipId, userId, startDate, endDate): Observable<Report[]> {
     const pageUrl = `userId=${userId}&startDate=${startDate}&endDate=${endDate}&`;
     return this.dataSource.sendRequest(
       RequestMethod.Get,
-      this.serviceAdminUrl + `/agentReportRange/${shipId}`,
+      this.serviceAdminUrl + `/userSellsReportRange/${shipId}`,
+      null,
+      true,
+      pageUrl
+    );
+  }
+
+  getAdminReserveReportRangeForIndividual(shipId, userId, startDate, endDate): Observable<Report[]> {
+    const pageUrl = `userId=${userId}&startDate=${startDate}&endDate=${endDate}&`;
+    return this.dataSource.sendRequest(
+      RequestMethod.Get,
+      this.serviceAdminUrl + `/userReservationReportRange/${shipId}`,
       null,
       true,
       pageUrl
@@ -199,6 +210,28 @@ export class ReportService {
     return this.dataSource.sendRequest(
       RequestMethod.Get,
       this.serviceServiceAdminUrl + `/agentReportRange/${shipId}`,
+      null,
+      true,
+      pageUrl
+    );
+  }
+
+  getServiceAdminSellsReportRangeForIndividual(shipId, userId, startDate, endDate): Observable<Report[]> {
+    const pageUrl = `userId=${userId}&startDate=${startDate}&endDate=${endDate}&`;
+    return this.dataSource.sendRequest(
+      RequestMethod.Get,
+      this.serviceServiceAdminUrl + `/userSellsReportRange/${shipId}`,
+      null,
+      true,
+      pageUrl
+    );
+  }
+
+  getServiceAdminReserveReportRangeForIndividual(shipId, userId, startDate, endDate): Observable<Report[]> {
+    const pageUrl = `userId=${userId}&startDate=${startDate}&endDate=${endDate}&`;
+    return this.dataSource.sendRequest(
+      RequestMethod.Get,
+      this.serviceServiceAdminUrl + `/userReservationReportRange/${shipId}`,
       null,
       true,
       pageUrl

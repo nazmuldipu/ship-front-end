@@ -76,6 +76,11 @@ export class UserService {
     );
   }
 
+  getAdminUserByRole(role: string): Observable<User[]> {
+    const param = `role=${role}&`
+    return this.dataSource.sendRequest(RequestMethod.Get, this.serviceAdminUrl + '/byRole', null, true, param);
+  }
+
   getAllShipAdminList(page: number = 0): Observable<UserPage> {
     const param = page === null ? '' : `page=${page}&`;
     return this.dataSource.sendRequest(RequestMethod.Get, this.serviceAdminUrl + '/getShipAdminList', null, true, param);
@@ -220,6 +225,12 @@ export class UserService {
   }
 
   //*******************SERVICE ADMIN MODULES **********************
+
+  getServiceAdminUserByRole(role: string): Observable<User[]> {
+    const param = `role=${role}&`
+    return this.dataSource.sendRequest(RequestMethod.Get, this.serviceServiceAdminUrl + '/byRole', null, true, param);
+  }
+
   createSerivceAdminAgent(user: User): Observable<User> {
     return this.dataSource.sendRequest(
       RequestMethod.Post,

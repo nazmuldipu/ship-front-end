@@ -6,20 +6,20 @@ import { SellsReportComponent } from './containers/sells-report/sells-report.com
 import { SellsReportRangeComponent } from './containers/sells-report-range/sells-report-range.component';
 import { CounterReportComponent } from './containers/counter-report/counter-report.component';
 import { BookingReportListComponent } from './containers/booking-report-list/booking-report-list.component';
-import { AgentReportComponent } from './containers/agent-report/agent-report.component';
 import { ServiceAgentDateReportComponent } from './components/service-agent-date-report/service-agent-date-report.component';
+import { IndividualReportComponent } from './containers/individual-report/individual-report.component';
 
 export const ROUTES: Routes = [
   { path: 'counter', component: CounterReportComponent },
   { path: 'sells', component: SellsReportComponent },
   { path: 'range', component: SellsReportRangeComponent },
   { path: 'booking', component: BookingReportListComponent },
-  { path: 'agent', component: AgentReportComponent }
+  { path: 'individual', component: IndividualReportComponent }
 ];
 
 @NgModule({
   declarations: [SellsReportComponent, SellsReportRangeComponent,
-    CounterReportComponent, BookingReportListComponent, AgentReportComponent, ServiceAgentDateReportComponent],
+    CounterReportComponent, BookingReportListComponent, ServiceAgentDateReportComponent, IndividualReportComponent],
   imports: [ServiceAdminSharedModule, RouterModule.forChild(ROUTES)]
 })
 export class SReportModule { }

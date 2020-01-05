@@ -17,6 +17,17 @@ export class ShipService {
 
   constructor(private dataSource: RestDataService, private router: Router) { }
 
+  getAllShip(page: number = null): Observable<ShipPage> {
+    const pageUrl = page === null ? '' : `page=${page}&`;
+    return this.dataSource.sendRequest(
+      RequestMethod.Get,
+      this.serviceUrl,
+      null,
+      false,
+      pageUrl
+    );
+  }
+
   getAdminShipPage(page: number = 0): Observable<ShipPage> {
     const pageUrl = page === null ? '' : `page=${page}&`;
 
