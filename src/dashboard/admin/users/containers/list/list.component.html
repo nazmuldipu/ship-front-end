@@ -25,7 +25,8 @@
         <thead>
           <tr>
             <th class="pl-3">Name</th>
-            <th>Phone <br />Email</th>
+            <th>Phone
+              <br />Email</th>
             <th>Registration time</th>
             <th>Staus</th>
             <th></th>
@@ -34,19 +35,16 @@
         <tbody>
           <tr *ngFor="let user of userPage?.content">
             <td>
-              {{ user.name }} <br />
-              <span
-                class="badge badge-pill"
-                [ngClass]="i % 2 == 0 ? 'badge-success' : 'badge-info'"
-                *ngFor="let role of user?.roles; let i = index"
-              >
+              {{ user.name }}
+              <br />
+              <span class="badge badge-pill" [ngClass]="i % 2 == 0 ? 'badge-success' : 'badge-info'" *ngFor="let role of user?.roles; let i = index">
                 {{ role.name }}
               </span>
             </td>
             <td>
               <!-- <a class="username-btn" (click)="onUsername(user.username)"> -->
-              {{ user.phoneNumber }}<br />
-              {{ user.email }}
+              {{ user.phoneNumber }}
+              <br /> {{ user.email }}
               <!-- </a> -->
             </td>
             <td>{{ user.created | date: 'MMM d, y, h:mm:ss a' }}</td>
@@ -62,11 +60,7 @@
         <tfoot>
           <tr>
             <td colspan="5">
-              <pagination
-                *ngIf="userPage != null"
-                [page]="userPage"
-                (getPage)="getUserPage($event)"
-              >
+              <pagination *ngIf="userPage != null" [page]="userPage" (getPage)="getUserPage($event, role)">
               </pagination>
             </td>
           </tr>
@@ -100,10 +94,7 @@
           <tr>
             <td>Enabled</td>
             <td>
-              <i
-                class="fa "
-                [ngClass]="user.enabled ? 'fa-check' : 'fa-times'"
-              ></i>
+              <i class="fa " [ngClass]="user.enabled ? 'fa-check' : 'fa-times'"></i>
             </td>
           </tr>
           <tr>
@@ -115,36 +106,20 @@
         </table>
 
         <span>
-          <a
-            class="btn btn-info btn-sm raised mr-1"
-            (click)="chageRole(user.id, 'User')"
-          >
+          <a class="btn btn-info btn-sm raised mr-1" (click)="chageRole(user.id, 'User')">
             User
           </a>
-          <a
-            class="btn btn-info btn-sm raised mr-1"
-            (click)="chageRole(user.id, 'Service Agent')"
-          >
+          <a class="btn btn-info btn-sm raised mr-1" (click)="chageRole(user.id, 'Service Agent')">
             Ship Agent
           </a>
-          <a
-            class="btn btn-success btn-sm raised mr-1"
-            (click)="chageRole(user.id, 'Service Admin')"
-          >
+          <a class="btn btn-success btn-sm raised mr-1" (click)="chageRole(user.id, 'Service Admin')">
             Ship Admin
           </a>
-          <a
-            class="btn btn-success btn-sm raised mr-1"
-            (click)="chageRole(user.id, 'Agent')"
-          >
+          <a class="btn btn-success btn-sm raised mr-1" (click)="chageRole(user.id, 'Agent')">
             Agent
           </a>
 
-          <button
-            class="btn btn-sm raised"
-            (click)="activate(user.id)"
-            [ngClass]="user.enabled ? 'btn-success' : 'btn-danger'"
-          >
+          <button class="btn btn-sm raised" (click)="activate(user.id)" [ngClass]="user.enabled ? 'btn-success' : 'btn-danger'">
             <i class="fa fa-power-off"></i>
           </button>
 
