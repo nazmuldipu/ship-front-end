@@ -1,32 +1,34 @@
-<ngb-carousel *ngIf="images">
-  <ng-template ngbSlide>
-    <div class="picsum-img-wrapper">
-      <img [src]="images[0]" alt="Random first slide">
-    </div>
-    <div class="carousel-caption">
-      <h3>S T Sukanta Babu</h3>
-      <p>Cox's Bazar - Sonadia - MoheshKhali - Cox's Bazar</p>
-    </div>
-  </ng-template>
-  <ng-template ngbSlide>
-    <div class="picsum-img-wrapper">
-      <img [src]="images[1]" alt="Random second slide">
-    </div>
-    <div class="carousel-caption">
-      <h3>M V Bay Cruiser 01</h3>
-      <p>Teknaf - Saint Martin - Teknaf</p>
-    </div>
-  </ng-template>
-  <ng-template ngbSlide>
-    <div class="picsum-img-wrapper">
-      <img [src]="images[2]" alt="Random third slide">
-    </div>
-    <div class="carousel-caption">
-      <h3>LCT Kajol</h3>
-      <p>Teknaf - Saint Martin - Teknaf</p>
-    </div>
-  </ng-template>
-</ngb-carousel>
+<div class="container">
+  <ngb-carousel *ngIf="images">
+    <ng-template ngbSlide>
+      <div class="picsum-img-wrapper">
+        <img [src]="images[0]" alt="Random first slide">
+      </div>
+      <div class="carousel-caption">
+        <h3>S T Sukanta Babu</h3>
+        <p>Cox's Bazar - Sonadia - MoheshKhali - Cox's Bazar</p>
+      </div>
+    </ng-template>
+    <ng-template ngbSlide>
+      <div class="picsum-img-wrapper">
+        <img [src]="images[1]" alt="Random second slide">
+      </div>
+      <div class="carousel-caption">
+        <h3>M V Bay Cruiser 01</h3>
+        <p>Teknaf - Saint Martin - Teknaf</p>
+      </div>
+    </ng-template>
+    <ng-template ngbSlide>
+      <div class="picsum-img-wrapper">
+        <img [src]="images[2]" alt="Random third slide">
+      </div>
+      <div class="carousel-caption">
+        <h3>LCT Kajol</h3>
+        <p>Teknaf - Saint Martin - Teknaf</p>
+      </div>
+    </ng-template>
+  </ngb-carousel>
+</div>
 <div class="container">
   <div class="row">
 
