@@ -1,30 +1,22 @@
-import {
-  Component,
-  OnInit,
-  Input,
-  OnChanges,
-  SimpleChanges,
-  EventEmitter,
-  Output,
-  ChangeDetectionStrategy
-} from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { CategoryService } from 'src/service/category.service';
 import { Category } from 'src/shared/models/category.model';
 
 @Component({
-  selector: 'admin-discount-map',
-  templateUrl: './admin-discount-map.component.html',
-  styleUrls: ['./admin-discount-map.component.scss']
+  selector: 'admin-price-map',
+  templateUrl: './admin-price-map.component.html',
+  styleUrls: ['./admin-price-map.component.scss']
 })
-export class AdminDiscountMapComponent implements OnChanges {
+export class AdminPriceMapComponent implements OnChanges {
   @Input() reload: boolean;
   @Input() category: Category;
   @Output() onEdit = new EventEmitter<any>();
 
-  discountMap: Map<Date, number>;
+  priceMap: Map<Date, number>;
 
   public options: any;
   public daterange: any = {};
+  public loading = false;
 
   constructor(private categoryService: CategoryService) {
     this.setDateRanges();
@@ -32,7 +24,7 @@ export class AdminDiscountMapComponent implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes.category && this.category && this.category.id) {
-      this.getAdminDiscountMap(
+      this.getAdminPriceMap(
         this.category.id,
         this.daterange.startDate,
         this.daterange.endDate
@@ -40,7 +32,7 @@ export class AdminDiscountMapComponent implements OnChanges {
     }
     if (changes.reload) {
       if (this.category) {
-        this.getAdminDiscountMap(
+        this.getAdminPriceMap(
           this.category.id,
           this.daterange.startDate,
           this.daterange.endDate
@@ -66,24 +58,26 @@ export class AdminDiscountMapComponent implements OnChanges {
     };
   }
 
-  selectedDiscountDate(value: any) {
+  selectedPricetDate(value: any) {
     this.daterange.startDate = value.start._d as Date;
     this.daterange.endDate = value.end._d as Date;
     this.daterange.label = value.label;
-    this.getAdminDiscountMap(
+    this.getAdminPriceMap(
       this.category.id,
       this.daterange.startDate,
       this.daterange.endDate
     );
   }
 
-  async getAdminDiscountMap(id: number, startDate, endDate) {
+  async getAdminPriceMap(id: number, startDate, endDate) {
+    this.loading = true;
     const ciDate = this.makeDateString(startDate);
     const coDate = this.makeDateString(endDate);
     await this.categoryService
-      .getAdminDiscountMap(id, ciDate, coDate)
+      .getAdminPriceMap(id, ciDate, coDate)
       .subscribe(data => {
-        this.discountMap = data;
+        this.priceMap = data;
+        this.loading = false;
       });
   }
 
@@ -95,7 +89,8 @@ export class AdminDiscountMapComponent implements OnChanges {
     );
   }
 
-  onEditDiscount(id) {
+  onEditPrice(id) {
     this.onEdit.emit(id);
   }
+
 }

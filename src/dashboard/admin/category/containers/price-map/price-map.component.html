@@ -1,0 +1,25 @@
+<div class="container-fluid">
+  <span class="row px-3 details-title text-left">Price Map</span>
+</div>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-3">
+      <admin-ship-list (ship)="onSelectShip($event)" [mode]="2">
+      </admin-ship-list>
+    </div>
+    <div class="col-md-9">
+      <div class="row m-0 pt-0 pb-2">
+        <div class="border p-2" *ngIf="ship">
+          <admin-category-list [shipId]="ship.id" (back)="onCategoryBack($event)" (category)="onSelectCategory($event)">
+          </admin-category-list>
+        </div>
+      </div>
+      <div class="row m-0 pt-0 pb-2" *ngIf="editFrom">
+        <div class="col-md-6 border p-2">
+          <admin-price-map-form [category]="category" (close)="onCloseEditForm($event)" (create)="onPriceMapUpdate($event)"></admin-price-map-form>
+        </div>
+      </div>
+      <admin-price-map [reload]="reloadPriceMap" [category]="category" (onEdit)="onEditCategoryPrice($event)"></admin-price-map>
+    </div>
+  </div>
+</div>

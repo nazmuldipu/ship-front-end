@@ -11,7 +11,7 @@ export class CategoryService {
   serviceUrl = 'api/v1/category';
   serviceAdminUrl = 'api/v1/admin/category';
 
-  constructor(private dataSource: RestDataService) {}
+  constructor(private dataSource: RestDataService) { }
 
   saveAdminCategory(category: Category, shipId: number): Observable<Category> {
     return this.dataSource.sendRequest(
@@ -106,6 +106,30 @@ export class CategoryService {
     return this.dataSource.sendRequest(
       RequestMethod.Patch,
       this.serviceAdminUrl + `/discountMap/${id}`,
+      null,
+      true,
+      param
+    );
+  }
+
+
+  getAdminPriceMap(id: number, startDate: string, endDate: string
+  ): Observable<Map<Date, number>> {
+    const param = `startDate=${startDate}&endDate=${endDate}&`;
+    return this.dataSource.sendRequest(
+      RequestMethod.Get,
+      this.serviceAdminUrl + `/priceMap/${id}`,
+      null,
+      true,
+      param
+    );
+  }
+
+  updateAdminPriceMap(id: number, startDate, endDate, amount: number): Observable<Map<string, string>> {
+    const param = `startDate=${startDate}&endDate=${endDate}&amount=${amount}&`;
+    return this.dataSource.sendRequest(
+      RequestMethod.Patch,
+      this.serviceAdminUrl + `/priceMap/${id}`,
       null,
       true,
       param

@@ -4,15 +4,15 @@ import { Category } from 'src/shared/models/category.model';
 import { CategoryService } from 'src/service/category.service';
 
 @Component({
-  selector: 'app-discount-map',
-  templateUrl: './discount-map.component.html',
-  styleUrls: ['./discount-map.component.scss']
+  selector: 'app-price-map',
+  templateUrl: './price-map.component.html',
+  styleUrls: ['./price-map.component.scss']
 })
-export class DiscountMapComponent implements OnInit {
+export class PriceMapComponent implements OnInit {
   ship: Ship;
   category: Category;
   editFrom = false;
-  reloadDiscountMap = false;
+  reloadPriceMap = false;
 
   constructor(private categoryService: CategoryService) { }
 
@@ -26,7 +26,7 @@ export class DiscountMapComponent implements OnInit {
     this.category = category;
   }
 
-  onEditCategoryDiscount(categoryId) {
+  onEditCategoryPrice(categoryId) {
     this.editFrom = true;
   }
 
@@ -34,18 +34,18 @@ export class DiscountMapComponent implements OnInit {
     this.editFrom = false;
   }
 
-  onDiscountMapUpdate(event) {
+  onPriceMapUpdate(event) {
     const startDate = this.makeDateString(event.startDate);
     const endDate = this.makeDateString(event.endDate);
     this.categoryService
-      .updateAdminDiscountMap(
+      .updateAdminPriceMap(
         event.categoryId,
         startDate,
         endDate,
         event.amount
       )
       .subscribe(data => {
-        this.reloadDiscountMap = !this.reloadDiscountMap;
+        this.reloadPriceMap = !this.reloadPriceMap;
         this.onCloseEditForm(true);
       });
   }
@@ -54,4 +54,5 @@ export class DiscountMapComponent implements OnInit {
     const dateString = date.year + '-' + (date.month < 10 ? '0' + date.month : date.month) + '-' + (date.day < 10 ? '0' + date.day : date.day);
     return dateString;
   }
+
 }
