@@ -8,16 +8,18 @@ import { SellsReportRangeComponent } from './containers/sells-report-range/sells
 import { AgentDateReportComponent } from './components/agent-date-report/agent-date-report.component';
 import { AgentDateReportRangeComponent } from './components/agent-date-report-range/agent-date-report-range.component';
 import { CounterReportComponent } from './containers/counter-report/counter-report.component';
+import { TicketCountComponent } from './containers/ticket-count/ticket-count.component';
 
 export const ROUTES: Routes = [
   { path: 'sells', component: SellsReportComponent },
   { path: 'sells-range', component: SellsReportRangeComponent },
   { path: 'ship', component: HotelReportComponent },
-  { path: 'counter', component: CounterReportComponent }
+  { path: 'counter', component: CounterReportComponent },
+  { path: 'ticket-count', component: TicketCountComponent }
 ];
 
 @NgModule({
-  declarations: [SellsReportComponent, HotelReportComponent, SellsReportRangeComponent, AgentDateReportComponent, AgentDateReportRangeComponent, CounterReportComponent],
+  declarations: [SellsReportComponent, HotelReportComponent, SellsReportRangeComponent, AgentDateReportComponent, AgentDateReportRangeComponent, CounterReportComponent, TicketCountComponent],
   imports: [AdminSharedModule, RouterModule.forChild(ROUTES)]
 })
 export class ReportModule { }

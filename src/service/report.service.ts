@@ -120,6 +120,17 @@ export class ReportService {
     );
   }
 
+  getTicketCount(shipId, startDate, endDate) {
+    const pageUrl = `shipId=${shipId}&startDate=${startDate}&endDate=${endDate}&`;
+    return this.dataSource.sendRequest(
+      RequestMethod.Get,
+      this.serviceAdminUrl + `/countTicketReport/${shipId}`,
+      null,
+      true,
+      pageUrl
+    );
+  }
+
   // ************************** Service Admin modules ***********************************
 
   getServiceAdminShipSells(shipId: number, date: string): Observable<Report[]> {
