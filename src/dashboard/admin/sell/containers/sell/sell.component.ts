@@ -81,26 +81,26 @@ export class SellComponent implements OnInit {
 
   async getAdminSeatList(shipId) {
     this.seatLoading = true;
-    await this.seatService
-      .getAdminAvailableSeatListByShiplId(shipId, this.makeDateString(this.dd))
-      .subscribe(data => {
-        this.seatList = data;
-        this.seatLoading = false;
-        this.categoryList = [];
-        if (this.seatList.length > 0) {
-          this.seatList.forEach(s => {
-            const cat: Category = s.category;
-            const c = this.categoryList.find(ct => ct.id == cat.id);
-            if (!c && cat.priority != 0) { //Categoty with priority 0 will not display
-              this.categoryList.push(cat);
-            }
-          });
-          this.categoryList.sort(this.utilService.dynamicSortObject('priority'));
-          this.onSelectCategory(
-            this.categoryList[this.categoryList.length - 1].id
-          );
-        }
-      });
+    try {
+      this.seatList = await this.seatService
+        .getAdminAvailableSeatListByShiplId(shipId, this.makeDateString(this.dd)).toPromise();
+      this.seatLoading = false;
+
+      this.categoryList = [];
+      if (this.seatList && this.seatList.length > 0) {
+        this.seatList.forEach(s => {
+          const cat: Category = s.category;
+          const c = this.categoryList.find(ct => ct.id == cat.id);
+          if (!c && cat.priority != 0) { //Categoty with priority 0 will not display
+            this.categoryList.push(cat);
+          }
+        });
+        this.categoryList.sort(this.utilService.dynamicSortObject('priority'));
+        this.onSelectCategory(
+          this.categoryList[this.categoryList.length - 1].id
+        );
+      }
+    } catch (err) { console.log(err) }
   }
 
   adjustDay(day) {
