@@ -28,7 +28,8 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "node_modules/ng2-daterangepicker/assets/daterangepicker.css"
             ],
             "stylePreprocessorOptions": {
               "includePaths": [
