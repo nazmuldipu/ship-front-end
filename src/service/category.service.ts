@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { RestDataService } from './rest-data.service';
 import { Observable } from 'rxjs/internal/Observable';
 import { CategoryPage, Category } from 'src/shared/models/category.model';
-import { RequestMethod } from '@angular/http';
+import { HttpParams } from '@angular/common/http';
+//import { RequestMethod } from '@angular/http';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class CategoryService {
 
   saveAdminCategory(category: Category, shipId: number): Observable<Category> {
     return this.dataSource.sendRequest(
-      RequestMethod.Post,
+      'POST',
       this.serviceAdminUrl + `/${shipId}`,
       category,
       true,
@@ -25,21 +26,21 @@ export class CategoryService {
 
   getAdminCategoryByShiplId(
     shipId: number,
-    page: number
+    page: number = 0
   ): Observable<CategoryPage> {
-    const pageUrl = page === null ? '' : `page=${page}&`;
+    const param = new HttpParams().set('page', page.toString());
     return this.dataSource.sendRequest(
-      RequestMethod.Get,
+      'GET',
       this.serviceAdminUrl + `/${shipId}`,
       null,
       true,
-      pageUrl
+      param
     );
   }
 
   getAdminCategoryListByShiplId(shipId: number): Observable<Category[]> {
     return this.dataSource.sendRequest(
-      RequestMethod.Get,
+      'GET',
       this.serviceAdminUrl + `/list/${shipId}`,
       null,
       true,
@@ -49,7 +50,7 @@ export class CategoryService {
 
   getAdminCategory(categoryId: number): Observable<Category> {
     return this.dataSource.sendRequest(
-      RequestMethod.Get,
+      'GET',
       this.serviceAdminUrl + `/id/${categoryId}`,
       null,
       true,
@@ -63,7 +64,7 @@ export class CategoryService {
     category: Category
   ): Observable<Category> {
     return this.dataSource.sendRequest(
-      RequestMethod.Put,
+      'PUT',
       this.serviceAdminUrl + `/${shipId}/category/${categoryId}`,
       category,
       true,
@@ -73,7 +74,7 @@ export class CategoryService {
 
   deleteAdminCategory(id: number): Observable<any> {
     return this.dataSource.sendRequest(
-      RequestMethod.Delete,
+      'DELETE',
       this.serviceAdminUrl + `/${id}`,
       null,
       true,
@@ -86,9 +87,9 @@ export class CategoryService {
     startDate: string,
     endDate: string
   ): Observable<Map<Date, number>> {
-    const param = `startDate=${startDate}&endDate=${endDate}&`;
+    const param = new HttpParams().set('startDate', startDate).set('endDate', endDate);
     return this.dataSource.sendRequest(
-      RequestMethod.Get,
+      'GET',
       this.serviceAdminUrl + `/discountMap/${id}`,
       null,
       true,
@@ -102,9 +103,9 @@ export class CategoryService {
     endDate,
     amount: number
   ): Observable<Map<string, string>> {
-    const param = `startDate=${startDate}&endDate=${endDate}&amount=${amount}&`;
+    const param = new HttpParams().set('startDate', startDate).set('endDate', endDate).set('amount', amount.toString());
     return this.dataSource.sendRequest(
-      RequestMethod.Patch,
+      'PATCH',
       this.serviceAdminUrl + `/discountMap/${id}`,
       null,
       true,
@@ -115,9 +116,9 @@ export class CategoryService {
 
   getAdminPriceMap(id: number, startDate: string, endDate: string
   ): Observable<Map<Date, number>> {
-    const param = `startDate=${startDate}&endDate=${endDate}&`;
+    const param = new HttpParams().set('startDate', startDate).set('endDate', endDate);
     return this.dataSource.sendRequest(
-      RequestMethod.Get,
+      'GET',
       this.serviceAdminUrl + `/priceMap/${id}`,
       null,
       true,
@@ -126,9 +127,9 @@ export class CategoryService {
   }
 
   updateAdminPriceMap(id: number, startDate, endDate, amount: number): Observable<Map<string, string>> {
-    const param = `startDate=${startDate}&endDate=${endDate}&amount=${amount}&`;
+    const param = new HttpParams().set('startDate', startDate).set('endDate', endDate).set('amount', amount.toString());
     return this.dataSource.sendRequest(
-      RequestMethod.Patch,
+      'PATCH',
       this.serviceAdminUrl + `/priceMap/${id}`,
       null,
       true,

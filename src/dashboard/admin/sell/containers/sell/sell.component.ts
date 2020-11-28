@@ -73,10 +73,10 @@ export class SellComponent implements OnInit {
   }
 
   async getAdminShipPage(page: number = 0) {
-    await this.shipService.getAdminShipPage(page).subscribe(data => {
-      this.shipPage = data;
+    try {
+      this.shipPage = await this.shipService.getAdminShipPage(page).toPromise();
       this.shipPage.content.sort(this.utilService.dynamicSortObject('priority'));
-    });
+    } catch (err) { console.log(err) }
   }
 
   async getAdminSeatList(shipId) {

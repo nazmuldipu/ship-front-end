@@ -24,10 +24,14 @@ export class AdminShipListComponent implements OnInit {
   }
 
   async getAdminShipPage(page: number = 0) {
-    await this.shipService.getAdminShipPage(page).subscribe(data => {
-      this.shipPage = data;
+    try {
+      this.shipPage = await this.shipService.getAdminShipPage(page).toPromise();
       this.shipPage.content.sort(this.utilService.dynamicSortObject('priority'));
-    });
+    } catch (err) { console.log(err) }
+    // await this.shipService.getAdminShipPage(page).subscribe(data => {
+    //   this.shipPage = data;
+    //   this.shipPage.content.sort(this.utilService.dynamicSortObject('priority'));
+    // });
   }
 
   onSelectShip(id: number) {

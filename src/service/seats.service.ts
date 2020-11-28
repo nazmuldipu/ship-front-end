@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
-import { RequestMethod } from '@angular/http';
+//import { RequestMethod } from '@angular/http';
 import { Observable } from 'rxjs/internal/Observable';
 import { Seat, SeatPage } from 'src/shared/models/seat.model';
 
 import { RestDataService } from './rest-data.service';
 import { SeatStatusList } from 'src/shared/models/booking.model';
+import { HttpParams } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,7 @@ export class SeatsService {
 
   saveAdminSeat(seat: Seat, shipId: number): Observable<Seat> {
     return this.dataSource.sendRequest(
-      RequestMethod.Post,
+      'POST',
       this.serviceAdminUrl + `/${shipId}`,
       seat,
       true,
@@ -34,7 +35,7 @@ export class SeatsService {
     seatId: number
   ): Observable<Seat> {
     return this.dataSource.sendRequest(
-      RequestMethod.Put,
+      'PUT',
       this.serviceAdminUrl + `/update/${shipId}/${seatId}`,
       seat,
       true,
@@ -46,9 +47,9 @@ export class SeatsService {
     shipId: number,
     page: number
   ): Observable<SeatPage> {
-    const param = page === null ? '' : `page=${page}&`;
+    const param = new HttpParams().set('page', page.toString());
     return this.dataSource.sendRequest(
-      RequestMethod.Get,
+      'GET',
       this.serviceAdminUrl + `/all/${shipId}`,
       null,
       true,
@@ -58,7 +59,7 @@ export class SeatsService {
 
   getAdminSeatListByShiplId(shipId: number): Observable<Seat[]> {
     return this.dataSource.sendRequest(
-      RequestMethod.Get,
+      'GET',
       this.serviceAdminUrl + `/list/${shipId}`,
       null,
       true,
@@ -68,7 +69,7 @@ export class SeatsService {
 
   getAdminSeatListByCategoryId(categoryId: number): Observable<Seat[]> {
     return this.dataSource.sendRequest(
-      RequestMethod.Get,
+      'GET',
       this.serviceAdminUrl + `/listByCategory/${categoryId}`,
       null,
       true,
@@ -80,9 +81,9 @@ export class SeatsService {
     shipId: number,
     date: string
   ): Observable<Seat[]> {
-    const param = `date=${date}&`;
+    const param = new HttpParams().set('date', date);
     return this.dataSource.sendRequest(
-      RequestMethod.Get,
+      'GET',
       this.serviceAdminUrl + `/available/${shipId}`,
       null,
       true,
@@ -93,9 +94,9 @@ export class SeatsService {
     shipId: number,
     date: string
   ): Observable<SeatStatusList[]> {
-    const param = `date=${date}&`;
+    const param = new HttpParams().set('date', date);
     return this.dataSource.sendRequest(
-      RequestMethod.Get,
+      'GET',
       this.serviceAdminUrl + `/statusList/${shipId}`,
       null,
       true,
@@ -107,9 +108,9 @@ export class SeatsService {
     startDate: string,
     endDate: string
   ): Observable<SeatPage> {
-    const param = `startDate=${startDate}&endDate=${endDate}&`;
+    const param = new HttpParams().set('startDate', startDate).set('endDate', endDate);
     return this.dataSource.sendRequest(
-      RequestMethod.Get,
+      'GET',
       this.serviceAdminUrl + `/priceMap/${seatId}`,
       null,
       true,
@@ -119,9 +120,9 @@ export class SeatsService {
 
   // ****************************** ADMIN AGENT MODULES ***************************
   getAdminAgentAvailableSeatListByShiplId(shipId, date): Observable<Seat[]> {
-    const param = `date=${date}&`;
+    const param = new HttpParams().set('date', date);
     return this.dataSource.sendRequest(
-      RequestMethod.Get,
+      'GET',
       this.serviceAdminAgentUrl + `/available/${shipId}`,
       null,
       true,
@@ -133,9 +134,9 @@ export class SeatsService {
     shipId: number,
     date: string
   ): Observable<SeatStatusList[]> {
-    const param = `date=${date}&`;
+    const param = new HttpParams().set('date', date);
     return this.dataSource.sendRequest(
-      RequestMethod.Get,
+      'GET',
       this.serviceAdminAgentUrl + `/statusList/${shipId}`,
       null,
       true,
@@ -145,9 +146,9 @@ export class SeatsService {
 
   // ****************************** SERVICE ADMIN MODULES ***************************
   getServiceAdminAvailableSeatListByShiplId(shipId, date): Observable<Seat[]> {
-    const param = `date=${date}&`;
+    const param = new HttpParams().set('date', date);
     return this.dataSource.sendRequest(
-      RequestMethod.Get,
+      'GET',
       this.serviceServiceAdminUrl + `/available/${shipId}`,
       null,
       true,
@@ -159,9 +160,9 @@ export class SeatsService {
     shipId: number,
     date: string
   ): Observable<SeatStatusList[]> {
-    const param = `date=${date}&`;
+    const param = new HttpParams().set('date', date);
     return this.dataSource.sendRequest(
-      RequestMethod.Get,
+      'GET',
       this.serviceServiceAdminUrl + `/statusList/${shipId}`,
       null,
       true,
@@ -171,9 +172,9 @@ export class SeatsService {
 
   // ****************************** SERVICE AGENT MODULES ***************************
   getServiceAgentAvailableSeatListByShiplId(shipId, date): Observable<Seat[]> {
-    const param = `date=${date}&`;
+    const param = new HttpParams().set('date', date);
     return this.dataSource.sendRequest(
-      RequestMethod.Get,
+      'GET',
       this.serviceServiceAgentUrl + `/available/${shipId}`,
       null,
       true,

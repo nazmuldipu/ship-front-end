@@ -23,20 +23,20 @@ export class AdminCategoryListComponent implements OnChanges {
 
   categoryList: Category[];
 
-  constructor(private categoryService: CategoryService, private utilService: UtilService) { }
+  constructor(private categoryService: CategoryService, private utilService: UtilService) {
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
     this.getCategoryPage(this.shipId);
   }
 
   async getCategoryPage(shipId: number) {
-    await this.categoryService
-      .getAdminCategoryListByShiplId(shipId)
-      .subscribe(data => {
-        this.categoryList = data;
-        this.categoryList.sort(this.utilService.dynamicSortObject('priority'));
-        this.onSelectCategory(this.categoryList[data.length - 1].id);
-      });
+    try {
+      this.categoryList = await this.categoryService.getAdminCategoryListByShiplId(shipId).toPromise();
+      this.categoryList.sort(this.utilService.dynamicSortObject('priority'));
+      this.onSelectCategory(this.categoryList[this.categoryList.length - 1].id);
+    } catch (err) { console.log(err) }
+    // try{}catch(err){console.log(err)}
   }
 
   onSelectCategory(categoryId) {

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { RequestMethod } from '@angular/http';
+//import { RequestMethod } from '@angular/http';
 import { Observable } from 'rxjs';
 import { AdminAgentLedgerPage } from 'src/shared/models/admin-agent-ledger.model';
 import { AdminCashbookPage } from 'src/shared/models/admin-cashbook.model';
@@ -10,6 +10,7 @@ import { RestDataService } from './rest-data.service';
 import { ShipAgentLedgerPage, ShipAgentLedger } from 'src/shared/models/ship-agent-ledger.model';
 import { ShipAdminLedger, ShipAdminLedgerPage } from 'src/shared/models/ship-admin-ledger.model';
 import { ShipAdminCashbookPage } from 'src/shared/models/ship-admin-cashbook.model';
+import { HttpParams } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -25,13 +26,13 @@ export class AccountingService {
   // ****************************** Admin Modules *****************************************
   //get admin cashbook
   getAdminCashbook(page: number = 0): Observable<AdminCashbookPage> {
-    const pageUrl = page === null ? '' : `page=${page}&`;
+    const param = new HttpParams().set('page', page.toString());
     return this.dataSource.sendRequest(
-      RequestMethod.Get,
+      'GET',
       this.serviceAdminUrl + `/cashbook`,
       null,
       true,
-      pageUrl
+      param
     );
   }
 
@@ -40,13 +41,13 @@ export class AccountingService {
     shipId: number,
     page: number = 0
   ): Observable<AdminShipLedgerPage> {
-    const pageUrl = page === null ? '' : `page=${page}&`;
+    const param = new HttpParams().set('page', page.toString());
     return this.dataSource.sendRequest(
-      RequestMethod.Get,
+      'GET',
       this.serviceAdminUrl + `/shipLedger/${shipId}`,
       null,
       true,
-      pageUrl
+      param
     );
   }
 
@@ -55,9 +56,9 @@ export class AccountingService {
     adminId: number,
     page: number = 0
   ): Observable<ShipAdminLedger> {
-    const param = page === null ? '' : `page=${page}&`;
+    const param = new HttpParams().set('page', page.toString());
     return this.dataSource.sendRequest(
-      RequestMethod.Get,
+      'GET',
       this.serviceAdminUrl + `/shipAdminLedger/${adminId}`,
       null,
       true,
@@ -66,44 +67,44 @@ export class AccountingService {
   }
   //Add service admin expense
   addAdminExpense(credit: number, explanation: string) {
-    const pageUrl = `credit=${credit}&explanation=${explanation}&`;
+    const param = new HttpParams().set('credit', credit.toString()).set('explanation', explanation);
     return this.dataSource.sendRequest(
-      RequestMethod.Put,
+      'PUT',
       this.serviceAdminUrl + `/addExpense`,
       null,
       true,
-      pageUrl
+      param
     );
   }
 
   //Add service admin expense
   addAdminIncome(debit: number, explanation: string) {
-    const pageUrl = `debit=${debit}&explanation=${explanation}&`;
+    const param = new HttpParams().set('debit', debit.toString()).set('explanation', explanation);
     return this.dataSource.sendRequest(
-      RequestMethod.Put,
+      'PUT',
       this.serviceAdminUrl + `/addIncome`,
       null,
       true,
-      pageUrl
+      param
     );
   }
 
   //Pay to ship
   payToShip(shipId: number, amount: number) {
-    const pageUrl = `amount=${amount}&`;
+    const param = new HttpParams().set('amount', amount.toString());
     return this.dataSource.sendRequest(
-      RequestMethod.Put,
+      'PUT',
       this.serviceAdminUrl + `/payShip/${shipId}`,
       null,
       true,
-      pageUrl
+      param
     );
   }
 
   payToShipAdmin(adminId: number, amount: number) {
-    const param = `amount=${amount}&`;
+    const param = new HttpParams().set('amount', amount.toString());
     return this.dataSource.sendRequest(
-      RequestMethod.Put,
+      'PUT',
       this.serviceAdminUrl + `/payShipAdmin/${adminId}`,
       null,
       true,
@@ -116,9 +117,9 @@ export class AccountingService {
     agentId: number,
     page: number = 0
   ): Observable<AdminAgentLedgerPage> {
-    const param = page === null ? '' : `page=${page}&`;
+    const param = new HttpParams().set('page', page.toString());
     return this.dataSource.sendRequest(
-      RequestMethod.Get,
+      'GET',
       this.serviceAdminUrl + `/adminAgentLedger/${agentId}`,
       null,
       true,
@@ -128,9 +129,9 @@ export class AccountingService {
 
   //Add Admin agent balance
   addAdminAgentBalance(agentId: number, amount: number): Observable<any> {
-    const param = `amount=${amount}&`;
+    const param = new HttpParams().set('amount', amount.toString());
     return this.dataSource.sendRequest(
-      RequestMethod.Put,
+      'PUT',
       this.serviceAdminUrl + `/addAgentBalance/${agentId}`,
       null,
       true,
@@ -140,9 +141,9 @@ export class AccountingService {
   // *********************************** Agent balance *******************************
   // Service agent ledger
   getAdminAgentMyLedger(page: number = 0): Observable<AdminAgentLedgerPage> {
-    const param = page === null ? '' : `page=${page}&`;
+    const param = new HttpParams().set('page', page.toString());
     return this.dataSource.sendRequest(
-      RequestMethod.Get,
+      'GET',
       this.serviceAdminAgentUrl + `/myLedger`,
       null,
       true,
@@ -153,7 +154,7 @@ export class AccountingService {
   //Service agent balance
   getAdminAgentBalance(): Observable<any> {
     return this.dataSource.sendRequest(
-      RequestMethod.Get,
+      'GET',
       this.serviceAdminAgentUrl + `/myBalance`,
       null,
       true,
@@ -167,48 +168,48 @@ export class AccountingService {
   getShipAdminCashbook(
     page: number = null
   ): Observable<ShipAdminCashbookPage> {
-    const pageUrl = page === null ? '' : `page=${page}&`;
+    const param = new HttpParams().set('page', page.toString());
     return this.dataSource.sendRequest(
-      RequestMethod.Get,
+      'GET',
       this.serviceServiceAdminUrl + `/shipAdminCashbook`,
       null,
       true,
-      pageUrl
+      param
     );
   }
 
   getServiceAdminHotelswaveLedger(
     page: number = null
   ): Observable<ShipAdminLedgerPage> {
-    const pageUrl = page === null ? '' : `page=${page}&`;
+    const param = new HttpParams().set('page', page.toString());
     return this.dataSource.sendRequest(
-      RequestMethod.Get,
+      'GET',
       this.serviceServiceAdminUrl + `/hotelswaveLedger`,
       null,
       true,
-      pageUrl
+      param
     );
   }
 
   addServiceAdminIncome(debit: number, explanation: string) {
-    const pageUrl = `debit=${debit}&explanation=${explanation}&`;
+    const param = new HttpParams().set('debit', debit.toString());
     return this.dataSource.sendRequest(
-      RequestMethod.Put,
+      'PUT',
       this.serviceServiceAdminUrl + `/addIncome`,
       null,
       true,
-      pageUrl
+      param
     );
   }
 
   addServiceAdminExpense(credit: number, explanation: string) {
-    const pageUrl = `credit=${credit}&explanation=${explanation}&`;
+    const param = new HttpParams().set('credit', credit.toString()).set('explanation', explanation);
     return this.dataSource.sendRequest(
-      RequestMethod.Put,
+      'PUT',
       this.serviceServiceAdminUrl + `/addExpense`,
       null,
       true,
-      pageUrl
+      param
     );
   }
 
@@ -216,9 +217,9 @@ export class AccountingService {
     userId: number,
     page: number = null
   ): Observable<ShipAgentLedgerPage> {
-    const param = page === null ? '' : `page=${page}&`;
+    const param = new HttpParams().set('page', page.toString());
     return this.dataSource.sendRequest(
-      RequestMethod.Get,
+      'GET',
       this.serviceServiceAdminUrl + `/shipAgentLedger/${userId}`,
       null,
       true,
@@ -230,9 +231,9 @@ export class AccountingService {
     agentId,
     amount
   ): Observable<ShipAgentLedger> {
-    const param = `amount=${amount}&`;
+    const param = new HttpParams().set('amount', amount.toString());
     return this.dataSource.sendRequest(
-      RequestMethod.Put,
+      'PUT',
       this.serviceServiceAdminUrl + `/addAgentBalance/${agentId}`,
       null,
       true,
@@ -242,11 +243,11 @@ export class AccountingService {
 
   // // ****************************** Service Admin Agent modules *****************************************
   getServiceAdminAgentBalance(): Observable<any> {
-    return this.dataSource.sendRequest(RequestMethod.Get, this.serviceServiceAgentUrl + `/myBalance`, null, true, null);
+    return this.dataSource.sendRequest('GET', this.serviceServiceAgentUrl + `/myBalance`, null, true, null);
   }
 
   getShipAdminAgentLedger(page: number = null): Observable<ShipAgentLedger[]> {
-    const param = page === null ? '' : `page=${page}&`;
-    return this.dataSource.sendRequest(RequestMethod.Get, this.serviceServiceAgentUrl + `/myLedger`, null, true, param);
+    const param = new HttpParams().set('page', page.toString());
+    return this.dataSource.sendRequest('GET', this.serviceServiceAgentUrl + `/myLedger`, null, true, param);
   }
 }

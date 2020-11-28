@@ -10,8 +10,8 @@
             <i class="fa fa-calendar"></i>
           </div>
         </div>
-        <input type="text" class="form-control" name="daterangeInput" daterangepicker [options]="options" (selected)="selectedDate($event)"
-        />
+        <input type="text" class="form-control" name="daterangeInput" daterangepicker [options]="options"
+          (selected)="selectedDate($event)" />
       </div>
       <admin-ship-list (ship)="onSelectShip($event)"></admin-ship-list>
     </div>
@@ -29,10 +29,14 @@
           <tr *ngFor="let item of (shipMap | keyvalue)">
             <td>{{ item.key | date: 'd MMM,yy : EEE' }}</td>
             <td class="text-right">
-              <i class="fa" [ngClass]="{'fa-paper-plane-o': item.value,'fa-ban': !item.value}"></i> {{ item.value ? 'Ship is going' : "Ship is not going"}}</td>
+              <i class="fa" [ngClass]="{'fa-paper-plane-o': item.value,'fa-ban': !item.value}"></i>
+              {{ item.value ? 'Ship is going' : "Ship is not going"}}
+            </td>
             <td class="text-right">
-              <button *ngIf="!item.value" class="btn btn-sm btn-success" (click)="onAction(ship.id, item.key, true)">Run ship</button>
-              <button *ngIf="item.value" class="btn btn-sm btn-danger" (click)="onAction(ship.id, item.key, false)">Stop ship</button>
+              <button *ngIf="!item.value" class="btn btn-sm btn-success" (click)="onAction(ship.id, item.key, true)">Run
+                ship</button>
+              <button *ngIf="item.value" class="btn btn-sm btn-danger" (click)="onAction(ship.id, item.key, false)">Stop
+                ship</button>
             </td>
           </tr>
         </tbody>

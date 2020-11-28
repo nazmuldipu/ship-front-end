@@ -18,12 +18,15 @@ export class ListComponent implements OnInit {
     this.getAdminShipPage();
   }
 
-  getAdminShipPage(page: number = 0) {
-    this.shipService.getAdminShipPage(page).subscribe(data => {
-      this.shipPage = data;
+  async getAdminShipPage(page: number = 0) {
+    try {
+      this.shipPage = await this.shipService.getAdminShipPage(page).toPromise();
       this.shipPage.content.sort(this.utilService.dynamicSortObject('priority'));
-    });
+    } catch (err) {
+      console.log(err);
+    }
   }
+
   onDetails(id: number) {
     this.router.navigate(['/dashboard/admin/ships', id]);
   }

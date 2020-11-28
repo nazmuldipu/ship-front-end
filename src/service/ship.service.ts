@@ -3,7 +3,8 @@ import { RestDataService } from 'src/service/rest-data.service';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs/internal/Observable';
 import { Ship, ShipPage } from 'src/shared/models/ship.model';
-import { RequestMethod } from '@angular/http';
+import { HttpParams } from '@angular/common/http';
+//import { RequestMethod } from '@angular/http';
 
 @Injectable({
   providedIn: 'root'
@@ -17,32 +18,31 @@ export class ShipService {
 
   constructor(private dataSource: RestDataService, private router: Router) { }
 
-  getAllShip(page: number = null): Observable<ShipPage> {
-    const pageUrl = page === null ? '' : `page=${page}&`;
+  getAllShip(page: number = 0): Observable<ShipPage> {
+    const param = new HttpParams().set('page', page.toString());
     return this.dataSource.sendRequest(
-      RequestMethod.Get,
+      'GET',
       this.serviceUrl,
       null,
       false,
-      pageUrl
+      param
     );
   }
 
   getAdminShipPage(page: number = 0): Observable<ShipPage> {
-    const pageUrl = page === null ? '' : `page=${page}&`;
-
+    const param = new HttpParams().set('page', page.toString());
     return this.dataSource.sendRequest(
-      RequestMethod.Get,
+      'GET',
       this.serviceAdminUrl,
       null,
       true,
-      pageUrl
+      param
     );
   }
 
   getAdminShip(id: number): Observable<Ship> {
     return this.dataSource.sendRequest(
-      RequestMethod.Get,
+      'GET',
       this.serviceAdminUrl + `/${id}`,
       null,
       true,
@@ -52,7 +52,7 @@ export class ShipService {
 
   saveAdminShip(ship: Ship): Observable<Ship> {
     return this.dataSource.sendRequest(
-      RequestMethod.Post,
+      'POST',
       this.serviceAdminUrl,
       ship,
       true,
@@ -62,7 +62,7 @@ export class ShipService {
 
   updateAdminShip(shipId: number, ship: Ship): Observable<Ship> {
     return this.dataSource.sendRequest(
-      RequestMethod.Put,
+      'PUT',
       this.serviceAdminUrl + `/${shipId}`,
       ship,
       true,
@@ -71,20 +71,20 @@ export class ShipService {
   }
 
   getAdminShipMap(shipId: number, startDate: string, endDate: string) {
-    const param = `startDate=${startDate}&endDate=${endDate}&`;
-    return this.dataSource.sendRequest(RequestMethod.Get, this.serviceAdminUrl + `/shipMap/${shipId}`, null, true, param);
+    const param = new HttpParams().set('startDate', startDate).set('endDate', endDate);
+    return this.dataSource.sendRequest('GET', this.serviceAdminUrl + `/shipMap/${shipId}`, null, true, param);
   }
 
   updateAdminShipMap(shipId: number, date: string, value: boolean) {
-    const param = `date=${date}&value=${value}&`;
-    return this.dataSource.sendRequest(RequestMethod.Put, this.serviceAdminUrl + `/updateMap/${shipId}`, null, true, param);
+    const param = new HttpParams().set('date', date).set('value', value ? 'true' : 'false');
+    return this.dataSource.sendRequest('PUT', this.serviceAdminUrl + `/updateMap/${shipId}`, null, true, param);
   }
 
   // ****************************** ADMIN AGENT MODULES ***************************
-  getAdminAgentShips(page: number = null): Observable<ShipPage> {
-    const param = page === null ? '' : `page=${page}&`;
+  getAdminAgentShips(page: number = 0): Observable<ShipPage> {
+    const param = new HttpParams().set('page', page.toString());
     return this.dataSource.sendRequest(
-      RequestMethod.Get,
+      'GET',
       this.serviceAdminAgentUrl,
       null,
       true,
@@ -95,7 +95,7 @@ export class ShipService {
   // ****************************** SERVICE ADMIN MODULES ***************************
   getServiceAdminShips(): Observable<Ship[]> {
     return this.dataSource.sendRequest(
-      RequestMethod.Get,
+      'GET',
       this.serviceServiceAdminUrl + '/myShips',
       null,
       true,
@@ -106,7 +106,7 @@ export class ShipService {
   // ****************************** SERVICE AGENT MODULES ***************************
   getServiceAgentShips(): Observable<Ship[]> {
     return this.dataSource.sendRequest(
-      RequestMethod.Get,
+      'GET',
       this.serviceServiceAgentUrl + '/myShips',
       null,
       true,

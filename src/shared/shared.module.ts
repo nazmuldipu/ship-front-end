@@ -49,7 +49,7 @@ import { FooterComponent } from './footer/footer.component';
     FormsModule,
     ReactiveFormsModule,
     Daterangepicker,
-    NgbModule.forRoot()
+    NgbModule
   ],
   exports: [
     CommonModule,

@@ -52,9 +52,12 @@ export class ShipMapComponent implements OnInit {
     const startDate = this.getDateString(sd);
     const endDate = this.getDateString(ed);
     this.shipMap = null;
-    await this.shipService.getAdminShipMap(shipId, startDate, endDate).subscribe(data => {
-      this.shipMap = data;
-    })
+    try {
+      this.shipMap = await this.shipService.getAdminShipMap(shipId, startDate, endDate).toPromise();
+    } catch (err) { console.log(err) }
+    // await this.shipService.getAdminShipMap(shipId, startDate, endDate).subscribe(data => {
+    //   this.shipMap = data;
+    // })
   }
 
   getDateString(date: Date): string {

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ReportService } from 'src/service/report.service';
 import { UtilService } from 'src/service/util.service';
 import { Report } from 'src/shared/models/report.model';
+import { Counter } from 'src/shared/models/counter.model';
 
 @Component({
   selector: 'app-sells-report',

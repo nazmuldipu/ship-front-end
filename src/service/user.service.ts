@@ -3,9 +3,10 @@ import { Router } from '@angular/router';
 
 import { RestDataService } from './rest-data.service';
 import { User, UserPage } from 'src/shared/models/user.model';
-import { RequestMethod } from '@angular/http';
+//import { RequestMethod } from '@angular/http';
 import { Observable } from 'rxjs';
 import { Ship } from 'src/shared/models/ship.model';
+import { HttpParams } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -19,18 +20,13 @@ export class UserService {
 
   userRegistration(user: User): Observable<User> {
     // const em = user.email ? '&email=' + user.email : '';
-    const param =
-      'name=' +
-      user.name +
-      '&email=' +
-      user.email +
-      '&phoneNumber=' +
-      user.phoneNumber +
-      '&password=' +
-      user.password;
-
+    const param = new HttpParams()
+      .set('name', user.name)
+      .set('email', user.email)
+      .set('phoneNumber', user.phoneNumber)
+      .set('password', user.password);
     return this.dataSource.sendRequest(
-      RequestMethod.Post,
+      'POST',
       'register',
       null,
       false,
@@ -39,9 +35,10 @@ export class UserService {
   }
 
   changePassword(userId: number, password: string): Observable<User> {
-    const param = `password=${password}&`;
+    const param = new HttpParams()
+      .set('password', password);
     return this.dataSource.sendRequest(
-      RequestMethod.Put,
+      'PUT',
       this.serviceUrl + `/changePassword/${userId}`,
       null,
       true,
@@ -50,15 +47,16 @@ export class UserService {
   }
 
   //*******************ADMIN MODULES **********************
-  getAdminUsers(
-    page: number = null,
-    role: string = null
-  ): Observable<UserPage> {
-    const param =
-      (page === null ? '' : `page=${page}&`) +
-      (role === null ? '' : `role=${role}&`);
+  getAdminUsers(page: number = 0, role: string = null): Observable<UserPage> {
+    const param = new HttpParams()
+      .set('page', page.toString())
+      .set('role', role);
+
+    // const param =
+    //   (page === null ? '' : `page=${page}&`) +
+    //   (role === null ? '' : `role=${role}&`);
     return this.dataSource.sendRequest(
-      RequestMethod.Get,
+      'GET',
       this.serviceAdminUrl,
       null,
       true,
@@ -68,7 +66,7 @@ export class UserService {
 
   getAdminUser(userId: number) {
     return this.dataSource.sendRequest(
-      RequestMethod.Get,
+      'GET',
       this.serviceAdminUrl + `/${userId}`,
       null,
       true,
@@ -77,18 +75,21 @@ export class UserService {
   }
 
   getAdminUserByRole(role: string): Observable<User[]> {
-    const param = `role=${role}&`
-    return this.dataSource.sendRequest(RequestMethod.Get, this.serviceAdminUrl + '/byRole', null, true, param);
+    const param = new HttpParams()
+      .set('role', role);
+    return this.dataSource.sendRequest('GET', this.serviceAdminUrl + '/byRole', null, true, param);
   }
 
   getAllShipAdminList(page: number = 0): Observable<UserPage> {
-    const param = page === null ? '' : `page=${page}&`;
-    return this.dataSource.sendRequest(RequestMethod.Get, this.serviceAdminUrl + '/getShipAdminList', null, true, param);
+    const param = new HttpParams()
+      .set('page', page.toString());
+    // const param = page === null ? '' : `page=${page}&`;
+    return this.dataSource.sendRequest('GET', this.serviceAdminUrl + '/getShipAdminList', null, true, param);
   }
 
   gerAdminUserListByShipId(shipId: number): Observable<User[]> {
     return this.dataSource.sendRequest(
-      RequestMethod.Get,
+      'GET',
       this.serviceAdminUrl + `/searchByShipId/${shipId}`,
       null,
       true,
@@ -98,7 +99,7 @@ export class UserService {
 
   getAdminShipListByUserId(userId: number): Observable<Ship[]> {
     return this.dataSource.sendRequest(
-      RequestMethod.Get,
+      'GET',
       this.serviceAdminUrl + `/getUserShipList/${userId}`,
       null,
       true,
@@ -108,7 +109,7 @@ export class UserService {
 
   createAdminUser(user: User): Observable<User> {
     return this.dataSource.sendRequest(
-      RequestMethod.Post,
+      'POST',
       this.serviceAdminUrl,
       user,
       true,
@@ -117,9 +118,10 @@ export class UserService {
   }
 
   searchAdminUser(phone: string): Observable<User> {
-    const param = `phone=${phone}&`;
+    const param = new HttpParams().set('phone', phone);
+
     return this.dataSource.sendRequest(
-      RequestMethod.Put,
+      'PUT',
       this.serviceAdminUrl + '/searchUser',
       null,
       true,
@@ -129,7 +131,7 @@ export class UserService {
 
   createAdminAgent(user: User): Observable<User> {
     return this.dataSource.sendRequest(
-      RequestMethod.Post,
+      'POST',
       this.serviceAdminUrl + '/createAgent',
       user,
       true,
@@ -138,9 +140,9 @@ export class UserService {
   }
 
   changeAdminUserEnable(userId, status: boolean): Observable<User> {
-    const param = 'enabled=' + status + '&';
+    const param = new HttpParams().set('enabled', status ? 'true' : 'false');
     return this.dataSource.sendRequest(
-      RequestMethod.Post,
+      'POST',
       this.serviceAdminUrl + `/${userId}/access/toggle`,
       null,
       true,
@@ -148,10 +150,10 @@ export class UserService {
     );
   }
 
-  changeAdminUserRole(userId, role: String): Observable<User> {
-    const param = 'roles=' + role + '&';
+  changeAdminUserRole(userId, role: string): Observable<User> {
+    const param = new HttpParams().set('roles', role);
     return this.dataSource.sendRequest(
-      RequestMethod.Put,
+      'PUT',
       this.serviceAdminUrl + `/${userId}/changeRole`,
       null,
       true,
@@ -159,10 +161,10 @@ export class UserService {
     );
   }
 
-  getAdminAgents(page: number = null): Observable<UserPage> {
-    const param = page === null ? '' : `page=${page}&`;
+  getAdminAgents(page: number = 0): Observable<UserPage> {
+    const param = new HttpParams().set('page', page.toString());
     return this.dataSource.sendRequest(
-      RequestMethod.Get,
+      'GET',
       this.serviceAdminUrl + '/myAgents',
       null,
       true,
@@ -172,7 +174,7 @@ export class UserService {
 
   removeAdminAgents(userId): Observable<User> {
     return this.dataSource.sendRequest(
-      RequestMethod.Put,
+      'PUT',
       this.serviceAdminUrl + `/removeAgent/${userId}`,
       null,
       true,
@@ -181,9 +183,10 @@ export class UserService {
   }
 
   changePasswordByAdmin(userId, password) {
-    const param = `password=${password}&`;
+    const param = new HttpParams().set('password', password);
+
     return this.dataSource.sendRequest(
-      RequestMethod.Put,
+      'PUT',
       this.serviceAdminUrl + `/changeUserPassword/${userId}`,
       null,
       true,
@@ -192,9 +195,10 @@ export class UserService {
   }
 
   assignAdminShip(userId: number, shipId: number, role: string) {
-    const param = `shipId=${shipId}&role=${role}&`;
+    const param = new HttpParams().set('shipId', shipId.toString()).set('role', role);
+
     return this.dataSource.sendRequest(
-      RequestMethod.Patch,
+      'PATCH',
       this.serviceAdminUrl + `/assignShip/${userId}`,
       null,
       true,
@@ -203,9 +207,9 @@ export class UserService {
   }
 
   assignAdminShipAgent(userId: number, shipId: number) {
-    const param = `shipId=${shipId}&`;
+    const param = new HttpParams().set('shipId', shipId.toString());
     return this.dataSource.sendRequest(
-      RequestMethod.Patch,
+      'PATCH',
       this.serviceAdminUrl + `/assignShipAgent/${userId}`,
       null,
       true,
@@ -214,9 +218,9 @@ export class UserService {
   }
 
   assignAdminShipAdmin(userId: number, shipId: number) {
-    const param = `shipId=${shipId}&`;
+    const param = new HttpParams().set('shipId', shipId.toString());
     return this.dataSource.sendRequest(
-      RequestMethod.Patch,
+      'PATCH',
       this.serviceAdminUrl + `/assignShipAdmin/${userId}`,
       null,
       true,
@@ -227,13 +231,13 @@ export class UserService {
   //*******************SERVICE ADMIN MODULES **********************
 
   getServiceAdminUserByRole(role: string): Observable<User[]> {
-    const param = `role=${role}&`
-    return this.dataSource.sendRequest(RequestMethod.Get, this.serviceServiceAdminUrl + '/byRole', null, true, param);
+    const param = new HttpParams().set('role', role);
+    return this.dataSource.sendRequest('GET', this.serviceServiceAdminUrl + '/byRole', null, true, param);
   }
 
   createSerivceAdminAgent(user: User): Observable<User> {
     return this.dataSource.sendRequest(
-      RequestMethod.Post,
+      'POST',
       this.serviceServiceAdminUrl + `/createAgent`,
       user,
       true,
@@ -241,22 +245,20 @@ export class UserService {
     );
   }
 
-  getServiceAdminAgents(
-    page: number = 0
-  ): Observable<UserPage> {
-    const pageUrl = page === null ? '' : `page=${page}&`;
+  getServiceAdminAgents(page: number = 0): Observable<UserPage> {
+    const param = new HttpParams().set('page', page.toString());
     return this.dataSource.sendRequest(
-      RequestMethod.Get,
+      'GET',
       this.serviceServiceAdminUrl + `/myAgents/`,
       null,
       true,
-      pageUrl
+      param
     );
   }
 
   removeServiceAdminAgent(userId: number): Observable<User> {
     return this.dataSource.sendRequest(
-      RequestMethod.Put,
+      'PUT',
       this.serviceServiceAdminUrl + `/removeAgent/${userId}`,
       null,
       true,

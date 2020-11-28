@@ -1,12 +1,13 @@
 import { map, tap, take, catchError } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-import {
-  Headers,
-  HttpClient,
-  Request,
-  RequestMethod,
-  RequestOptions
-} from '@angular/http';
+// import {
+//   Headers,
+//   HttpClient,
+//   Request,
+//   RequestMethod,
+//   RequestOptions
+// } from '@angular/http';
+import { HttpParams, HttpRequest, HttpErrorResponse, HttpClient, HttpResponse } from '@angular/common/http';
 
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie';
@@ -69,7 +70,6 @@ export class RestDataService {
       const url = this.baseUrl + 'oauth/token?' + params.toString();
       await this.http
         .get(url, null)
-        .pipe(map(res => res.json()))
         .subscribe(
           data => {
             this.saveToken(data);
@@ -96,84 +96,79 @@ export class RestDataService {
   }
 
   authenticate(user: string, pass: string): Observable<boolean> {
+    const body = { name: user, password: pass };
+    const req = new HttpRequest('POST', this.baseUrl + '/login', body);
     return this.http
-      .request(
-        new Request({
-          method: RequestMethod.Post,
-          url: this.baseUrl + 'login',
-          body: { name: user, password: pass }
-        })
-      )
+      .request(req)
       .pipe(
-        map(response => {
-          const res = response.json();
-          this.auth_token = res.success ? res.token : null;
-          if (res.success) {
-            localStorage.setItem('access_token', JSON.stringify(res.token));
+        map(res => {
+          this.auth_token = res['success'] ? res['token'] : null;
+          if (res['success']) {
+            localStorage.setItem('access_token', JSON.stringify(res['token']));
           }
-          return res.success;
+          return res['success'];
         })
       );
   }
 
   public sendRequest(
-    method: RequestMethod,
+    method: string,
     url: string,
     body?,
     auth: boolean = false,
-    par?
+    params?: HttpParams
   ): Observable<any> {
-    const params = new URLSearchParams();
-    par = par == null ? '' : par;
+    // const params = new URLSearchParams();
+    // par = par == null ? '' : par;
+    // console.log('method', method, 'url', url, 'body', body, 'auth', auth, 'params', params);
 
     const acc = this.Cookie.get('access_token');
     const ref = this.Cookie.get('refresh_token');
 
     // if no authentication required
     if (!auth) {
-      const request = new Request({
-        method: method,
-        url: this.baseUrl + url + '?' + par + params.toString(),
-        // url: this.baseUrl + url ,
-        body: body
-      });
-      console.log('Condition 1 : ', request);
-      return this.http.request(request).pipe(
-        map(response => {
-          if (response['_body'] === '') {
-            return response;
-          }
-          return response.json();
-        })
+      const req = new HttpRequest(method, this.baseUrl + url, body, { params, responseType: 'json', });
+      // const request = new HttpRequest({
+      //   method: method,
+      //   url: this.baseUrl + url + '?' + par + params.toString(),
+      //   // url: this.baseUrl + url ,
+      //   body: body
+      // });
+      console.log('Condition 1 : ', req);
+      return this.http.request(req).pipe(
+        map((event) => {
+          return event['body'];
+        }),
+        catchError(async (err) => this.handleError(err))
       );
+
 
       // if authentication required and access_token present
     } else if (auth && !!acc) {
-      params.append('access_token', this.Cookie.get('access_token'));
-      const request = new Request({
-        method: method,
-        url: this.baseUrl + url + '?' + par + params.toString(),
-        body: body
-      });
-      console.log('Condition 2 : ', request);
+      if (!params) {
+        params = new HttpParams()
+      }
+      params = params.append('access_token', this.Cookie.get('access_token'));
 
-      return this.http.request(request).pipe(
-        map(response => {
-          if (response['_body'] === '') {
-            return response;
-          }
-          return response.json();
-        }),
-        catchError((error: Response) => {
-          console.log(error);
-          Observable.throw(this.handleError(error));
-          if (error.status === 404) {
+      const req = new HttpRequest(method, this.baseUrl + url, body, { params, responseType: 'json', });
+      console.log('C2', req);
+      return this.http.request(req)
+        .pipe(
+          map(response => {
+            // console.log('Res1', response)
+            // console.log('Res2', response['body'])
+            return response['body'];
+          }),
+          catchError((error: HttpErrorResponse) => {
             console.log(error);
-            // return throwError(new NotFoundError(error));
-          }
-          return throwError(error);
-        })
-      );
+            Observable.throw(this.handleError(error));
+            if (error.status === 404) {
+              console.log(error);
+              // return throwError(new NotFoundError(error));
+            }
+            return throwError(error);
+          })
+        );
       // .catch(err => Observable.throw(this.handleError(err)));
 
       // if (auth requred and no access_token present and refresh token present) then obtain access_token using refresh token
@@ -181,16 +176,11 @@ export class RestDataService {
       this.obtainAccessTokenByRefreshToken().then(ref => {
         // console.log('refresh ' + ref);
         params.append('access_token', this.Cookie.get('access_token'));
-        const request = new Request({
-          method: method,
-          url: this.baseUrl + url + '?' + par + params.toString(),
-          body: body
-        });
-        console.log('Condition 3 : ', request);
-        // console.log(this.Cookie.get('accesstoken'));
+        const req = new HttpRequest(method, this.baseUrl + url, body, { params, responseType: 'json', });
+
         return this.http
-          .request(request)
-          .pipe(map(response => response.json()));
+          .request(req);
+        // .pipe(map(response => response.json()));
       });
     } else if (auth && !acc && !ref) {
       console.log('idiot');
@@ -212,9 +202,7 @@ export class RestDataService {
     });
   }
 
-  private handleError(error: Response) {
-    console.log('Error with status : ' + error.status);
-    console.log(error);
+  private handleError(error: HttpErrorResponse) {
     const st = +error.status;
     // console.log(st);
     if (st === 0 || st === 401) {

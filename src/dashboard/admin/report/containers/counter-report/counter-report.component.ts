@@ -7,6 +7,7 @@ import { ShipPage, Ship } from 'src/shared/models/ship.model';
 import { ReportService } from 'src/service/report.service';
 import { ReportRange } from 'src/shared/models/report-range.model';
 import { Report } from 'src/shared/models/report.model';
+import { Counter } from 'src/shared/models/counter.model';
 
 @Component({
   selector: 'app-counter-report',

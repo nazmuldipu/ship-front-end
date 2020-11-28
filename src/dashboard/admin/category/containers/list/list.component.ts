@@ -23,12 +23,17 @@ export class ListComponent {
   }
 
   async getCategoryPage(shipId: number, page: number = 0) {
-    await this.categoryService
-      .getAdminCategoryByShiplId(shipId, page)
-      .subscribe(data => {
-        this.categoryPage = data;
-        this.categoryPage.content.sort(this.utilService.dynamicSortObject('priority'));
-      });
+    // try{}catch(err){console.log(err)}
+    try {
+      this.categoryPage = await this.categoryService.getAdminCategoryByShiplId(shipId, page).toPromise();
+      this.categoryPage.content.sort(this.utilService.dynamicSortObject('priority'));
+    } catch (err) { console.log(err) }
+    // await this.categoryService
+    //   .getAdminCategoryByShiplId(shipId, page)
+    //   .subscribe(data => {
+    //     this.categoryPage = data;
+    //     this.categoryPage.content.sort(this.utilService.dynamicSortObject('priority'));
+    //   });
   }
 
   async onDelete(id) {

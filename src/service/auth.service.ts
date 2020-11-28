@@ -47,7 +47,6 @@ export class AuthService {
     const access_token = this.Cookie.get('access_token');
     const refresh_token = this.Cookie.get('refresh_token');
     if (!access_token && !!refresh_token && this.datasource.urlFlag) {
-      console.log('yes');
       this.getAccessTokenByRefreshToken();
       return false;
     }
@@ -94,8 +93,8 @@ export class AuthService {
     localStorage.setItem('returnUrl', returnUrl);
 
     return this.datasource
-      .obtainAccessToken(username, password)
-      .pipe(map(res => res.json()));
+      .obtainAccessToken(username, password);
+    // .pipe(map(res => res.json()));
     // .subscribe(
     //   data => {
     //     this.saveToken(data, '');
@@ -156,6 +155,7 @@ export class AuthService {
 
   loginErrorHandler(err) {
     this.errorMessage = 'Invalid username or password';
+    console.log('Invalid username or password')
     this.router.navigate(['/login']);
   }
 }

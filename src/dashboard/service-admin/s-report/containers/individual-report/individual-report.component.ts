@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/shared/models/user.model';
 import { Ship } from 'src/shared/models/ship.model';
+import { Counter } from 'src/shared/models/counter.model';
 import { Report } from 'src/shared/models/report.model';
 import { UserService } from 'src/service/user.service';
 import { UtilService } from 'src/service/util.service';
