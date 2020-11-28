@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { RouterModule, Routes } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -35,11 +35,11 @@ export const ROUTES: Routes = [
   },
   {
     path: 'dashboard',
-    loadChildren: '../dashboard/dashboard.module#DashboardModule'
+    loadChildren: () => import('../dashboard/dashboard.module').then(m => m.DashboardModule)
   },
   {
     path: '',
-    loadChildren: '../ships/ships.module#ShipsModule'
+    loadChildren: () => import('../ships/ships.module').then(m => m.ShipsModule)
   }
 ];
 
@@ -54,7 +54,7 @@ export const ROUTES: Routes = [
   ],
   imports: [
     BrowserModule,
-    HttpModule,
+    HttpClientModule,
     SharedModule,
     NgbModule,
     AppRoutingModule,
@@ -65,4 +65,4 @@ export const ROUTES: Routes = [
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

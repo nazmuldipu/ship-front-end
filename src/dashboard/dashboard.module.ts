@@ -14,18 +14,18 @@ export const ROUTES: Routes = [
     path: '',
     component: DashboardComponent,
     children: [
-      { path: 'admin', loadChildren: './admin/admin.module#AdminModule' },
+      { path: 'admin', loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule) },
       {
         path: 'admin-agent',
-        loadChildren: './admin-agent/admin-agent.module#AdminAgentModule'
+        loadChildren: () => import('./admin-agent/admin-agent.module').then(m => m.AdminAgentModule)
       },
       {
         path: 'service-admin',
-        loadChildren: './service-admin/service-admin.module#ServiceAdminModule'
+        loadChildren: () => import('./service-admin/service-admin.module').then(m => m.ServiceAdminModule)
       },
       {
         path: 'service-agent',
-        loadChildren: './service-agent/service-agent.module#ServiceAgentModule'
+        loadChildren: () => import('./service-agent/service-agent.module').then(m => m.ServiceAgentModule)
       },
       { path: 'change-password', component: ChangePasswordComponent },
       {

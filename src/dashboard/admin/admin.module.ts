@@ -6,31 +6,31 @@ import { RouterModule, Routes } from '@angular/router';
 export const ROUTES: Routes = [
   {
     path: 'category',
-    loadChildren: './category/category.module#CategoryModule'
+    loadChildren: () => import('./category/category.module').then(m => m.CategoryModule)
   },
   {
     path: 'seats',
-    loadChildren: './seats/seats.module#SeatsModule'
+    loadChildren: () => import('./seats/seats.module').then(m => m.SeatsModule)
   },
   {
     path: 'sell',
-    loadChildren: './sell/sell.module#SellModule'
+    loadChildren: () => import('./sell/sell.module').then(m => m.SellModule)
   },
   {
     path: 'ships',
-    loadChildren: './ships/ships.module#ShipsModule'
+    loadChildren: () => import('./ships/ships.module').then(m => m.ShipsModule)
   },
   {
     path: 'accountings',
-    loadChildren: './accountings/accountings.module#AccountingsModule'
+    loadChildren: () => import('./accountings/accountings.module').then(m => m.AccountingsModule)
   },
   {
     path: 'users',
-    loadChildren: './users/users.module#UsersModule'
+    loadChildren: () => import('./users/users.module').then(m => m.UsersModule)
   },
   {
     path: 'report',
-    loadChildren: './report/report.module#ReportModule'
+    loadChildren: () => import('./report/report.module').then(m => m.ReportModule)
   }
 ];
 

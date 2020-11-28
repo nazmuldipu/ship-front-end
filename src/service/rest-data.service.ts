@@ -2,7 +2,7 @@ import { map, tap, take, catchError } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import {
   Headers,
-  Http,
+  HttpClient,
   Request,
   RequestMethod,
   RequestOptions
@@ -23,12 +23,12 @@ export class RestDataService {
 
   constructor(
     private router: Router,
-    private http: Http,
+    private http: HttpClient,
     private Cookie: CookieService // private oauthService: OAuthService
   ) {
     this.baseUrl = `${environment.PROTOCOL}://${environment.SERVER}${
       environment.PORT
-    }/`;
+      }/`;
   }
 
   getBaseUrl(): string {
@@ -207,7 +207,7 @@ export class RestDataService {
   }
 
   parseJSON(response) {
-    return response.text().then(function(text) {
+    return response.text().then(function (text) {
       return text ? JSON.parse(text) : {};
     });
   }
