@@ -59,7 +59,7 @@ export const ROUTES: Routes = [
     NgbModule,
     AppRoutingModule,
     CookieModule.forRoot(),
-    RouterModule.forRoot(ROUTES),
+    RouterModule.forRoot(ROUTES, { relativeLinkResolution: 'legacy' }),
     Ng4LoadingSpinnerModule.forRoot()
   ],
   providers: [],

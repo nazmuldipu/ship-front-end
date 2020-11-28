@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { PriceMapComponent } from './price-map.component';
 
@@ -6,7 +6,7 @@ describe('PriceMapComponent', () => {
   let component: PriceMapComponent;
   let fixture: ComponentFixture<PriceMapComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ PriceMapComponent ]
     })

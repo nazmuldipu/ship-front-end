@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { SellsReportRangeComponent } from './sells-report-range.component';
 
@@ -6,7 +6,7 @@ describe('SellsReportRangeComponent', () => {
   let component: SellsReportRangeComponent;
   let fixture: ComponentFixture<SellsReportRangeComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ SellsReportRangeComponent ]
     })

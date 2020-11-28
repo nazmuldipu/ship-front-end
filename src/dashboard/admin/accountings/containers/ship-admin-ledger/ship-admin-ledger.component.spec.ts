@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { ShipAdminLedgerComponent } from './ship-admin-ledger.component';
 
@@ -6,7 +6,7 @@ describe('ShipAdminLedgerComponent', () => {
   let component: ShipAdminLedgerComponent;
   let fixture: ComponentFixture<ShipAdminLedgerComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ ShipAdminLedgerComponent ]
     })
