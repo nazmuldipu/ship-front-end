@@ -46,22 +46,28 @@ export class UserService {
     );
   }
 
+  findByUsernameOrPhoneNumber(query: string, role: string = null, page: number = 0): Observable<UserPage> {
+    let param = new HttpParams().set('page', page.toString())
+    if (query) {
+      param = param.set('query', query);
+    }
+    if (role) {
+      param = param.set('role', role);
+    }
+
+    return this.dataSource.sendRequest('PUT', this.serviceAdminUrl + `/searchUser`, null, true, param);
+  }
+
   //*******************ADMIN MODULES **********************
   getAdminUsers(page: number = 0, role: string = null): Observable<UserPage> {
-    const param = new HttpParams()
+    let param = new HttpParams()
       .set('page', page.toString())
-      .set('role', role);
 
-    // const param =
-    //   (page === null ? '' : `page=${page}&`) +
-    //   (role === null ? '' : `role=${role}&`);
-    return this.dataSource.sendRequest(
-      'GET',
-      this.serviceAdminUrl,
-      null,
-      true,
-      param
-    );
+    if (role) {
+      param = param.set('role', role);
+    }
+
+    return this.dataSource.sendRequest('GET', this.serviceAdminUrl, null, true, param);
   }
 
   getAdminUser(userId: number) {
@@ -117,17 +123,17 @@ export class UserService {
     );
   }
 
-  searchAdminUser(phone: string): Observable<User> {
-    const param = new HttpParams().set('phone', phone);
+  // searchAdminUser(phone: string): Observable<User> {
+  //   const param = new HttpParams().set('phone', phone);
 
-    return this.dataSource.sendRequest(
-      'PUT',
-      this.serviceAdminUrl + '/searchUser',
-      null,
-      true,
-      param
-    );
-  }
+  //   return this.dataSource.sendRequest(
+  //     'PUT',
+  //     this.serviceAdminUrl + '/searchUser',
+  //     null,
+  //     true,
+  //     param
+  //   );
+  // }
 
   createAdminAgent(user: User): Observable<User> {
     return this.dataSource.sendRequest(

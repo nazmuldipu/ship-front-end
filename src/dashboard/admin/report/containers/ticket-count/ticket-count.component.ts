@@ -66,11 +66,12 @@ export class TicketCountComponent implements OnInit {
     const endDate = this.util.getDateString(ed);
     this.reportList = null;
     this.loading = true;
-    await this.reportService.getTicketCount(shipId, startDate, endDate).subscribe(data => {
-      this.reportList = data;
+    try {
+      this.reportList = await this.reportService.getTicketCount(shipId, startDate, endDate).toPromise();
       this.loading = false;
-    });
+    } catch (err) { console.log(err) }
   }
+
   onPrint() {
     (window as any).print();
   }

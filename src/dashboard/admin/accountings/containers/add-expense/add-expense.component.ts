@@ -11,23 +11,22 @@ export class AddExpenseComponent implements OnInit {
   adminCashbookPage: AdminCashbookPage;
   expenseForm = true;
 
-  constructor(private accountingService: AccountingService) {}
+  constructor(private accountingService: AccountingService) { }
 
   ngOnInit() {
     this.getAdminCashbook();
   }
 
-  getAdminCashbook(page: number = 0) {
-    this.accountingService.getAdminCashbook(page).subscribe(data => {
-      this.adminCashbookPage = data;
-    });
+  async getAdminCashbook(page: number = 0) {
+    try {
+      this.adminCashbookPage = await this.accountingService.getAdminCashbook(page).toPromise();
+    } catch (err) { console.log(err) }
   }
 
-  onSubmit({ explanation, debit, credit }) {
-    this.accountingService
-      .addAdminExpense(credit, explanation)
-      .subscribe(data => {
-        this.getAdminCashbook();
-      });
+  async onSubmit({ explanation, debit, credit }) {
+    try {
+      const resp = this.accountingService.addAdminExpense(credit, explanation).toPromise();
+      this.getAdminCashbook();
+    } catch (err) { console.log(err) }
   }
 }

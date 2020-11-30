@@ -27,14 +27,14 @@ export class ShipAdminLedgerComponent implements OnInit {
 
   async getAdminShipList(userId: number) {
     this.shipList = [];
-    await this.userService.getAdminShipListByUserId(userId).subscribe(data => {
-      this.shipList = data;
-    })
+    try {
+      this.shipList = await this.userService.getAdminShipListByUserId(userId).toPromise();
+    } catch (err) { console.log(err) }
   }
 
   async getShipAdminLedgerPage(userId: number, page: number = 0) {
-    await this.accountingService.getShipAdminLedger(userId, page).subscribe(data => {
-      this.shipAdminLedgerPage = data;
-    })
+    try {
+      this.shipAdminLedgerPage = await this.accountingService.getShipAdminLedger(userId, page).toPromise();
+    } catch (err) { console.log(err) }
   }
 }

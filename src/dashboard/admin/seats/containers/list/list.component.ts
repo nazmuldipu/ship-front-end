@@ -29,11 +29,10 @@ export class ListComponent implements OnInit {
   }
 
   async getAdminSeatListByCategoryId(categoryId) {
-    await this.seatService
-      .getAdminSeatListByCategoryId(categoryId)
-      .subscribe(data => {
-        this.seatList = data;
-      });
+    try {
+      this.seatList = await this.seatService
+        .getAdminSeatListByCategoryId(categoryId).toPromise();
+    } catch (err) { console.log(err) }
   }
 
   onCategoryBack(event) {

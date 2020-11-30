@@ -4,22 +4,24 @@
     <small>Choose a ship from below list</small>
   </li>
 
-  <a *ngFor="let ship of shipPage?.content" class="list-group-item list-group-item-action" (click)="onSelectShip(ship.id)">
+  <a *ngFor="let ship of shipPage?.content" class="list-group-item list-group-item-action"
+    (click)="onSelectShip(ship.id)">
     <i class="fa fa-ship"></i> {{ ship.shipNumber }}-{{ ship.name }}
   </a>
-  <a class="list-group-item list-group-item-action list-group-item-info text-center" routerLink="/dashboard/admin/category/add"
-    *ngIf="mode == 1">
+  <a class="list-group-item list-group-item-action list-group-item-info text-center"
+    routerLink="/dashboard/admin/category/add" *ngIf="mode == 1">
     <i class="fa fa-plus"></i> Add Category
   </a>
-  <a class="list-group-item list-group-item-action list-group-item-info text-center" routerLink="/dashboard/admin/category"
-    *ngIf="mode == 2">
+  <a class="list-group-item list-group-item-action list-group-item-info text-center"
+    routerLink="/dashboard/admin/category" *ngIf="mode == 2">
     <i class="fa fa-list"></i> Category List
   </a>
-  <a class="list-group-item list-group-item-action list-group-item-info text-center" routerLink="/dashboard/admin/seats/add"
-    *ngIf="mode == 3">
+  <a class="list-group-item list-group-item-action list-group-item-info text-center"
+    routerLink="/dashboard/admin/seats/add" *ngIf="mode == 3">
     <i class="fa fa-plus"></i> Add Seat
   </a>
-  <a class="list-group-item list-group-item-action list-group-item-info text-center" routerLink="/dashboard/admin/seats" *ngIf="mode == 4">
+  <a class="list-group-item list-group-item-action list-group-item-info text-center" routerLink="/dashboard/admin/seats"
+    *ngIf="mode == 4">
     <i class="fa fa-list"></i> Seat List
   </a>
 </ul>

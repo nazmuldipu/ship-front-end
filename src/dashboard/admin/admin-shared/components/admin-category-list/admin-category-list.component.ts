@@ -21,6 +21,7 @@ export class AdminCategoryListComponent implements OnChanges {
   @Output() back = new EventEmitter<any>();
   @Output() category = new EventEmitter<Category>();
 
+  cat;
   categoryList: Category[];
 
   constructor(private categoryService: CategoryService, private utilService: UtilService) {
@@ -36,11 +37,11 @@ export class AdminCategoryListComponent implements OnChanges {
       this.categoryList.sort(this.utilService.dynamicSortObject('priority'));
       this.onSelectCategory(this.categoryList[this.categoryList.length - 1].id);
     } catch (err) { console.log(err) }
-    // try{}catch(err){console.log(err)}
   }
 
   onSelectCategory(categoryId) {
     const categ = this.categoryList.find(c => c.id == categoryId);
+    this.cat = categ.name;
     this.category.emit(categ);
   }
 

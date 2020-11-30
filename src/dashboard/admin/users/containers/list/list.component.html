@@ -20,13 +20,25 @@
   </div>
   <div class="row m-0">
     <div class="col-md-7">
+      <form (ngSubmit)="searchUser()" class="mx-3 my-1">
+        <div class="input-group mb-2">
+          <div class="input-group-prepend">
+            <div class="input-group-text">
+              <i class="fa fa-search"></i>&nbsp; Search
+            </div>
+          </div>
+          <input type="text" class="form-control" id="userQuery" name="userQuery" placeholder="User name or phone"
+            [(ngModel)]="query">
+        </div>
+      </form>
       <table class="table table-hover table-responsive-sm shadow-sm">
         <!-- <table class="table table-hover"> -->
         <thead>
           <tr>
             <th class="pl-3">Name</th>
             <th>Phone
-              <br />Email</th>
+              <br />Email
+            </th>
             <th>Registration time</th>
             <th>Staus</th>
             <th></th>
@@ -37,7 +49,8 @@
             <td>
               {{ user.name }}
               <br />
-              <span class="badge badge-pill" [ngClass]="i % 2 == 0 ? 'badge-success' : 'badge-info'" *ngFor="let role of user?.roles; let i = index">
+              <span class="badge badge-pill" [ngClass]="i % 2 == 0 ? 'badge-success' : 'badge-info'"
+                *ngFor="let role of user?.roles; let i = index">
                 {{ role.name }}
               </span>
             </td>
@@ -60,7 +73,7 @@
         <tfoot>
           <tr>
             <td colspan="5">
-              <pagination *ngIf="userPage != null" [page]="userPage" (getPage)="getUserPage($event, role)">
+              <pagination *ngIf="userPage != null" [page]="userPage" (getPage)="getUserPage($event, query, role)">
               </pagination>
             </td>
           </tr>
@@ -119,7 +132,8 @@
             Agent
           </a>
 
-          <button class="btn btn-sm raised" (click)="activate(user.id)" [ngClass]="user.enabled ? 'btn-success' : 'btn-danger'">
+          <button class="btn btn-sm raised" (click)="activate(user.id)"
+            [ngClass]="user.enabled ? 'btn-success' : 'btn-danger'">
             <i class="fa fa-power-off"></i>
           </button>
 

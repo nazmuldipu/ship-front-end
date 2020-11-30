@@ -1,10 +1,4 @@
-import {
-  Component,
-  OnInit,
-  Input,
-  OnChanges,
-  SimpleChanges
-} from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Seat } from 'src/shared/models/seat.model';
 
 @Component({
@@ -15,7 +9,7 @@ import { Seat } from 'src/shared/models/seat.model';
 export class TicketDetailsComponent {
   @Input() seatList: Seat[];
 
-  constructor() {}
+  constructor() { }
 
   getTotal() {
     let total = 0;

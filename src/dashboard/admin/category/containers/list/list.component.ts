@@ -37,14 +37,16 @@ export class ListComponent {
   }
 
   async onDelete(id) {
-    await this.categoryService.deleteAdminCategory(id).subscribe(data => {
-      this.getCategoryPage(this.ship.id);
-      if (data.response == 'success') {
+    if (confirm('Are you sure to Delete the category')) {
+      try {
+        await this.categoryService.deleteAdminCategory(id).toPromise();
         this.message = 'Category deleted successfully';
-      } else {
+        this.getCategoryPage(this.ship.id);
+      } catch (err) {
+        console.log(err);
         this.message = 'Category deleted Failed';
       }
-    });
+    }
   }
 
   clear() {

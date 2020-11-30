@@ -21,7 +21,7 @@
             <th>Seat Quality</th>
             <th>Priority</th>
             <th></th>
-            <th></th>
+            <!-- <th></th> -->
           </tr>
         </thead>
         <tbody>
@@ -36,17 +36,25 @@
             <td>{{ category.seatQuality }}</td>
             <td>{{ category.priority }}</td>
             <td>
-              <a class="btn btn-sm btn-warning" routerLink="/dashboard/admin/category/add/{{category.id}}" target="_blank">Edit</a>
+              <div class="btn-group mr-2" role="group" aria-label="First group">
+                <a class="btn btn-light" routerLink="/dashboard/admin/category/add/{{category.id}}"><i
+                    class="fa fa-pencil-square-o"></i></a>
+                <button type="button" class="btn btn-light" (click)="onDelete(category.id)">
+                  <i class="fa fa-trash-o"></i></button>
+              </div>
+              <!-- <a class="btn btn-sm btn-warning" routerLink="/dashboard/admin/category/add/{{category.id}}"
+                target="_blank">Edit</a> -->
             </td>
-            <td>
+            <!-- <td>
               <button class="btn btn-sm btn-danger mr-1" (click)="onDelete(category.id)">
                 Delete
               </button>
-            </td>
+            </td> -->
           </tr>
           <tr>
             <td colspan="7">
-              <pagination *ngIf="categoryPage != null" [page]="categoryPage" (getPage)="getCategoryPage(shipId, $event)"></pagination>
+              <pagination *ngIf="categoryPage != null" [page]="categoryPage"
+                (getPage)="getCategoryPage(shipId, $event)"></pagination>
             </td>
           </tr>
         </tbody>

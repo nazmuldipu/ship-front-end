@@ -1,22 +1,20 @@
-import { Component, OnInit } from '@angular/core';
-import { Ship } from 'src/shared/models/ship.model';
-import { Category } from 'src/shared/models/category.model';
+import { Component } from '@angular/core';
 import { CategoryService } from 'src/service/category.service';
+import { Category } from 'src/shared/models/category.model';
+import { Ship } from 'src/shared/models/ship.model';
 
 @Component({
   selector: 'app-discount-map',
   templateUrl: './discount-map.component.html',
   styleUrls: ['./discount-map.component.scss']
 })
-export class DiscountMapComponent implements OnInit {
+export class DiscountMapComponent {
   ship: Ship;
   category: Category;
   editFrom = false;
   reloadDiscountMap = false;
 
   constructor(private categoryService: CategoryService) { }
-
-  ngOnInit() { }
 
   onSelectShip(ship) {
     this.ship = ship;
@@ -34,20 +32,18 @@ export class DiscountMapComponent implements OnInit {
     this.editFrom = false;
   }
 
-  onDiscountMapUpdate(event) {
+  async onDiscountMapUpdate(event) {
+    console.log(event);
     const startDate = this.makeDateString(event.startDate);
     const endDate = this.makeDateString(event.endDate);
-    this.categoryService
-      .updateAdminDiscountMap(
-        event.categoryId,
-        startDate,
-        endDate,
-        event.amount
-      )
-      .subscribe(data => {
-        this.reloadDiscountMap = !this.reloadDiscountMap;
-        this.onCloseEditForm(true);
-      });
+    try {
+      const resp = await this.categoryService.updateAdminDiscountMap(
+        event.categoryId, startDate, endDate, event.amount).toPromise();
+      this.reloadDiscountMap = !this.reloadDiscountMap;
+      this.onCloseEditForm(true);
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   makeDateString(date) {

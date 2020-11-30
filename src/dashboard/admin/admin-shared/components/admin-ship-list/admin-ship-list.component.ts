@@ -11,9 +11,8 @@ import { UtilService } from 'src/service/util.service';
   styleUrls: ['./admin-ship-list.component.scss']
 })
 export class AdminShipListComponent implements OnInit {
-  // mode 1 = Add category, 2 = Category List, 3 = Add Seats, 4 = Seat list
+  //Note: mode 1 = Add category, 2 = Category List, 3 = Add Seats, 4 = Seat list
   @Input() mode: number;
-  // @Output() shipId = new EventEmitter<number>();
   @Output() ship = new EventEmitter<Ship>();
   shipPage: ShipPage;
 
@@ -28,15 +27,10 @@ export class AdminShipListComponent implements OnInit {
       this.shipPage = await this.shipService.getAdminShipPage(page).toPromise();
       this.shipPage.content.sort(this.utilService.dynamicSortObject('priority'));
     } catch (err) { console.log(err) }
-    // await this.shipService.getAdminShipPage(page).subscribe(data => {
-    //   this.shipPage = data;
-    //   this.shipPage.content.sort(this.utilService.dynamicSortObject('priority'));
-    // });
   }
 
   onSelectShip(id: number) {
     const value = this.shipPage.content.find(s => s.id == id) as Ship;
-    // this.shipId.emit(id);
     this.ship.emit(value);
   }
 }

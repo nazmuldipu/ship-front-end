@@ -26,32 +26,29 @@ export class AssignShipAdminComponent implements OnInit {
   }
 
   async getAdminShipPage(page: number = 0) {
-    await this.shipService.getAdminShipPage(page).subscribe(data => {
-      this.shipPage = data;
-    });
+    try {
+      this.shipPage = await this.shipService.getAdminShipPage(page).toPromise();
+    } catch (err) { console.log(err) }
   }
 
   async getUserPage(page: number = 0, role: string = null) {
-    await this.userService
-      .getAdminUsers(page, role)
-      .subscribe(
-        data => (this.userPage = data),
-        error => console.log('User list loading error!', error)
-      );
+    try {
+      this.userPage = await this.userService.getAdminUsers(page, role).toPromise();
+    } catch (err) { console.log(err) }
   }
 
   async getUerListByShipId(shipId) {
     this.shipUserList = [];
-    await this.userService.gerAdminUserListByShipId(shipId).subscribe(data => {
-      this.shipUserList = data;
-    });
+    try {
+      this.shipUserList = await this.userService.gerAdminUserListByShipId(shipId).toPromise();
+    } catch (err) { console.log(err) }
   }
 
   async getShipListByUserId(userId) {
     this.userShipList = [];
-    await this.userService.getAdminShipListByUserId(userId).subscribe(data => {
-      this.userShipList = data;
-    })
+    try {
+      this.userShipList = await this.userService.getAdminShipListByUserId(userId).toPromise();
+    } catch (err) { console.log(err) }
   }
 
   onSelectUser(id: number) {
@@ -66,12 +63,13 @@ export class AssignShipAdminComponent implements OnInit {
     this.getUerListByShipId(id);
   }
 
-  onSubmit() {
-    this.userService.assignAdminShipAdmin(this.user.id, this.ship.id).subscribe(data => {
+  async onSubmit() {
+    try {
+      const resp = await this.userService.assignAdminShipAdmin(this.user.id, this.ship.id).toPromise();
       this.onClear();
       this.getAdminShipPage();
       this.getUserPage();
-    })
+    } catch (err) { console.log(err) }
   }
 
   onClear() {

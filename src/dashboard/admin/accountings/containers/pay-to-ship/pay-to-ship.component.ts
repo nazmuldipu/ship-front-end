@@ -12,9 +12,9 @@ export class PayToShipComponent implements OnInit {
   shipId: number;
   adminShipLedgerPage: AdminShipLedgerPage;
 
-  constructor(private accountingService: AccountingService) {}
+  constructor(private accountingService: AccountingService) { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   onSelectShip(event: Ship) {
     this.shipId = event.id;
@@ -22,18 +22,17 @@ export class PayToShipComponent implements OnInit {
   }
 
   async getAdminShipLedgerByShipId(hotelId: number, page: number = 0) {
-    await this.accountingService
-      .getAdminShipLedger(hotelId, page)
-      .subscribe(data => {
-        this.adminShipLedgerPage = data;
-      });
+    try {
+      this.adminShipLedgerPage = await this.accountingService.getAdminShipLedger(hotelId, page).toPromise();
+    } catch (err) { console.log(err) }
   }
 
-  onSubmit({ shipId, amount }) {
+  async onSubmit({ shipId, amount }) {
     this.shipId = null;
     this.adminShipLedgerPage = null;
-    this.accountingService.payToShip(shipId, amount).subscribe(data => {
+    try {
+      const resp = await this.accountingService.payToShip(shipId, amount).toPromise();
       this.getAdminShipLedgerByShipId(shipId);
-    });
+    } catch (err) { console.log(err) }
   }
 }

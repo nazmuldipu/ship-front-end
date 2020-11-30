@@ -24,25 +24,18 @@ export class PayShipAdminComponent implements OnInit {
   }
 
   async getShipAdminLedgerPage(userId: number, page: number = 0) {
-    await this.accountingService.getShipAdminLedger(userId, page).subscribe(data => {
-      this.shipAdminLedgerPage = data;
-    })
+    try {
+      this.shipAdminLedgerPage = await this.accountingService.getShipAdminLedger(userId, page).toPromise();
+    } catch (err) { console.log(err) }
   }
 
-  addBalace() {
-    if (
-      confirm(
-        'Are you sure to add balance ' +
-        this.amount +
-        ' to ' +
-        this.user.name +
-        ' Account '
-      )
-    ) {
-      this.accountingService.payToShipAdmin(this.user.id, this.amount).subscribe(data => {
+  async addBalace() {
+    if (confirm('Are you sure to add balance ' + this.amount + ' to ' + this.user.name + ' Account ')) {
+      try {
+        await this.accountingService.payToShipAdmin(this.user.id, this.amount).toPromise();
         this.amount = 0;
         this.getShipAdminLedgerPage(this.user.id);
-      })
+      } catch (err) { console.log(err) }
     }
   }
 

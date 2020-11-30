@@ -10,16 +10,15 @@ import { AdminCashbookPage } from 'src/shared/models/admin-cashbook.model';
 export class AdminCashbookComponent implements OnInit {
   adminCashbookPage: AdminCashbookPage;
 
-  constructor(private accountingService: AccountingService) {}
+  constructor(private accountingService: AccountingService) { }
 
   ngOnInit() {
     this.getAdminCashbook();
   }
 
   async getAdminCashbook(page: number = 0) {
-    // console.log(page);
-    await this.accountingService.getAdminCashbook(page).subscribe(data => {
-      this.adminCashbookPage = data;
-    });
+    try {
+      this.adminCashbookPage = await this.accountingService.getAdminCashbook(page).toPromise();
+    } catch (err) { console.log(err) }
   }
 }

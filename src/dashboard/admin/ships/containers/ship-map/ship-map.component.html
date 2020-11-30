@@ -15,9 +15,11 @@
       </div>
       <admin-ship-list (ship)="onSelectShip($event)"></admin-ship-list>
     </div>
+
     <div class="col-md-9 mb-5">
       <h3 class="text-center" *ngIf="ship">Ship map for {{ship.shipNumber}} - {{ship.name}}</h3>
-      <table class="table border table-hover mt-2" *ngIf="shipMap">
+      <loading *ngIf="loading"></loading>
+      <table class="table border table-hover mt-2" *ngIf="shipMap && !loading">
         <thead>
           <tr>
             <th>Date</th>

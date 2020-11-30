@@ -11,6 +11,7 @@ export class ShipMapComponent implements OnInit {
   public options: any;
   ship: Ship;
   shipMap: Map<Date, boolean>;
+  loading = false;
 
   constructor(private shipService: ShipService) { }
 
@@ -52,9 +53,11 @@ export class ShipMapComponent implements OnInit {
     const startDate = this.getDateString(sd);
     const endDate = this.getDateString(ed);
     this.shipMap = null;
+    this.loading = true;
     try {
       this.shipMap = await this.shipService.getAdminShipMap(shipId, startDate, endDate).toPromise();
     } catch (err) { console.log(err) }
+    this.loading = false;
     // await this.shipService.getAdminShipMap(shipId, startDate, endDate).subscribe(data => {
     //   this.shipMap = data;
     // })
@@ -69,9 +72,14 @@ export class ShipMapComponent implements OnInit {
   }
 
   async onAction(shipId, date, value) {
-    await this.shipService.updateAdminShipMap(shipId, date, value).subscribe(data => {
+    try {
+      await this.shipService.updateAdminShipMap(shipId, date, value).toPromise();
       this.loadShipMap(shipId, this.options.startDate, this.options.endDate);
-    })
+    } catch (err) { console.log(err) }
+
+    // await this.shipService.updateAdminShipMap(shipId, date, value).subscribe(data => {
+    //   this.loadShipMap(shipId, this.options.startDate, this.options.endDate);
+    // })
   }
 
 }

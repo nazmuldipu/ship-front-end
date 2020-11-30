@@ -13,22 +13,23 @@ export class AdminAgentComponent implements OnInit {
 
   loading: false;
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService) { }
 
   ngOnInit() {
     this.getUserPage();
   }
 
   async getUserPage(page: number = 0) {
-    this.userService.getAdminAgents(page).subscribe(data => {
-      this.userPage = data;
-    });
+    try {
+      this.userPage = await this.userService.getAdminAgents(page).toPromise();
+    } catch (err) { console.log(err) }
   }
 
   async onCreate(user: User) {
-    await this.userService.createAdminAgent(user).subscribe(data => {
+    try {
+      const resp = await this.userService.createAdminAgent(user).toPromise();
       this.getUserPage();
-    });
+    } catch (err) { console.log(err) }
   }
 
   onSelect(id: number) {
@@ -37,9 +38,11 @@ export class AdminAgentComponent implements OnInit {
   }
 
   async onRemoveAgent(id: number) {
-    console.log('On leave ', id);
-    await this.userService.removeAdminAgents(id).subscribe(data => {
-      this.getUserPage();
-    });
+    if (confirm('Are you sure remove agent with id ' + id)) {
+      try {
+        const resp = await this.userService.removeAdminAgents(id).toPromise();
+        this.getUserPage();
+      } catch (err) { console.log(err) }
+    }
   }
 }

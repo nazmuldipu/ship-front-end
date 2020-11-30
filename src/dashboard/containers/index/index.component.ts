@@ -33,7 +33,7 @@ export class IndexComponent implements OnInit {
       day: date.getDate()
     };
     if (this.auth.authorities.includes('ROLE_ADMIN')) {
-      this.router.navigate(['/dashboard/admin/sell']);
+      // this.router.navigate(['/dashboard/admin/sell']);
     } else if (this.auth.authorities.includes('ROLE_SERVICE_ADMIN')) {
       this.getServiceAdminDashboardReport(this.dd);
     }
@@ -43,8 +43,7 @@ export class IndexComponent implements OnInit {
     month = month < 10 ? '0' + month : month;
     day = day < 10 ? '0' + day : day;
     const date = `${year}-${month}-${day}`;
-    await this.reportService
-      .getServiceAdminDashboardReport(date)
+    await this.reportService.getServiceAdminDashboardReport(date)
       .subscribe(data => {
         this.report = data;
         console.log(this.report);

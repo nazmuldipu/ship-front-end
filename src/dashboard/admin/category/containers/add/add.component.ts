@@ -33,25 +33,40 @@ export class AddComponent implements OnInit {
   }
 
   async getAdminCategory(id: number) {
-    this.categoryService.getAdminCategory(id).subscribe(data => {
-      this.category = data;
+    try {
+      this.category = await this.categoryService.getAdminCategory(id).toPromise();
       this.ship = this.category.ship;
-    });
+    } catch (err) {
+      console.log(err);
+    }
+    // await this.categoryService.getAdminCategory(id).subscribe(data => {
+    //   this.category = data;
+    //   this.ship = this.category.ship;
+    // });
   }
 
-  onCreate(event: Category) {
-    this.categoryService
-      .saveAdminCategory(event, this.ship.id)
-      .subscribe(data => {
-        this.router.navigate(['/dashboard/admin/category', data.id]);
-      });
+  async onCreate(event: Category) {
+    try {
+      const resp = await this.categoryService.saveAdminCategory(event, this.ship.id).toPromise();
+      console.log(resp);
+      this.router.navigate(['/dashboard/admin/category', resp.id]);
+    } catch (err) { console.log(err); }
+    // this.categoryService
+    //   .saveAdminCategory(event, this.ship.id)
+    //   .subscribe(data => {
+    //     this.router.navigate(['/dashboard/admin/category', data.id]);
+    //   });
   }
 
-  onUpdate(event: Category) {
-    this.categoryService
-      .updateAdminCategory(this.ship.id, this.category.id, event)
-      .subscribe(data => {
-        this.router.navigate(['/dashboard/admin/category', this.category.id]);
-      });
+  async onUpdate(event: Category) {
+    try {
+      const resp = await this.categoryService.updateAdminCategory(this.ship.id, this.category.id, event).toPromise();
+      this.router.navigate(['/dashboard/admin/category', this.category.id]);
+    } catch (err) { }
+    // this.categoryService
+    //   .updateAdminCategory(this.ship.id, this.category.id, event)
+    //   .subscribe(data => {
+    //     this.router.navigate(['/dashboard/admin/category', this.category.id]);
+    //   });
   }
 }

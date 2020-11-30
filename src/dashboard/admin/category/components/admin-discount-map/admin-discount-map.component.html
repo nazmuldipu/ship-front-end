@@ -4,21 +4,15 @@
       <div class="input-group-prepend">
         <div class="input-group-text"><i class="fa fa-calendar"></i></div>
       </div>
-      <input
-        type="text"
-        class="form-control"
-        name="daterangeInput"
-        daterangepicker
-        [options]="options"
-        (selected)="selectedDiscountDate($event)"
-      />
+      <input type="text" class="form-control" name="daterangeInput" daterangepicker [options]="options"
+        (selected)="selectedDiscountDate($event)" />
     </div>
   </div>
   <div class="col-md-9">
     <h5>
       <span class="font-weight-light">Discount Map for </span>
       <strong> {{ category?.name }} </strong>
-      <button class="btn-sm btn-warning" (click)="onEditDiscount(category?.id)">
+      <button class="btn btn-sm btn-warning" (click)="onEditDiscount(category?.id)">
         Edit
       </button>
     </h5>

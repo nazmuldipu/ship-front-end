@@ -11,23 +11,22 @@ export class AddIncomeComponent implements OnInit {
   adminCashbookPage: AdminCashbookPage;
   expenseForm = false;
 
-  constructor(private accountingService: AccountingService) {}
+  constructor(private accountingService: AccountingService) { }
 
   ngOnInit() {
     this.getAdminCashbook();
   }
 
   async getAdminCashbook(page: number = 0) {
-    await this.accountingService.getAdminCashbook(page).subscribe(data => {
-      this.adminCashbookPage = data;
-    });
+    try {
+      this.adminCashbookPage = await this.accountingService.getAdminCashbook(page).toPromise();
+    } catch (err) { console.log(err) }
   }
 
-  onSubmit({ explanation, debit, credit }) {
-    this.accountingService
-      .addAdminIncome(debit, explanation)
-      .subscribe(data => {
-        this.getAdminCashbook();
-      });
+  async onSubmit({ explanation, debit, credit }) {
+    try {
+      const resp = await this.accountingService.addAdminIncome(debit, explanation).toPromise();
+      this.getAdminCashbook();
+    } catch (err) { console.log(err) }
   }
 }

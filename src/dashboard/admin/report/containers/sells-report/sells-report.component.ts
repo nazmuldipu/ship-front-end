@@ -101,12 +101,12 @@ export class SellsReportComponent implements OnInit {
     month = month < 10 ? '0' + month : month;
     day = day < 10 ? '0' + day : day;
     const date = `${year}-${month}-${day}`;
-    await this.reportService.getAdminReservationReport(date).subscribe(data => {
-      this.savedList = data;
+    try {
+      this.savedList = await this.reportService.getAdminReservationReport(date).toPromise();
       this.onFilterChange(this.filterValue);
       this.reportHead = 'Reservation';
       this.loading = false;
-    });
+    } catch (err) { console.log(err) }
   }
 
   async getAdminSellsgReport({ year, month, day }) {
@@ -115,14 +115,14 @@ export class SellsReportComponent implements OnInit {
     day = day < 10 ? '0' + day : day;
 
     const date = `${year}-${month}-${day}`;
-    await this.reportService.getAdminSellsReport(date).subscribe(data => {
-      this.savedList = data;
+    try {
+      this.savedList = await this.reportService.getAdminSellsReport(date).toPromise();
       this.savedList.sort(this.utilService.dynamicSortObject('date'));
       this.savedList.sort(this.utilService.dynamicSortObject('roomNumber'));
       this.onFilterChange(this.filterValue);
       this.reportHead = 'Sells';
       this.loading = false;
-    });
+    } catch (err) { console.log(err) }
   }
 
   calculateServiceAdminBookingReportList() {

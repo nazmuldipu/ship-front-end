@@ -47,21 +47,23 @@ export class AddComponent implements OnInit {
       });
   }
 
-  onCreate(seat, shipId) {
+  async onCreate(seat, shipId) {
     this.loading = true;
-    this.seatService.saveAdminSeat(seat, shipId).subscribe(data => {
+    try {
+      const resp = await this.seatService.saveAdminSeat(seat, shipId).toPromise();
       this.getAdminSeatListByCategoryId(this.category.id);
       this.loading = false;
-    });
+    } catch (err) { console.log(err) }
   }
 
-  onUpdate(seat, shipId, seatId) {
+  async onUpdate(seat, shipId, seatId) {
     this.loading = true;
-    this.seatService.updateAdminSeat(seat, shipId, seatId).subscribe(data => {
+    try {
+      const resp = await this.seatService.updateAdminSeat(seat, shipId, seatId).toPromise();
       this.seat = null;
       this.getAdminSeatListByCategoryId(this.category.id);
       this.loading = false;
-    });
+    } catch (err) { console.log(err) }
   }
 
   onCategoryBack(event) {

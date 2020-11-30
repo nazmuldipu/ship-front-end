@@ -21,7 +21,7 @@ export class AgentBalanceComponent implements OnInit {
   constructor(
     private userService: UserService,
     private accountingService: AccountingService
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.getUserPage();
@@ -29,10 +29,10 @@ export class AgentBalanceComponent implements OnInit {
 
   async getUserPage(page: number = 0) {
     this.loading = true;
-    this.userService.getAdminAgents(page).subscribe(data => {
-      this.userPage = data;
-      this.loading = true;
-    });
+    try {
+      this.userPage = await this.userService.getAdminAgents(page).toPromise();
+      this.loading = false;
+    } catch (err) { console.log(err); }
   }
 
   onSelect(id: number) {
@@ -43,31 +43,22 @@ export class AgentBalanceComponent implements OnInit {
 
   async getAgentLedger(agentId: number, page: number = 0) {
     this.loading = true;
-    this.accountingService
-      .getAdminAgentLedgerByAdmin(agentId, page)
-      .subscribe(data => {
-        this.adminAgentLedgerPage = data;
-        this.loading = false;
-      });
+    try {
+      this.adminAgentLedgerPage = await this.accountingService
+        .getAdminAgentLedgerByAdmin(agentId, page).toPromise();
+      this.loading = false;
+    } catch (err) { console.log(err) }
   }
 
   async addBalace() {
-    if (
-      confirm(
-        'Are you sure to add balance ' +
-          this.amount +
-          ' to ' +
-          this.user.name +
-          ' Account '
-      )
-    ) {
-      this.accountingService
-        .addAdminAgentBalance(this.user.id, this.amount)
-        .subscribe(data => {
-          this.message = 'Amount added successfully';
-          this.amount = 0;
-          this.getAgentLedger(this.user.id);
-        });
+    if (confirm('Are you sure to add balance ' + this.amount + ' to ' + this.user.name + ' Account ')) {
+      try {
+        const resp = await this.accountingService
+          .addAdminAgentBalance(this.user.id, this.amount).toPromise();
+        this.message = 'Amount added successfully';
+        this.amount = 0;
+        this.getAgentLedger(this.user.id);
+      } catch (err) { console.log(err) }
     }
   }
 

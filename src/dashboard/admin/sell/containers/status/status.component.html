@@ -11,8 +11,9 @@
               Date :
             </div>
           </div>
-          <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="dd" [minDate]="minDate" [maxDate]="maxDate" ngbDatepicker
-            #date="ngbDatepicker" (dateSelect)="onDateChange()" (click)="date.toggle()" />
+          <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="dd" [minDate]="minDate"
+            [maxDate]="maxDate" ngbDatepicker #date="ngbDatepicker" (dateSelect)="onDateChange()"
+            (click)="date.toggle()" />
           <div class="input-group-append" (click)="date.toggle()">
             <div class="input-group-text">
               <i class="fa fa-calendar"></i>
@@ -25,21 +26,27 @@
     <div class="col-md-5" *ngIf="filteredSeatList.length">
       <h4>{{ ship?.shipNumber }}-{{ ship?.name }} Seat status</h4>
       <div class="row m-0">
-        <span *ngFor="let cat of categoryList">
-          <button class="btn-sm m-1" [ngClass]="cat == category ? 'btn-primary' : 'btn-secondary'" (click)="onSelectCategory(cat)">
-            {{ cat }}
+        <div class="btn-group" role="group" aria-label="Basic example">
+          <button type="button" class="btn" *ngFor="let cat of categoryList"
+            [ngClass]="(cat.name == category.name) ? 'btn-primary' : 'btn-light'"
+            (click)="onSelectCategory(cat)">{{cat.name}}</button>
+        </div>
+        <!-- <span *ngFor="let cat of categoryList">
+          <button class="btn-sm m-1" [ngClass]="cat == category ? 'btn-primary' : 'btn-secondary'"
+            (click)="onSelectCategory(cat)">
+            {{ cat.name }}
           </button>
-        </span>
+        </span> -->
       </div>
       <div class="row">
         <div class="col-12 p-0">
           <!-- <seat-status-other *ngIf="ship.shipName =='OTHER'" [filteredSeatList]="filteredSeatList" [categoryName]="category"
                 (select)="onSeatClick($event)"> 
         </seat-status-other>-->
-          <seat-status-bay-cruiser *ngIf="ship.shipName=='BAY_CRUISE'" [filteredSeatList]="filteredSeatList" [categoryName]="category"
-            (select)="onSeatClick($event)"></seat-status-bay-cruiser>
-          <seat-status-sukanto *ngIf="ship.shipName=='SUKANTO_BABU'" [filteredSeatList]="filteredSeatList" [categoryName]="category"
-            (select)="onSeatClick($event)"></seat-status-sukanto>
+          <seat-status-bay-cruiser *ngIf="ship.shipName=='BAY_CRUISE'" [filteredSeatList]="filteredSeatList"
+            [categoryName]="category.name" (select)="onSeatClick($event)"></seat-status-bay-cruiser>
+          <seat-status-sukanto *ngIf="ship.shipName=='SUKANTO_BABU'" [filteredSeatList]="filteredSeatList"
+            [categoryName]="category.name" (select)="onSeatClick($event)"></seat-status-sukanto>
         </div>
         <!-- <div class="col-md-1 col-2 p-1 " *ngFor="let seat of filteredSeatList">
           <div class="seat-box" [ngClass]="{
@@ -74,16 +81,18 @@
     </div>
 
     <div class="col-md-5" *ngIf="ticket">
-      <ticket-sukantababu-print *ngIf="ticket && ticket.ship?.shipName == 'SUKANTO_BABU'" [ticket]="ticket" [short]="shortTicket"
-        (close)="onTicketClose()">
+      <ticket-sukantababu-print *ngIf="ticket && ticket.ship?.shipName == 'SUKANTO_BABU'" [ticket]="ticket"
+        [short]="shortTicket" (close)="onTicketClose()">
       </ticket-sukantababu-print>
-      <tiket-baycruise-print *ngIf="ticket && ticket.ship?.shipName == 'BAY_CRUISE'" [ticket]="ticket" [short]="shortTicket" (close)="onTicketClose()">
+      <tiket-baycruise-print *ngIf="ticket && ticket.ship?.shipName == 'BAY_CRUISE'" [ticket]="ticket"
+        [short]="shortTicket" (close)="onTicketClose()">
       </tiket-baycruise-print>
       <div class="d-flex flex-row-reverse bd-highlight my-2">
         <button class="btn btn-danger btn-sm mx-1" (click)="onCancelBooking(ticket.id, ticket.eStatus)">
           Cancel {{ ticket.eStatus == 'SEAT_RESERVED' ? 'Reservation' : 'Booking' }}
         </button>
-        <button class="btn btn-sm btn-primary mx-1" *ngIf="ticket.eStatus == 'SEAT_RESERVED'" (click)="onConfirmReservation(ticket.id)">
+        <button class="btn btn-sm btn-primary mx-1" *ngIf="ticket.eStatus == 'SEAT_RESERVED'"
+          (click)="onConfirmReservation(ticket.id)">
           Confirm Reservation
         </button>
       </div>

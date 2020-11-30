@@ -1,11 +1,8 @@
 <div class="row m-0">
   <p class="font-weight-light">Category:</p>
-  <div *ngFor="let category of categoryList">
-    <button
-      class="btn-sm btn-secondary m-1"
-      (click)="onSelectCategory(category.id)"
-    >
-      {{ category.name }}
-    </button>
+  <div class="btn-group" role="group" aria-label="Basic example">
+    <button type="button" *ngFor="let category of categoryList" class="btn"
+      [ngClass]="(category.name==cat)?'btn-primary':'btn-secondary'"
+      (click)="onSelectCategory(category.id)">{{ category.name }}</button>
   </div>
 </div>

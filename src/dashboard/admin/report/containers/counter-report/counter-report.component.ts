@@ -1,13 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { UserService } from 'src/service/user.service';
-import { User } from 'src/shared/models/user.model';
-import { UtilService } from 'src/service/util.service';
-import { ShipService } from 'src/service/ship.service';
-import { ShipPage, Ship } from 'src/shared/models/ship.model';
 import { ReportService } from 'src/service/report.service';
-import { ReportRange } from 'src/shared/models/report-range.model';
-import { Report } from 'src/shared/models/report.model';
+import { ShipService } from 'src/service/ship.service';
+import { UserService } from 'src/service/user.service';
+import { UtilService } from 'src/service/util.service';
 import { Counter } from 'src/shared/models/counter.model';
+import { Report } from 'src/shared/models/report.model';
+import { Ship } from 'src/shared/models/ship.model';
+import { User } from 'src/shared/models/user.model';
 
 @Component({
   selector: 'app-counter-report',
@@ -75,23 +74,25 @@ export class CounterReportComponent implements OnInit {
     (window as any).print();
   }
 
-  async getAllShip(page: number = null) {
+  async getAllShip(page: number = 0) {
     this.loading = true;
-    await this.shipService.getAllShip(page).subscribe(data => {
-      this.shipList = data.content;
+    console.log('OLk')
+    try {
+      const resp = await this.shipService.getAllShip(page).toPromise();
+      this.shipList = resp.content;
       this.shipList.sort(this.util.dynamicSortObject('priority'));
       this.loading = false;
-    })
+    } catch (err) { console.log(err) }
   }
 
   async getUserListByRole(role: string) {
     this.reportList = null;
     this.loading = true;
-    await this.userService.getAdminUserByRole(role).subscribe(data => {
-      this.userList = data;
+    try {
+      this.userList = await this.userService.getAdminUserByRole(role).toPromise();
       this.userList.sort(this.util.dynamicSortObject('name'));
       this.loading = false;
-    });
+    } catch (err) { console.log(err) }
   }
 
   onCounterChange(id) {
@@ -120,22 +121,22 @@ export class CounterReportComponent implements OnInit {
     this.loading = true;
     const startDate = this.util.getDateString(sd);
     const endDate = this.util.getDateString(ed);
-    await this.reportService.getAdminSellsReportRangeForIndividual(shipId, userId, startDate, endDate).subscribe(data => {
-      this.reportList = data;
+    try {
+      this.reportList = await this.reportService.getAdminSellsReportRangeForIndividual(shipId, userId, startDate, endDate).toPromise();
       this.calculateServiceAdminBookingReportList();
       this.loading = false;
-    });
+    } catch (err) { console.log(err) }
   }
 
   async getAdminReservationRangeReport(shipId, userId, sd: Date, ed: Date) {
     this.loading = true;
     const startDate = this.util.getDateString(sd);
     const endDate = this.util.getDateString(ed);
-    await this.reportService.getAdminReserveReportRangeForIndividual(shipId, userId, startDate, endDate).subscribe(data => {
-      this.reportList = data;
+    try {
+      this.reportList = await this.reportService.getAdminReserveReportRangeForIndividual(shipId, userId, startDate, endDate).toPromise();
       this.calculateServiceAdminBookingReportList();
       this.loading = false;
-    });
+    } catch (err) { console.log(err) }
   }
 
   calculateServiceAdminBookingReportList() {
