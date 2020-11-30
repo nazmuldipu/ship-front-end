@@ -19,13 +19,11 @@ export class HotelswaveLedgerComponent implements OnInit {
     this.getServiceAdminHotelswaveLedger();
   }
 
-  async getServiceAdminHotelswaveLedger(page: number = null) {
+  async getServiceAdminHotelswaveLedger(page: number = 0) {
     this.loading = true;
-    await this.accountingService
-      .getServiceAdminHotelswaveLedger(page)
-      .subscribe(data => {
-        this.shipAdminLedgerPage = data;
-        this.loading = false;
-      });
+    try {
+      this.shipAdminLedgerPage = await this.accountingService.getServiceAdminHotelswaveLedger(page).toPromise();
+      this.loading = false;
+    } catch (err) { console.log(err) }
   }
 }

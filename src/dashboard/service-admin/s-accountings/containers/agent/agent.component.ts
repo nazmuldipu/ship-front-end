@@ -25,11 +25,11 @@ export class AgentComponent implements OnInit {
     this.getServiceAdminAgents();
   }
 
-  async getServiceAdminAgents(page: number = null) {
-    this.userService.getServiceAdminAgents(page).subscribe(data => {
-      console.log(data);
-      this.userPage = data;
-    });
+  async getServiceAdminAgents(page: number = 0) {
+    try {
+      this.userPage = await this.userService.getServiceAdminAgents(page).toPromise();
+    } catch (err) { console.log(err) }
+
   }
 
   onSelectAgent(event) {
@@ -38,27 +38,21 @@ export class AgentComponent implements OnInit {
     this.getShipAgentLedger(event);
   }
 
-  async getShipAgentLedger(agentId: number, page: number = null) {
-    await this.accountingService.getServiceAdminAgentLedger(agentId, page).subscribe(data => {
-      this.shipAgentLedgerPage = data;
-    })
+  async getShipAgentLedger(agentId: number, page: number = 0) {
+    try {
+      this.shipAgentLedgerPage = await this.accountingService.getServiceAdminAgentLedger(agentId, page).toPromise();
+    } catch (err) { console.log(err) }
   }
 
   async addAgentBalace() {
     if (
-      confirm(
-        'Are you sure to add balance ' +
-        this.amount +
-        ' to ' +
-        this.user.name +
-        ' Account '
-      )
-    ) {
-      await this.accountingService.addServiceAdminAgentBalance(this.user.id, this.amount).subscribe(data => {
+      confirm('Are you sure to add balance ' + this.amount + ' to ' + this.user.name + ' Account ')) {
+      try {
+        const resp = await this.accountingService.addServiceAdminAgentBalance(this.user.id, this.amount).toPromise();
         this.amount = null;
         this.shipAgentLedgerPage = null;
         this.getShipAgentLedger(this.user.id)
-      })
+      } catch (err) { console.log(err) }
     }
   }
 }

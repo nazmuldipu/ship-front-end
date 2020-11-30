@@ -34,13 +34,11 @@ export class BookingReportListComponent implements OnInit {
     month = month < 10 ? '0' + month : month;
     day = day < 10 ? '0' + day : day;
     const date = `${year}-${month}-${day}`;
-    await this.reportService.getServiceAdminBooking(shipId, date).subscribe(data => {
-      console.log(data);
-      this.serviceAdminSellsReportList = data;
+    try {
+      this.serviceAdminSellsReportList = await this.reportService.getServiceAdminBooking(shipId, date).toPromise();
       this.calculateServiceAdminBookingReportList();
       this.loading = false;
-      console.log(this.soldBy);
-    })
+    } catch (err) { console.log(err) }
   }
 
   onShipSelect(ship: Ship) {

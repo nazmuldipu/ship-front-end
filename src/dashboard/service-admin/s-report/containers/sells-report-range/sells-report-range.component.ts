@@ -82,22 +82,22 @@ export class SellsReportRangeComponent implements OnInit {
     const startDate = this.getDateString(sd);
     const endDate = this.getDateString(ed);
     this.loading = true;
-    await this.reportService.getServiceAdminShipReservationRange(shipId, startDate, endDate).subscribe(data => {
-      this.serviceAdminSellsReportRangeList = data;
+    try {
+      this.serviceAdminSellsReportRangeList = await this.reportService.getServiceAdminShipReservationRange(shipId, startDate, endDate).toPromise();
       this.calculateServiceAdminBookingReportList();
       this.loading = false;
-    });
+    } catch (err) { console.log(err) }
   }
 
   async getServiceAdminShipSellsRange(shipId, sd: Date, ed: Date) {
     let startDate = this.getDateString(sd);
     let endDate = this.getDateString(ed);
     this.loading = true;
-    await this.reportService.getServiceAdminShipSellsRange(shipId, startDate, endDate).subscribe(data => {
-      this.serviceAdminSellsReportRangeList = data;
+    try {
+      this.serviceAdminSellsReportRangeList = await this.reportService.getServiceAdminShipSellsRange(shipId, startDate, endDate).toPromise();
       this.calculateServiceAdminBookingReportList();
       this.loading = false;
-    });
+    } catch (err) { console.log(err) }
   }
 
   calculateServiceAdminBookingReportList() {

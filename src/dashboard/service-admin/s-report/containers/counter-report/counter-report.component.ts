@@ -43,13 +43,11 @@ export class CounterReportComponent implements OnInit {
     month = month < 10 ? "0" + month : month;
     day = day < 10 ? "0" + day : day;
     const date = `${year}-${month}-${day}`;
-    await this.reportService
-      .getServiceAdminShipReservation(shipId, date)
-      .subscribe(data => {
-        this.reportList = data;
-        this.calculateServiceAdminBookingReportList();
-        this.loading = false;
-      });
+    try {
+      this.reportList = await this.reportService.getServiceAdminShipReservation(shipId, date).toPromise();
+      this.calculateServiceAdminBookingReportList();
+      this.loading = false;
+    } catch (err) { console.log(err) }
   }
 
   calculateServiceAdminBookingReportList() {

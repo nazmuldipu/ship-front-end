@@ -7,6 +7,7 @@ import {
   SeatStatusList
 } from 'src/shared/models/booking.model';
 import { BookingService } from 'src/service/booking.service';
+import { UtilService } from 'src/service/util.service';
 
 @Component({
   selector: 'app-status',
@@ -27,7 +28,8 @@ export class StatusComponent implements OnInit {
 
   constructor(
     private seatsService: SeatsService,
-    private bookingService: BookingService
+    private bookingService: BookingService,
+    private utilService: UtilService
   ) { }
 
   ngOnInit() {
@@ -61,31 +63,30 @@ export class StatusComponent implements OnInit {
   }
 
   async getShipSeatStatus(shipId, date) {
-    await this.seatsService
-      .getServiceAdminSeatStatusListByShiplId(shipId, this.makeDateString(date))
-      .subscribe(data => {
-        this.seatList = data;
-        this.categoryList = [];
-        this.seatList.forEach(s => {
-          const cat = s.category;
-          const c = this.categoryList.find(ct => ct == cat);
-          if (!c) {
-            this.categoryList.push(cat);
-          }
-        });
-        this.onSelectCategory(this.categoryList[this.categoryList.length - 1]);
+    try {
+      this.seatList = await this.seatsService.getServiceAdminSeatStatusListByShiplId(shipId, this.makeDateString(date)).toPromise();
+      this.categoryList = [];
+      this.seatList.forEach(s => {
+        const cat = s.category;
+        const c = this.categoryList.find(ct => ct['name'] == cat['name']);
+        if (!c) {
+          this.categoryList.push(cat);
+        }
       });
+      this.categoryList.sort(this.utilService.dynamicSortObject('priority'));
+      this.onSelectCategory(this.categoryList[this.categoryList.length - 1]);
+    } catch (err) { console.log(err) }
   }
 
   onSelectCategory(category: string) {
-    this.category = this.categoryList.find(ca => ca == category);
+    this.category = this.categoryList.find(ca => ca['name'] == category['name']);
     this.filterSeatList(category);
   }
 
   filterSeatList(category) {
     this.filteredSeatList = [];
     this.seatList.forEach(seat => {
-      if (seat.category == category) {
+      if (seat.category['name'] == category['name']) {
         this.filteredSeatList.push(seat);
       }
     });
@@ -108,44 +109,40 @@ export class StatusComponent implements OnInit {
   }
 
   async getServiceAdminBooking(bookingId) {
-    await this.bookingService
-      .getServiceAdminBooking(bookingId)
-      .subscribe(data => {
-        this.ticket = data;
-      });
+    try {
+      this.ticket = await this.bookingService.getServiceAdminBooking(bookingId).toPromise();
+    } catch (err) { console.log(err) }
   }
 
-  onCancelBooking(bookingId, status) {
+  async onCancelBooking(bookingId, status) {
     if (confirm('Are you sure to cancel booking with id : ' + bookingId)) {
       if (status == SeatStatus.SEAT_SOLD) {
-        this.bookingService
-          .cancelServiceAdminBooking(bookingId)
-          .subscribe(data => {
-            this.ticket = null;
-            this.getShipSeatStatus(this.ship.id, this.dd);
-          });
+        try {
+          const resp = await this.bookingService.cancelServiceAdminBooking(bookingId).toPromise();
+          this.getShipSeatStatus(this.ship.id, this.dd);
+          this.ticket = null;
+        } catch (err) { console.log(err) }
+
       } else if (status == SeatStatus.SEAT_RESERVED) {
-        this.bookingService
-          .cancelServiceAdminReservation(bookingId)
-          .subscribe(data => {
-            this.ticket = null;
-            this.getShipSeatStatus(this.ship.id, this.dd);
-          });
+        try {
+          await this.bookingService.cancelServiceAdminReservation(bookingId).toPromise();
+          this.ticket = null;
+          this.getShipSeatStatus(this.ship.id, this.dd);
+        } catch (err) { console.log(err) }
       }
     }
   }
 
-  onConfirmReservation(bookingId) {
+  async onConfirmReservation(bookingId) {
     if (
       confirm('Are you sure to confirm your reservation with id : ' + bookingId)
     ) {
       console.log('confirm reservation');
-      this.bookingService
-        .confirmServiceAdminReservation(bookingId)
-        .subscribe(data => {
-          this.ticket = null;
-          this.getShipSeatStatus(this.ship.id, this.dd);
-        });
+      try {
+        await this.bookingService.confirmServiceAdminReservation(bookingId).toPromise();
+        this.ticket = null;
+        this.getShipSeatStatus(this.ship.id, this.dd);
+      } catch (err) { console.log(err) }
     }
   }
 

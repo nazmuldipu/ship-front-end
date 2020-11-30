@@ -74,23 +74,24 @@ export class IndividualReportComponent implements OnInit {
     (window as any).print();
   }
 
-  async getAllShip(page: number = null) {
+  async getAllShip(page: number = 0) {
     this.loading = true;
-    await this.shipService.getAllShip(page).subscribe(data => {
-      this.shipList = data.content;
+    try {
+      const resp = await this.shipService.getAllShip(page).toPromise();
+      this.shipList = resp.content;
       this.shipList.sort(this.util.dynamicSortObject('priority'));
       this.loading = false;
-    })
+    } catch (err) { console.log(err) }
   }
 
   async getServiceAdminUserByRole(role: string) {
     this.reportList = null;
     this.loading = true;
-    await this.userService.getServiceAdminUserByRole(role).subscribe(data => {
-      this.userList = data;
+    try {
+      this.userList = await this.userService.getServiceAdminUserByRole(role).toPromise();
       this.userList.sort(this.util.dynamicSortObject('name'));
       this.loading = false;
-    });
+    } catch (err) { console.log(err) }
   }
 
   onCounterChange(id) {
@@ -119,22 +120,22 @@ export class IndividualReportComponent implements OnInit {
     this.loading = true;
     const startDate = this.util.getDateString(sd);
     const endDate = this.util.getDateString(ed);
-    await this.reportService.getServiceAdminSellsReportRangeForIndividual(shipId, userId, startDate, endDate).subscribe(data => {
-      this.reportList = data;
+    try {
+      this.reportList = await this.reportService.getServiceAdminSellsReportRangeForIndividual(shipId, userId, startDate, endDate).toPromise();
       this.calculateServiceAdminBookingReportList();
       this.loading = false;
-    });
+    } catch (err) { console.log(err) }
   }
 
   async getServiceAdminReservationRangeReport(shipId, userId, sd: Date, ed: Date) {
     this.loading = true;
     const startDate = this.util.getDateString(sd);
     const endDate = this.util.getDateString(ed);
-    await this.reportService.getServiceAdminReserveReportRangeForIndividual(shipId, userId, startDate, endDate).subscribe(data => {
-      this.reportList = data;
+    try {
+      this.reportList = await this.reportService.getServiceAdminReserveReportRangeForIndividual(shipId, userId, startDate, endDate).toPromise();
       this.calculateServiceAdminBookingReportList();
       this.loading = false;
-    });
+    } catch (err) { console.log(err) }
   }
 
   calculateServiceAdminBookingReportList() {

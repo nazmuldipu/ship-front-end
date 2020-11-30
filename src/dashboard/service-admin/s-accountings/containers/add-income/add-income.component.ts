@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
 import { AccountingService } from 'src/service/accounting.service';
-import { ShipCashbookPage } from 'src/shared/models/ship-cashbook';
-import { Ship } from 'src/shared/models/ship.model';
 import { ShipAdminCashbookPage } from 'src/shared/models/ship-admin-cashbook.model';
 
 @Component({
@@ -20,22 +18,19 @@ export class AddIncomeComponent {
     this.getShipAdminCashbook()
   }
 
-  async getShipAdminCashbook(page: number = null) {
+  async getShipAdminCashbook(page: number = 0) {
     this.loading = true;
-    await this.accountingService
-      .getShipAdminCashbook(page)
-      .subscribe(data => {
-        this.shipAdminCashbookPage = data;
-        this.loading = false;
-      });
+    try {
+      this.shipAdminCashbookPage = await this.accountingService.getShipAdminCashbook(page).toPromise();
+      this.loading = false;
+    } catch (err) { console.log(err) }
   }
 
-  onSubmit({ explanation, debit, credit }) {
-    this.accountingService
-      .addServiceAdminIncome(debit, explanation)
-      .subscribe(data => {
-        console.log('Success');
-        this.getShipAdminCashbook();
-      });
+  async onSubmit({ explanation, debit, credit }) {
+    try {
+      await this.accountingService.addServiceAdminIncome(debit, explanation).toPromise();
+      console.log('Success');
+      this.getShipAdminCashbook();
+    } catch (err) { console.log(err) }
   }
 }

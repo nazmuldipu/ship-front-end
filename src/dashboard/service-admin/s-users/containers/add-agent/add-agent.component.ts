@@ -17,17 +17,17 @@ export class AddAgentComponent implements OnInit {
     this.getServiceAdminAgents();
   }
 
-  async getServiceAdminAgents(page: number = null) {
-    this.userService.getServiceAdminAgents(page).subscribe(data => {
-      console.log(data);
-      this.userPage = data;
-    });
+  async getServiceAdminAgents(page: number = 0) {
+    try {
+      this.userPage = await this.userService.getServiceAdminAgents(page).toPromise();
+    } catch (err) { console.log(err) }
   }
 
   async onCreate(user: User) {
-    await this.userService.createSerivceAdminAgent(user).subscribe(data => {
+    try {
+      const resp = await this.userService.createSerivceAdminAgent(user).toPromise();
       this.getServiceAdminAgents();
-    });
+    } catch (err) { console.log(err) }
   }
 
   onSelect(id: number) {
@@ -37,8 +37,11 @@ export class AddAgentComponent implements OnInit {
 
   async onRemoveAgent(id: number) {
     console.log('On leave ', id);
-    await this.userService.removeServiceAdminAgent(id).subscribe(data => {
-      this.getServiceAdminAgents();
-    });
+    if (confirm('Are you sure to remove agent with id = ' + id)) {
+      try {
+        const resp = await this.userService.removeServiceAdminAgent(id).toPromise();
+        this.getServiceAdminAgents();
+      } catch (err) { console.log(err) }
+    }
   }
 }

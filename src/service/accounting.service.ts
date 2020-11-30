@@ -192,7 +192,7 @@ export class AccountingService {
   }
 
   addServiceAdminIncome(debit: number, explanation: string) {
-    const param = new HttpParams().set('debit', debit.toString());
+    const param = new HttpParams().set('debit', debit.toString()).set('explanation', explanation);
     return this.dataSource.sendRequest(
       'PUT',
       this.serviceServiceAdminUrl + `/addIncome`,

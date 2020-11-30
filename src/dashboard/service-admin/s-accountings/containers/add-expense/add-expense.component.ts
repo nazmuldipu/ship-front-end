@@ -20,23 +20,19 @@ export class AddExpenseComponent {
     this.getShipAdminCashbook()
   }
 
-  async getShipAdminCashbook(page: number = null) {
+  async getShipAdminCashbook(page: number = 0) {
     this.loading = true;
-    await this.accountingService
-      .getShipAdminCashbook(page)
-      .subscribe(data => {
-        this.shipAdminCashbookPage = data;
-        this.loading = false;
-      });
+    try {
+      this.shipAdminCashbookPage = await this.accountingService.getShipAdminCashbook(page).toPromise();
+      this.loading = false;
+    } catch (err) { console.log(err) }
   }
 
-  onSubmit({ explanation, debit, credit }) {
-    this.accountingService
-      .addServiceAdminExpense(credit, explanation)
-      .subscribe(data => {
-        console.log('Success');
-        this.getShipAdminCashbook();
-      });
+  async onSubmit({ explanation, debit, credit }) {
+    try {
+      const resp = await this.accountingService.addServiceAdminExpense(credit, explanation).toPromise();
+      this.getShipAdminCashbook();
+    } catch (err) { console.log(err) }
   }
 
   // onSubmit({ explanation, debit, credit }) {

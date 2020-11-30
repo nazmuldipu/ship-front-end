@@ -12,8 +12,9 @@
               Date :
             </div>
           </div>
-          <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="dd" [minDate]="minDate" [maxDate]="maxDate" ngbDatepicker
-            #date="ngbDatepicker" (dateSelect)="onDateChange()" (click)="date.toggle()" />
+          <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="dd" [minDate]="minDate"
+            [maxDate]="maxDate" ngbDatepicker #date="ngbDatepicker" (dateSelect)="onDateChange()"
+            (click)="date.toggle()" />
           <div class="input-group-append" (click)="date.toggle()">
             <div class="input-group-text">
               <i class="fa fa-calendar"></i>
@@ -27,28 +28,26 @@
     <div class="col-md-5 d-print-none" *ngIf="filteredSeatList.length">
       <h4>{{ ship?.shipNumber }}-{{ ship?.name }} Seat status</h4>
       <div class="row m-0">
-        <span *ngFor="let cat of categoryList">
-          <button class="btn-sm m-1" [ngClass]="cat == category ? 'btn-primary' : 'btn-secondary'" (click)="onSelectCategory(cat)">
+        <div class="btn-group" role="group" aria-label="Basic example">
+          <button type="button" class="btn " *ngFor="let cat of categoryList"
+            [ngClass]="(cat.name == category.name) ? 'btn-primary' : 'btn-secondary'"
+            (click)="onSelectCategory(cat)">{{ cat.name }}</button>
+        </div>
+        <!-- <span *ngFor="let cat of categoryList">
+          <button class="btn-sm m-1" [ngClass]="cat == category ? 'btn-primary' : 'btn-secondary'"
+            (click)="onSelectCategory(cat)">
             {{ cat }}
           </button>
-        </span>
+        </span> -->
       </div>
       <div class="row">
         <div class="col-12 p-0">
-          <seat-status-bay-cruiser *ngIf="ship.shipName=='BAY_CRUISE'" [filteredSeatList]="filteredSeatList" [categoryName]="category"
-            (select)="onSeatClick($event)"></seat-status-bay-cruiser>
-          <seat-status-sukanto *ngIf="ship.shipName=='SUKANTO_BABU'" [filteredSeatList]="filteredSeatList" [categoryName]="category"
-            (select)="onSeatClick($event)"></seat-status-sukanto>
+          <seat-status-bay-cruiser *ngIf="ship.shipName=='BAY_CRUISE'" [filteredSeatList]="filteredSeatList"
+            [categoryName]="category.name" (select)="onSeatClick($event)"></seat-status-bay-cruiser>
+          <seat-status-sukanto *ngIf="ship.shipName=='SUKANTO_BABU'" [filteredSeatList]="filteredSeatList"
+            [categoryName]="category" (select)="onSeatClick($event)"></seat-status-sukanto>
         </div>
-        <!-- <div class="col-md-1 col-2 p-1 " *ngFor="let seat of filteredSeatList">
-          <div class="seat-box" [ngClass]="{
-              sold: seat.status == 'SEAT_SOLD',
-              blocked: seat.status == 'SEAT_BLOCKED',
-              reserved: seat.status == 'SEAT_RESERVED'
-            }" (click)="onSeatClick(seat.id)">
-            {{ seat.seatNumber }}
-          </div>
-        </div> -->
+
         <div class="col-12">
           <div class="row border py-3 mt-3" *ngIf="filteredSeatList?.length">
             <div class="col-3">
@@ -96,8 +95,10 @@
         <button class="btn btn-sm mx-1" [ngClass]="{
           'btn-warning': reservationDetails.status == 'SEAT_RESERVED',
           'btn-danger': reservationDetails.status == 'SEAT_SOLD'
-        }" (click)="onCancel(reservationDetails.seatIds, reservationDetails.bookingId, reservationDetails.seatNumbers)">
-          <i class="fa fa-eraser"></i> Cancel {{ reservationDetails.status == 'SEAT_RESERVED' ? 'Reservation' : 'Booking' }}
+        }"
+          (click)="onCancel(reservationDetails.seatIds, reservationDetails.bookingId, reservationDetails.seatNumbers)">
+          <i class="fa fa-eraser"></i> Cancel
+          {{ reservationDetails.status == 'SEAT_RESERVED' ? 'Reservation' : 'Booking' }}
         </button>
         <button class="btn btn-sm btn-success mx-1" (click)="onClear()">
           <i class="fa fa-window-close-o"></i> Close

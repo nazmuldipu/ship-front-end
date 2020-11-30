@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Ship } from 'src/shared/models/ship.model';
 import { ShipService } from 'src/service/ship.service';
+import { UtilService } from 'src/service/util.service';
 
 @Component({
   selector: 'service-admin-ship-list',
@@ -13,16 +14,18 @@ export class ServiceAdminShipListComponent implements OnInit {
   @Output() ship = new EventEmitter<Ship>();
   ships: Ship[];
 
-  constructor(private shipService: ShipService) {}
+  constructor(private shipService: ShipService, private utilService: UtilService) { }
 
   ngOnInit() {
     this.getServiceAdminShips();
   }
 
   async getServiceAdminShips() {
-    this.shipService.getServiceAdminShips().subscribe(data => {
-      this.ships = data;
-    });
+    try {
+      this.ships = await this.shipService.getServiceAdminShips().toPromise();
+      this.ships.sort(this.utilService.dynamicSortObject('priority'));
+    } catch (err) { console.log(err) }
+
   }
 
   onSelectShip(id: number) {

@@ -43,12 +43,10 @@ export class IndexComponent implements OnInit {
     month = month < 10 ? '0' + month : month;
     day = day < 10 ? '0' + day : day;
     const date = `${year}-${month}-${day}`;
-    await this.reportService.getServiceAdminDashboardReport(date)
-      .subscribe(data => {
-        this.report = data;
-        console.log(this.report);
-        this.getTotal();
-      });
+    try {
+      this.report = await this.reportService.getServiceAdminDashboardReport(date).toPromise();
+      this.getTotal();
+    } catch (err) { console.log(err) }
   }
 
   getTotal() {

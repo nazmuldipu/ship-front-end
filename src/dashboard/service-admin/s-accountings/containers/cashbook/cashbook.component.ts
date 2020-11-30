@@ -19,13 +19,11 @@ export class CashbookComponent implements OnInit {
     this.getShipAdminCashbook()
   }
 
-  async getShipAdminCashbook(page: number = null) {
+  async getShipAdminCashbook(page: number = 0) {
     this.loading = true;
-    await this.accountingService
-      .getShipAdminCashbook(page)
-      .subscribe(data => {
-        this.shipAdminCashbookPage = data;
-        this.loading = false;
-      });
+    try {
+      this.shipAdminCashbookPage = await this.accountingService.getShipAdminCashbook(page).toPromise();
+      this.loading = false;
+    } catch (err) { console.log(err) }
   }
 }

@@ -22,22 +22,21 @@ export class PrintTicketComponent implements OnInit {
   async getServiceAdminBooking(bookingId) {
     this.errorMessage = '';
     this.ticket = null;
-    await this.bookingService.getServiceAdminBooking(bookingId).subscribe(
-      data => {
-        if (data.id) {
-          if (data.cancelled == false) {
-            this.ticket = data;
-          } else {
-            this.errorMessage = 'This ticket has been canceled';
-          }
+    try {
+      const resp = await this.bookingService.getServiceAdminBooking(bookingId).toPromise();
+      if (resp.id) {
+        if (resp.cancelled == false) {
+          this.ticket = resp;
         } else {
-          this.errorMessage = 'No ticket found with id ' + bookingId;
+          this.errorMessage = 'This ticket has been canceled';
         }
-      },
-      error => {
-        this.errorMessage = 'Invalid ticket id';
+      } else {
+        this.errorMessage = 'No ticket found with id ' + bookingId;
       }
-    );
+    } catch (err) {
+      console.log(err);
+      this.errorMessage = 'Invalid ticket id';
+    }
   }
 
   onTicketClose() {

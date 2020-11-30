@@ -1,6 +1,8 @@
-<ticket-sukantababu-print *ngIf="ticket && ticket.ship?.shipName == 'SUKANTO_BABU'" [ticket]="ticket" (close)="onTicketClose()">
+<ticket-sukantababu-print *ngIf="ticket && ticket.ship?.shipName == 'SUKANTO_BABU'" [ticket]="ticket"
+  (close)="onTicketClose()">
 </ticket-sukantababu-print>
-<tiket-baycruise-print *ngIf="ticket && ticket.ship?.shipName == 'BAY_CRUISE'" [ticket]="ticket" (close)="onTicketClose()">
+<tiket-baycruise-print *ngIf="ticket && ticket.ship?.shipName == 'BAY_CRUISE'" [ticket]="ticket"
+  (close)="onTicketClose()">
 </tiket-baycruise-print>
 <div class="container d-print-none" *ngIf="!ticket">
   <div class="row border my-2 p-2">
@@ -16,8 +18,9 @@
               Date :
             </div>
           </div>
-          <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="dd" [minDate]="minDate" [maxDate]="maxDate" ngbDatepicker
-            #date="ngbDatepicker" (dateSelect)="closeDetails()" (click)="date.toggle()" />
+          <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="dd" [minDate]="minDate"
+            [maxDate]="maxDate" ngbDatepicker #date="ngbDatepicker" (dateSelect)="closeDetails()"
+            (click)="date.toggle()" />
           <div class="input-group-append" (click)="date.toggle()">
             <div class="input-group-text">
               <i class="fa fa-calendar"></i>
@@ -69,22 +72,22 @@
           <div class="row">
             <div class="col-md-6">
               <div class="row m-0">
-                <span *ngFor="let cat of categoryList">
-                  <button class="btn-sm m-1" [ngClass]="
-                      cat.id == category.id ? 'btn-primary' : 'btn-secondary'
-                    " (click)="onSelectCategory(cat.id)">
-                    {{ cat.name }}
-                  </button>
-                </span>
+                <div class="btn-group" role="group" aria-label="Basic example">
+                  <button type="button" class="btn" *ngFor="let cat of categoryList"
+                    [ngClass]="(cat.id == category.id )? 'btn-primary' : 'btn-secondary'"
+                    (click)="onSelectCategory(cat.id)">{{cat.name}}</button>
+                </div>
               </div>
 
-              <seat-plan-other *ngIf="ship.shipName =='OTHER'" [filteredSeatList]="filteredSeatList" [selectedSeat]="selectedSeat" [categoryName]="category?.name"
-                (select)="onSeatClick($event)">
+              <seat-plan-other *ngIf="ship.shipName =='OTHER'" [filteredSeatList]="filteredSeatList"
+                [selectedSeat]="selectedSeat" [categoryName]="category?.name" (select)="onSeatClick($event)">
               </seat-plan-other>
-              <seat-plan-bay-cruiser *ngIf="ship.shipName=='BAY_CRUISE'" [filteredSeatList]="filteredSeatList" [selectedSeat]="selectedSeat"
-                [categoryName]="category?.name" (select)="onSeatClick($event)"></seat-plan-bay-cruiser>
-              <seat-plan-sukanto *ngIf="ship.shipName=='SUKANTO_BABU'" [filteredSeatList]="filteredSeatList" [selectedSeat]="selectedSeat"
-                [categoryName]="category?.name" (select)="onSeatClick($event)"></seat-plan-sukanto>
+              <seat-plan-bay-cruiser *ngIf="ship.shipName=='BAY_CRUISE'" [filteredSeatList]="filteredSeatList"
+                [selectedSeat]="selectedSeat" [categoryName]="category?.name" (select)="onSeatClick($event)">
+              </seat-plan-bay-cruiser>
+              <seat-plan-sukanto *ngIf="ship.shipName=='SUKANTO_BABU'" [filteredSeatList]="filteredSeatList"
+                [selectedSeat]="selectedSeat" [categoryName]="category?.name" (select)="onSeatClick($event)">
+              </seat-plan-sukanto>
 
               <!-- <div class="row border m-1" style="border-radius: 3px 3px 0px 0px; ">
                 <div class="col-12 bg-secondary text-white" style="border-radius: 3px 3px 0px 0px; ">
@@ -107,13 +110,15 @@
                     'btn-primary active': mode == 'SEAT_SOLD',
                     'btn-light': mode != 'SEAT_SOLD'
                   }">
-                  <input type="radio" value="SEAT_SOLD" name="mode" [(ngModel)]="mode" id="mode_sell" autocomplete="off" /> Sell
+                  <input type="radio" value="SEAT_SOLD" name="mode" [(ngModel)]="mode" id="mode_sell"
+                    autocomplete="off" /> Sell
                 </label>
                 <label class="btn btn-primary" [ngClass]="{
                     'btn-primary active': mode == 'SEAT_RESERVED',
                     'btn-light': mode != 'SEAT_RESERVED'
                   }">
-                  <input type="radio" value="SEAT_RESERVED" name="mode" [(ngModel)]="mode" id="mode_reservation" autocomplete="off" /> Reserve
+                  <input type="radio" value="SEAT_RESERVED" name="mode" [(ngModel)]="mode" id="mode_reservation"
+                    autocomplete="off" /> Reserve
                 </label>
               </div>
               <div *ngIf="!dataSending && selectedSeat.length">
@@ -122,8 +127,8 @@
                   <div class="col mr-auto"></div>
                   <label for="discount" class="col col-form-label">Discount</label>
                   <div class="col-auto">
-                    <input type="number" class="form-control text-right" id="discount" [(ngModel)]="discount" (ngModelChange)="onDiscountChange($event)"
-                      name="discount">
+                    <input type="number" class="form-control text-right" id="discount" [(ngModel)]="discount"
+                      (ngModelChange)="onDiscountChange($event)" name="discount">
                   </div>
                 </div>
                 <div class="form-group row">
