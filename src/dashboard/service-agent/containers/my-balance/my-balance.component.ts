@@ -16,9 +16,10 @@ export class MyBalanceComponent implements OnInit {
   }
 
   async getServiceAdminAgentBalance() {
-    await this.accountingSrvice.getServiceAdminAgentBalance().subscribe(data => {
-      this.balance = data.response;
-    })
+    try {
+      const resp = await this.accountingSrvice.getServiceAdminAgentBalance().toPromise();
+      this.balance = resp.response;
+    } catch (err) { console.log(err) }
   }
 
 }

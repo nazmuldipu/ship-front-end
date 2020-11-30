@@ -113,37 +113,33 @@ export class SellComponent implements OnInit {
     this.filteredSeatList = [];
   }
 
-  async getAdminAgentShips(page: number = null) {
-    await this.shipService.getAdminAgentShips(page).subscribe(data => {
-      this.shipPage = data;
-    });
+  async getAdminAgentShips(page: number = 0) {
+    try {
+      this.shipPage = await this.shipService.getAdminAgentShips(page).toPromise();
+      this.shipPage.content.sort(this.utilService.dynamicSortObject('priority'))
+    } catch (err) { console.log(err) }
   }
 
   async getAdminAgentSeatList(shipId) {
     this.seatLoading = true;
-    await this.seatService
-      .getAdminAgentAvailableSeatListByShiplId(
-        shipId,
-        this.makeDateString(this.dd)
-      )
-      .subscribe(data => {
-        this.seatList = data;
-        this.seatLoading = false;
-        this.categoryList = [];
-        if (this.seatList.length > 0) {
-          this.seatList.forEach(s => {
-            const cat: Category = s.category;
-            const c = this.categoryList.find(ct => ct.id == cat.id);
-            if (!c && cat.priority != 0) { //Categoty with priority 0 will not display
-              this.categoryList.push(cat);
-            }
-          });
-          this.categoryList.sort(this.utilService.dynamicSortObject('priority'));
-          this.onSelectCategory(
-            this.categoryList[this.categoryList.length - 1].id
-          );
-        }
-      });
+    try {
+      this.seatList = await this.seatService.getAdminAgentAvailableSeatListByShiplId(shipId, this.makeDateString(this.dd)).toPromise();
+      this.seatLoading = false;
+      this.categoryList = [];
+      if (this.seatList && this.seatList.length > 0) {
+        this.seatList.forEach(s => {
+          const cat: Category = s.category;
+          const c = this.categoryList.find(ct => ct.id == cat.id) as Category;
+          if (!c && (cat.priority != 0) && (cat.name != 'Standing')) { //Categoty with priority 0 will not display
+            this.categoryList.push(cat);
+          }
+        });
+        this.categoryList.sort(this.utilService.dynamicSortObject('priority'));
+        this.onSelectCategory(
+          this.categoryList[this.categoryList.length - 1].id
+        );
+      }
+    } catch (err) { console.log(err) }
   }
 
   onSelectCategory(categoryId: number) {
@@ -164,7 +160,7 @@ export class SellComponent implements OnInit {
     return this.selectedSeat.some(e => e.id == seatId);
   }
 
-  onCreateUser(event) {
+  async onCreateUser(event) {
     let user: User = new User(event.name, event.phone);
     let subbookingList: SubBooking[] = this.getSubbookingList(
       this.selectedSeat
@@ -175,18 +171,13 @@ export class SellComponent implements OnInit {
     booking.eStatus = this.mode as SeatStatus;
     this.dataSending = true;
     this.message = 'Sending data to server';
-    this.bookingService.createAdminAgentBooking(booking).subscribe(
-      data => {
-        this.dataSending = false;
-        this.message = 'Booking done';
-        this.selectedSeat = [];
-        this.ticket = data;
-        this.getAdminAgentSeatList(this.detailsId);
-      },
-      error => {
-        console.log(error);
-      }
-    );
+    try {
+      this.ticket = await this.bookingService.createAdminAgentBooking(booking).toPromise();
+      this.dataSending = false;
+      this.message = 'Booking done';
+      this.selectedSeat = [];
+      this.getAdminAgentSeatList(this.detailsId);
+    } catch (err) { console.log(err); }
   }
 
   getSubbookingList(seatList: Seat[]): SubBooking[] {

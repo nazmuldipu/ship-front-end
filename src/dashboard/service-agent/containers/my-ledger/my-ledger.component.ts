@@ -16,11 +16,9 @@ export class MyLedgerComponent implements OnInit {
     this.getShipAdminAgentLedger();
   }
 
-
-  async getShipAdminAgentLedger(page: number = null) {
-    await this.accountingSrvice.getShipAdminAgentLedger(page).subscribe(data => {
-      console.log(data);
-      this.shipAgentLedger = data;
-    })
+  async getShipAdminAgentLedger(page: number = 0) {
+    try {
+      this.shipAgentLedger = await this.accountingSrvice.getShipAdminAgentLedger(page).toPromise();
+    } catch (err) { console.log(err) }
   }
 }

@@ -1,7 +1,10 @@
-<ticket-sukantababu-print *ngIf="ticket && (ticket.ship?.shipName == 'SUKANTO_BABU')" [ticket]="ticket" (close)="onTicketClose()">
+<ticket-sukantababu-print *ngIf="ticket && (ticket.ship?.shipName == 'SUKANTO_BABU')" [ticket]="ticket"
+  (close)="onTicketClose()">
 </ticket-sukantababu-print>
-<tiket-baycruise-print *ngIf="ticket && ticket.ship?.shipName == 'BAY_CRUISE'" [ticket]="ticket" (close)="onTicketClose()">
+<tiket-baycruise-print *ngIf="ticket && ticket.ship?.shipName == 'BAY_CRUISE'" [ticket]="ticket"
+  (close)="onTicketClose()">
 </tiket-baycruise-print>
+
 <div class="container d-print-none" *ngIf="!ticket">
   <div class="row border my-2 p-2">
     <div class="input-group-text btn btn-secondary" (click)="adjustDay(-1)">
@@ -15,8 +18,9 @@
               Date :
             </div>
           </div>
-          <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="dd" [minDate]="minDate" [maxDate]="maxDate" ngbDatepicker
-            #date="ngbDatepicker" (dateSelect)="closeDetails()" (click)="date.toggle()" />
+          <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="dd" [minDate]="minDate"
+            [maxDate]="maxDate" ngbDatepicker #date="ngbDatepicker" (dateSelect)="closeDetails()"
+            (click)="date.toggle()" />
           <div class="input-group-append" (click)="date.toggle()">
             <div class="input-group-text">
               <i class="fa fa-calendar"></i>
@@ -34,11 +38,10 @@
 
   <div class="row border py-2 ship-row" *ngFor="let ship of shipPage?.content">
     <div class="col-md-3 col-6">
-      Ship Name
-      <br />
       <span class="ship-row-name">
         {{ ship.name }}
       </span>
+      <br /> {{ ship.shipNumber }}
     </div>
     <div class="col-md-2 col-6">
       {{ dd.day }}-{{ dd.month }}-{{ dd.year }}
@@ -75,13 +78,15 @@
                   </button>
                 </span>
               </div>
-              <seat-plan-other *ngIf="ship.shipName =='OTHER'" [filteredSeatList]="filteredSeatList" [selectedSeat]="selectedSeat" [categoryName]="category?.name"
-                (select)="onSeatClick($event)">
+              <seat-plan-other *ngIf="ship.shipName =='OTHER'" [filteredSeatList]="filteredSeatList"
+                [selectedSeat]="selectedSeat" [categoryName]="category?.name" (select)="onSeatClick($event)">
               </seat-plan-other>
-              <seat-plan-bay-cruiser *ngIf="ship.shipName=='BAY_CRUISE'" [filteredSeatList]="filteredSeatList" [selectedSeat]="selectedSeat"
-                [categoryName]="category?.name" (select)="onSeatClick($event)"></seat-plan-bay-cruiser>
-              <seat-plan-sukanto *ngIf="ship.shipName=='SUKANTO_BABU'" [filteredSeatList]="filteredSeatList" [selectedSeat]="selectedSeat"
-                [categoryName]="category?.name" (select)="onSeatClick($event)"></seat-plan-sukanto>
+              <seat-plan-bay-cruiser *ngIf="ship.shipName=='BAY_CRUISE'" [filteredSeatList]="filteredSeatList"
+                [selectedSeat]="selectedSeat" [categoryName]="category?.name" (select)="onSeatClick($event)">
+              </seat-plan-bay-cruiser>
+              <seat-plan-sukanto *ngIf="ship.shipName=='SUKANTO_BABU'" [filteredSeatList]="filteredSeatList"
+                [selectedSeat]="selectedSeat" [categoryName]="category?.name" (select)="onSeatClick($event)">
+              </seat-plan-sukanto>
 
             </div>
             <div class="col-md-6 mb-3">

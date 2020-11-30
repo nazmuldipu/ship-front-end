@@ -13,18 +13,18 @@ export class MySellsComponent implements OnInit {
   ticket: Booking;
   bookingPage: BookingPage;
 
-  constructor(private bookingService: BookingService) {}
+  constructor(private bookingService: BookingService) { }
 
   ngOnInit() {
     this.getAdminAgentMySells();
   }
 
-  async getAdminAgentMySells(page: number = null) {
+  async getAdminAgentMySells(page: number = 0) {
     this.loading = true;
-    await this.bookingService.getAdminAgentMySells(page).subscribe(data => {
-      this.bookingPage = data;
+    try {
+      this.bookingPage = await this.bookingService.getAdminAgentMySells(page).toPromise();
       this.loading = false;
-    });
+    } catch (err) { console.log(err) }
   }
 
   onBookingDetails(id) {

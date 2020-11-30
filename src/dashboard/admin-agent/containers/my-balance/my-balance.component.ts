@@ -8,15 +8,16 @@ import { AccountingService } from 'src/service/accounting.service';
 })
 export class MyBalanceComponent implements OnInit {
   balance;
-  constructor(private accountingService: AccountingService) {}
+  constructor(private accountingService: AccountingService) { }
 
   ngOnInit() {
     this.getMyBalance();
   }
 
   async getMyBalance() {
-    this.accountingService.getAdminAgentBalance().subscribe(data => {
-      this.balance = data.response;
-    });
+    try {
+      const resp = await this.accountingService.getAdminAgentBalance().toPromise();
+      this.balance = resp['response'];
+    } catch (err) { console.log(err) }
   }
 }

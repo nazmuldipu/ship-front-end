@@ -19,12 +19,12 @@ export class MySellsComponent implements OnInit {
     this.getServiceAgentBooking();
   }
 
-  async getServiceAgentBooking(page: number = null) {
+  async getServiceAgentBooking(page: number = 0) {
     this.loading = true;
-    await this.bookingService.getServiceAgentMySells(page).subscribe(data => {
-      this.bookingPage = data;
+    try {
+      this.bookingPage = await this.bookingService.getServiceAgentMySells(page).toPromise();
       this.loading = false;
-    })
+    } catch (err) { console.log(err) }
   }
 
   onBookingDetails(id) {

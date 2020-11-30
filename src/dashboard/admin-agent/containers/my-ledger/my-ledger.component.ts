@@ -10,15 +10,15 @@ import { AccountingService } from 'src/service/accounting.service';
 export class MyLedgerComponent implements OnInit {
   adminAgentLedgerPage: AdminAgentLedgerPage;
 
-  constructor(private accountingService: AccountingService) {}
+  constructor(private accountingService: AccountingService) { }
 
   ngOnInit() {
     this.getMyLedger();
   }
 
   async getMyLedger(page: number = 0) {
-    this.accountingService.getAdminAgentMyLedger(page).subscribe(data => {
-      this.adminAgentLedgerPage = data;
-    });
+    try {
+      this.adminAgentLedgerPage = await this.accountingService.getAdminAgentMyLedger(page).toPromise();
+    } catch (err) { console.log(err); }
   }
 }
