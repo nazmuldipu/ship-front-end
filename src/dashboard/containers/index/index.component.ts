@@ -15,6 +15,11 @@ export class IndexComponent implements OnInit {
   TotalSeat;
   TotalSold;
 
+  isAdmin = false;
+  isAgent = false;
+  isServiceAdmin = false;
+  isServiceAgent = false;
+
   chart;
   month = [];
   price = [];
@@ -32,10 +37,17 @@ export class IndexComponent implements OnInit {
       month: date.getMonth() + 1,
       day: date.getDate()
     };
+    // console.log(this.auth.authorities);
     if (this.auth.authorities.includes('ROLE_ADMIN')) {
+      this.isAdmin = true;
       // this.router.navigate(['/dashboard/admin/sell']);
     } else if (this.auth.authorities.includes('ROLE_SERVICE_ADMIN')) {
+      this.isServiceAdmin = true;
       this.getServiceAdminDashboardReport(this.dd);
+    } else if (this.auth.authorities.includes('ROLE_AGENT')) {
+      this.isAgent = true;
+    } else if (this.auth.authorities.includes('ROLE_SERVICE_AGENT')) {
+      this.isServiceAgent = true;
     }
   }
 

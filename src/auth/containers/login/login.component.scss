@@ -1,10 +1,24 @@
 @import 'variables';
+
 :host {
   display: block;
   margin-top: 40px;
   padding: 65px 0;
 }
+
 .login-image {
   width: 100%;
   height: auto;
+}
+
+.nav-link {
+  text-decoration: none;
+  font-size: 16px;
+  color: $text-primary-color;
+  text-align: center;
+
+}
+
+.bg-hotelswave {
+  background-color: $default-primary-color !important;
 }

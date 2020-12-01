@@ -7,8 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class IndexComponent implements OnInit {
 
-  images = [1, 2, 3,].map(
-    i => `assets/images/carousal/ship-${i}.jpg`
+  images = [1, 2, 3, 4, 5, 6].map(
+    i => `assets/images/carousal/carousel-${i}.jpeg`
   );
 
   constructor() { }

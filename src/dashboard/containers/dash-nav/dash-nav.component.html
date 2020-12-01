@@ -1,13 +1,12 @@
-<nav class="navbar navbar-expand-md navbar-light py-3 shadow-sm">
-  <button class="navbar-toggler" type="button" (click)="toggleCollapse()" data-toggle="collapse" data-target="#navbarCollapse"
-    aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+<nav class="navbar navbar-expand-md navbar-light py-2 shadow-sm">
+  <a class="navbar-brand" routerLink="/"><img class="company-logo" src="assets/images/logo.png" alt="logo" /></a>
+  <button class="navbar-toggler" type="button" (click)="toggleCollapse()" data-toggle="collapse"
+    data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarCollapse" [class.show]="show">
     <nav class="navbar-nav mr-auto">
-      <a class="nav-item" routerLink="/">
-        <img class="company-logo" src="assets/images/logo.png" alt="logo" />
-      </a>
+
 
       <li class="nav-item" (click)="toggleCollapse()">
         <a class="nav-link" routerLink="/dashboard">Dashboard</a>
@@ -60,6 +59,9 @@
             <a class="dropdown-item" (click)="toggleCollapse()" routerLink="/dashboard/admin/seats">
               List
             </a>
+            <a class="dropdown-item" (click)="toggleCollapse()" routerLink="/dashboard/admin/sell/seat-status">
+              Seat Status
+            </a>
           </div>
         </div>
       </li>
@@ -81,9 +83,6 @@
             >
               Cancel Booking
             </a> -->
-            <a class="dropdown-item" (click)="toggleCollapse()" routerLink="/dashboard/admin/sell/seat-status">
-              Seat Status
-            </a>
             <a class="dropdown-item" (click)="toggleCollapse()" routerLink="/dashboard/admin/sell/print-ticket">
               Print ticket
             </a>
@@ -106,10 +105,12 @@
               Add Expense
             </a>
             <hr>
-            <a class="dropdown-item" (click)="toggleCollapse()" routerLink="/dashboard/admin/accountings/ship-admin-ledger">
+            <a class="dropdown-item" (click)="toggleCollapse()"
+              routerLink="/dashboard/admin/accountings/ship-admin-ledger">
               Ship Admin Ledger
             </a>
-            <a class="dropdown-item" (click)="toggleCollapse()" routerLink="/dashboard/admin/accountings/pay-ship-admin">
+            <a class="dropdown-item" (click)="toggleCollapse()"
+              routerLink="/dashboard/admin/accountings/pay-ship-admin">
               Pay Ship Admin
             </a>
             <a class="dropdown-item" (click)="toggleCollapse()" routerLink="/dashboard/admin/accountings/agent-balance">
@@ -134,7 +135,7 @@
               List
             </a>
             <a class="dropdown-item" (click)="toggleCollapse()" routerLink="/dashboard/admin/users/admin-agent">
-              Create Agent
+              Create / Update Agent
             </a>
             <a class="dropdown-item" (click)="toggleCollapse()" routerLink="/dashboard/admin/users/assign-ship-admin">
               Assign Ship Admin
@@ -180,7 +181,7 @@
           <a class="nav-link" id="dropdownBasic1" ngbDropdownToggle> Users </a>
           <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
             <a class="dropdown-item" (click)="toggleCollapse()" routerLink="/dashboard/service-admin/users/agent">
-              Add Agent
+              Create / Update Agent
             </a>
           </div>
         </div>
@@ -210,19 +211,24 @@
             Accounting
           </a>
           <div ngbDropdownMenu aria-labelledby="serviceAdminAccounting">
-            <a class="dropdown-item" (click)="toggleCollapse()" routerLink="/dashboard/service-admin/accountings/cashbook">
+            <a class="dropdown-item" (click)="toggleCollapse()"
+              routerLink="/dashboard/service-admin/accountings/cashbook">
               Cashbook
             </a>
-            <a class="dropdown-item" (click)="toggleCollapse()" routerLink="/dashboard/service-admin/accountings/add-income">
+            <a class="dropdown-item" (click)="toggleCollapse()"
+              routerLink="/dashboard/service-admin/accountings/add-income">
               Add Income
             </a>
-            <a class="dropdown-item" (click)="toggleCollapse()" routerLink="/dashboard/service-admin/accountings/add-expense">
+            <a class="dropdown-item" (click)="toggleCollapse()"
+              routerLink="/dashboard/service-admin/accountings/add-expense">
               Add Expense
             </a>
-            <a class="dropdown-item" (click)="toggleCollapse()" routerLink="/dashboard/service-admin/accountings/hotelswave-ledgers">
+            <a class="dropdown-item" (click)="toggleCollapse()"
+              routerLink="/dashboard/service-admin/accountings/hotelswave-ledgers">
               Hotelswave ledger
             </a>
-            <a class="dropdown-item" (click)="toggleCollapse()" routerLink="/dashboard/service-admin/accountings/agents">
+            <a class="dropdown-item" (click)="toggleCollapse()"
+              routerLink="/dashboard/service-admin/accountings/agents">
               Agent Balance
             </a>
           </div>
