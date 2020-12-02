@@ -20,16 +20,22 @@
     <div class="col_1 border-right">
       <table>
         <tr>
-          <td colspan="2" class="text-center" style="font-size: 17px;">{{ ticket.categoryName }}</td>
+          <td colspan="2" style="text-align: center;font-size: 16px;">{{ ticket.ship.startingPoint }} to
+            {{ ticket.ship.droppingPoint }}</td>
+        </tr>
+
+        <tr>
+          <td class="text-right">Category :&nbsp;</td>
+          <th>{{ ticket.category}}</th>
         </tr>
         <tr>
           <td class="text-right">Ticket Id:&nbsp;</td>
           <td>{{ ticket.id }}</td>
         </tr>
-        <tr>
+        <!-- <tr>
           <td class="text-right">Issue Date:&nbsp;</td>
           <td>{{ ticket.created | date: 'd MMM,yy' }}</td>
-        </tr>
+        </tr> -->
         <tr>
           <td class="text-right">Journey Date:&nbsp;</td>
           <td>{{ ticket.subBookingList[0].date | date: 'd MMM,yy' }}</td>
@@ -38,6 +44,10 @@
           <td class="text-right">Name:&nbsp;</td>
           <td>{{ ticket.user.name }}</td>
         </tr>
+        <!-- <tr>
+          <td class="text-right">Category:&nbsp;</td>
+          <td>{{ticket.category}}</td>
+        </tr> -->
         <tr>
           <td class="text-right">Phone:&nbsp;</td>
           <td>
@@ -48,9 +58,6 @@
           <td class="text-right">From:</td>
           <td>{{ ticket.ship.startingPoint }}</td>
         </tr> -->
-        <tr>
-          <td colspan="2" style="text-align: center;font-size: 16px;">{{ ticket.ship.startingPoint }} to {{ ticket.ship.droppingPoint }}</td>
-        </tr>
         <tr>
           <td class="text-right">Seats: &nbsp; &nbsp;
             <br> Total: {{ticket.subBookingList.length}} &nbsp; &nbsp;</td>
@@ -76,21 +83,31 @@
             {{ ticket.ship.startTime }}
           </td>
         </tr>
+        <tr>
+          <td class="text-right">Issued by:&nbsp;</td>
+          <td>{{ticket.createdBy.name}}</td>
+        </tr>
       </table>
+      <div class="text-center">Developed by: www.unololtd.com</div>
     </div>
     <div class="col_2 border-right">
       <table>
         <tr>
-          <td colspan="2" class="text-center" style="font-size: 17px;">{{ ticket.categoryName }}</td>
+          <td colspan="2" style="text-align: center;font-size: 16px;">{{ ticket.ship.startingPoint }} to
+            {{ ticket.ship.droppingPoint }}</td>
+        </tr>
+        <tr>
+          <td class="text-right">Category :&nbsp;</td>
+          <th>{{ ticket.category }}</th>
         </tr>
         <tr>
           <td class="text-right">Ticket Id:&nbsp;</td>
           <td>{{ ticket.id }}</td>
         </tr>
-        <tr>
+        <!-- <tr>
           <td class="text-right">Issue Date:&nbsp;</td>
           <td>{{ ticket.created | date: 'd MMM,yy' }}</td>
-        </tr>
+        </tr> -->
         <tr>
           <td class="text-right">Journey Date:&nbsp;</td>
           <td>{{ ticket.subBookingList[0].date | date: 'd MMM,yy' }}</td>
@@ -109,9 +126,6 @@
           <td class="text-right">From:</td>
           <td>{{ ticket.ship.startingPoint }}</td>
         </tr> -->
-        <tr>
-          <td colspan="2" style="text-align: center;font-size: 16px;">{{ ticket.ship.startingPoint }} to {{ ticket.ship.droppingPoint }}</td>
-        </tr>
         <tr>
           <td class="text-right">Seats: &nbsp; &nbsp;
             <br> Total: {{ticket.subBookingList.length}} &nbsp; &nbsp;</td>
@@ -138,22 +152,32 @@
             {{ ticket.ship.startTime }}
           </td>
         </tr>
+        <tr>
+          <td class="text-right">Issued by:&nbsp;</td>
+          <td>{{ticket.createdBy.name}}</td>
+        </tr>
       </table>
       <div class="text-center">Powered by:www.hotelswave.com</div>
     </div>
     <div class="col_2 border-right">
       <table>
         <tr>
-          <td colspan="2" class="text-center" style="font-size: 17px;">{{ ticket.categoryName }}</td>
+          <td colspan="2" style="text-align: center;font-size: 16px;">{{ ticket.ship.startingPoint }} to
+            {{ ticket.ship.droppingPoint }}</td>
+        </tr>
+
+        <tr>
+          <td class="text-right">Category:&nbsp;</td>
+          <th>{{ ticket.category}}</th>
         </tr>
         <tr>
           <td class="text-right">Ticket Id:&nbsp;</td>
           <td>{{ ticket.id }}</td>
         </tr>
-        <tr>
+        <!-- <tr>
           <td class="text-right">Issue Date:&nbsp;</td>
           <td>{{ ticket.created | date: 'd MMM,yy' }}</td>
-        </tr>
+        </tr> -->
         <tr>
           <td class="text-right">Journey Date:&nbsp;</td>
           <td>{{ ticket.subBookingList[0].date | date: 'd MMM,yy' }}</td>
@@ -162,6 +186,10 @@
           <td class="text-right">Name:&nbsp;</td>
           <td>{{ ticket.user.name }}</td>
         </tr>
+        <!-- <tr>
+          <td class="text-right">Category:&nbsp;</td>
+          <td>{{ticket.category}}</td>
+        </tr> -->
         <tr>
           <td class="text-right">Phone:&nbsp;</td>
           <td>
@@ -173,82 +201,14 @@
           <td>{{ ticket.ship.startingPoint }}</td>
         </tr> -->
         <tr>
-          <td colspan="2" style="text-align: center;font-size: 16px;">{{ ticket.ship.startingPoint }} to {{ ticket.ship.droppingPoint }}</td>
-        </tr>
-        <tr>
           <td class="text-right">Seats: &nbsp; &nbsp;
-            <br> Total: {{ticket.subBookingList.length}} &nbsp; &nbsp;
-          </td>
+            <br> Total: {{ticket.subBookingList.length}} &nbsp; &nbsp;</td>
           <td>
             <span *ngFor="let sb of ticket.subBookingList; let i = index;">
               <span *ngIf="i==5">
                 <br> </span>
-
-              <!-- <h5 style="display: inline; margin-right: 2px;"> -->
-              <span class="badge badge-secondary"> {{ sb.seatNumber }} </span>
-              <!-- </h5> -->
-            </span>
-          </td>
-        </tr>
-        <tr>
-          <td class="text-right">
-            Fare:&nbsp;
-          </td>
-          <td> {{ ticket.totalFare }} BDT</td>
-        </tr>
-        <tr>
-          <td class="text-right">Time:&nbsp;</td>
-          <td>
-            {{ ticket.ship.startTime }}
-          </td>
-        </tr>
-      </table>
-      <div class="text-center">Developed by: www.unololtd.com</div>
-    </div>
-  </div>
-  <ng-template #shortTicket>
-    <div class="row m-0 border">
-      <table>
-        <tr>
-          <td colspan="2" class="text-center" style="font-size: 17px;">{{ ticket.categoryName }}</td>
-        </tr>
-        <tr>
-          <td class="text-right">Ticket Id:&nbsp;</td>
-          <td>{{ ticket.id }}</td>
-        </tr>
-        <tr>
-          <td class="text-right">Issue Date:&nbsp;</td>
-          <td>{{ ticket.created | date: 'd MMM,yy' }}</td>
-        </tr>
-        <tr>
-          <td class="text-right">Journey Date:&nbsp;</td>
-          <td>{{ ticket.subBookingList[0].date | date: 'd MMM,yy' }}</td>
-        </tr>
-        <tr>
-          <td class="text-right">Name:&nbsp;</td>
-          <td>{{ ticket.user.name }}</td>
-        </tr>
-        <tr>
-          <td class="text-right">Phone:&nbsp;</td>
-          <td>
-            {{ ticket.user.phoneNumber }}
-          </td>
-        </tr>
-        <!-- <tr>
-          <td class="text-right">From:</td>
-          <td>{{ ticket.ship.startingPoint }}</td>
-        </tr> -->
-        <tr>
-          <td colspan="2" style="text-align: center;font-size: 16px;">{{ ticket.ship.startingPoint }} to {{ ticket.ship.droppingPoint }}</td>
-        </tr>
-        <tr>
-          <td class="text-right">Seats: &nbsp; &nbsp;
-            <br> Total: {{ticket.subBookingList.length}} &nbsp; &nbsp;</td>
-
-          <td>
-            <span *ngFor="let sb of ticket.subBookingList">
               <h5 style="display: inline; margin-right: 2px;">
-                <span class="badge badge-secondary"> {{ sb.seatNumber }} </span>
+                <span class="badge badge-secondary">{{ sb.seatNumber }} </span>
               </h5>
             </span>
           </td>
@@ -264,6 +224,84 @@
           <td>
             {{ ticket.ship.startTime }}
           </td>
+        </tr>
+        <tr>
+          <td class="text-right">Issued by:&nbsp;</td>
+          <td>{{ticket.createdBy.name}}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <ng-template #shortTicket>
+    <div class="row m-0 border">
+      <table>
+        <tr>
+          <td colspan="2" style="text-align: center;font-size: 16px;">{{ ticket.ship.startingPoint }} to
+            {{ ticket.ship.droppingPoint }}</td>
+        </tr>
+
+        <tr>
+          <td class="text-right">Category:&nbsp;</td>
+          <th>{{ ticket.category}}</th>
+        </tr>
+        <tr>
+          <td class="text-right">Ticket Id:&nbsp;</td>
+          <td>{{ ticket.id }}</td>
+        </tr>
+        <!-- <tr>
+          <td class="text-right">Issue Date:&nbsp;</td>
+          <td>{{ ticket.created | date: 'd MMM,yy' }}</td>
+        </tr> -->
+        <tr>
+          <td class="text-right">Journey Date:&nbsp;</td>
+          <td>{{ ticket.subBookingList[0].date | date: 'd MMM,yy' }}</td>
+        </tr>
+        <tr>
+          <td class="text-right">Name:&nbsp;</td>
+          <td>{{ ticket.user.name }}</td>
+        </tr>
+        <!-- <tr>
+          <td class="text-right">Category:&nbsp;</td>
+          <td>{{ticket.category}}</td>
+        </tr> -->
+        <tr>
+          <td class="text-right">Phone:&nbsp;</td>
+          <td>
+            {{ ticket.user.phoneNumber }}
+          </td>
+        </tr>
+        <!-- <tr>
+          <td class="text-right">From:</td>
+          <td>{{ ticket.ship.startingPoint }}</td>
+        </tr> -->
+        <tr>
+          <td class="text-right">Seats: &nbsp; &nbsp;
+            <br> Total: {{ticket.subBookingList.length}} &nbsp; &nbsp;</td>
+          <td>
+            <span *ngFor="let sb of ticket.subBookingList; let i = index;">
+              <span *ngIf="i==5">
+                <br> </span>
+              <h5 style="display: inline; margin-right: 2px;">
+                <span class="badge badge-secondary">{{ sb.seatNumber }} </span>
+              </h5>
+            </span>
+          </td>
+        </tr>
+        <tr>
+          <td class="text-right">
+            Fare:&nbsp;
+          </td>
+          <td> {{ ticket.totalFare }} BDT</td>
+        </tr>
+        <tr>
+          <td class="text-right">Departure:&nbsp;</td>
+          <td>
+            {{ ticket.ship.startTime }}
+          </td>
+        </tr>
+        <tr>
+          <td class="text-right">Issued by:&nbsp;</td>
+          <td>{{ticket.createdBy.name}}</td>
         </tr>
       </table>
     </div>

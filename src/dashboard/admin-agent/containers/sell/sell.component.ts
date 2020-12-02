@@ -144,6 +144,7 @@ export class SellComponent implements OnInit {
 
   onSelectCategory(categoryId: number) {
     this.category = this.categoryList.find(ca => ca.id == categoryId);
+    this.selectedSeat = [];
     this.filterSeatList(categoryId);
   }
 
