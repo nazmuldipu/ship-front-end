@@ -89,7 +89,7 @@ export class AuthService {
   authenticate(username: string, password: string): Observable<any> {
     this.errorMessage = '';
     let returnUrl =
-      this.activeRoute.snapshot.queryParamMap.get('returnUrl') || '/';
+      this.activeRoute.snapshot.queryParamMap.get('returnUrl') || '/dashboard';
     localStorage.setItem('returnUrl', returnUrl);
 
     return this.datasource
