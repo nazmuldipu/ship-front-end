@@ -26,7 +26,6 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 
-ng build --prod --base-href "/" && ngh --dir dist/hotelswave-front-end --no-silent --repo=git@github.com:nazmuldipu/hotelswave-front-end.git
 
 ng build --prod --base-href "/" && npx angular-cli-ghpages --dir dist/ship-front-end --no-silent
 
@@ -52,11 +51,26 @@ Sundrop Tours & Travels	01615153036	400	sundrop3036@gmail.com
 
 bug1: service agent -> cancel ticket -> accounting problem -> money is not getting back
 
-<<<<<<< HEAD
 update:
 1) multiple cancel
 2) status seat plan
-=======
 update 20191107:
-    1) counter report for ship admin
->>>>>>> 17ab53124c16325539ac48f0e64b08e4c9e97176
+
+Update 20201202:
+    1. Change Cover photo
+    2. Change Hotelswave logo
+    3. Login Page => add Hotelswave.com branding
+    4. Print ticket link at dashboard
+    5. Move seat status link at seat menu
+    6. At agent account select deafult category
+    7. Dashboar SOLD/UNSOLD info add date
+    8. Sell page show number of selected number of seat
+    9. Deafult Ship order for agents
+    10. In menu => change create user to Creat and Update User
+    11. User list page add user search option
+    12. Update mobile view
+    13. User change password not woking
+    14. Update Ticket design. (add issue by + change design)
+    15. Admin agent manual commission
+
+

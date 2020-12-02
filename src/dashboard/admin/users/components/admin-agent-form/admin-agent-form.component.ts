@@ -33,7 +33,8 @@ export class AdminAgentFormComponent implements OnChanges {
       const value = {
         name: this.user.name,
         phoneNumber: this.user.phoneNumber,
-        email: this.user.email
+        email: this.user.email,
+        commission: this.user.commission
       };
       this.form.patchValue({ ...value });
     }

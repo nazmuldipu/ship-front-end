@@ -11,6 +11,7 @@
             <th>Name</th>
             <th>Phone</th>
             <th>Email</th>
+            <th>Commission</th>
             <th></th>
           </tr>
         </thead>
@@ -19,6 +20,7 @@
             <td>{{ user.name }}</td>
             <td>{{ user.phoneNumber }}</td>
             <td>{{ user.email }}</td>
+            <td>{{ user.commission }}</td>
             <td>
               <button class="btn-sm btn-warning" (click)="onSelect(user.id)">
                 <i class="fa fa-pencil-square-o"></i>
