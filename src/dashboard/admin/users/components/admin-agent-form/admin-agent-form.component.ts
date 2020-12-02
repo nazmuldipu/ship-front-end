@@ -49,7 +49,8 @@ export class AdminAgentFormComponent implements OnChanges {
           Validators.pattern('^01[3-9][ ]?[0-9]{2}[ ]?[0-9]{3}[ ]?[0-9]{3}$')
         ]
       ],
-      email: ''
+      email: '',
+      commission: ['', Validators.required]
     });
   }
 
