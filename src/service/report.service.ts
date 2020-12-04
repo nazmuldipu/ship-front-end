@@ -249,4 +249,9 @@ export class ReportService {
       param
     );
   }
+
+  getServiceAdminAgentCashReport(date): Observable<any> {
+    const param = new HttpParams().set('date', date);
+    return this.dataSource.sendRequest('GET', this.serviceServiceAdminUrl + `/agent-cash`, null, true, param);
+  }
 }

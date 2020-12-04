@@ -31,6 +31,7 @@ export class Booking {
   hotelswaveAgentDiscount: number;
 
   eStatus: SeatStatus;
+  issuBy: User;
 
   manualBooking: boolean;
   confirmed: boolean;
