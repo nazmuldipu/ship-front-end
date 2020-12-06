@@ -146,6 +146,12 @@
                   Clear
                 </button>
               </div>
+              <div class="alert alert-danger" *ngIf="errorMessage.length">
+                {{ errorMessage }} &nbsp;
+                <button class="btn btn-sm btn-warning" (click)="onClear()">
+                  Clear
+                </button>
+              </div>
               <app-loading *ngIf="dataSending"></app-loading>
             </div>
           </div>

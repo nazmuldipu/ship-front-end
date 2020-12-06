@@ -30,6 +30,7 @@ export class SellComponent implements OnInit {
   filteredSeatList: Seat[];
 
   message = '';
+  errorMessage = '';
   dd;
   minDate;
   maxDate;
@@ -178,7 +179,11 @@ export class SellComponent implements OnInit {
       this.message = 'Booking done';
       this.selectedSeat = [];
       this.getAdminAgentSeatList(this.detailsId);
-    } catch (err) { console.log(err); }
+    } catch (err) {
+      console.log(err['error']);
+      this.message = '';
+      this.errorMessage = err['error'];
+    }
   }
 
   getSubbookingList(seatList: Seat[]): SubBooking[] {
@@ -208,6 +213,7 @@ export class SellComponent implements OnInit {
 
   onClear() {
     this.message = '';
+    this.errorMessage = '';
   }
 
   makeDateString(date) {

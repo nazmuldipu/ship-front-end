@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/service/auth.service';
 import { BookingService } from 'src/service/booking.service';
 import { BookingPage, Booking } from 'src/shared/models/booking.model';
 
@@ -13,7 +14,7 @@ export class MySellsComponent implements OnInit {
   ticket: Booking;
   bookingPage: BookingPage;
 
-  constructor(private bookingService: BookingService) { }
+  constructor(private bookingService: BookingService, public auth: AuthService) { }
 
   ngOnInit() {
     this.getAdminAgentMySells();
@@ -23,6 +24,9 @@ export class MySellsComponent implements OnInit {
     this.loading = true;
     try {
       this.bookingPage = await this.bookingService.getAdminAgentMySells(page).toPromise();
+      this.bookingPage.content.forEach(bo => {
+        bo.createdBy = this.auth.user;
+      })
       this.loading = false;
     } catch (err) { console.log(err) }
   }

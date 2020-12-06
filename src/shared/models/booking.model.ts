@@ -19,6 +19,7 @@ export class Booking {
   refBy: string;
   shipName: string;
   categoryName: string;
+  category: string;
   bookingDiscount: number;
   totalFare: number;
   totalDiscount: number;

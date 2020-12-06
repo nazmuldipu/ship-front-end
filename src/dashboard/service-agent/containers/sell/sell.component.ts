@@ -25,6 +25,7 @@ export class SellComponent implements OnInit {
   dataSending = false;
 
   message = '';
+  errorMessage = '';
   category: Category;
   ships: Ship[];
   seatList: Seat[];
@@ -180,7 +181,11 @@ export class SellComponent implements OnInit {
       this.message = 'Booking done';
       this.selectedSeat = [];
       this.getShipAgentSeatList(this.detailsId);
-    } catch (err) { console.log(err) }
+    } catch (err) {
+      console.log(err['error']);
+      this.message = '';
+      this.errorMessage = err['error'];
+    }
   }
 
   getSubbookingList(seatList: Seat[]): SubBooking[] {
@@ -198,6 +203,7 @@ export class SellComponent implements OnInit {
 
   onClear() {
     this.message = '';
+    this.errorMessage = '';
   }
 
 }

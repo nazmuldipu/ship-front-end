@@ -1,6 +1,8 @@
-<ticket-sukantababu-print *ngIf="ticket && ticket.ship?.shipName == 'SUKANTO_BABU'" [ticket]="ticket" (close)="onTicketClose()">
+<ticket-sukantababu-print *ngIf="ticket && ticket.ship?.shipName == 'SUKANTO_BABU'" [ticket]="ticket"
+  (close)="onTicketClose()">
 </ticket-sukantababu-print>
-<tiket-baycruise-print *ngIf="ticket && ticket.ship?.shipName == 'BAY_CRUISE'" [ticket]="ticket" (close)="onTicketClose()">
+<tiket-baycruise-print *ngIf="ticket && ticket.ship?.shipName == 'BAY_CRUISE'" [ticket]="ticket"
+  (close)="onTicketClose()">
 </tiket-baycruise-print>
 <div class="container d-print-none" *ngIf="!ticket">
   <div class="row border my-2 p-2">
@@ -16,8 +18,9 @@
               Date :
             </div>
           </div>
-          <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="dd" [minDate]="minDate" [maxDate]="maxDate" ngbDatepicker
-            #date="ngbDatepicker" (dateSelect)="closeDetails()" (click)="date.toggle()" />
+          <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="dd" [minDate]="minDate"
+            [maxDate]="maxDate" ngbDatepicker #date="ngbDatepicker" (dateSelect)="closeDetails()"
+            (click)="date.toggle()" />
           <div class="input-group-append" (click)="date.toggle()">
             <div class="input-group-text">
               <i class="fa fa-calendar"></i>
@@ -79,13 +82,15 @@
                 </span>
               </div>
 
-              <seat-plan-other *ngIf="ship.shipName =='OTHER'" [filteredSeatList]="filteredSeatList" [selectedSeat]="selectedSeat" [categoryName]="category?.name"
-                (select)="onSeatClick($event)">
+              <seat-plan-other *ngIf="ship.shipName =='OTHER'" [filteredSeatList]="filteredSeatList"
+                [selectedSeat]="selectedSeat" [categoryName]="category?.name" (select)="onSeatClick($event)">
               </seat-plan-other>
-              <seat-plan-bay-cruiser *ngIf="ship.shipName=='BAY_CRUISE'" [filteredSeatList]="filteredSeatList" [selectedSeat]="selectedSeat"
-                [categoryName]="category?.name" (select)="onSeatClick($event)"></seat-plan-bay-cruiser>
-              <seat-plan-sukanto *ngIf="ship.shipName=='SUKANTO_BABU'" [filteredSeatList]="filteredSeatList" [selectedSeat]="selectedSeat"
-                [categoryName]="category?.name" (select)="onSeatClick($event)"></seat-plan-sukanto>
+              <seat-plan-bay-cruiser *ngIf="ship.shipName=='BAY_CRUISE'" [filteredSeatList]="filteredSeatList"
+                [selectedSeat]="selectedSeat" [categoryName]="category?.name" (select)="onSeatClick($event)">
+              </seat-plan-bay-cruiser>
+              <seat-plan-sukanto *ngIf="ship.shipName=='SUKANTO_BABU'" [filteredSeatList]="filteredSeatList"
+                [selectedSeat]="selectedSeat" [categoryName]="category?.name" (select)="onSeatClick($event)">
+              </seat-plan-sukanto>
 
             </div>
             <div class="col-md-6 mb-3">
@@ -109,6 +114,12 @@
               </div>
               <div class="alert alert-primary" *ngIf="message.length">
                 {{ message }} &nbsp;
+                <button class="btn btn-sm btn-warning" (click)="onClear()">
+                  Clear
+                </button>
+              </div>
+              <div class="alert alert-danger" *ngIf="errorMessage.length">
+                {{ errorMessage }} &nbsp;
                 <button class="btn btn-sm btn-warning" (click)="onClear()">
                   Clear
                 </button>

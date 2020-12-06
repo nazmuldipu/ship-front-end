@@ -159,15 +159,15 @@ export class RestDataService {
             // console.log('Res2', response['body'])
             return response['body'];
           }),
-          catchError((error: HttpErrorResponse) => {
-            console.log(error);
-            Observable.throw(this.handleError(error));
-            if (error.status === 404) {
-              console.log(error);
-              // return throwError(new NotFoundError(error));
-            }
-            return throwError(error);
-          })
+          // catchError((error: HttpErrorResponse) => {
+          //   console.log(error);
+          //   Observable.throw(this.handleError(error));
+          //   if (error.status === 404) {
+          //     console.log(error);
+          //     // return throwError(new NotFoundError(error));
+          //   }
+          //   return throwError(error);
+          // })
         );
       // .catch(err => Observable.throw(this.handleError(err)));
 

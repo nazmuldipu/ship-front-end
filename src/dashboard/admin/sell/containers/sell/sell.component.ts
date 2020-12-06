@@ -30,6 +30,7 @@ export class SellComponent implements OnInit {
   seatLoading = false;
   dataSending = false;
   message = '';
+  errorMessage = '';
   dd;
   minDate;
   maxDate;
@@ -180,7 +181,7 @@ export class SellComponent implements OnInit {
     this.onDiscountChange(this.discount);
   }
 
-  onCreateUser(event) {
+  async onCreateUser(event) {
     let user: User = new User(event.name, event.phone);
     let subbookingList: SubBooking[] = this.getSubbookingList(
       this.selectedSeat
@@ -194,13 +195,18 @@ export class SellComponent implements OnInit {
     booking.eStatus = this.mode as SeatStatus;
     this.dataSending = true;
     this.message = 'Sending data to server';
-    this.bookinService.createAdminBooking(booking).subscribe(data => {
+    try {
+      this.ticket = await this.bookinService.createAdminBooking(booking).toPromise();
       this.dataSending = false;
       this.message = 'Booking done';
       this.selectedSeat = [];
-      this.ticket = data;
       this.getAdminSeatList(this.detailsId);
-    });
+    } catch (err) {
+      console.log(err['error']);
+      this.message = '';
+      this.errorMessage = err['error'];
+    }
+
   }
 
   getSubbookingList(seatList: Seat[]): SubBooking[] {
@@ -231,6 +237,7 @@ export class SellComponent implements OnInit {
 
   onClear() {
     this.message = '';
+    this.errorMessage = '';
   }
 
   onTicketClose() {
