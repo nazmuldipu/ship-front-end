@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { ReportService } from 'src/service/report.service';
+import { ShipAdminCashbook } from 'src/shared/models/ship-admin-cashbook.model';
 
 @Component({
   selector: 'app-agent-cash',
@@ -10,6 +11,8 @@ import { ReportService } from 'src/service/report.service';
 export class AgentCashComponent implements OnInit {
   dd: NgbDateStruct;
   maxDate: NgbDateStruct;
+  shipAdminCashbook: ShipAdminCashbook[] = []
+  total = 0;
 
   constructor(private reportService: ReportService) { }
 
@@ -25,13 +28,17 @@ export class AgentCashComponent implements OnInit {
   }
 
   async getAdminAgentCash({ year, month, day }) {
-    console.log("getAdminAgentCash", this.dd, { year, month, day });
     month = month < 10 ? '0' + month : month;
     day = day < 10 ? '0' + day : day;
     const date = `${year}-${month}-${day}`;
     try {
       const resp = await this.reportService.getServiceAdminAgentCashReport(date).toPromise();
-      console.log(resp);
+      this.shipAdminCashbook = resp;
+      let total = 0
+      this.shipAdminCashbook.forEach(sac =>{
+        total += sac.debit;
+      })
+      this.total = total;
     } catch (err) { console.log(err) }
   }
 

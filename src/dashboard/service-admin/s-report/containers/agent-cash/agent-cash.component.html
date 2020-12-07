@@ -15,8 +15,38 @@
         </div>
       </div>
     </div>
+    <div class="col text-center">
+      <h3>Agent cash report for {{dd?.day}}-{{dd?.month}}-{{dd?.year}}</h3>
+    </div>
   </div>
   <div class="row">
-    {{dd | json}}
+    <div class="offset-md-2 col-md-8">
+      <table class="table border table-responsive-sm table-hover" *ngIf="shipAdminCashbook">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Explanation</th>
+            <th>Debit</th>
+            <th>Credit</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let cash of shipAdminCashbook">
+            <td>{{ cash.date | date: 'MMM d, y, h:mm:ss a'}}</td>
+            <td>{{ cash.explanation }}</td>
+            <td>{{ cash.debit }}</td>
+            <td>{{ cash.credit }}</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td></td>
+            <td class="text-right">Total : &nbsp;</td>
+            <th>{{total}}</th>
+            <td></td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
   </div>
 </div>
