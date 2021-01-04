@@ -41,7 +41,7 @@ export class CounterReportComponent implements OnInit {
     this.daterange.endDate = new Date();
 
     const minDate = new Date();
-    minDate.setDate(this.daterange.startDate.getDate() - 90);
+    minDate.setDate(this.daterange.startDate.getDate() - 490);
     const maxDate = new Date();
     maxDate.setDate(this.daterange.endDate.getDate() + 90);
 
