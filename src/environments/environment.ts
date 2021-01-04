@@ -15,15 +15,13 @@ export const environment = {
   // SERVER: '128.199.209.219',
   // SERVER: '172.104.47.134',
 
-  // PROTOCOL: 'http',
-  // PORT: ':8081',
   // SERVER: '192.168.0.10',
 
   // SERVER: '172.104.47.134',
 
-  client_id: 'ship_client',
-  client_secret: 'ship_secret',
-  facebook_redirect_url: 'https://www.hotelswave.com/register'
+  client_id: "ship_client",
+  client_secret: "ship_secret",
+  facebook_redirect_url: "https://www.hotelswave.com/register",
 
   // SERVER: '172.104.173.180',
   // client_id: 'android-client',
