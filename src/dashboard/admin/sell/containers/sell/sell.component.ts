@@ -61,7 +61,7 @@ export class SellComponent implements OnInit {
     };
     this.maxDate = {
       year: date.getFullYear(),
-      month: date.getMonth() + 3, //Maximum 2 month from now
+      month: date.getMonth() + 2, //Maximum 1 month from now
       day: date.getDate()
     };
 
