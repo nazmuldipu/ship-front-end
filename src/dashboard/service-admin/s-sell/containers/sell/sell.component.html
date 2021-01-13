@@ -20,7 +20,7 @@
           </div>
           <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="dd" [minDate]="minDate"
             [maxDate]="maxDate" ngbDatepicker #date="ngbDatepicker" (dateSelect)="closeDetails()"
-            (click)="date.toggle()" />
+            (click)="date.toggle()" readonly/>
           <div class="input-group-append" (click)="date.toggle()">
             <div class="input-group-text">
               <i class="fa fa-calendar"></i>
