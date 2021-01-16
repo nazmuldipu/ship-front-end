@@ -23,6 +23,9 @@ export class User {
   accountNonExpired: boolean;
   accountNonLocked: boolean;
   credentialsNonExpired: boolean;
+  canReserve: boolean;
+  canCancelReservation: boolean;
+  canCancelBooking: boolean;
   commission: number;
 }
 

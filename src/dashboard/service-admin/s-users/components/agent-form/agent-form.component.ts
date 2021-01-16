@@ -29,13 +29,18 @@ export class AgentFormComponent implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges) {
     if (changes.user && this.user && this.user.id) {
-      this.exists = true;
       const value = {
         name: this.user.name,
         phoneNumber: this.user.phoneNumber,
         email: this.user.email,
-        commission: this.user.commission
+        commission: this.user.commission,
+        canReserve: this.user.canReserve == null ? false : this.user.canReserve,
+        canCancelReservation: this.user.canCancelReservation == null ? false : this.user.canCancelReservation,
+        canCancelBooking: this.user.canCancelBooking == null ? false : this.user.canCancelBooking
       };
+      // this.form.reset();
+      this.onClear();
+      this.exists = true;
       this.form.patchValue({ ...value });
     }
   }
@@ -52,6 +57,9 @@ export class AgentFormComponent implements OnChanges {
       ],
       email: '',
       commission: ['', Validators.required],
+      canReserve: [false, Validators.required],
+      canCancelReservation: [false, Validators.required],
+      canCancelBooking: [false, Validators.required],
     });
   }
 
@@ -74,6 +82,8 @@ export class AgentFormComponent implements OnChanges {
 
   onClear() {
     this.form.reset();
+    const value = { "name": "", "phoneNumber": "", "email": "", "commission": "", "canReserve": false, "canCancelReservation": false, "canCancelBooking": false }
+    this.form.patchValue(value);
     this.exists = false;
   }
 }

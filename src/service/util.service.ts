@@ -4,7 +4,7 @@ import { Injectable } from "@angular/core";
   providedIn: "root",
 })
 export class UtilService {
-  constructor() {}
+  constructor() { }
 
   // Get String yyyy-MM-dd date list between two dates
   getDatesBetween(startDate: Date, endDate: Date) {
@@ -33,7 +33,7 @@ export class UtilService {
   }
 
   getDateStringFromDateObj(date) {
-    return date.year + "-" + date.month + "-" + date.day;
+    return date.year + '-' + (date.month < 10 ? '0' + date.month : date.month) + '-' + (date.day < 10 ? '0' + date.day : date.day);
   }
 
   getTimeStringFromTimeObj(time) {

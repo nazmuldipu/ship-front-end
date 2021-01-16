@@ -14,11 +14,15 @@ export class LoginComponent implements OnInit {
   ngOnInit() { }
 
   onCreate(event) {
-    console.log(event);
     this.message = null;
     this.auth.authenticate(event.username, event.password).subscribe(
       data => {
         console.log(data);
+        data.authorities.forEach(element => {
+          if (element.authority == 'ROLE_SERVICE_AGENT') {
+            console.log('Get my permissions')
+          }
+        });
         this.auth.saveToken(data, '');
       },
       error => {

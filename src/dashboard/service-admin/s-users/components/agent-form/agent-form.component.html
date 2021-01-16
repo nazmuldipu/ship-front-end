@@ -34,6 +34,33 @@
       </small>
     </div>
   </div>
+  <div class="form-row">
+    <div class="form-group col-md-4">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="canReserve" formControlName="canReserve" />
+        <label class="form-check-label" for="canReserve">
+          Reserve
+        </label>
+      </div>
+    </div>
+    <div class="form-group col-md-4">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="canCancelReservation"
+          formControlName="canCancelReservation" />
+        <label class="form-check-label" for="canCancelReservation">
+          Cancel Reservation
+        </label>
+      </div>
+    </div>
+    <div class="form-group col-md-4">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="canCancelBooking" formControlName="canCancelBooking" />
+        <label class="form-check-label" for="canCancelBooking">
+          Cancel Booking
+        </label>
+      </div>
+    </div>
+  </div>
 
   <div class="d-flex flex-row-reverse bd-highlight my-2 mb-5">
     <button type="submit" class="btn btn-sm mx-1" [ngClass]="{

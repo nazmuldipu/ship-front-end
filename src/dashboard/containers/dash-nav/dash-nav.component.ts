@@ -9,7 +9,7 @@ import { AuthService } from 'src/service/auth.service';
 export class DashNavComponent implements OnInit {
   username = 'user';
   show = false;
-  constructor(public auth: AuthService) {}
+  constructor(public auth: AuthService) { }
 
   ngOnInit() {
     let username = this.auth.user.name;
@@ -21,6 +21,10 @@ export class DashNavComponent implements OnInit {
   hasAuthority(authority: string): boolean {
     if (authority == '' || authority == null) return true;
     return this.auth.hasAuthorities(authority);
+  }
+
+  canReserve(): boolean {
+    return this.auth.user.canReserve;
   }
 
   logout() {
