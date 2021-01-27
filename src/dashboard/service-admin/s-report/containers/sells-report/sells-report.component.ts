@@ -56,11 +56,11 @@ export class SellsReportComponent implements OnInit {
   }
 
   async getServiceAdminReservationReportByShipId(shipId, { year, month, day }) {
-    this.loading = true;
     month = month < 10 ? '0' + month : month;
     day = day < 10 ? '0' + day : day;
     const date = `${year}-${month}-${day}`;
     try {
+      this.loading = true;
       this.serviceAdminSellsReportList = await this.reportService.getServiceAdminShipReservation(shipId, date).toPromise();
       this.calculateServiceAdminBookingReportList();
       this.loading = false;
@@ -68,11 +68,11 @@ export class SellsReportComponent implements OnInit {
   }
 
   async getServiceAdminSellsReportByShipId(shipId, { year, month, day }) {
-    this.loading = true;
     month = month < 10 ? '0' + month : month;
     day = day < 10 ? '0' + day : day;
     const date = `${year}-${month}-${day}`;
     try {
+      this.loading = true;
       this.serviceAdminSellsReportList = await this.reportService.getServiceAdminShipSells(shipId, date).toPromise();
       this.calculateServiceAdminBookingReportList();
       this.loading = false;
@@ -97,7 +97,16 @@ export class SellsReportComponent implements OnInit {
             break;
         }
         if (sb.soldBy) {
-          this.soldBy.set(sb.soldBy, this.soldBy.get(sb.soldBy) ? this.soldBy.get(sb.soldBy) + sb.seatNumbers.length : sb.seatNumbers.length);
+          switch (sb.role) {
+            case 'Service Agent':
+            case 'Service Admin':
+              this.soldBy.set(sb.soldBy, this.soldBy.get(sb.soldBy) ? this.soldBy.get(sb.soldBy) + sb.seatNumbers.length : sb.seatNumbers.length);
+              break;
+            case 'Agent':
+            case 'Admin':
+              this.soldBy.set("Hotelswave.com", this.soldBy.get("Hotelswave.com") ? this.soldBy.get("Hotelswave.com") + sb.seatNumbers.length : sb.seatNumbers.length);
+              break;
+          }
         }
       }
 

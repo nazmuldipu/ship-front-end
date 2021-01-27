@@ -76,7 +76,6 @@ export class CounterReportComponent implements OnInit {
 
   async getAllShip(page: number = 0) {
     this.loading = true;
-    console.log('OLk')
     try {
       const resp = await this.shipService.getAllShip(page).toPromise();
       this.shipList = resp.content;
@@ -118,10 +117,10 @@ export class CounterReportComponent implements OnInit {
   }
 
   async getAdminSellsRangeReport(shipId, userId, sd: Date, ed: Date) {
-    this.loading = true;
     const startDate = this.util.getDateString(sd);
     const endDate = this.util.getDateString(ed);
     try {
+      this.loading = true;
       this.reportList = await this.reportService.getAdminSellsReportRangeForIndividual(shipId, userId, startDate, endDate).toPromise();
       this.calculateServiceAdminBookingReportList();
       this.loading = false;
@@ -129,10 +128,10 @@ export class CounterReportComponent implements OnInit {
   }
 
   async getAdminReservationRangeReport(shipId, userId, sd: Date, ed: Date) {
-    this.loading = true;
     const startDate = this.util.getDateString(sd);
     const endDate = this.util.getDateString(ed);
     try {
+      this.loading = true;
       this.reportList = await this.reportService.getAdminReserveReportRangeForIndividual(shipId, userId, startDate, endDate).toPromise();
       this.calculateServiceAdminBookingReportList();
       this.loading = false;
@@ -152,8 +151,9 @@ export class CounterReportComponent implements OnInit {
         const hotelswaveAgentCommission = this.soldBy.get(sb.soldBy) == null ? sb.hotelswaveAgentCommission : this.soldBy.get(sb.soldBy).hotelswaveAgentCommission + sb.hotelswaveAgentCommission;
         const shipAgentCommission = this.soldBy.get(sb.soldBy) == null ? sb.shipAgentCommission : this.soldBy.get(sb.soldBy).shipAgentCommission + sb.shipAgentCommission;
         const seatNumbers = this.soldBy.get(sb.soldBy) == null ? sb.seatNumbers.length : this.soldBy.get(sb.soldBy).totalSeatNumber + sb.seatNumbers.length;
+        const price = this.soldBy.get(sb.soldBy) == null ? sb.price : this.soldBy.get(sb.soldBy).price + sb.price;
 
-        const value: Counter = { hotelswaveCommission: hotelswaveCommission, hotelswaveAgentCommission: hotelswaveAgentCommission, shipAgentCommission: shipAgentCommission, totalSeatNumber: seatNumbers }
+        const value: Counter = { hotelswaveCommission: hotelswaveCommission, hotelswaveAgentCommission: hotelswaveAgentCommission, shipAgentCommission: shipAgentCommission, totalSeatNumber: seatNumbers, price }
         this.soldBy.set(sb.soldBy, value);
       }
 

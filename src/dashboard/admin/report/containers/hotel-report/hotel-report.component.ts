@@ -56,11 +56,11 @@ export class HotelReportComponent implements OnInit {
   }
 
   async getAdminReservationReportByShipId(shipId, { year, month, day }) {
-    this.loading = true;
     month = month < 10 ? '0' + month : month;
     day = day < 10 ? '0' + day : day;
     const date = `${year}-${month}-${day}`;
     try {
+      this.loading = true;
       this.serviceAdminSellsReportList = await this.reportService.getAdminReservationReportByShipId(date, shipId).toPromise();
       this.calculateServiceAdminBookingReportList();
       this.loading = false;
@@ -68,11 +68,11 @@ export class HotelReportComponent implements OnInit {
   }
 
   async getAdminSellsReportByShipId(shipId, { year, month, day }) {
-    this.loading = true;
     month = month < 10 ? '0' + month : month;
     day = day < 10 ? '0' + day : day;
     const date = `${year}-${month}-${day}`;
     try {
+      this.loading = true;
       this.serviceAdminSellsReportList = await this.reportService.getAdminSellsReportByShipId(date, shipId).toPromise();
       this.calculateServiceAdminBookingReportList();
       this.loading = false;

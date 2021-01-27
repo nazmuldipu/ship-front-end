@@ -72,4 +72,11 @@ Update 20201202:
     14. Update Ticket design. (add issue by + change design)
     15. Admin agent manual commission
 
-
+[X] Seat status plan bug
+[] Guest name should be updated
+[] Super Admin should be able to cancel reserve one by one
+[X] Report total amount with number of tickets
+[] Seperate sold and reserve from report
+[] Super sell 
+[] Cancellation report for super admin
+[] Service admin should not able to see hotelswave.com agent sells

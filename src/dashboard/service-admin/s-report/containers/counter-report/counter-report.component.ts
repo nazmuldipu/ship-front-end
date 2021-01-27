@@ -86,14 +86,18 @@ export class CounterReportComponent implements OnInit {
             this.total.totalReserved += sb.seatNumbers.length;
             break;
         }
-        if (sb.soldBy) { // count counter ticket
-          this.soldBy.set(
-            sb.soldBy,
-            this.soldBy.get(sb.soldBy)
-              ? this.soldBy.get(sb.soldBy) + sb.seatNumbers.length
-              : sb.seatNumbers.length
-          );
-        }
+        if (sb.soldBy) {
+          switch (sb.role) {
+            case 'Service Agent':
+            case 'Service Admin':
+              this.soldBy.set(sb.soldBy, this.soldBy.get(sb.soldBy) ? this.soldBy.get(sb.soldBy) + sb.seatNumbers.length : sb.seatNumbers.length);
+              break;
+            case 'Agent':
+            case 'Admin':
+              this.soldBy.set("Hotelswave.com", this.soldBy.get("Hotelswave.com") ? this.soldBy.get("Hotelswave.com") + sb.seatNumbers.length : sb.seatNumbers.length);
+              break;
+          }
+        }        
       }
     });
   }

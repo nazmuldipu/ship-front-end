@@ -36,7 +36,7 @@
         </div>
       </div>
       <div *ngIf="loading">
-        <app-loading></app-loading>
+        <loading></loading>
       </div>
       <div *ngIf="
           serviceAdminSellsReportList.length > 0 && !loading;
@@ -81,7 +81,7 @@
               </td>
               <td>{{ report.price }}</td>
               <!-- <td>{{ report.shipNumber }} - {{ report.routes }}</td> -->
-              <td>{{ report.soldBy }}</td>
+              <td>{{ (report.role == 'ROLE_AGENT') || (report.role == 'ROLE_ADMIN') ? 'Hotelswave.com':report.soldBy }}</td>
               <td>{{ report.bookingStatus }}</td>
               <td>{{report.duplicate == true? "DUPLICATE":""}}</td>
               <td [ngClass]="{

@@ -16,26 +16,15 @@
                 <i class="fa fa-calendar"></i>
               </div>
             </div>
-            <input type="text" class="form-control" name="daterangeInput" daterangepicker [options]="options" (selected)="selectedDate($event)"
-            />
+            <input type="text" class="form-control" name="daterangeInput" daterangepicker [options]="options"
+              (selected)="selectedDate($event)" />
           </div>
         </div>
-
-        <div class="btn-group btn-group-toggle border" data-toggle="buttons">
-          <label class="btn" [ngClass]="{
-                'btn-primary': reportType == 'Sell',
-                'btn-light': reportType != 'Sell'
-              }">
-            <input type="radio" value="Sell" name="mode" (click)="onReportTypeChange(ship.id, 'Sell')" id="mode_sell" autocomplete="off"
-            /> Sell
-          </label>
-          <label class="btn btn-primary" [ngClass]="{
-                'btn-primary': reportType == 'Reserve',
-                'btn-light': reportType != 'Reserve'
-              }">
-            <input type="radio" value="Reserve" name="mode" (click)="onReportTypeChange(ship.id, 'Reserve')" id="mode_reservation" autocomplete="off"
-            /> Reserve
-          </label>
+        <div class="col-auto">
+          <div class="btn-group btn-group-sm" role="group">
+            <a class="btn btn-sm" [ngClass]="reportType == 'Sell' ? 'btn-primary text-white': 'btn-light'" (click)="onReportTypeChange(ship.id,'Sell')" >Sells</a>
+            <a class="btn btn-sm" [ngClass]="reportType == 'Reserve' ? 'btn-primary text-white': 'btn-light'" (click)="onReportTypeChange(ship.id, 'Reserve')" >Journey Date</a>
+          </div>
         </div>
 
         <div class="ml-auto col-auto">
@@ -46,55 +35,52 @@
       </div>
 
       <div class="row">
-        <div class="col-12">
-          <div *ngIf="loading">
-            <app-loading></app-loading>
-          </div>
-
-          <div *ngIf="
-              serviceAdminSellsReportRangeList.length > 0 && !loading;
-                else noRecord
-              ">
-            <h3 class="text-center">
-              {{ reportType }} report for date of : {{ daterange.checkinDate | date: ' d MMM y' }} to {{ daterange.checkoutDate | date:
-              ' d MMM y' }}
-            </h3>
-            <table class="table table-bordered table-hover table-responsive-sm">
-              <thead>
-                <tr>
-                  <th>Sl.</th>
-                  <th>Date</th>
-                  <th>Ship Number</th>
-                  <th>Ship Name</th>
-                  <th>Total Number Of Seat</th>
-                  <th>Total Fare</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let report of serviceAdminSellsReportRangeList; index as i">
-                  <td>{{ i + 1 }}</td>
-                  <td>{{ report.date | date: 'MMM d, y' }}</td>
-                  <td>{{ report.shipNumber }}</td>
-                  <td>{{ report.shipName }}</td>
-                  <td>{{ report.totalNumberOfSeat }}</td>
-                  <td class="text-right">{{ report.totalFare }}</td>
-                </tr>
-              </tbody>
-              <tfoot>
-                <tr>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <th class="text-right">TOTAL</th>
-                  <td class="text-right">{{total}}</td>
-                </tr>
-              </tfoot>
-            </table>
-          </div>
-          <ng-template #noRecord>
-            <h4 class="text-center">
-              <i class="fa fa-frown-o"></i> No record yet</h4>
+        <div class="col-12">          
+          <ng-container *ngIf="!loading; else showLoading">
+            <div *ngIf="serviceAdminSellsReportRangeList.length > 0;else noRecord ">
+              <h4 class="text-center"> {{ reportType }} report for date of : {{ daterange.checkinDate | date: ' d MMM y'
+                }} to {{ daterange.checkoutDate | date: ' d MMM y' }} </h4>
+              <table class="table table-bordered table-hover table-responsive-sm">
+                <thead>
+                  <tr>
+                    <th>Sl.</th>
+                    <th>Date</th>
+                    <th>Ship Number</th>
+                    <th>Ship Name</th>
+                    <th>Total Number Of Seat</th>
+                    <th>Total Fare</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let report of serviceAdminSellsReportRangeList; index as i">
+                    <td>{{ i + 1 }}</td>
+                    <td>{{ report.date | date: 'MMM d, y' }}</td>
+                    <td>{{ report.shipNumber }}</td>
+                    <td>{{ report.shipName }}</td>
+                    <td>{{ report.totalNumberOfSeat }}</td>
+                    <td class="text-right">{{ report.totalFare }}</td>
+                  </tr>
+                </tbody>
+                <tfoot>
+                  <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <th class="text-right">TOTAL</th>
+                    <td class="text-right">{{total}}</td>
+                  </tr>
+                </tfoot>
+              </table>
+            </div>
+            <ng-template #noRecord>
+              <h4 class="text-center">
+                <i class="fa fa-frown-o"></i> No record yet
+              </h4>
+            </ng-template>
+          </ng-container>
+          <ng-template #showLoading>
+            <loading></loading>
           </ng-template>
         </div>
       </div>

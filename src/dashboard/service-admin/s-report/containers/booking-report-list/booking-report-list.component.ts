@@ -82,7 +82,16 @@ export class BookingReportListComponent implements OnInit {
             break;
         }
         if (sb.soldBy) {
-          this.soldBy.set(sb.soldBy, this.soldBy.get(sb.soldBy) ? this.soldBy.get(sb.soldBy) + sb.seatNumbers.length : sb.seatNumbers.length);
+          switch (sb.role) {
+            case 'ROLE_SERVICE_AGENT':
+            case 'ROLE_SERVICE_ADMIN':
+              this.soldBy.set(sb.soldBy, this.soldBy.get(sb.soldBy) ? this.soldBy.get(sb.soldBy) + sb.seatNumbers.length : sb.seatNumbers.length);
+              break;
+            case 'ROLE_AGENT':
+            case 'ROLE_ADMIN':
+              this.soldBy.set("Hotelswave.com", this.soldBy.get("Hotelswave.com") ? this.soldBy.get("Hotelswave.com") + sb.seatNumbers.length : sb.seatNumbers.length);
+              break;
+          }
         }
       }
 

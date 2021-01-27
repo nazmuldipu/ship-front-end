@@ -97,11 +97,12 @@ export class SellsReportComponent implements OnInit {
   }
 
   async getAdminReservationReport({ year, month, day }) {
-    this.loading = true;
     month = month < 10 ? '0' + month : month;
     day = day < 10 ? '0' + day : day;
     const date = `${year}-${month}-${day}`;
     try {
+      this.loading = true;
+      this.serviceAdminSellsReportList = [];
       this.savedList = await this.reportService.getAdminReservationReport(date).toPromise();
       this.onFilterChange(this.filterValue);
       this.reportHead = 'Reservation';
@@ -110,12 +111,13 @@ export class SellsReportComponent implements OnInit {
   }
 
   async getAdminSellsgReport({ year, month, day }) {
-    this.loading = true;
     month = month < 10 ? '0' + month : month;
     day = day < 10 ? '0' + day : day;
 
     const date = `${year}-${month}-${day}`;
     try {
+      this.loading = true;
+      this.serviceAdminSellsReportList = [];
       this.savedList = await this.reportService.getAdminSellsReport(date).toPromise();
       this.savedList.sort(this.utilService.dynamicSortObject('date'));
       this.savedList.sort(this.utilService.dynamicSortObject('roomNumber'));
@@ -136,8 +138,14 @@ export class SellsReportComponent implements OnInit {
         const hotelswaveAgentCommission = this.soldBy.get(sb.soldBy) == null ? sb.hotelswaveAgentCommission : this.soldBy.get(sb.soldBy).hotelswaveAgentCommission + sb.hotelswaveAgentCommission;
         const shipAgentCommission = this.soldBy.get(sb.soldBy) == null ? sb.shipAgentCommission : this.soldBy.get(sb.soldBy).shipAgentCommission + sb.shipAgentCommission;
         const seatNumbers = this.soldBy.get(sb.soldBy) == null ? sb.seatNumbers.length : this.soldBy.get(sb.soldBy).totalSeatNumber + sb.seatNumbers.length;
+        let price = 0;
+        
+        if (sb.bookingStatus == 'SEAT_SOLD')
+          price = this.soldBy.get(sb.soldBy) == null ? sb.price : this.soldBy.get(sb.soldBy).price + sb.price;
+        else
+          price = this.soldBy.get(sb.soldBy) == null ? 0 : this.soldBy.get(sb.soldBy).price;
 
-        const value: Counter = { hotelswaveCommission: hotelswaveCommission, hotelswaveAgentCommission: hotelswaveAgentCommission, shipAgentCommission: shipAgentCommission, totalSeatNumber: seatNumbers }
+        const value: Counter = { hotelswaveCommission: hotelswaveCommission, hotelswaveAgentCommission: hotelswaveAgentCommission, shipAgentCommission: shipAgentCommission, totalSeatNumber: seatNumbers, price: price }
         this.soldBy.set(sb.soldBy, value);
       }
     });
