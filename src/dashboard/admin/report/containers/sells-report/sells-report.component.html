@@ -60,7 +60,7 @@
     <div class="col-12">
       <ng-container *ngIf="!loading; else showLoding">
         <div *ngIf="serviceAdminSellsReportList.length > 0; else noRecord ">
-          <report-table [type] = "reportType" [date]="dd" [reportList]="serviceAdminSellsReportList"></report-table>          
+          <report-table [type] = "reportType" [headLine]="getHeadLine()" [reportList]="serviceAdminSellsReportList"></report-table>          
         </div>
         <ng-template #noRecord>
           <h4 class="text-center">

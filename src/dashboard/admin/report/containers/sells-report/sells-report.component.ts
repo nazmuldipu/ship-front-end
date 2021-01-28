@@ -124,5 +124,9 @@ export class SellsReportComponent implements OnInit {
     } catch (err) { console.log(err) }
   }
 
+  getHeadLine(){
+    return this.reportType + ' report for ' + this.utilService.getDateStringFromDateObj(this.dd);
+  }
+
   
 }

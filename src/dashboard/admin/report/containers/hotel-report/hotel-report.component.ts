@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Ship } from 'src/shared/models/ship.model';
 import { Report } from 'src/shared/models/report.model';
 import { ReportService } from 'src/service/report.service';
+import { UtilService } from 'src/service/util.service';
 
 @Component({
   selector: 'app-hotel-report',
@@ -16,7 +17,7 @@ export class HotelReportComponent implements OnInit {
   serviceAdminSellsReportList: Report[] = [];
   total;
 
-  constructor(private reportService: ReportService) { }
+  constructor(private reportService: ReportService, private utilService: UtilService) { }
 
   ngOnInit() {
     let date = new Date();
@@ -85,4 +86,9 @@ export class HotelReportComponent implements OnInit {
       this.total.totalrent += sb.price;
     });
   }
+
+  getHeadLine() {
+    return this.reportType + ' report for ' + this.utilService.getDateStringFromDateObj(this.dd);
+  }
+
 }

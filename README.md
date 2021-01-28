@@ -111,3 +111,6 @@ Update 20201202:
 [] Super sell 
 [] Cancellation report for super admin
 [] Service admin should not able to see hotelswave.com agent sells
+
+git log --pretty=format:"%h%x09%an%x09%ad%x09%s"
+
