@@ -1,0 +1,89 @@
+<h4 class="text-center"> {{headLine}} </h4>
+<table class="table table-bordered table-hover table-responsive-sm">
+    <thead>
+        <tr>
+            <th>Sl.</th>
+            <th *ngIf="type == 'Reservation'">Seat</th>
+            <th>Ticket no.</th>
+            <th>Booking Date</th>
+            <th>Journey Date</th>
+            <th>Passenger Info</th>
+            <th>Seats</th>
+            <th>Price</th>
+            <th>Commission</th>
+            <th>Route</th>
+            <th>Sold By</th>
+            <th>Status</th>
+            <th>Paid</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let report of reportList; index as i">
+            <td>{{ i + 1 }}</td>
+            <th *ngIf="type == 'Reservation'">
+                <span *ngFor="let seat of report.seatNumbers">
+                    {{ seat }}
+                </span>
+            </th>
+            <td>{{ report.bookingId }}</td>
+            <td>{{ report.bookingDate | date: 'MMM d, y, h:mm:ss a' }}</td>
+            <td>{{ report.journeyDate | date }}</td>
+            <td>{{ report.customerName }} - {{ report.customerPhone }}</td>
+            <td>
+                <span *ngFor="let seat of report.seatNumbers">{{ seat }},
+                </span>
+            </td>
+            <td>{{ report.price }}</td>
+            <td>{{ report.hotelswaveCommission + report.hotelswaveAgentCommission + report.shipAgentCommission }}
+            </td>
+            <td>{{ report.shipNumber }} - {{ report.routes }}</td>
+            <td>{{ report.soldBy }}</td>
+            <td>{{ report.bookingStatus }}</td>
+            <td [ngClass]="{
+          'bg-success': report.paid,
+          'bg-warning': !report.paid
+        }">
+                {{ report.paid ? 'Paid' : 'Unpaid' }}
+            </td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <tr>
+            <td></td>
+            <td *ngIf="type == 'Reservation'"></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>TOTAL</td>
+            <td>{{ total.totalrent }}</td>
+            <td>{{ total.totalCommission }}</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </tfoot>
+</table>
+<table class="table table-bordered table-hover table-responsive-sm">
+    <tr>
+        <th>Counter Name</th>
+        <th>Reserved</th>
+        <th>Sold </th>
+        <!-- <th>No of seat sold / Reserved</th> -->
+        <th>Price</th>
+        <th>Hotelswave Commission</th>
+        <th>Hotelswave Agent Commission</th>
+        <th>Ship Agent Commission</th>
+    </tr>
+    <tr *ngFor="let item of (soldBy | keyvalue)">
+        <td>{{item.key}}</td>
+        <td>{{item.value.totalReserved}}</td>
+        <td>{{item.value.totalSold}}</td>
+        <!-- <td>{{item.value.totalSeatNumber}}</td> -->
+        <td>{{item.value.price}}</td>
+        <td>{{item.value.hotelswaveCommission}}</td>
+        <td>{{item.value.hotelswaveAgentCommission}}</td>
+        <td>{{item.value.shipAgentCommission}}</td>
+    </tr>
+</table>

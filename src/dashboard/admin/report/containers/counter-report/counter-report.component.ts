@@ -151,9 +151,19 @@ export class CounterReportComponent implements OnInit {
         const hotelswaveAgentCommission = this.soldBy.get(sb.soldBy) == null ? sb.hotelswaveAgentCommission : this.soldBy.get(sb.soldBy).hotelswaveAgentCommission + sb.hotelswaveAgentCommission;
         const shipAgentCommission = this.soldBy.get(sb.soldBy) == null ? sb.shipAgentCommission : this.soldBy.get(sb.soldBy).shipAgentCommission + sb.shipAgentCommission;
         const seatNumbers = this.soldBy.get(sb.soldBy) == null ? sb.seatNumbers.length : this.soldBy.get(sb.soldBy).totalSeatNumber + sb.seatNumbers.length;
-        const price = this.soldBy.get(sb.soldBy) == null ? sb.price : this.soldBy.get(sb.soldBy).price + sb.price;
+        let price = 0;
+        let totalSold = 0;
+        let totalReserved = 0;
+        if (sb.bookingStatus == 'SEAT_SOLD') {
+          totalSold = this.soldBy.get(sb.soldBy) == null ? sb.seatNumbers.length : this.soldBy.get(sb.soldBy).totalSold + sb.seatNumbers.length;
+          price = this.soldBy.get(sb.soldBy) == null ? sb.price : this.soldBy.get(sb.soldBy).price + sb.price;
+        }
+        else {
+          totalReserved = this.soldBy.get(sb.soldBy) == null ? sb.seatNumbers.length : this.soldBy.get(sb.soldBy).totalReserved + sb.seatNumbers.length;
+          price = this.soldBy.get(sb.soldBy) == null ? 0 : this.soldBy.get(sb.soldBy).price;
+        }
 
-        const value: Counter = { hotelswaveCommission: hotelswaveCommission, hotelswaveAgentCommission: hotelswaveAgentCommission, shipAgentCommission: shipAgentCommission, totalSeatNumber: seatNumbers, price }
+        const value: Counter = { totalSold: totalSold, totalReserved: totalReserved, price: price, hotelswaveCommission: hotelswaveCommission, hotelswaveAgentCommission: hotelswaveAgentCommission, shipAgentCommission: shipAgentCommission, totalSeatNumber: seatNumbers }
         this.soldBy.set(sb.soldBy, value);
       }
 

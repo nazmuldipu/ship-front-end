@@ -3,5 +3,7 @@ export interface Counter {
     hotelswaveAgentCommission: number;
     shipAgentCommission: number;
     totalSeatNumber: number;
+    totalSold: number;
+    totalReserved: number;
     price: number;
 }

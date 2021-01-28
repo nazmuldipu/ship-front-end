@@ -3,6 +3,7 @@ import { ReportService } from 'src/service/report.service';
 import { UtilService } from 'src/service/util.service';
 import { Report } from 'src/shared/models/report.model';
 import { Counter } from 'src/shared/models/counter.model';
+import { NgbDate } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-sells-report',
@@ -10,7 +11,7 @@ import { Counter } from 'src/shared/models/counter.model';
   styleUrls: ['./sells-report.component.scss']
 })
 export class SellsReportComponent implements OnInit {
-  dd;
+  dd: NgbDate;
   reportHead = '';
   reportType = 'Sells';
   filterValue = 'all';
@@ -27,11 +28,8 @@ export class SellsReportComponent implements OnInit {
 
   ngOnInit() {
     let date = new Date();
-    this.dd = {
-      year: date.getFullYear(),
-      month: date.getMonth() + 1,
-      day: date.getDate()
-    };
+    this.dd = new NgbDate( date.getFullYear(), date.getMonth() + 1, date.getDate());
+    
     this.getAdminSellsgReport(this.dd);
   }
 
@@ -61,7 +59,7 @@ export class SellsReportComponent implements OnInit {
           sl => sl.role === 'Service Admin'
         );
         break;
-      case 'shipAgentr':
+      case 'shipAgent':
         this.serviceAdminSellsReportList = this.savedList.filter(
           sl => sl.role === 'Service Agent'
         );
@@ -82,7 +80,6 @@ export class SellsReportComponent implements OnInit {
         );
         break;
     }
-    this.calculateServiceAdminBookingReportList();
   }
 
   onLoad() {
@@ -127,27 +124,5 @@ export class SellsReportComponent implements OnInit {
     } catch (err) { console.log(err) }
   }
 
-  calculateServiceAdminBookingReportList() {
-    this.total = { totalrent: 0, totalAdvance: 0, totalDue: 0, totalCommission: 0 };
-    this.soldBy = new Map<string, Counter>();
-    this.serviceAdminSellsReportList.forEach(sb => {
-      this.total.totalrent += sb.price;
-      this.total.totalCommission += (sb.hotelswaveAgentCommission + sb.hotelswaveCommission + sb.shipAgentCommission);
-      if (sb.soldBy && sb.seatNumbers) {
-        const hotelswaveCommission = this.soldBy.get(sb.soldBy) == null ? sb.hotelswaveCommission : this.soldBy.get(sb.soldBy).hotelswaveCommission + sb.hotelswaveCommission;
-        const hotelswaveAgentCommission = this.soldBy.get(sb.soldBy) == null ? sb.hotelswaveAgentCommission : this.soldBy.get(sb.soldBy).hotelswaveAgentCommission + sb.hotelswaveAgentCommission;
-        const shipAgentCommission = this.soldBy.get(sb.soldBy) == null ? sb.shipAgentCommission : this.soldBy.get(sb.soldBy).shipAgentCommission + sb.shipAgentCommission;
-        const seatNumbers = this.soldBy.get(sb.soldBy) == null ? sb.seatNumbers.length : this.soldBy.get(sb.soldBy).totalSeatNumber + sb.seatNumbers.length;
-        let price = 0;
-        
-        if (sb.bookingStatus == 'SEAT_SOLD')
-          price = this.soldBy.get(sb.soldBy) == null ? sb.price : this.soldBy.get(sb.soldBy).price + sb.price;
-        else
-          price = this.soldBy.get(sb.soldBy) == null ? 0 : this.soldBy.get(sb.soldBy).price;
-
-        const value: Counter = { hotelswaveCommission: hotelswaveCommission, hotelswaveAgentCommission: hotelswaveAgentCommission, shipAgentCommission: shipAgentCommission, totalSeatNumber: seatNumbers, price: price }
-        this.soldBy.set(sb.soldBy, value);
-      }
-    });
-  }
+  
 }

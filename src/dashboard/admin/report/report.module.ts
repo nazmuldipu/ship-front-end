@@ -9,6 +9,7 @@ import { AgentDateReportComponent } from './components/agent-date-report/agent-d
 import { AgentDateReportRangeComponent } from './components/agent-date-report-range/agent-date-report-range.component';
 import { CounterReportComponent } from './containers/counter-report/counter-report.component';
 import { TicketCountComponent } from './containers/ticket-count/ticket-count.component';
+import { ReportTableComponent } from './components/report-table/report-table.component';
 
 export const ROUTES: Routes = [
   { path: 'sells', component: SellsReportComponent },
@@ -19,7 +20,7 @@ export const ROUTES: Routes = [
 ];
 
 @NgModule({
-  declarations: [SellsReportComponent, HotelReportComponent, SellsReportRangeComponent, AgentDateReportComponent, AgentDateReportRangeComponent, CounterReportComponent, TicketCountComponent],
+  declarations: [SellsReportComponent, HotelReportComponent, SellsReportRangeComponent, AgentDateReportComponent, AgentDateReportRangeComponent, CounterReportComponent, TicketCountComponent, ReportTableComponent],
   imports: [AdminSharedModule, RouterModule.forChild(ROUTES)]
 })
 export class ReportModule { }
