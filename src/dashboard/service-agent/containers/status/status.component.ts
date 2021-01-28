@@ -1,13 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Ship } from 'src/shared/models/ship.model';
-import { SeatsService } from 'src/service/seats.service';
-import {
-  Booking,
-  SeatStatus,
-  SeatStatusList
-} from 'src/shared/models/booking.model';
-import { BookingService } from 'src/service/booking.service';
 import { UtilService } from 'src/service/util.service';
+import { BookingService } from 'src/service/booking.service';
+import { SeatsService } from 'src/service/seats.service';
+import { Booking, SeatStatusList, SeatStatus } from 'src/shared/models/booking.model';
+import { Ship } from 'src/shared/models/ship.model';
+import { ShipService } from 'src/service/ship.service';
 
 @Component({
   selector: 'app-status',
@@ -19,21 +16,26 @@ export class StatusComponent implements OnInit {
   minDate;
   maxDate;
   ticket: Booking;
+  ships: Ship[];
   ship: Ship;
   category: string;
+  categoryList: string[] = [];
   seatList: SeatStatusList[] = [];
   filteredSeatList: SeatStatusList[] = [];
-  categoryList: string[] = [];
   shortTicket = true;
+
   errorMessage = '';
+  loading = false;
 
-  constructor(
-    private seatsService: SeatsService,
-    private bookingService: BookingService,
-    private utilService: UtilService
-  ) { }
+  constructor(private seatsService: SeatsService, private bookingService: BookingService,
+    private shipService: ShipService, private utilService: UtilService) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
+    this.setDateRanges();
+    this.getServiceAgentShips();
+  }
+
+  setDateRanges() {
     let date = new Date();
     this.dd = {
       year: date.getFullYear(),
@@ -58,14 +60,26 @@ export class StatusComponent implements OnInit {
     }
   }
 
-  onShipSelect(ship: Ship) {
+  onSelectShip(ship: Ship) {
+    console.log(ship);
     this.ship = ship;
     this.getShipSeatStatus(ship.id, this.dd);
   }
 
+  async getServiceAgentShips() {
+    try {
+      this.errorMessage = '';
+      this.loading = true;
+      this.ships = await this.shipService.getServiceAgentShips().toPromise();
+      this.ships.sort(this.utilService.dynamicSortObject('priority'));
+      this.loading = false;
+    } catch (err) { console.log(err); this.errorMessage = err['error']; }
+  }
+
   async getShipSeatStatus(shipId, date) {
     try {
-      this.seatList = await this.seatsService.getServiceAdminSeatStatusListByShiplId(shipId, this.makeDateString(date)).toPromise();
+      this.errorMessage = '';
+      this.seatList = await this.seatsService.getServiceAgentSeatStatusListByShiplId(shipId, this.utilService.getDateStringFromDateObj(date)).toPromise();
       this.categoryList = [];
       this.seatList.forEach(s => {
         const cat = s.category;
@@ -75,8 +89,8 @@ export class StatusComponent implements OnInit {
         }
       });
       this.categoryList.sort(this.utilService.dynamicSortObject('priority'));
-      this.onSelectCategory(this.categoryList[this.categoryList.length - 1]);
-    } catch (err) { console.log(err) }
+      this.onSelectCategory(this.categoryList[0]);
+    } catch (err) { console.log(err); this.errorMessage = err['error']; }
   }
 
   onSelectCategory(category: string) {
@@ -93,57 +107,22 @@ export class StatusComponent implements OnInit {
     });
   }
 
-  makeDateString(date) {
-    const dateString = date.year + '-' + (date.month < 10 ? '0' + date.month : date.month) + '-' + (date.day < 10 ? '0' + date.day : date.day);
-    return dateString;
-  }
-
   onSeatClick(id: number) {
     const value: SeatStatusList = this.filteredSeatList.find(fs => fs.id == id);
     if (value.bookingId) {
       if (this.ticket == null || this.ticket.id != value.bookingId) {
-        this.getServiceAdminBooking(value.bookingId);
+        this.getServiceAgentBooking(value.bookingId);
       }
     } else {
       this.ticket = null;
     }
   }
 
-  async getServiceAdminBooking(bookingId) {
+  async getServiceAgentBooking(bookingId) {
+    this.errorMessage = '';
     try {
-      this.ticket = await this.bookingService.getServiceAdminBooking(bookingId).toPromise();
-    } catch (err) { console.log(err) }
-  }
-
-  async onCancelBooking(bookingId, status) {
-    if (confirm('Are you sure to cancel booking with id : ' + bookingId)) {
-      if (status == SeatStatus.SEAT_SOLD) {
-        try {
-          const resp = await this.bookingService.cancelServiceAdminBooking(bookingId).toPromise();
-          this.getShipSeatStatus(this.ship.id, this.dd);
-          this.ticket = null;
-        } catch (err) { console.log(err) }
-
-      } else if (status == SeatStatus.SEAT_RESERVED) {
-        try {
-          await this.bookingService.cancelServiceAdminReservation(bookingId).toPromise();
-          this.ticket = null;
-          this.getShipSeatStatus(this.ship.id, this.dd);
-        } catch (err) { console.log(err) }
-      }
-    }
-  }
-
-  async onConfirmReservation(bookingId) {
-    if (
-      confirm('Are you sure to confirm your reservation with id : ' + bookingId)
-    ) {
-      try {
-        await this.bookingService.confirmServiceAdminReservation(bookingId).toPromise();
-        this.ticket = null;
-        this.getShipSeatStatus(this.ship.id, this.dd);
-      } catch (err) { console.log(err['error']); this.errorMessage = err['error']; }
-    }
+      this.ticket = await this.bookingService.getServiceAgentBooking(bookingId).toPromise();
+    } catch (err) { console.log(err); this.errorMessage = err['error']; }
   }
 
   onTicketClose(event) {
@@ -153,5 +132,38 @@ export class StatusComponent implements OnInit {
   onClear() {
     this.errorMessage = '';
     this.ticket = null;
+  }
+
+  async onCancelBooking(bookingId, status) {
+    if (confirm('Are you sure to cancel booking with id : ' + bookingId)) {
+      this.errorMessage = '';
+      if (status == SeatStatus.SEAT_SOLD) {
+        try {
+          const resp = await this.bookingService.cancelServiceAgentBooking(bookingId).toPromise();
+          this.getShipSeatStatus(this.ship.id, this.dd);
+          this.ticket = null;
+        } catch (err) { console.log(err); this.errorMessage = err['error']; }
+
+      } else if (status == SeatStatus.SEAT_RESERVED) {
+        try {
+          await this.bookingService.cancelServiceAgentReservation(bookingId).toPromise();
+          this.ticket = null;
+          this.getShipSeatStatus(this.ship.id, this.dd);
+        } catch (err) { console.log(err); this.errorMessage = err['error']; }
+      }
+    }
+  }
+
+  async onConfirmReservation(bookingId) {
+    if (
+      confirm('Are you sure to confirm your reservation with id : ' + bookingId)
+    ) {
+      this.errorMessage = '';
+      try {
+        await this.bookingService.confirmServiceAgentReservation(bookingId).toPromise();
+        this.ticket = null;
+        this.getShipSeatStatus(this.ship.id, this.dd);
+      } catch (err) { console.log(err['error']); this.errorMessage = err['error']; }
+    }
   }
 }

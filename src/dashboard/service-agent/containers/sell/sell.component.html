@@ -10,7 +10,6 @@
       <i class="fa fa-chevron-left"></i> &nbsp;
     </div>
     <div class="col-auto">
-      <!-- <ngb-datepicker #d></ngb-datepicker> -->
       <div class="form-group mb-0">
         <div class="input-group">
           <div class="input-group-prepend">
@@ -20,7 +19,7 @@
           </div>
           <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="dd" [minDate]="minDate"
             [maxDate]="maxDate" ngbDatepicker #date="ngbDatepicker" (dateSelect)="closeDetails()"
-            (click)="date.toggle()" readonly/>
+            (click)="date.toggle()" readonly />
           <div class="input-group-append" (click)="date.toggle()">
             <div class="input-group-text">
               <i class="fa fa-calendar"></i>
@@ -31,7 +30,6 @@
     </div>
 
     <div class="input-group-text btn btn-secondary" (click)="adjustDay(1)">
-      <!-- Next day  -->
       &nbsp;
       <i class="fa fa-chevron-right"></i>
     </div>
@@ -64,24 +62,21 @@
       <div class="ship-details">
         <loading *ngIf="seatLoading"></loading>
         <div *ngIf="seatList">
-          <div class="d-flex flex-row-reverse">
+          <!-- <div class="d-flex flex-row-reverse">
             <button class="btn btn-sm btn-danger" type="button" (click)="closeDetails()" style="border-radius: 0;">
               <i class="fa fa-times"></i>
             </button>
-          </div>
+          </div> -->
 
           <div class="row">
             <div class="col-md-6">
               <div class="row m-0">
-                <span *ngFor="let cat of categoryList">
-                  <button *ngIf="cat.name !='Standing'" class="btn-sm m-1" [ngClass]="
-                      cat.id == category.id ? 'btn-primary' : 'btn-secondary'
-                    " (click)="onSelectCategory(cat.id)">
-                    {{ cat.name }}
-                  </button>
-                </span>
+                <div class="btn-group border ml-1" role="group">
+                  <label type="button" class="btn btn-sm m-0" *ngFor="let cat of categoryList"
+                    [ngClass]="(cat.id == category.id )? 'btn-primary' : 'btn-light'"
+                    (click)="onSelectCategory(cat.id)">{{cat.name}}</label>
+                </div>
               </div>
-
               <seat-plan-other *ngIf="ship.shipName =='OTHER'" [filteredSeatList]="filteredSeatList"
                 [selectedSeat]="selectedSeat" [categoryName]="category?.name" (select)="onSeatClick($event)">
               </seat-plan-other>
@@ -94,20 +89,25 @@
 
             </div>
             <div class="col-md-6 mb-3">
-              <!-- <div class="btn-group btn-group-toggle border" data-toggle="buttons">
-                <label class="btn" [ngClass]="{
-                    'btn-primary active': mode == 'SEAT_SOLD',
-                    'btn-light': mode != 'SEAT_SOLD'
-                  }">
-                  <input type="radio" value="SEAT_SOLD" name="mode" [(ngModel)]="mode" id="mode_sell" autocomplete="off" /> Sell
-                </label>
-                <label class="btn btn-primary" [ngClass]="{
-                    'btn-primary active': mode == 'SEAT_RESERVED',
-                    'btn-light': mode != 'SEAT_RESERVED'
-                  }">
-                  <input type="radio" value="SEAT_RESERVED" name="mode" [(ngModel)]="mode" id="mode_reservation" autocomplete="off" /> Reserve
-                </label>
-              </div> -->
+              <div class="row">
+                <div class="col">
+                  <div class="btn-group" role="group" *ngIf="canReserve">
+                    <label type="button" class="btn btn-sm"
+                      [ngClass]="(mode == 'SEAT_SOLD')? 'btn-primary' : 'btn-light'"
+                      (click)="mode='SEAT_SOLD'">Sell</label>
+                    <label type="button" class="btn btn-sm"
+                      [ngClass]="(mode == 'SEAT_RESERVED')? 'btn-primary' : 'btn-light'"
+                      (click)="mode='SEAT_RESERVED'">Reserve</label>
+                  </div>
+                </div>
+                <div class="col-auto">
+                  <button class="ml-auto btn btn-sm btn-danger" type="button" (click)="closeDetails()"
+                    style="border-radius: 0;"> <i class="fa fa-times"></i> </button>
+                </div>
+              </div>
+
+
+
               <div *ngIf="!dataSending && selectedSeat.length">
                 <ticket-details [seatList]="selectedSeat"></ticket-details>
                 <user-form (create)="onCreateUser($event)"></user-form>

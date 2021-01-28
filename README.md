@@ -2,6 +2,37 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.8.
 
+
+# Roles funstions:
+## Ship admin:
+    1) CRUD agent with commission rate
+    2) Sell/Reserve with 2 month advance.
+    3) Seat status with cancel reservation
+    4) Cancel seat reservation one by one
+    5) Print ticket with booking id
+    6) Accounting cash book
+    7) Accounting Add incomes
+    8) Accounting Add expenses
+    9) Hotelswave ledger
+    10) Agent balance
+    11) Report : Sells report by sells day/ by journey day
+    12) Report : Sells report range by sells day/ by journey day
+    13) Report : Counter Report
+    14) Report : Booking report
+    15) Report : Individual report
+    16) Report : Agent cash
+
+## Ship agent:
+    1) Sell with 1 month advance
+    2) My sells
+    3) Ledger
+    4) My Balance
+
+### Optinals
+    5) Reservation
+    6) Cancel reservation
+    7) Cancel booking    
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.

@@ -4,6 +4,7 @@
 
 <div class="container-fluid">
   <div class="row">
+    <!-- Ship list -->
     <div class="col-md-2 d-print-none">
       <div class="form-group mb-0">
         <div class="input-group">
@@ -22,11 +23,23 @@
           </div>
         </div>
       </div>
-      <service-admin-ship-list (ship)="onShipSelect($event)"></service-admin-ship-list>
+      <ul class="list-group">
+        <li class="list-group-item">
+          <h5>Ship List</h5>
+          <small>Choose a ship from below list</small>
+        </li>
+
+        <a *ngFor="let ship of ships" class="list-group-item list-group-item-action" (click)="onSelectShip(ship)">
+          <i class="fa fa-ship"></i> {{ ship.shipNumber }}-{{ ship.name }}
+        </a>
+      </ul>
     </div>
 
+    <!-- Ship seat list -->
     <div class="col-md-5 d-print-none" *ngIf="filteredSeatList.length">
       <h4>{{ ship?.shipNumber }}-{{ ship?.name }} Seat status</h4>
+
+      <!-- Category list with clickable -->
       <div class="row m-0">
         <div class="btn-group border ml-1" role="group">
           <label type="button" class="btn btn-sm m-0" *ngFor="let cat of categoryList"
@@ -34,7 +47,9 @@
             (click)="onSelectCategory(cat)">{{cat.name}}</label>
         </div>
       </div>
+
       <div class="row">
+        <!-- {{filteredSeatList|json}} -->
         <div class="col-12 p-0">
           <seat-status-bay-cruiser *ngIf="ship.shipName=='BAY_CRUISE'" [filteredSeatList]="filteredSeatList"
             [categoryName]="category.name" (select)="onSeatClick($event)"></seat-status-bay-cruiser>
@@ -64,6 +79,7 @@
       </div>
     </div>
 
+    <!-- Show ticket -->
     <div class="col-md-5" *ngIf="ticket">
       <div class="alert alert-warning alert-dismissible fade show" role="alert" *ngIf="errorMessage.length>0">
         <strong>Error!</strong> {{errorMessage}}
@@ -89,4 +105,3 @@
       </div>
     </div>
   </div>
-</div>

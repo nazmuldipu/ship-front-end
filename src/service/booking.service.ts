@@ -10,10 +10,10 @@ import { HttpParams } from '@angular/common/http';
 })
 export class BookingService {
   serviceUrl = 'api/v1/booking';
-  serviceAdminUrl = 'api/v1/admin/booking';
-  serviceAdminAgentUrl = 'api/v1/adminAgent/booking';
-  serviceServiceAdminUrl = 'api/v1/serviceAdmin/booking';
-  serviceServiceAgentUrl = 'api/v1/serviceAgent/booking';
+  adminUrl = 'api/v1/admin/booking';
+  agentUrl = 'api/v1/adminAgent/booking';
+  serviceAdminUrl = 'api/v1/serviceAdmin/booking';
+  serviceAgentUrl = 'api/v1/serviceAgent/booking';
 
   constructor(private dataSource: RestDataService) { }
 
@@ -22,7 +22,7 @@ export class BookingService {
     const param = new HttpParams().set('page', page.toString());
     return this.dataSource.sendRequest(
       'GET',
-      this.serviceAdminUrl,
+      this.adminUrl,
       null,
       true,
       param
@@ -32,7 +32,7 @@ export class BookingService {
   getAdminBooking(bookingId: number): Observable<Booking> {
     return this.dataSource.sendRequest(
       'GET',
-      this.serviceAdminUrl + `/${bookingId}`,
+      this.adminUrl + `/${bookingId}`,
       null,
       true,
       null
@@ -42,7 +42,7 @@ export class BookingService {
   createAdminBooking(booking: Booking): Observable<Booking> {
     return this.dataSource.sendRequest(
       'POST',
-      this.serviceAdminUrl + `/sell`,
+      this.adminUrl + `/sell`,
       booking,
       true,
       null
@@ -52,7 +52,7 @@ export class BookingService {
   confirmAdminReservation(bookingId): Observable<Booking> {
     return this.dataSource.sendRequest(
       'PUT',
-      this.serviceAdminUrl + `/confirmReservation/${bookingId}`,
+      this.adminUrl + `/confirmReservation/${bookingId}`,
       null,
       true,
       null
@@ -63,7 +63,7 @@ export class BookingService {
     const param = new HttpParams().set('page', page.toString());
     return this.dataSource.sendRequest(
       'GET',
-      this.serviceAdminUrl + '/mySells',
+      this.adminUrl + '/mySells',
       null,
       true,
       param
@@ -73,7 +73,7 @@ export class BookingService {
   cancelAdminBooking(bookindId: number): Observable<any> {
     return this.dataSource.sendRequest(
       'DELETE',
-      this.serviceAdminUrl + `/cancelBooking/${bookindId}`,
+      this.adminUrl + `/cancelBooking/${bookindId}`,
       null,
       true,
       null
@@ -83,7 +83,7 @@ export class BookingService {
   cancelAdminReservation(bookindId: number): Observable<any> {
     return this.dataSource.sendRequest(
       'DELETE',
-      this.serviceAdminUrl + `/cancelReservation/${bookindId}`,
+      this.adminUrl + `/cancelReservation/${bookindId}`,
       null,
       true,
       null
@@ -94,7 +94,7 @@ export class BookingService {
   createAdminAgentBooking(booking: Booking): Observable<Booking> {
     return this.dataSource.sendRequest(
       'POST',
-      this.serviceAdminAgentUrl + `/sell`,
+      this.agentUrl + `/sell`,
       booking,
       true,
       null
@@ -105,7 +105,7 @@ export class BookingService {
     const param = new HttpParams().set('page', page.toString());
     return this.dataSource.sendRequest(
       'GET',
-      this.serviceAdminAgentUrl + '/mySells',
+      this.agentUrl + '/mySells',
       null,
       true,
       param
@@ -116,7 +116,7 @@ export class BookingService {
   createServiceAdminBooking(booking: Booking): Observable<Booking> {
     return this.dataSource.sendRequest(
       'POST',
-      this.serviceServiceAdminUrl + `/sell`,
+      this.serviceAdminUrl + `/sell`,
       booking,
       true,
       null
@@ -124,40 +124,22 @@ export class BookingService {
   }
 
   getServiceAdminBooking(bookingId: number): Observable<Booking> {
-    return this.dataSource.sendRequest(
-      'GET',
-      this.serviceServiceAdminUrl + `/${bookingId}`,
-      null,
-      true,
-      null
-    );
+    return this.dataSource.sendRequest('GET', this.serviceAdminUrl + `/${bookingId}`, null, true, null);
   }
 
   cancelServiceAdminBooking(bookindId: number): Observable<any> {
-    return this.dataSource.sendRequest(
-      'DELETE',
-      this.serviceServiceAdminUrl + `/cancelBooking/${bookindId}`,
-      null,
-      true,
-      null
-    );
+    return this.dataSource.sendRequest('DELETE', this.serviceAdminUrl + `/cancelBooking/${bookindId}`, null, true, null);
   }
 
   cancelServiceAdminReservation(bookindId: number): Observable<any> {
-    return this.dataSource.sendRequest(
-      'DELETE',
-      this.serviceServiceAdminUrl + `/cancelReservation/${bookindId}`,
-      null,
-      true,
-      null
-    );
+    return this.dataSource.sendRequest('DELETE', this.serviceAdminUrl + `/cancelReservation/${bookindId}`, null, true, null);
   }
 
   cancelServiceAdminReservationSeats(seatIds: number[], bookingId: number): Observable<any> {
     const param = new HttpParams().set('seatIds', seatIds.toString());
     return this.dataSource.sendRequest(
       'DELETE',
-      this.serviceServiceAdminUrl + `/cancelReservationSeats/${bookingId}`,
+      this.serviceAdminUrl + `/cancelReservationSeats/${bookingId}`,
       null,
       true,
       param
@@ -168,7 +150,7 @@ export class BookingService {
     const param = new HttpParams().set('seatIds', seatIds.toString());
     return this.dataSource.sendRequest(
       'DELETE',
-      this.serviceServiceAdminUrl + `/cancelBookingSeats/${bookingId}`,
+      this.serviceAdminUrl + `/cancelBookingSeats/${bookingId}`,
       null,
       true,
       param
@@ -176,34 +158,32 @@ export class BookingService {
   }
 
   confirmServiceAdminReservation(bookingId): Observable<Booking> {
-    return this.dataSource.sendRequest(
-      'PUT',
-      this.serviceServiceAdminUrl + `/confirmReservation/${bookingId}`,
-      null,
-      true,
-      null
-    );
+    return this.dataSource.sendRequest('PUT', this.serviceAdminUrl + `/confirmReservation/${bookingId}`, null, true, null);
   }
 
-  // ****************************** SERVICE ADMIN MODULES ***************************
+  // ****************************** SERVICE Agent MODULES ***************************
   createServiceAgentBooking(booking: Booking): Observable<Booking> {
-    return this.dataSource.sendRequest(
-      'POST',
-      this.serviceServiceAgentUrl + `/sell`,
-      booking,
-      true,
-      null
-    );
+    return this.dataSource.sendRequest('POST', this.serviceAgentUrl + `/sell`, booking, true, null);
   }
 
   getServiceAgentMySells(page: number = 0): Observable<BookingPage> {
     const param = new HttpParams().set('page', page.toString());
-    return this.dataSource.sendRequest(
-      'GET',
-      this.serviceServiceAgentUrl + '/mySells',
-      null,
-      true,
-      param
-    );
+    return this.dataSource.sendRequest('GET', this.serviceAgentUrl + '/mySells', null, true, param);
+  }
+
+  getServiceAgentBooking(bookingId: number): Observable<Booking> {
+    return this.dataSource.sendRequest('GET', this.serviceAgentUrl + `/${bookingId}`, null, true, null);
+  }
+
+  cancelServiceAgentBooking(bookindId: number): Observable<any> {
+    return this.dataSource.sendRequest('DELETE', this.serviceAgentUrl + `/cancelBooking/${bookindId}`, null, true, null);
+  }
+
+  cancelServiceAgentReservation(bookindId: number): Observable<any> {
+    return this.dataSource.sendRequest('DELETE', this.serviceAgentUrl + `/cancelReservation/${bookindId}`, null, true, null);
+  }
+
+  confirmServiceAgentReservation(bookingId): Observable<Booking> {
+    return this.dataSource.sendRequest('PUT', this.serviceAgentUrl + `/confirmReservation/${bookingId}`, null, true, null);
   }
 }
