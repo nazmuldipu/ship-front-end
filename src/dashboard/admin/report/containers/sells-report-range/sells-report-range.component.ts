@@ -74,8 +74,8 @@ export class SellsReportRangeComponent implements OnInit {
   async getAdminReservationReportRange(sd: Date, ed: Date) {
     const startDate = this.getDateString(sd);
     const endDate = this.getDateString(ed);
-    this.loading = true;
     try {
+      this.loading = true;
       this.serviceAdminSellsReportRangeList = await this.reportService.getAdminReservationRangeReport(startDate, endDate).toPromise();
       this.calculateServiceAdminBookingReportList();
       this.loading = false;
@@ -85,8 +85,8 @@ export class SellsReportRangeComponent implements OnInit {
   async getAdminSellsgReportRange(sd: Date, ed: Date) {
     let startDate = this.getDateString(sd);
     let endDate = this.getDateString(ed);
-    this.loading = true;
     try {
+      this.loading = true;
       this.serviceAdminSellsReportRangeList = await this.reportService.getAdminSellsReportRange(startDate, endDate).toPromise();
       this.calculateServiceAdminBookingReportList();
       this.loading = false;

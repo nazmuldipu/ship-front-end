@@ -28,8 +28,8 @@
     <div class="col-auto">
       <div class="form-group">
         <label for="dateRange">Date Range</label>
-        <input type="text" class="form-control" id="dateRange" name="daterangeInput" daterangepicker [options]="options" (selected)="selectedDate($event)"
-        />
+        <input type="text" class="form-control" id="dateRange" name="daterangeInput" daterangepicker [options]="options"
+          (selected)="selectedDate($event)" />
       </div>
     </div>
     <div class="col-auto">
@@ -59,82 +59,93 @@
         <i class="fa fa-print"></i> Print</button>
     </div>
   </div>
-  <app-loading *ngIf="loading"></app-loading>
+  <ng-container *ngIf="!loading; else showLoding">
+    <div class="row mb-5 mx-2" *ngIf="reportList && reportList.length>0; else noRecord">
+      <div class="col-12">
+        <h4 class="text-center">{{reportType}} report of {{counter.name}} from {{daterange.startDate|date}} to
+          {{daterange.endDate|date}} for {{ship.shipNumber}}-{{ship.name}}</h4>
+      </div>
+      <table class="table table-bordered table-hover table-responsive-sm">
+        <thead>
+          <tr>
+            <th>Sl.</th>
+            <th>Ticket no.</th>
+            <th>Sells Date</th>
+            <th>Journey Date</th>
+            <th>Passenger Info</th>
+            <th>Seats</th>
+            <th>Price</th>
+            <th>Commission</th>
+            <th>Route</th>
+            <th>Sold By</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let report of reportList; index as i">
+            <td>{{ i + 1 }}</td>
+            <td>{{ report.bookingId }}</td>
+            <td>{{ report.bookingDate | date: 'MMM d, y, h:mm:ss a' }}</td>
+            <td>{{ report.journeyDate | date }}</td>
+            <td>{{ report.customerName }} - {{ report.customerPhone }}</td>
+            <td>
+              <span *ngFor="let seat of report.seatNumbers">{{ seat }},
+              </span>
+            </td>
+            <td>{{ report.price }}</td>
+            <td>{{ report.hotelswaveCommission + report.hotelswaveAgentCommission + report.shipAgentCommission }} </td>
+            <td>{{ report.shipNumber }}</td>
+            <td>{{ report.soldBy }}</td>
+            <td>{{ report.bookingStatus }}</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td>TOTAL</td>
+            <td>
+              <strong> {{ total.totalrent }} </strong>
+            </td>
+            <td>
+              <strong>{{ total.totalCommission }}</strong>
+            </td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+        </tfoot>
+      </table>
 
-  <div class="row mb-5 mx-2" *ngIf="reportList && reportList.length>0">
-    <div class="col-12">
-      <h4 class="text-center">{{reportType}} report of {{counter.name}} from {{daterange.startDate|date}} to {{daterange.endDate|date}} for {{ship.shipNumber}}-{{ship.name}}</h4>
-    </div>
-    <table class="table table-bordered table-hover table-responsive-sm">
-      <thead>
+      <table class="table table-bordered table-hover table-responsive-sm mt-4">
         <tr>
-          <th>Sl.</th>
-          <th>Ticket no.</th>
-          <th>Sells Date</th>
-          <th>Journey Date</th>
-          <th>Passenger Info</th>
-          <th>Seats</th>
+          <th>Counter Name</th>
+          <th>No of seat sold / Reserved</th>
           <th>Price</th>
-          <th>Commission</th>
-          <th>Route</th>
-          <th>Sold By</th>
-          <th>Status</th>
+          <th>Hotelswave Commission</th>
+          <th>Hotelswave Agent Commission</th>
+          <th>Ship Agent Commission</th>
         </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let report of reportList; index as i">
-          <td>{{ i + 1 }}</td>
-          <td>{{ report.bookingId }}</td>
-          <td>{{ report.bookingDate | date: 'MMM d, y, h:mm:ss a' }}</td>
-          <td>{{ report.journeyDate | date }}</td>
-          <td>{{ report.customerName }} - {{ report.customerPhone }}</td>
-          <td>
-            <span *ngFor="let seat of report.seatNumbers">{{ seat }},
-            </span>
-          </td>
-          <td>{{ report.price }}</td>
-          <td>{{ report.hotelswaveCommission + report.hotelswaveAgentCommission + report.shipAgentCommission }} </td>
-          <td>{{ report.shipNumber }}</td>
-          <td>{{ report.soldBy }}</td>
-          <td>{{ report.bookingStatus }}</td>
+        <tr *ngFor="let item of (soldBy | keyvalue)">
+          <td>{{item.key}}</td>
+          <td>{{item.value.totalSeatNumber}}</td>
+          <td>{{item.value.price}}</td>
+          <td>{{item.value.hotelswaveCommission}}</td>
+          <td>{{item.value.hotelswaveAgentCommission}}</td>
+          <td>{{item.value.shipAgentCommission}}</td>
         </tr>
-      </tbody>
-      <tfoot>
-        <tr>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td>TOTAL</td>
-          <td>
-            <strong> {{ total.totalrent }} </strong>
-          </td>
-          <td>
-            <strong>{{ total.totalCommission }}</strong>
-          </td>
-          <td></td>
-          <td></td>
-          <td></td>
-        </tr>
-      </tfoot>
-    </table>
-
-    <table class="table table-bordered table-hover table-responsive-sm mt-4">
-      <tr>
-        <th>Counter Name</th>
-        <th>No of seat sold / Reserved</th>
-        <th>Hotelswave Commission</th>
-        <th>Hotelswave Agent Commission</th>
-        <th>Ship Agent Commission</th>
-      </tr>
-      <tr *ngFor="let item of (soldBy | keyvalue)">
-        <td>{{item.key}}</td>
-        <td>{{item.value.totalSeatNumber}}</td>
-        <td>{{item.value.hotelswaveCommission}}</td>
-        <td>{{item.value.hotelswaveAgentCommission}}</td>
-        <td>{{item.value.shipAgentCommission}}</td>
-      </tr>
-    </table>
-  </div>
+      </table>
+    </div>
+    <ng-template #noRecord>
+      <h4 class="text-center">
+        <i class="fa fa-frown-o"></i> No record yet
+      </h4>
+    </ng-template>
+  </ng-container>
+  <ng-template #showLoding>
+    <loading></loading>
+  </ng-template>
 </div>

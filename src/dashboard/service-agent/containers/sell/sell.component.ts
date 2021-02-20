@@ -8,6 +8,7 @@ import { Category } from 'src/shared/models/category.model';
 import { User } from 'src/shared/models/user.model';
 import { SubBooking, Booking, SeatStatus } from 'src/shared/models/booking.model';
 import { UtilService } from 'src/service/util.service';
+import { AuthService } from 'src/service/auth.service';
 
 @Component({
   selector: 'app-sell',
@@ -23,6 +24,7 @@ export class SellComponent implements OnInit {
   mode = 'SEAT_SOLD';
   seatLoading = false;
   dataSending = false;
+  canReserve = false;
 
   message = '';
   errorMessage = '';
@@ -33,10 +35,12 @@ export class SellComponent implements OnInit {
   filteredSeatList: Seat[];
   categoryList: Category[] = [];
 
-  constructor(private shipService: ShipService,
+  constructor(private auth: AuthService, private shipService: ShipService,
     private seatService: SeatsService,
     private bookinService: BookingService,
-    private utilService: UtilService) { }
+    private utilService: UtilService) {
+    this.canReserve = this.auth.user.canReserve;
+  }
 
   ngOnInit() {
     let date = new Date();
@@ -89,9 +93,10 @@ export class SellComponent implements OnInit {
   }
 
   async getServiceAgentShips() {
-    await this.shipService.getServiceAgentShips().subscribe(data => {
-      this.ships = data;
-    })
+    try {
+      this.ships = await this.shipService.getServiceAgentShips().toPromise();
+      this.ships.sort(this.utilService.dynamicSortObject('priority'));
+    } catch (err) { console.log(err); }
   }
 
   onDetails(shipId) {

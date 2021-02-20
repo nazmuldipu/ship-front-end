@@ -11,8 +11,8 @@ import { IndividualReportComponent } from './containers/individual-report/indivi
 import { AgentCashComponent } from './containers/agent-cash/agent-cash.component';
 
 export const ROUTES: Routes = [
-  { path: 'counter', component: CounterReportComponent },
   { path: 'sells', component: SellsReportComponent },
+  { path: 'counter', component: CounterReportComponent },
   { path: 'range', component: SellsReportRangeComponent },
   { path: 'booking', component: BookingReportListComponent },
   { path: 'individual', component: IndividualReportComponent },

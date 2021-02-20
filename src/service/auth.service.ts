@@ -108,7 +108,10 @@ export class AuthService {
       name: data.name,
       username: data.username,
       id: data.id,
-      phoneNumber: data.phone
+      phoneNumber: data.phone,
+      canReserve: data.canReserve,
+      canCancelReservation: data.canCancelReservation,
+      canCancelBooking: data.canCancelBooking,
     } as User;
     // Save username and roles
     this.user = value;

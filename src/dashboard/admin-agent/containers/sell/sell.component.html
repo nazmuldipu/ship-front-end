@@ -20,7 +20,7 @@
           </div>
           <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="dd" [minDate]="minDate"
             [maxDate]="maxDate" ngbDatepicker #date="ngbDatepicker" (dateSelect)="closeDetails()"
-            (click)="date.toggle()" />
+            (click)="date.toggle()" readonly/>
           <div class="input-group-append" (click)="date.toggle()">
             <div class="input-group-text">
               <i class="fa fa-calendar"></i>
@@ -60,7 +60,7 @@
     </div>
     <div class="col-12 px-1" *ngIf="detailsId == ship.id">
       <div class="ship-details">
-        <app-loading *ngIf="seatLoading"></app-loading>
+        <loading *ngIf="seatLoading"></loading>
         <div *ngIf="seatList">
           <div class="d-flex flex-row-reverse">
             <button class="btn btn-sm btn-danger" type="button" (click)="closeDetails()" style="border-radius: 0;">
@@ -106,7 +106,7 @@
                   Clear
                 </button>
               </div>
-              <app-loading *ngIf="dataSending"></app-loading>
+              <loading *ngIf="dataSending"></loading>
             </div>
           </div>
         </div>

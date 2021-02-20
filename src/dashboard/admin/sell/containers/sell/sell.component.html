@@ -21,7 +21,7 @@
           </div>
           <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="dd" [minDate]="minDate"
             [maxDate]="maxDate" ngbDatepicker #date="ngbDatepicker" (dateSelect)="onDateChange()"
-            (click)="date.toggle()" />
+            (click)="date.toggle()" readonly/>
           <div class="input-group-append" (click)="date.toggle()">
             <div class="input-group-text">
               <i class="fa fa-calendar"></i>
@@ -62,7 +62,7 @@
     </div>
     <div class="col-12 px-1" *ngIf="detailsId == ship.id">
       <div class="ship-details">
-        <app-loading *ngIf="seatLoading"></app-loading>
+        <loading *ngIf="seatLoading"></loading>
         <div *ngIf="seatList">
           <div class="d-flex flex-row-reverse">
             <button class="btn btn-sm btn-danger" type="button" (click)="closeDetails()" style="border-radius: 0;">
@@ -73,13 +73,18 @@
 
             <div class="col-md-6">
               <div class="row m-0">
-                <span *ngFor="let cat of categoryList">
+                <div class="btn-group" role="group">
+                  <a class="btn btn-sm" *ngFor="let cat of categoryList"
+                    [ngClass]="(cat.name == category.name) ? 'btn-primary text-white' : 'btn-light'"
+                    (click)="onSelectCategory(cat.id)">{{cat.name}}</a>
+                </div>   
+                <!-- <span *ngFor="let cat of categoryList">
                   <button class="btn-sm m-1" [ngClass]="
                       cat.id == category.id ? 'btn-primary' : 'btn-secondary'
                     " (click)="onSelectCategory(cat.id)">
                     {{ cat.name }}
                   </button>
-                </span>
+                </span> -->
               </div>
               <seat-plan-other *ngIf="ship.shipName =='OTHER'" [filteredSeatList]="filteredSeatList"
                 [selectedSeat]="selectedSeat" [categoryName]="category?.name" (select)="onSeatClick($event)">
@@ -140,7 +145,7 @@
                   Clear
                 </button>
               </div>
-              <app-loading *ngIf="dataSending"></app-loading>
+              <loading *ngIf="dataSending"></loading>
             </div>
           </div>
         </div>

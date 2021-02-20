@@ -2,6 +2,37 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.8.
 
+
+# Roles funstions:
+## Ship admin:
+    1) CRUD agent with commission rate
+    2) Sell/Reserve with 2 month advance.
+    3) Seat status with cancel reservation
+    4) Cancel seat reservation one by one
+    5) Print ticket with booking id
+    6) Accounting cash book
+    7) Accounting Add incomes
+    8) Accounting Add expenses
+    9) Hotelswave ledger
+    10) Agent balance
+    11) Report : Sells report by sells day/ by journey day
+    12) Report : Sells report range by sells day/ by journey day
+    13) Report : Counter Report
+    14) Report : Booking report
+    15) Report : Individual report
+    16) Report : Agent cash
+
+## Ship agent:
+    1) Sell with 1 month advance
+    2) My sells
+    3) Ledger
+    4) My Balance
+
+### Optinals
+    5) Reservation
+    6) Cancel reservation
+    7) Cancel booking    
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
@@ -72,4 +103,14 @@ Update 20201202:
     14. Update Ticket design. (add issue by + change design)
     15. Admin agent manual commission
 
+[X] Seat status plan bug
+[] Guest name should be updated
+[] Super Admin should be able to cancel reserve one by one
+[X] Report total amount with number of tickets
+[] Seperate sold and reserve from report
+[] Super sell 
+[] Cancellation report for super admin
+[] Service admin should not able to see hotelswave.com agent sells
+
+git log --pretty=format:"%h%x09%an%x09%ad%x09%s"
 

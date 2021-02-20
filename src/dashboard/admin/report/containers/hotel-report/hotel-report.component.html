@@ -17,16 +17,8 @@
                   Date :
                 </div>
               </div>
-              <input
-                class="form-control"
-                placeholder="yyyy-mm-dd"
-                name="dp"
-                [(ngModel)]="dd"
-                ngbDatepicker
-                #date="ngbDatepicker"
-                (dateSelect)="onDateChange()"
-                (click)="date.toggle()"
-              />
+              <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="dd" ngbDatepicker
+                #date="ngbDatepicker" (dateSelect)="onDateChange()" (click)="date.toggle()" />
               <div class="input-group-append" (click)="date.toggle()">
                 <div class="input-group-text">
                   <i class="fa fa-calendar"></i>
@@ -40,12 +32,7 @@
             <div class="input-group-prepend">
               <div class="input-group-text">Type</div>
             </div>
-            <select
-              class="form-control"
-              id="reportType"
-              [(ngModel)]="reportType"
-              (change)="onTypeChange()"
-            >
+            <select class="form-control" id="reportType" [(ngModel)]="reportType" (change)="onTypeChange()">
               <option value="Sells"> Sells </option>
               <option value="Reservation"> Reservation </option>
             </select>
@@ -58,86 +45,17 @@
           </button>
         </div>
       </div>
-      <div *ngIf="loading"><app-loading></app-loading></div>
-      <div
-        *ngIf="
-          serviceAdminSellsReportList.length > 0 && !loading;
-          else noRecord
-        "
-      >
-        <h3 class="text-center">
-          {{ ship.name }} {{ reportType }} report for date of : {{ dd.day }}-{{
-            dd.month
-          }}-{{ dd.year }}
-        </h3>
-        <table class="table table-bordered table-hover table-responsive-sm">
-          <thead>
-            <tr>
-              <th>Sl.</th>
-              <th *ngIf="reportType == 'Reservation'">Seat</th>
-              <th>Ticket no.</th>
-              <th>Booking Date</th>
-              <th>Journey Date</th>
-              <th>Passenger Info</th>
-              <th>Seats</th>
-              <th>Price</th>
-              <th>Route</th>
-              <th>Sold By</th>
-              <th>Status</th>
-              <th>Paid</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let report of serviceAdminSellsReportList; index as i">
-              <td>{{ i + 1 }}</td>
-              <th *ngIf="reportType == 'Reservation'">
-                <span *ngFor="let seat of report.seatNumbers">
-                  {{ seat }}
-                </span>
-              </th>
-              <td>{{ report.bookingId }}</td>
-              <td>{{ report.bookingDate | date: 'MMM d, y, h:mm:ss a' }}</td>
-              <td>{{ report.journeyDate | date }}</td>
-              <td>{{ report.customerName }} - {{ report.customerPhone }}</td>
-              <td>
-                <span *ngFor="let seat of report.seatNumbers"
-                  >{{ seat }},
-                </span>
-              </td>
-              <td>{{ report.price }}</td>
-              <td>{{ report.shipNumber }} - {{ report.routes }}</td>
-              <td>{{ report.soldBy }}</td>
-              <td>{{ report.bookingStatus }}</td>
-              <td
-                [ngClass]="{
-                  'bg-success': report.paid,
-                  'bg-warning': !report.paid
-                }"
-              >
-                {{ report.paid ? 'Paid' : 'Unpaid' }}
-              </td>
-            </tr>
-          </tbody>
-          <tfoot>
-            <tr>
-              <td></td>
-              <td *ngIf="reportType == 'Reservation'"></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td>TOTAL</td>
-              <td>{{ total.totalrent }}</td>
-              <td></td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-          </tfoot>
-        </table>
-      </div>
-      <ng-template #noRecord>
-        <h4 class="text-center"><i class="fa fa-frown-o"></i> No record yet</h4>
+
+      <ng-container *ngIf="!loading; else showLoading">
+        <div *ngIf="serviceAdminSellsReportList.length > 0; else noRecord ">
+          <report-table [type] = "reportType" [headLine]="getHeadLine()" [reportList]="serviceAdminSellsReportList"></report-table>                 
+        </div>
+        <ng-template #noRecord>
+          <h4 class="text-center"><i class="fa fa-frown-o"></i> No record yet</h4>
+        </ng-template>
+      </ng-container>
+      <ng-template #showLoading>
+        <loading></loading>
       </ng-template>
     </div>
   </div>

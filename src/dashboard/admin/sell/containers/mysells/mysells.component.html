@@ -24,7 +24,7 @@
         </a>
       </ul>
       <ng-template #showLoading>
-        <app-loading></app-loading>
+        <loading></loading>
       </ng-template>
       <pagination *ngIf="bookingPage != null" [page]="bookingPage" [short]="short" (getPage)="getMyBookings($event)"></pagination>
     </div>

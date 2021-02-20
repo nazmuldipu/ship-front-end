@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Ship } from 'src/shared/models/ship.model';
 import { Report } from 'src/shared/models/report.model';
 import { ReportService } from 'src/service/report.service';
+import { UtilService } from 'src/service/util.service';
 
 @Component({
   selector: 'app-hotel-report',
@@ -16,7 +17,7 @@ export class HotelReportComponent implements OnInit {
   serviceAdminSellsReportList: Report[] = [];
   total;
 
-  constructor(private reportService: ReportService) { }
+  constructor(private reportService: ReportService, private utilService: UtilService) { }
 
   ngOnInit() {
     let date = new Date();
@@ -56,11 +57,11 @@ export class HotelReportComponent implements OnInit {
   }
 
   async getAdminReservationReportByShipId(shipId, { year, month, day }) {
-    this.loading = true;
     month = month < 10 ? '0' + month : month;
     day = day < 10 ? '0' + day : day;
     const date = `${year}-${month}-${day}`;
     try {
+      this.loading = true;
       this.serviceAdminSellsReportList = await this.reportService.getAdminReservationReportByShipId(date, shipId).toPromise();
       this.calculateServiceAdminBookingReportList();
       this.loading = false;
@@ -68,11 +69,11 @@ export class HotelReportComponent implements OnInit {
   }
 
   async getAdminSellsReportByShipId(shipId, { year, month, day }) {
-    this.loading = true;
     month = month < 10 ? '0' + month : month;
     day = day < 10 ? '0' + day : day;
     const date = `${year}-${month}-${day}`;
     try {
+      this.loading = true;
       this.serviceAdminSellsReportList = await this.reportService.getAdminSellsReportByShipId(date, shipId).toPromise();
       this.calculateServiceAdminBookingReportList();
       this.loading = false;
@@ -85,4 +86,9 @@ export class HotelReportComponent implements OnInit {
       this.total.totalrent += sb.price;
     });
   }
+
+  getHeadLine() {
+    return this.reportType + ' report for ' + this.utilService.getDateStringFromDateObj(this.dd);
+  }
+
 }
